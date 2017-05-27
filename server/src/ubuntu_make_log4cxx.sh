@@ -1,6 +1,4 @@
 #!/bin/bash
-# author: yangzhimin
-# date: 05/24/2017
 
 LOG4CXX=apache-log4cxx-0.10.0
 LOG4CXX_PATH=http://mirror.bit.edu.cn/apache/logging/log4cxx/0.10.0/$LOG4CXX.tar.gz
