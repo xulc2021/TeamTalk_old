@@ -70,6 +70,6 @@ build_hiredis(){
     cp -a hiredis.h async.h read.h sds.h adapters ../../db_proxy_server
 }
 
-check_user
+#check_user
 get_cur_dir
 build_hiredis
