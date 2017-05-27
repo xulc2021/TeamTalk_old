@@ -74,6 +74,6 @@ build_protobuf(){
     cp  -r include/* ../base/pb/
 }
 
-check_user
+#check_user
 get_cur_dir
 build_protobuf
