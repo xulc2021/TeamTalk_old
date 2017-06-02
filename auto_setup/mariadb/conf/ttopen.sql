@@ -492,6 +492,28 @@ CREATE TABLE `IMMessage_7` (
   KEY `idx_fromId_toId_created` (`fromId`,`toId`,`status`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
+
+# Dump of table IMTransmitFile
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `IMTransmitFile`;
+
+CREATE TABLE `IMTransmitFile` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fromId` int(11) unsigned NOT NULL COMMENT '发送用户的id',
+  `toId` int(11) unsigned NOT NULL COMMENT '接收用户的id',
+  `fileName` varchar(4096) COLLATE utf8mb4_bin DEFAULT '' COMMENT '文件名称',
+  `size` int(11) unsigned NOT NULL  COMMENT '文件大小',
+  `taskId` int(11) unsigned NOT NULL COMMENT 'taskId',
+  `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0正常 1被删除',
+  `updated` int(11) unsigned NOT NULL COMMENT '更新时间',
+  `created` int(11) unsigned NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`),
+  KEY `idx_fromId_toId_created` (`fromId`,`toId`,`status`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+
+
 # Dump of table IMRecentSession
 # ------------------------------------------------------------
 
