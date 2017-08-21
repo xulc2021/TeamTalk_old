@@ -6,11 +6,11 @@
 MARIADB_VERSION=10.0.17
 
 MARIADB_DEVEL=MariaDB-10.0.17-centos6-x86_64-devel
-MARIADB_DEVEL_DOWNLOAD_PATH=http://archive.mariadb.com/mariadb-10.0.17/yum/rhel6-amd64/rpms/$MARIADB_DEVEL.rpm
+MARIADB_DEVEL_DOWNLOAD_PATH=http://archive.mariadb.org/mariadb-10.0.17/yum/rhel6-amd64/rpms/$MARIADB_DEVEL.rpm
 MARIADB_COMMON=MariaDB-10.0.17-centos6-x86_64-common
-MARIADB_COMMON_DOWNLOAD_PATH=http://archive.mariadb.com/mariadb-10.0.17/yum/rhel6-amd64/rpms/$MARIADB_COMMON.rpm
+MARIADB_COMMON_DOWNLOAD_PATH=http://archive.mariadb.org/mariadb-10.0.17/yum/rhel6-amd64/rpms/$MARIADB_COMMON.rpm
 MARIADB_COMPAT=MariaDB-10.0.17-centos6-x86_64-compat
-MARIADB_COMPAT_DOWNLOAD_PATH=http://archive.mariadb.com/mariadb-10.0.17/yum/rhel6-amd64/rpms/$MARIADB_COMPAT.rpm
+MARIADB_COMPAT_DOWNLOAD_PATH=http://archive.mariadb.org/mariadb-10.0.17/yum/rhel6-amd64/rpms/$MARIADB_COMPAT.rpm
 CUR_DIR=
 
 check_user() {
