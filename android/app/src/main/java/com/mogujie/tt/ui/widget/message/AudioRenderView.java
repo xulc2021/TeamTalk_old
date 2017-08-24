@@ -3,6 +3,7 @@ package com.mogujie.tt.ui.widget.message;
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,15 @@ import com.mogujie.tt.DB.entity.MessageEntity;
 import com.mogujie.tt.DB.entity.UserEntity;
 import com.mogujie.tt.R;
 import com.mogujie.tt.config.MessageConstant;
-import com.mogujie.tt.ui.helper.AudioPlayerHandler;
 import com.mogujie.tt.imservice.entity.AudioMessage;
+import com.mogujie.tt.ui.helper.AudioPlayerHandler;
 import com.mogujie.tt.utils.CommonUtil;
 import com.mogujie.tt.utils.ScreenUtil;
 
 import java.io.File;
+
+import top.oply.opuslib.OpusEvent;
+import top.oply.opuslib.OpusPlayer;
 
 /**
  * @author : yingmu on 15-1-9.
@@ -135,6 +139,24 @@ public class AudioRenderView extends  BaseMsgRenderView {
                     public void run() {
                         try {
                             Thread.sleep(200);
+                            OpusPlayer.getInstance().setEventSender(new OpusEvent(getContext()){
+                                @Override
+                                public void sendEvent(int eventType) {
+                                    super.sendEvent(eventType);
+                                    //Log.i("tag","eventType:" + eventType);
+                                    if(eventType == PLAYING_FINISHED) {
+                                        AudioRenderView.this.post(new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                if(animationDrawable!=null && animationDrawable.isRunning()){
+                                                    animationDrawable.stop();
+                                                    animationDrawable.selectDrawable(0);
+                                                }
+                                            }
+                                        });
+                                    }
+                                }
+                            });
                             AudioPlayerHandler.getInstance().startPlay(audioPath);
                             animationDrawable.start();
                         } catch (Exception e) {

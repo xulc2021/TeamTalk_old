@@ -8,9 +8,8 @@ import com.mogujie.tt.imservice.event.AudioEvent;
 import com.mogujie.tt.imservice.support.audio.SpeexDecoder;
 import com.mogujie.tt.utils.Logger;
 
-import java.io.File;
-
 import de.greenrobot.event.EventBus;
+import top.oply.opuslib.OpusPlayer;
 
 public class AudioPlayerHandler{
     private String currentPlayPath = null;
@@ -89,12 +88,13 @@ public class AudioPlayerHandler{
 
     public void stopPlayer() {
         try {
-            if (null != th) {
-                th.interrupt();
-                th = null;
-                Thread.currentThread().interrupt();
-            } else {
-            }
+//            if (null != th) {
+//                th.interrupt();
+//                th = null;
+//                Thread.currentThread().interrupt();
+//            } else {
+//            }
+            OpusPlayer.getInstance().stop();
         } catch (Exception e) {
             logger.e(e.getMessage());
         }finally {
@@ -109,11 +109,15 @@ public class AudioPlayerHandler{
     public void startPlay(String filePath) {
         this.currentPlayPath = filePath;
         try {
-            speexdec = new SpeexDecoder(new File(this.currentPlayPath));
-            RecordPlayThread rpt = new RecordPlayThread();
-            if (null == th)
-                th = new Thread(rpt);
-            th.start();
+//            speexdec = new SpeexDecoder(new File(this.currentPlayPath));
+//            RecordPlayThread rpt = new RecordPlayThread();
+//            if (null == th)
+//                th = new Thread(rpt);
+//            th.start();
+
+
+            OpusPlayer.getInstance().play(filePath);
+
         } catch (Exception e) {
             // 关闭动画很多地方需要写，是不是需要重新考虑一下@yingmu
             logger.e(e.getMessage());

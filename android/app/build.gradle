@@ -51,4 +51,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.0.0'
     compile 'com.squareup.okhttp:okhttp-urlconnection:2.0.0'
     compile 'commons-io:commons-io:2.4'
+    compile 'top.oply.opuslib:opuslib:1.0.2'
 }
