@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6802F6EF490DEE71C0552E98 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FC7C945FDB2D00B8D439C777 /* libPods.a */; };
+		647C58AEC1233155AAC197B6 /* libPods-TeamTalk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2D1F0082EA2B34623407C632 /* libPods-TeamTalk.a */; };
 		810D52181B50ECFA004DF7B4 /* bgImage_HL@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 810D52141B50ECFA004DF7B4 /* bgImage_HL@2x.png */; };
 		810D52191B50ECFA004DF7B4 /* cellLine@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 810D52151B50ECFA004DF7B4 /* cellLine@2x.png */; };
 		810D521A1B50ECFA004DF7B4 /* LCActionSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = 810D52171B50ECFA004DF7B4 /* LCActionSheet.m */; };
@@ -43,8 +43,6 @@
 		8157DB831B47DED800043E0F /* chatBg.png in Resources */ = {isa = PBXBuildFile; fileRef = 8157DB821B47DED800043E0F /* chatBg.png */; };
 		8170B6911B3934320011E0D0 /* MTTSignatureAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8170B6901B3934320011E0D0 /* MTTSignatureAPI.m */; };
 		8176F8101B462B39004E4775 /* UIImage+Rotate_Flip.m in Sources */ = {isa = PBXBuildFile; fileRef = 8176F80F1B462B39004E4775 /* UIImage+Rotate_Flip.m */; };
-		817CB3B01B3BC6E80004AFEA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 817CB3AE1B3BC6E80004AFEA /* Fabric.framework */; };
-		817CB3B11B3BC6E80004AFEA /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 817CB3AF1B3BC6E80004AFEA /* Crashlytics.framework */; };
 		817CB3B41B3C04940004AFEA /* MTTGroupInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 817CB3B31B3C04940004AFEA /* MTTGroupInfoCell.m */; };
 		818654921B3424E3006AFD8F /* MTTUserInfoCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 818654911B3424E3006AFD8F /* MTTUserInfoCell.m */; };
 		818BB5771B43DB1B0023AAE2 /* MTTAvatarManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 818BB5761B43DB1B0023AAE2 /* MTTAvatarManager.m */; };
@@ -399,6 +397,7 @@
 		C0AE3A111B32C68200B67232 /* EditGroupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C0AE39FC1B32C68200B67232 /* EditGroupViewController.m */; };
 		C0AE3A121B32C68200B67232 /* EditGroupViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C0AE39FD1B32C68200B67232 /* EditGroupViewController.xib */; };
 		C0AE3A1B1B32C95A00B67232 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = C0AE3A1A1B32C95A00B67232 /* libz.dylib */; };
+		E0C9F2DE97E2CB37D3ADAE91 /* libPods-TeamTalkTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E316BA6F91A5C301D7DAF5F /* libPods-TeamTalkTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -412,7 +411,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		01B1BB5C4F9422ADB3DAA6A8 /* Pods-TeamTalkTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamTalkTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamTalkTests/Pods-TeamTalkTests.debug.xcconfig"; sourceTree = "<group>"; };
 		03A854D4EB4F75C40944178C /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		0E316BA6F91A5C301D7DAF5F /* libPods-TeamTalkTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeamTalkTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		211A075033DA3A7344847BDC /* Pods-TeamTalk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamTalk.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamTalk/Pods-TeamTalk.release.xcconfig"; sourceTree = "<group>"; };
+		2D1F0082EA2B34623407C632 /* libPods-TeamTalk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TeamTalk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		810D52141B50ECFA004DF7B4 /* bgImage_HL@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgImage_HL@2x.png"; sourceTree = "<group>"; };
 		810D52151B50ECFA004DF7B4 /* cellLine@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cellLine@2x.png"; sourceTree = "<group>"; };
 		810D52161B50ECFA004DF7B4 /* LCActionSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LCActionSheet.h; sourceTree = "<group>"; };
@@ -467,8 +470,6 @@
 		8170B6901B3934320011E0D0 /* MTTSignatureAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTSignatureAPI.m; sourceTree = "<group>"; };
 		8176F80E1B462B39004E4775 /* UIImage+Rotate_Flip.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Rotate_Flip.h"; sourceTree = "<group>"; };
 		8176F80F1B462B39004E4775 /* UIImage+Rotate_Flip.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Rotate_Flip.m"; sourceTree = "<group>"; };
-		817CB3AE1B3BC6E80004AFEA /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
-		817CB3AF1B3BC6E80004AFEA /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		817CB3B21B3C04940004AFEA /* MTTGroupInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTGroupInfoCell.h; sourceTree = "<group>"; };
 		817CB3B31B3C04940004AFEA /* MTTGroupInfoCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTGroupInfoCell.m; sourceTree = "<group>"; };
 		818654901B3424E3006AFD8F /* MTTUserInfoCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTUserInfoCell.h; sourceTree = "<group>"; };
@@ -525,7 +526,9 @@
 		81F8502B1B58BD300004F6DE /* mac_logined@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mac_logined@2x.png"; sourceTree = "<group>"; };
 		81F8502D1B58E3110004F6DE /* MTTPCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTPCLoginViewController.h; sourceTree = "<group>"; };
 		81F8502E1B58E3110004F6DE /* MTTPCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTPCLoginViewController.m; sourceTree = "<group>"; };
+		93EEA93B8F85B99118BFDD55 /* Pods-TeamTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamTalkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamTalkTests/Pods-TeamTalkTests.release.xcconfig"; sourceTree = "<group>"; };
 		B5814BD6A45D3ECB20653BEA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		BED7F25D73208CB70D52F73B /* Pods-TeamTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamTalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamTalk/Pods-TeamTalk.debug.xcconfig"; sourceTree = "<group>"; };
 		C00078401B3A466700E7E5B8 /* UIView+PointBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PointBadge.h"; sourceTree = "<group>"; };
 		C00078411B3A466700E7E5B8 /* UIView+PointBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PointBadge.m"; sourceTree = "<group>"; };
 		C00078431B3A552200E7E5B8 /* UITabBar+SubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+SubView.h"; sourceTree = "<group>"; };
@@ -1080,10 +1083,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0AE3A1B1B32C95A00B67232 /* libz.dylib in Frameworks */,
-				817CB3B01B3BC6E80004AFEA /* Fabric.framework in Frameworks */,
 				C054EC851B3274E200078809 /* libsecurity.a in Frameworks */,
-				817CB3B11B3BC6E80004AFEA /* Crashlytics.framework in Frameworks */,
-				6802F6EF490DEE71C0552E98 /* libPods.a in Frameworks */,
+				647C58AEC1233155AAC197B6 /* libPods-TeamTalk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1091,6 +1092,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0C9F2DE97E2CB37D3ADAE91 /* libPods-TeamTalkTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,6 +1104,10 @@
 			children = (
 				03A854D4EB4F75C40944178C /* Pods.debug.xcconfig */,
 				B5814BD6A45D3ECB20653BEA /* Pods.release.xcconfig */,
+				BED7F25D73208CB70D52F73B /* Pods-TeamTalk.debug.xcconfig */,
+				211A075033DA3A7344847BDC /* Pods-TeamTalk.release.xcconfig */,
+				01B1BB5C4F9422ADB3DAA6A8 /* Pods-TeamTalkTests.debug.xcconfig */,
+				93EEA93B8F85B99118BFDD55 /* Pods-TeamTalkTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1109,10 +1115,10 @@
 		527B2E51021DC51A46265D31 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				817CB3AE1B3BC6E80004AFEA /* Fabric.framework */,
-				817CB3AF1B3BC6E80004AFEA /* Crashlytics.framework */,
 				C0AE3A1A1B32C95A00B67232 /* libz.dylib */,
 				FC7C945FDB2D00B8D439C777 /* libPods.a */,
+				2D1F0082EA2B34623407C632 /* libPods-TeamTalk.a */,
+				0E316BA6F91A5C301D7DAF5F /* libPods-TeamTalkTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2506,13 +2512,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C054EC521B3270D900078809 /* Build configuration list for PBXNativeTarget "TeamTalk" */;
 			buildPhases = (
-				C737AEAC57352C980D83E347 /* Check Pods Manifest.lock */,
+				C737AEAC57352C980D83E347 /* [CP] Check Pods Manifest.lock */,
 				468A16201B3937150093C314 /* ShellScript */,
 				C054EC2B1B3270D900078809 /* Sources */,
 				C054EC2C1B3270D900078809 /* Frameworks */,
 				C054EC2D1B3270D900078809 /* Resources */,
-				D9431D98FDF906055AA1F60D /* Copy Pods Resources */,
-				817CB3AD1B3BC68D0004AFEA /* Run Script */,
+				D9431D98FDF906055AA1F60D /* [CP] Copy Pods Resources */,
+				CFA9292C41D53EF22C94E5E4 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -2527,9 +2533,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C054EC551B3270D900078809 /* Build configuration list for PBXNativeTarget "TeamTalkTests" */;
 			buildPhases = (
+				82A261C24B44A82BA7B58C69 /* [CP] Check Pods Manifest.lock */,
 				C054EC441B3270D900078809 /* Sources */,
 				C054EC451B3270D900078809 /* Frameworks */,
 				C054EC461B3270D900078809 /* Resources */,
+				D27CC07EED594F68A0FB9333 /* [CP] Embed Pods Frameworks */,
+				3D486278BC73B1DFD4B81E8B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -2552,7 +2561,7 @@
 				TargetAttributes = {
 					C054EC2E1B3270D900078809 = {
 						CreatedOnToolsVersion = 6.3;
-						DevelopmentTeam = MEU26PKGC2;
+						DevelopmentTeam = X5X6ZXN55A;
 					};
 					C054EC471B3270D900078809 = {
 						CreatedOnToolsVersion = 6.3;
@@ -2751,6 +2760,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3D486278BC73B1DFD4B81E8B /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeamTalkTests/Pods-TeamTalkTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		468A16201B3937150093C314 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2764,48 +2788,79 @@
 			shellPath = /bin/sh;
 			shellScript = "if [ \"${CONFIGURATION}\" = \"Release\" ] || [ \"${CONFIGURATION}\" = \"CI\" ]; then\n\nBUILD_NUMBER=`curl http://www.mogujie.com/mobile/build/increase -F \"identifier=im.teamtalk.tt\" -F \"sign=f41b3c980d33d9d51a0a0df685b20bb9\"`\n\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $BUILD_NUMBER\" \"${INFOPLIST_FILE}\"\nfi";
 		};
-		817CB3AD1B3BC68D0004AFEA /* Run Script */ = {
+		82A261C24B44A82BA7B58C69 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Run Script";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Fabric.framework/run c85ad901eb0173a488b631e90f5913415f7424d1 bcd847cf6b15b2605cfff9400a4da335ce5ea3a0ac481dd143db404b55a09e73";
-		};
-		C737AEAC57352C980D83E347 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		D9431D98FDF906055AA1F60D /* Copy Pods Resources */ = {
+		C737AEAC57352C980D83E347 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CFA9292C41D53EF22C94E5E4 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeamTalk/Pods-TeamTalk-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D27CC07EED594F68A0FB9333 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeamTalkTests/Pods-TeamTalkTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D9431D98FDF906055AA1F60D /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TeamTalk/Pods-TeamTalk-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -3172,12 +3227,14 @@
 		};
 		C054EC531B3270D900078809 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 03A854D4EB4F75C40944178C /* Pods.debug.xcconfig */;
+			baseConfigurationReference = BED7F25D73208CB70D52F73B /* Pods-TeamTalk.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				DEVELOPMENT_TEAM = X5X6ZXN55A;
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -3186,13 +3243,14 @@
 				);
 				GCC_PREFIX_HEADER = "TeamTalk/TeamTalk-Prefix.pch";
 				INFOPLIST_FILE = TeamTalk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TeamTalk/Exist/Security",
 					"$(PROJECT_DIR)/TeamTalk/Exist/MobClick",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = im.xiaominfc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -3200,12 +3258,14 @@
 		};
 		C054EC541B3270D900078809 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B5814BD6A45D3ECB20653BEA /* Pods.release.xcconfig */;
+			baseConfigurationReference = 211A075033DA3A7344847BDC /* Pods-TeamTalk.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_RESOURCE_RULES_PATH = "$(SDKROOT)/ResourceRules.plist";
+				DEVELOPMENT_TEAM = X5X6ZXN55A;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3213,13 +3273,14 @@
 				);
 				GCC_PREFIX_HEADER = "TeamTalk/TeamTalk-Prefix.pch";
 				INFOPLIST_FILE = TeamTalk/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/TeamTalk/Exist/Security",
 					"$(PROJECT_DIR)/TeamTalk/Exist/MobClick",
 				);
+				PRODUCT_BUNDLE_IDENTIFIER = im.xiaominfc.com;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -3227,6 +3288,7 @@
 		};
 		C054EC561B3270D900078809 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01B1BB5C4F9422ADB3DAA6A8 /* Pods-TeamTalkTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -3249,6 +3311,7 @@
 		};
 		C054EC571B3270D900078809 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93EEA93B8F85B99118BFDD55 /* Pods-TeamTalkTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
