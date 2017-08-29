@@ -82,6 +82,7 @@
 		81F8502A1B58B4F60004F6DE /* MTTPCStatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F850291B58B4F60004F6DE /* MTTPCStatusCell.m */; };
 		81F8502C1B58BD300004F6DE /* mac_logined@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 81F8502B1B58BD300004F6DE /* mac_logined@2x.png */; };
 		81F8502F1B58E3110004F6DE /* MTTPCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 81F8502E1B58E3110004F6DE /* MTTPCLoginViewController.m */; };
+		A837332D1F55608F009A85D8 /* bubble.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A837332C1F55608F009A85D8 /* bubble.bundle */; };
 		C00078421B3A466700E7E5B8 /* UIView+PointBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = C00078411B3A466700E7E5B8 /* UIView+PointBadge.m */; };
 		C00078451B3A552200E7E5B8 /* UITabBar+SubView.m in Sources */ = {isa = PBXBuildFile; fileRef = C00078441B3A552200E7E5B8 /* UITabBar+SubView.m */; };
 		C000784E1B3A77E000E7E5B8 /* NSObject+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = C000784C1B3A77E000E7E5B8 /* NSObject+Block.m */; };
@@ -527,6 +528,7 @@
 		81F8502D1B58E3110004F6DE /* MTTPCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MTTPCLoginViewController.h; sourceTree = "<group>"; };
 		81F8502E1B58E3110004F6DE /* MTTPCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MTTPCLoginViewController.m; sourceTree = "<group>"; };
 		93EEA93B8F85B99118BFDD55 /* Pods-TeamTalkTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamTalkTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TeamTalkTests/Pods-TeamTalkTests.release.xcconfig"; sourceTree = "<group>"; };
+		A837332C1F55608F009A85D8 /* bubble.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = bubble.bundle; sourceTree = "<group>"; };
 		B5814BD6A45D3ECB20653BEA /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		BED7F25D73208CB70D52F73B /* Pods-TeamTalk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TeamTalk.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TeamTalk/Pods-TeamTalk.debug.xcconfig"; sourceTree = "<group>"; };
 		C00078401B3A466700E7E5B8 /* UIView+PointBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PointBadge.h"; sourceTree = "<group>"; };
@@ -1637,6 +1639,7 @@
 		C07E646C1B3280BB00A5102C /* Bundle */ = {
 			isa = PBXGroup;
 			children = (
+				A837332C1F55608F009A85D8 /* bubble.bundle */,
 				C07E646D1B3280BB00A5102C /* emotions.bundle */,
 			);
 			path = Bundle;
@@ -2605,6 +2608,7 @@
 				C07E65861B3283FB00A5102C /* loginlogo.png in Resources */,
 				C07E654A1B3283FB00A5102C /* dd_emotion.png in Resources */,
 				C07E65791B3283FB00A5102C /* delete@2x.png in Resources */,
+				A837332D1F55608F009A85D8 /* bubble.bundle in Resources */,
 				C07E655B1B3283FB00A5102C /* dd_press_to_say_normal@2x.png in Resources */,
 				C07E653E1B3283FB00A5102C /* contact.png in Resources */,
 				C07E658B1B3283FB00A5102C /* password.png in Resources */,
