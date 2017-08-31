@@ -31,18 +31,6 @@ static PlayerManager *mPlayerManager = nil;
         g_playerManager = [[PlayerManager alloc] init];
     });
     return g_playerManager;
-//    @synchronized(self) {
-//        if (mPlayerManager == nil)
-//        {
-//            mPlayerManager = [[PlayerManager alloc] init];
-//            
-//            [[NSNotificationCenter defaultCenter] addObserver:mPlayerManager
-//                                                     selector:@selector(sensorStateChange:)
-//                                                         name:@"UIDeviceProximityStateDidChangeNotification"
-//                                                       object:nil];
-//        }
-//    }
-//    return mPlayerManager;
 }
 
 + (id)allocWithZone:(NSZone *)zone
@@ -85,13 +73,13 @@ static PlayerManager *mPlayerManager = nil;
     if ( ! filename) {
         return;
     }
-    if ([filename rangeOfString:@".spx"].location != NSNotFound) {
+    
+    
+    if ([filename rangeOfString:@".audio"].location != NSNotFound) {
+        
         [[AVAudioSession sharedInstance] setActive:YES error:nil];
-        
         [self stopPlaying];
-        
         self.delegate = newDelegate;
-        
         self.decapsulator = [[Decapsulator alloc] initWithFileName:filename];
         self.decapsulator.delegate = self;
         [[AVAudioSession sharedInstance] setCategory:AVAudioSessionCategoryPlayback error:nil];

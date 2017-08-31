@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVFoundation.h>
-#import "SpeexCodec.h"
+#import "ogg.h"
 
 @class RawAudioDataPlayer;
 

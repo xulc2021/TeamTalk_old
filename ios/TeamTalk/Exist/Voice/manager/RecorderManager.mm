@@ -87,7 +87,7 @@ AudioQueueLevelMeterState *levelMeterStates;
     }
     
     filename = [NSString stringWithString:[Encapsulator defaultFileName]];
-    NSLog(@"filename:%@",filename);
+    //NSLog(@"filename:%@",filename);
     
 //    if (self.encapsulator) {
 //        self.encapsulator.delegete = nil;

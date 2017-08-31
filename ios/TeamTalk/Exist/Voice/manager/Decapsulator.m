@@ -8,6 +8,8 @@
 
 #import "Decapsulator.h"
 #import "RawAudioDataPlayer.h"
+#import "OpusCodec.h"
+#import "opusfile.h"
 
 #define DESIRED_BUFFER_SIZE 4096
 
@@ -31,7 +33,7 @@
     if (self = [super init]) {
         mFileName = [NSString stringWithString:filename];
         NSFileManager *fileManager = [NSFileManager defaultManager];
-        if ( ! [fileManager fileExistsAtPath:filename]) {
+        if (![fileManager fileExistsAtPath:filename]) {
             NSLog(@"要播放的文件不存在:%@", filename);
         }
         operationQueue = [[NSOperationQueue alloc] init];
@@ -42,13 +44,13 @@
 - (void)play {
     isPlaying = YES;
     
-    if ( ! self.player) {
+    if (!self.player) {
         self.player = [[RawAudioDataPlayer alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingingOver:) name:NOTIFICATION_PLAY_OVER object:nil];
     }
     [self.player startPlay];
-    
-    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(convertOggToPCMWithData:) object:[NSData dataWithContentsOfFile:mFileName]];
+    NSData *fileData = [NSData dataWithContentsOfFile:mFileName];
+    NSInvocationOperation *operation = [[NSInvocationOperation alloc] initWithTarget:self selector:@selector(convertOggToPCMWithData:) object:fileData];
     [[[NSOperationQueue alloc] init] addOperation:operation];
     
 }
@@ -105,10 +107,13 @@
             int resultSyncPageout= ogg_sync_pageout(&oggSyncState, &oggPage);
             if (resultSyncPageout == 1) {
                 NSLog(@"to decode a page which was synced and returned");
-                
                 //检查header和comment
                 if(packetNo == 0) {
                     NSLog(@"it's the header page, check the header later");
+                    
+//                    OpusHead header;
+//                    opus_head_parse(&header, oggPage.body, oggPage.body_len);
+                    NSLog(@"header:%s  header_size:%ld  body_len:%ld",oggPage.header,oggPage.header_len, oggPage.body_len);
                     if ([self readOggHeaderToStreamState:&oggStreamState fromOggPage:&oggPage]) {
                         oggStreamState.packetno = packetNo ++;
                         pageNo ++;
@@ -134,10 +139,11 @@
                     return;
                 }
                 
-                SpeexCodec *codec = [[SpeexCodec alloc] init];
-                [codec open:4];
-                short decodedBuffer[1024];
-                
+                //SpeexCodec *codec = [[SpeexCodec alloc] init];
+                OpusCodec *codec = [[OpusCodec alloc] init];
+                //[codec open:4];
+                short decodedBuffer[8196];
+                NSLog(@"header:%s  header_size:%ld  body_len:%ld",oggPage.header,oggPage.header_len, oggPage.body_len);
                 while (YES) {
                     ogg_packet oggPacket;
                     int packetResult = ogg_stream_packetout(&oggStreamState, &oggPacket);
@@ -146,8 +152,11 @@
 //                        NSLog(@"to decode a packet");
                         packetNo ++;
                         int nDecodedByte = sizeof(short) * [codec decode:oggPacket.packet length:oggPacket.bytes output:decodedBuffer];
-                        decodedByteLength += nDecodedByte;
-                        [self packetDecoded:(Byte *)decodedBuffer size:nDecodedByte];
+                        if(nDecodedByte > 0) {
+                            decodedByteLength += nDecodedByte;
+                            [self packetDecoded:(Byte *)decodedBuffer size:nDecodedByte];
+                        }
+                        
                     }
                     else if (packetResult == 0) {
                         //need more
@@ -180,7 +189,7 @@
 }
 
 - (BOOL)readOggHeaderToStreamState:(ogg_stream_state *)os fromOggPage:(ogg_page *)op {
-    if (op->body_len != 80) {
+    if (op->body_len != 80 && op->body_len != 19) {
         return NO;
     }
 //    if ( ! [[NSString stringWithCharacters:(unichar *)op->header length:4] isEqualToString:@"OggS"]) {

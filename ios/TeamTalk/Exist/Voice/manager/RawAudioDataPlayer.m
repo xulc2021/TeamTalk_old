@@ -68,7 +68,7 @@ static void AudioPlayerAQInputCallback(void *input, AudioQueueRef inQ, AudioQueu
 
 -(void)initAudio {
     ///设置音频参数
-    audioDescription.mSampleRate = 8000;//采样率
+    audioDescription.mSampleRate = 16000;//采样率
     audioDescription.mFormatID = kAudioFormatLinearPCM;
     audioDescription.mFormatFlags = kLinearPCMFormatFlagIsSignedInteger | kAudioFormatFlagIsPacked;
     audioDescription.mChannelsPerFrame = 1;///单声道
