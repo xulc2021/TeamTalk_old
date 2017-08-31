@@ -36,57 +36,53 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (BOOL) hasFromUserId {
   return !!hasFromUserId_;
 }
-- (void) setHasFromUserId:(BOOL) value_ {
-  hasFromUserId_ = !!value_;
+- (void) setHasFromUserId:(BOOL) _value_ {
+  hasFromUserId_ = !!_value_;
 }
 @synthesize fromUserId;
 - (BOOL) hasToSessionId {
   return !!hasToSessionId_;
 }
-- (void) setHasToSessionId:(BOOL) value_ {
-  hasToSessionId_ = !!value_;
+- (void) setHasToSessionId:(BOOL) _value_ {
+  hasToSessionId_ = !!_value_;
 }
 @synthesize toSessionId;
 - (BOOL) hasMsgId {
   return !!hasMsgId_;
 }
-- (void) setHasMsgId:(BOOL) value_ {
-  hasMsgId_ = !!value_;
+- (void) setHasMsgId:(BOOL) _value_ {
+  hasMsgId_ = !!_value_;
 }
 @synthesize msgId;
 - (BOOL) hasCreateTime {
   return !!hasCreateTime_;
 }
-- (void) setHasCreateTime:(BOOL) value_ {
-  hasCreateTime_ = !!value_;
+- (void) setHasCreateTime:(BOOL) _value_ {
+  hasCreateTime_ = !!_value_;
 }
 @synthesize createTime;
 - (BOOL) hasMsgType {
   return !!hasMsgType_;
 }
-- (void) setHasMsgType:(BOOL) value_ {
-  hasMsgType_ = !!value_;
+- (void) setHasMsgType:(BOOL) _value_ {
+  hasMsgType_ = !!_value_;
 }
 @synthesize msgType;
 - (BOOL) hasMsgData {
   return !!hasMsgData_;
 }
-- (void) setHasMsgData:(BOOL) value_ {
-  hasMsgData_ = !!value_;
+- (void) setHasMsgData:(BOOL) _value_ {
+  hasMsgData_ = !!_value_;
 }
 @synthesize msgData;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.msgData = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.fromUserId = 0;
     self.toSessionId = 0;
@@ -104,10 +100,10 @@ static IMMsgData* defaultIMMsgDataInstance = nil;
     defaultIMMsgDataInstance = [[IMMsgData alloc] init];
   }
 }
-+ (IMMsgData*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMMsgDataInstance;
 }
-- (IMMsgData*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMMsgDataInstance;
 }
 - (BOOL) isInitialized {
@@ -231,7 +227,7 @@ static IMMsgData* defaultIMMsgDataInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"createTime", [NSNumber numberWithInteger:self.createTime]];
   }
   if (self.hasMsgType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"msgType", self.msgType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"msgType", NSStringFromMsgType(self.msgType)];
   }
   if (self.hasMsgData) {
     [output appendFormat:@"%@%@: %@\n", indent, @"msgData", self.msgData];
@@ -240,6 +236,30 @@ static IMMsgData* defaultIMMsgDataInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasFromUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fromUserId] forKey: @"fromUserId"];
+  }
+  if (self.hasToSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.toSessionId] forKey: @"toSessionId"];
+  }
+  if (self.hasMsgId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.msgId] forKey: @"msgId"];
+  }
+  if (self.hasCreateTime) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.createTime] forKey: @"createTime"];
+  }
+  if (self.hasMsgType) {
+    [dictionary setObject: @(self.msgType) forKey: @"msgType"];
+  }
+  if (self.hasMsgData) {
+    [dictionary setObject: self.msgData forKey: @"msgData"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -295,29 +315,26 @@ static IMMsgData* defaultIMMsgDataInstance = nil;
 @end
 
 @interface IMMsgDataBuilder()
-@property (strong) IMMsgData* result;
+@property (strong) IMMsgData* resultImmsgData;
 @end
 
 @implementation IMMsgDataBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImmsgData;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMMsgData alloc] init];
+    self.resultImmsgData = [[IMMsgData alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImmsgData;
 }
 - (IMMsgDataBuilder*) clear {
-  self.result = [[IMMsgData alloc] init];
+  self.resultImmsgData = [[IMMsgData alloc] init];
   return self;
 }
 - (IMMsgDataBuilder*) clone {
-  return [IMMsgData builderWithPrototype:result];
+  return [IMMsgData builderWithPrototype:resultImmsgData];
 }
 - (IMMsgData*) defaultInstance {
   return [IMMsgData defaultInstance];
@@ -327,8 +344,8 @@ static IMMsgData* defaultIMMsgDataInstance = nil;
   return [self buildPartial];
 }
 - (IMMsgData*) buildPartial {
-  IMMsgData* returnMe = result;
-  self.result = nil;
+  IMMsgData* returnMe = resultImmsgData;
+  self.resultImmsgData = nil;
   return returnMe;
 }
 - (IMMsgDataBuilder*) mergeFrom:(IMMsgData*) other {
@@ -414,115 +431,115 @@ static IMMsgData* defaultIMMsgDataInstance = nil;
   }
 }
 - (BOOL) hasFromUserId {
-  return result.hasFromUserId;
+  return resultImmsgData.hasFromUserId;
 }
 - (UInt32) fromUserId {
-  return result.fromUserId;
+  return resultImmsgData.fromUserId;
 }
 - (IMMsgDataBuilder*) setFromUserId:(UInt32) value {
-  result.hasFromUserId = YES;
-  result.fromUserId = value;
+  resultImmsgData.hasFromUserId = YES;
+  resultImmsgData.fromUserId = value;
   return self;
 }
 - (IMMsgDataBuilder*) clearFromUserId {
-  result.hasFromUserId = NO;
-  result.fromUserId = 0;
+  resultImmsgData.hasFromUserId = NO;
+  resultImmsgData.fromUserId = 0;
   return self;
 }
 - (BOOL) hasToSessionId {
-  return result.hasToSessionId;
+  return resultImmsgData.hasToSessionId;
 }
 - (UInt32) toSessionId {
-  return result.toSessionId;
+  return resultImmsgData.toSessionId;
 }
 - (IMMsgDataBuilder*) setToSessionId:(UInt32) value {
-  result.hasToSessionId = YES;
-  result.toSessionId = value;
+  resultImmsgData.hasToSessionId = YES;
+  resultImmsgData.toSessionId = value;
   return self;
 }
 - (IMMsgDataBuilder*) clearToSessionId {
-  result.hasToSessionId = NO;
-  result.toSessionId = 0;
+  resultImmsgData.hasToSessionId = NO;
+  resultImmsgData.toSessionId = 0;
   return self;
 }
 - (BOOL) hasMsgId {
-  return result.hasMsgId;
+  return resultImmsgData.hasMsgId;
 }
 - (UInt32) msgId {
-  return result.msgId;
+  return resultImmsgData.msgId;
 }
 - (IMMsgDataBuilder*) setMsgId:(UInt32) value {
-  result.hasMsgId = YES;
-  result.msgId = value;
+  resultImmsgData.hasMsgId = YES;
+  resultImmsgData.msgId = value;
   return self;
 }
 - (IMMsgDataBuilder*) clearMsgId {
-  result.hasMsgId = NO;
-  result.msgId = 0;
+  resultImmsgData.hasMsgId = NO;
+  resultImmsgData.msgId = 0;
   return self;
 }
 - (BOOL) hasCreateTime {
-  return result.hasCreateTime;
+  return resultImmsgData.hasCreateTime;
 }
 - (UInt32) createTime {
-  return result.createTime;
+  return resultImmsgData.createTime;
 }
 - (IMMsgDataBuilder*) setCreateTime:(UInt32) value {
-  result.hasCreateTime = YES;
-  result.createTime = value;
+  resultImmsgData.hasCreateTime = YES;
+  resultImmsgData.createTime = value;
   return self;
 }
 - (IMMsgDataBuilder*) clearCreateTime {
-  result.hasCreateTime = NO;
-  result.createTime = 0;
+  resultImmsgData.hasCreateTime = NO;
+  resultImmsgData.createTime = 0;
   return self;
 }
 - (BOOL) hasMsgType {
-  return result.hasMsgType;
+  return resultImmsgData.hasMsgType;
 }
 - (MsgType) msgType {
-  return result.msgType;
+  return resultImmsgData.msgType;
 }
 - (IMMsgDataBuilder*) setMsgType:(MsgType) value {
-  result.hasMsgType = YES;
-  result.msgType = value;
+  resultImmsgData.hasMsgType = YES;
+  resultImmsgData.msgType = value;
   return self;
 }
 - (IMMsgDataBuilder*) clearMsgType {
-  result.hasMsgType = NO;
-  result.msgType = MsgTypeMsgTypeSingleText;
+  resultImmsgData.hasMsgType = NO;
+  resultImmsgData.msgType = MsgTypeMsgTypeSingleText;
   return self;
 }
 - (BOOL) hasMsgData {
-  return result.hasMsgData;
+  return resultImmsgData.hasMsgData;
 }
 - (NSData*) msgData {
-  return result.msgData;
+  return resultImmsgData.msgData;
 }
 - (IMMsgDataBuilder*) setMsgData:(NSData*) value {
-  result.hasMsgData = YES;
-  result.msgData = value;
+  resultImmsgData.hasMsgData = YES;
+  resultImmsgData.msgData = value;
   return self;
 }
 - (IMMsgDataBuilder*) clearMsgData {
-  result.hasMsgData = NO;
-  result.msgData = [NSData data];
+  resultImmsgData.hasMsgData = NO;
+  resultImmsgData.msgData = [NSData data];
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImmsgData.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImmsgData.attachData;
 }
 - (IMMsgDataBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImmsgData.hasAttachData = YES;
+  resultImmsgData.attachData = value;
   return self;
 }
 - (IMMsgDataBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImmsgData.hasAttachData = NO;
+  resultImmsgData.attachData = [NSData data];
   return self;
 }
 @end
@@ -539,34 +556,32 @@ static IMMsgData* defaultIMMsgDataInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 - (BOOL) hasMsgId {
   return !!hasMsgId_;
 }
-- (void) setHasMsgId:(BOOL) value_ {
-  hasMsgId_ = !!value_;
+- (void) setHasMsgId:(BOOL) _value_ {
+  hasMsgId_ = !!_value_;
 }
 @synthesize msgId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.sessionId = 0;
@@ -581,10 +596,10 @@ static IMMsgDataAck* defaultIMMsgDataAckInstance = nil;
     defaultIMMsgDataAckInstance = [[IMMsgDataAck alloc] init];
   }
 }
-+ (IMMsgDataAck*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMMsgDataAckInstance;
 }
-- (IMMsgDataAck*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMMsgDataAckInstance;
 }
 - (BOOL) isInitialized {
@@ -681,9 +696,24 @@ static IMMsgDataAck* defaultIMMsgDataAckInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"msgId", [NSNumber numberWithInteger:self.msgId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  if (self.hasMsgId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.msgId] forKey: @"msgId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -724,29 +754,26 @@ static IMMsgDataAck* defaultIMMsgDataAckInstance = nil;
 @end
 
 @interface IMMsgDataAckBuilder()
-@property (strong) IMMsgDataAck* result;
+@property (strong) IMMsgDataAck* resultImmsgDataAck;
 @end
 
 @implementation IMMsgDataAckBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImmsgDataAck;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMMsgDataAck alloc] init];
+    self.resultImmsgDataAck = [[IMMsgDataAck alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImmsgDataAck;
 }
 - (IMMsgDataAckBuilder*) clear {
-  self.result = [[IMMsgDataAck alloc] init];
+  self.resultImmsgDataAck = [[IMMsgDataAck alloc] init];
   return self;
 }
 - (IMMsgDataAckBuilder*) clone {
-  return [IMMsgDataAck builderWithPrototype:result];
+  return [IMMsgDataAck builderWithPrototype:resultImmsgDataAck];
 }
 - (IMMsgDataAck*) defaultInstance {
   return [IMMsgDataAck defaultInstance];
@@ -756,8 +783,8 @@ static IMMsgDataAck* defaultIMMsgDataAckInstance = nil;
   return [self buildPartial];
 }
 - (IMMsgDataAck*) buildPartial {
-  IMMsgDataAck* returnMe = result;
-  self.result = nil;
+  IMMsgDataAck* returnMe = resultImmsgDataAck;
+  self.resultImmsgDataAck = nil;
   return returnMe;
 }
 - (IMMsgDataAckBuilder*) mergeFrom:(IMMsgDataAck*) other {
@@ -822,67 +849,67 @@ static IMMsgDataAck* defaultIMMsgDataAckInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImmsgDataAck.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImmsgDataAck.userId;
 }
 - (IMMsgDataAckBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImmsgDataAck.hasUserId = YES;
+  resultImmsgDataAck.userId = value;
   return self;
 }
 - (IMMsgDataAckBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImmsgDataAck.hasUserId = NO;
+  resultImmsgDataAck.userId = 0;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImmsgDataAck.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImmsgDataAck.sessionId;
 }
 - (IMMsgDataAckBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImmsgDataAck.hasSessionId = YES;
+  resultImmsgDataAck.sessionId = value;
   return self;
 }
 - (IMMsgDataAckBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImmsgDataAck.hasSessionId = NO;
+  resultImmsgDataAck.sessionId = 0;
   return self;
 }
 - (BOOL) hasMsgId {
-  return result.hasMsgId;
+  return resultImmsgDataAck.hasMsgId;
 }
 - (UInt32) msgId {
-  return result.msgId;
+  return resultImmsgDataAck.msgId;
 }
 - (IMMsgDataAckBuilder*) setMsgId:(UInt32) value {
-  result.hasMsgId = YES;
-  result.msgId = value;
+  resultImmsgDataAck.hasMsgId = YES;
+  resultImmsgDataAck.msgId = value;
   return self;
 }
 - (IMMsgDataAckBuilder*) clearMsgId {
-  result.hasMsgId = NO;
-  result.msgId = 0;
+  resultImmsgDataAck.hasMsgId = NO;
+  resultImmsgDataAck.msgId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImmsgDataAck.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImmsgDataAck.sessionType;
 }
 - (IMMsgDataAckBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImmsgDataAck.hasSessionType = YES;
+  resultImmsgDataAck.sessionType = value;
   return self;
 }
 - (IMMsgDataAckBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImmsgDataAck.hasSessionType = NO;
+  resultImmsgDataAck.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 @end
@@ -899,34 +926,32 @@ static IMMsgDataAck* defaultIMMsgDataAckInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 - (BOOL) hasMsgId {
   return !!hasMsgId_;
 }
-- (void) setHasMsgId:(BOOL) value_ {
-  hasMsgId_ = !!value_;
+- (void) setHasMsgId:(BOOL) _value_ {
+  hasMsgId_ = !!_value_;
 }
 @synthesize msgId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.sessionId = 0;
@@ -941,10 +966,10 @@ static IMMsgDataReadAck* defaultIMMsgDataReadAckInstance = nil;
     defaultIMMsgDataReadAckInstance = [[IMMsgDataReadAck alloc] init];
   }
 }
-+ (IMMsgDataReadAck*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMMsgDataReadAckInstance;
 }
-- (IMMsgDataReadAck*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMMsgDataReadAckInstance;
 }
 - (BOOL) isInitialized {
@@ -1041,9 +1066,24 @@ static IMMsgDataReadAck* defaultIMMsgDataReadAckInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"msgId", [NSNumber numberWithInteger:self.msgId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  if (self.hasMsgId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.msgId] forKey: @"msgId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -1084,29 +1124,26 @@ static IMMsgDataReadAck* defaultIMMsgDataReadAckInstance = nil;
 @end
 
 @interface IMMsgDataReadAckBuilder()
-@property (strong) IMMsgDataReadAck* result;
+@property (strong) IMMsgDataReadAck* resultImmsgDataReadAck;
 @end
 
 @implementation IMMsgDataReadAckBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImmsgDataReadAck;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMMsgDataReadAck alloc] init];
+    self.resultImmsgDataReadAck = [[IMMsgDataReadAck alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImmsgDataReadAck;
 }
 - (IMMsgDataReadAckBuilder*) clear {
-  self.result = [[IMMsgDataReadAck alloc] init];
+  self.resultImmsgDataReadAck = [[IMMsgDataReadAck alloc] init];
   return self;
 }
 - (IMMsgDataReadAckBuilder*) clone {
-  return [IMMsgDataReadAck builderWithPrototype:result];
+  return [IMMsgDataReadAck builderWithPrototype:resultImmsgDataReadAck];
 }
 - (IMMsgDataReadAck*) defaultInstance {
   return [IMMsgDataReadAck defaultInstance];
@@ -1116,8 +1153,8 @@ static IMMsgDataReadAck* defaultIMMsgDataReadAckInstance = nil;
   return [self buildPartial];
 }
 - (IMMsgDataReadAck*) buildPartial {
-  IMMsgDataReadAck* returnMe = result;
-  self.result = nil;
+  IMMsgDataReadAck* returnMe = resultImmsgDataReadAck;
+  self.resultImmsgDataReadAck = nil;
   return returnMe;
 }
 - (IMMsgDataReadAckBuilder*) mergeFrom:(IMMsgDataReadAck*) other {
@@ -1182,67 +1219,67 @@ static IMMsgDataReadAck* defaultIMMsgDataReadAckInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImmsgDataReadAck.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImmsgDataReadAck.userId;
 }
 - (IMMsgDataReadAckBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImmsgDataReadAck.hasUserId = YES;
+  resultImmsgDataReadAck.userId = value;
   return self;
 }
 - (IMMsgDataReadAckBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImmsgDataReadAck.hasUserId = NO;
+  resultImmsgDataReadAck.userId = 0;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImmsgDataReadAck.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImmsgDataReadAck.sessionId;
 }
 - (IMMsgDataReadAckBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImmsgDataReadAck.hasSessionId = YES;
+  resultImmsgDataReadAck.sessionId = value;
   return self;
 }
 - (IMMsgDataReadAckBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImmsgDataReadAck.hasSessionId = NO;
+  resultImmsgDataReadAck.sessionId = 0;
   return self;
 }
 - (BOOL) hasMsgId {
-  return result.hasMsgId;
+  return resultImmsgDataReadAck.hasMsgId;
 }
 - (UInt32) msgId {
-  return result.msgId;
+  return resultImmsgDataReadAck.msgId;
 }
 - (IMMsgDataReadAckBuilder*) setMsgId:(UInt32) value {
-  result.hasMsgId = YES;
-  result.msgId = value;
+  resultImmsgDataReadAck.hasMsgId = YES;
+  resultImmsgDataReadAck.msgId = value;
   return self;
 }
 - (IMMsgDataReadAckBuilder*) clearMsgId {
-  result.hasMsgId = NO;
-  result.msgId = 0;
+  resultImmsgDataReadAck.hasMsgId = NO;
+  resultImmsgDataReadAck.msgId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImmsgDataReadAck.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImmsgDataReadAck.sessionType;
 }
 - (IMMsgDataReadAckBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImmsgDataReadAck.hasSessionType = YES;
+  resultImmsgDataReadAck.sessionType = value;
   return self;
 }
 - (IMMsgDataReadAckBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImmsgDataReadAck.hasSessionType = NO;
+  resultImmsgDataReadAck.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 @end
@@ -1259,34 +1296,32 @@ static IMMsgDataReadAck* defaultIMMsgDataReadAckInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 - (BOOL) hasMsgId {
   return !!hasMsgId_;
 }
-- (void) setHasMsgId:(BOOL) value_ {
-  hasMsgId_ = !!value_;
+- (void) setHasMsgId:(BOOL) _value_ {
+  hasMsgId_ = !!_value_;
 }
 @synthesize msgId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.sessionId = 0;
@@ -1301,10 +1336,10 @@ static IMMsgDataReadNotify* defaultIMMsgDataReadNotifyInstance = nil;
     defaultIMMsgDataReadNotifyInstance = [[IMMsgDataReadNotify alloc] init];
   }
 }
-+ (IMMsgDataReadNotify*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMMsgDataReadNotifyInstance;
 }
-- (IMMsgDataReadNotify*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMMsgDataReadNotifyInstance;
 }
 - (BOOL) isInitialized {
@@ -1401,9 +1436,24 @@ static IMMsgDataReadNotify* defaultIMMsgDataReadNotifyInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"msgId", [NSNumber numberWithInteger:self.msgId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  if (self.hasMsgId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.msgId] forKey: @"msgId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -1444,29 +1494,26 @@ static IMMsgDataReadNotify* defaultIMMsgDataReadNotifyInstance = nil;
 @end
 
 @interface IMMsgDataReadNotifyBuilder()
-@property (strong) IMMsgDataReadNotify* result;
+@property (strong) IMMsgDataReadNotify* resultImmsgDataReadNotify;
 @end
 
 @implementation IMMsgDataReadNotifyBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImmsgDataReadNotify;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMMsgDataReadNotify alloc] init];
+    self.resultImmsgDataReadNotify = [[IMMsgDataReadNotify alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImmsgDataReadNotify;
 }
 - (IMMsgDataReadNotifyBuilder*) clear {
-  self.result = [[IMMsgDataReadNotify alloc] init];
+  self.resultImmsgDataReadNotify = [[IMMsgDataReadNotify alloc] init];
   return self;
 }
 - (IMMsgDataReadNotifyBuilder*) clone {
-  return [IMMsgDataReadNotify builderWithPrototype:result];
+  return [IMMsgDataReadNotify builderWithPrototype:resultImmsgDataReadNotify];
 }
 - (IMMsgDataReadNotify*) defaultInstance {
   return [IMMsgDataReadNotify defaultInstance];
@@ -1476,8 +1523,8 @@ static IMMsgDataReadNotify* defaultIMMsgDataReadNotifyInstance = nil;
   return [self buildPartial];
 }
 - (IMMsgDataReadNotify*) buildPartial {
-  IMMsgDataReadNotify* returnMe = result;
-  self.result = nil;
+  IMMsgDataReadNotify* returnMe = resultImmsgDataReadNotify;
+  self.resultImmsgDataReadNotify = nil;
   return returnMe;
 }
 - (IMMsgDataReadNotifyBuilder*) mergeFrom:(IMMsgDataReadNotify*) other {
@@ -1542,67 +1589,67 @@ static IMMsgDataReadNotify* defaultIMMsgDataReadNotifyInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImmsgDataReadNotify.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImmsgDataReadNotify.userId;
 }
 - (IMMsgDataReadNotifyBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImmsgDataReadNotify.hasUserId = YES;
+  resultImmsgDataReadNotify.userId = value;
   return self;
 }
 - (IMMsgDataReadNotifyBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImmsgDataReadNotify.hasUserId = NO;
+  resultImmsgDataReadNotify.userId = 0;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImmsgDataReadNotify.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImmsgDataReadNotify.sessionId;
 }
 - (IMMsgDataReadNotifyBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImmsgDataReadNotify.hasSessionId = YES;
+  resultImmsgDataReadNotify.sessionId = value;
   return self;
 }
 - (IMMsgDataReadNotifyBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImmsgDataReadNotify.hasSessionId = NO;
+  resultImmsgDataReadNotify.sessionId = 0;
   return self;
 }
 - (BOOL) hasMsgId {
-  return result.hasMsgId;
+  return resultImmsgDataReadNotify.hasMsgId;
 }
 - (UInt32) msgId {
-  return result.msgId;
+  return resultImmsgDataReadNotify.msgId;
 }
 - (IMMsgDataReadNotifyBuilder*) setMsgId:(UInt32) value {
-  result.hasMsgId = YES;
-  result.msgId = value;
+  resultImmsgDataReadNotify.hasMsgId = YES;
+  resultImmsgDataReadNotify.msgId = value;
   return self;
 }
 - (IMMsgDataReadNotifyBuilder*) clearMsgId {
-  result.hasMsgId = NO;
-  result.msgId = 0;
+  resultImmsgDataReadNotify.hasMsgId = NO;
+  resultImmsgDataReadNotify.msgId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImmsgDataReadNotify.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImmsgDataReadNotify.sessionType;
 }
 - (IMMsgDataReadNotifyBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImmsgDataReadNotify.hasSessionType = YES;
+  resultImmsgDataReadNotify.sessionType = value;
   return self;
 }
 - (IMMsgDataReadNotifyBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImmsgDataReadNotify.hasSessionType = NO;
+  resultImmsgDataReadNotify.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 @end
@@ -1612,9 +1659,7 @@ static IMMsgDataReadNotify* defaultIMMsgDataReadNotifyInstance = nil;
 
 @implementation IMClientTimeReq
 
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
   }
   return self;
@@ -1625,10 +1670,10 @@ static IMClientTimeReq* defaultIMClientTimeReqInstance = nil;
     defaultIMClientTimeReqInstance = [[IMClientTimeReq alloc] init];
   }
 }
-+ (IMClientTimeReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMClientTimeReqInstance;
 }
-- (IMClientTimeReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMClientTimeReqInstance;
 }
 - (BOOL) isInitialized {
@@ -1681,6 +1726,9 @@ static IMClientTimeReq* defaultIMClientTimeReqInstance = nil;
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -1700,29 +1748,26 @@ static IMClientTimeReq* defaultIMClientTimeReqInstance = nil;
 @end
 
 @interface IMClientTimeReqBuilder()
-@property (strong) IMClientTimeReq* result;
+@property (strong) IMClientTimeReq* resultImclientTimeReq;
 @end
 
 @implementation IMClientTimeReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImclientTimeReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMClientTimeReq alloc] init];
+    self.resultImclientTimeReq = [[IMClientTimeReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImclientTimeReq;
 }
 - (IMClientTimeReqBuilder*) clear {
-  self.result = [[IMClientTimeReq alloc] init];
+  self.resultImclientTimeReq = [[IMClientTimeReq alloc] init];
   return self;
 }
 - (IMClientTimeReqBuilder*) clone {
-  return [IMClientTimeReq builderWithPrototype:result];
+  return [IMClientTimeReq builderWithPrototype:resultImclientTimeReq];
 }
 - (IMClientTimeReq*) defaultInstance {
   return [IMClientTimeReq defaultInstance];
@@ -1732,8 +1777,8 @@ static IMClientTimeReq* defaultIMClientTimeReqInstance = nil;
   return [self buildPartial];
 }
 - (IMClientTimeReq*) buildPartial {
-  IMClientTimeReq* returnMe = result;
-  self.result = nil;
+  IMClientTimeReq* returnMe = resultImclientTimeReq;
+  self.resultImclientTimeReq = nil;
   return returnMe;
 }
 - (IMClientTimeReqBuilder*) mergeFrom:(IMClientTimeReq*) other {
@@ -1775,13 +1820,11 @@ static IMClientTimeReq* defaultIMClientTimeReqInstance = nil;
 - (BOOL) hasServerTime {
   return !!hasServerTime_;
 }
-- (void) setHasServerTime:(BOOL) value_ {
-  hasServerTime_ = !!value_;
+- (void) setHasServerTime:(BOOL) _value_ {
+  hasServerTime_ = !!_value_;
 }
 @synthesize serverTime;
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.serverTime = 0;
   }
@@ -1793,10 +1836,10 @@ static IMClientTimeRsp* defaultIMClientTimeRspInstance = nil;
     defaultIMClientTimeRspInstance = [[IMClientTimeRsp alloc] init];
   }
 }
-+ (IMClientTimeRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMClientTimeRspInstance;
 }
-- (IMClientTimeRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMClientTimeRspInstance;
 }
 - (BOOL) isInitialized {
@@ -1861,6 +1904,12 @@ static IMClientTimeRsp* defaultIMClientTimeRspInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasServerTime) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.serverTime] forKey: @"serverTime"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -1885,29 +1934,26 @@ static IMClientTimeRsp* defaultIMClientTimeRspInstance = nil;
 @end
 
 @interface IMClientTimeRspBuilder()
-@property (strong) IMClientTimeRsp* result;
+@property (strong) IMClientTimeRsp* resultImclientTimeRsp;
 @end
 
 @implementation IMClientTimeRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImclientTimeRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMClientTimeRsp alloc] init];
+    self.resultImclientTimeRsp = [[IMClientTimeRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImclientTimeRsp;
 }
 - (IMClientTimeRspBuilder*) clear {
-  self.result = [[IMClientTimeRsp alloc] init];
+  self.resultImclientTimeRsp = [[IMClientTimeRsp alloc] init];
   return self;
 }
 - (IMClientTimeRspBuilder*) clone {
-  return [IMClientTimeRsp builderWithPrototype:result];
+  return [IMClientTimeRsp builderWithPrototype:resultImclientTimeRsp];
 }
 - (IMClientTimeRsp*) defaultInstance {
   return [IMClientTimeRsp defaultInstance];
@@ -1917,8 +1963,8 @@ static IMClientTimeRsp* defaultIMClientTimeRspInstance = nil;
   return [self buildPartial];
 }
 - (IMClientTimeRsp*) buildPartial {
-  IMClientTimeRsp* returnMe = result;
-  self.result = nil;
+  IMClientTimeRsp* returnMe = resultImclientTimeRsp;
+  self.resultImclientTimeRsp = nil;
   return returnMe;
 }
 - (IMClientTimeRspBuilder*) mergeFrom:(IMClientTimeRsp*) other {
@@ -1957,19 +2003,19 @@ static IMClientTimeRsp* defaultIMClientTimeRspInstance = nil;
   }
 }
 - (BOOL) hasServerTime {
-  return result.hasServerTime;
+  return resultImclientTimeRsp.hasServerTime;
 }
 - (UInt32) serverTime {
-  return result.serverTime;
+  return resultImclientTimeRsp.serverTime;
 }
 - (IMClientTimeRspBuilder*) setServerTime:(UInt32) value {
-  result.hasServerTime = YES;
-  result.serverTime = value;
+  resultImclientTimeRsp.hasServerTime = YES;
+  resultImclientTimeRsp.serverTime = value;
   return self;
 }
 - (IMClientTimeRspBuilder*) clearServerTime {
-  result.hasServerTime = NO;
-  result.serverTime = 0;
+  resultImclientTimeRsp.hasServerTime = NO;
+  resultImclientTimeRsp.serverTime = 0;
   return self;
 }
 @end
@@ -1984,21 +2030,18 @@ static IMClientTimeRsp* defaultIMClientTimeRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.attachData = [NSData data];
@@ -2011,10 +2054,10 @@ static IMUnreadMsgCntReq* defaultIMUnreadMsgCntReqInstance = nil;
     defaultIMUnreadMsgCntReqInstance = [[IMUnreadMsgCntReq alloc] init];
   }
 }
-+ (IMUnreadMsgCntReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMUnreadMsgCntReqInstance;
 }
-- (IMUnreadMsgCntReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMUnreadMsgCntReqInstance;
 }
 - (BOOL) isInitialized {
@@ -2088,6 +2131,15 @@ static IMUnreadMsgCntReq* defaultIMUnreadMsgCntReqInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -2117,29 +2169,26 @@ static IMUnreadMsgCntReq* defaultIMUnreadMsgCntReqInstance = nil;
 @end
 
 @interface IMUnreadMsgCntReqBuilder()
-@property (strong) IMUnreadMsgCntReq* result;
+@property (strong) IMUnreadMsgCntReq* resultImunreadMsgCntReq;
 @end
 
 @implementation IMUnreadMsgCntReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImunreadMsgCntReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMUnreadMsgCntReq alloc] init];
+    self.resultImunreadMsgCntReq = [[IMUnreadMsgCntReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImunreadMsgCntReq;
 }
 - (IMUnreadMsgCntReqBuilder*) clear {
-  self.result = [[IMUnreadMsgCntReq alloc] init];
+  self.resultImunreadMsgCntReq = [[IMUnreadMsgCntReq alloc] init];
   return self;
 }
 - (IMUnreadMsgCntReqBuilder*) clone {
-  return [IMUnreadMsgCntReq builderWithPrototype:result];
+  return [IMUnreadMsgCntReq builderWithPrototype:resultImunreadMsgCntReq];
 }
 - (IMUnreadMsgCntReq*) defaultInstance {
   return [IMUnreadMsgCntReq defaultInstance];
@@ -2149,8 +2198,8 @@ static IMUnreadMsgCntReq* defaultIMUnreadMsgCntReqInstance = nil;
   return [self buildPartial];
 }
 - (IMUnreadMsgCntReq*) buildPartial {
-  IMUnreadMsgCntReq* returnMe = result;
-  self.result = nil;
+  IMUnreadMsgCntReq* returnMe = resultImunreadMsgCntReq;
+  self.resultImunreadMsgCntReq = nil;
   return returnMe;
 }
 - (IMUnreadMsgCntReqBuilder*) mergeFrom:(IMUnreadMsgCntReq*) other {
@@ -2196,35 +2245,35 @@ static IMUnreadMsgCntReq* defaultIMUnreadMsgCntReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImunreadMsgCntReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImunreadMsgCntReq.userId;
 }
 - (IMUnreadMsgCntReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImunreadMsgCntReq.hasUserId = YES;
+  resultImunreadMsgCntReq.userId = value;
   return self;
 }
 - (IMUnreadMsgCntReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImunreadMsgCntReq.hasUserId = NO;
+  resultImunreadMsgCntReq.userId = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImunreadMsgCntReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImunreadMsgCntReq.attachData;
 }
 - (IMUnreadMsgCntReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImunreadMsgCntReq.hasAttachData = YES;
+  resultImunreadMsgCntReq.attachData = value;
   return self;
 }
 - (IMUnreadMsgCntReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImunreadMsgCntReq.hasAttachData = NO;
+  resultImunreadMsgCntReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -2241,15 +2290,15 @@ static IMUnreadMsgCntReq* defaultIMUnreadMsgCntReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasTotalCnt {
   return !!hasTotalCnt_;
 }
-- (void) setHasTotalCnt:(BOOL) value_ {
-  hasTotalCnt_ = !!value_;
+- (void) setHasTotalCnt:(BOOL) _value_ {
+  hasTotalCnt_ = !!_value_;
 }
 @synthesize totalCnt;
 @synthesize unreadinfoListArray;
@@ -2257,15 +2306,11 @@ static IMUnreadMsgCntReq* defaultIMUnreadMsgCntReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.unreadinfoListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.totalCnt = 0;
@@ -2279,10 +2324,10 @@ static IMUnreadMsgCntRsp* defaultIMUnreadMsgCntRspInstance = nil;
     defaultIMUnreadMsgCntRspInstance = [[IMUnreadMsgCntRsp alloc] init];
   }
 }
-+ (IMUnreadMsgCntRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMUnreadMsgCntRspInstance;
 }
-- (IMUnreadMsgCntRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMUnreadMsgCntRspInstance;
 }
 - (NSArray *)unreadinfoList {
@@ -2394,6 +2439,23 @@ static IMUnreadMsgCntRsp* defaultIMUnreadMsgCntRspInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasTotalCnt) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.totalCnt] forKey: @"totalCnt"];
+  }
+  for (UnreadInfo* element in self.unreadinfoListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"unreadinfoList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -2432,29 +2494,26 @@ static IMUnreadMsgCntRsp* defaultIMUnreadMsgCntRspInstance = nil;
 @end
 
 @interface IMUnreadMsgCntRspBuilder()
-@property (strong) IMUnreadMsgCntRsp* result;
+@property (strong) IMUnreadMsgCntRsp* resultImunreadMsgCntRsp;
 @end
 
 @implementation IMUnreadMsgCntRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImunreadMsgCntRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMUnreadMsgCntRsp alloc] init];
+    self.resultImunreadMsgCntRsp = [[IMUnreadMsgCntRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImunreadMsgCntRsp;
 }
 - (IMUnreadMsgCntRspBuilder*) clear {
-  self.result = [[IMUnreadMsgCntRsp alloc] init];
+  self.resultImunreadMsgCntRsp = [[IMUnreadMsgCntRsp alloc] init];
   return self;
 }
 - (IMUnreadMsgCntRspBuilder*) clone {
-  return [IMUnreadMsgCntRsp builderWithPrototype:result];
+  return [IMUnreadMsgCntRsp builderWithPrototype:resultImunreadMsgCntRsp];
 }
 - (IMUnreadMsgCntRsp*) defaultInstance {
   return [IMUnreadMsgCntRsp defaultInstance];
@@ -2464,8 +2523,8 @@ static IMUnreadMsgCntRsp* defaultIMUnreadMsgCntRspInstance = nil;
   return [self buildPartial];
 }
 - (IMUnreadMsgCntRsp*) buildPartial {
-  IMUnreadMsgCntRsp* returnMe = result;
-  self.result = nil;
+  IMUnreadMsgCntRsp* returnMe = resultImunreadMsgCntRsp;
+  self.resultImunreadMsgCntRsp = nil;
   return returnMe;
 }
 - (IMUnreadMsgCntRspBuilder*) mergeFrom:(IMUnreadMsgCntRsp*) other {
@@ -2479,10 +2538,10 @@ static IMUnreadMsgCntRsp* defaultIMUnreadMsgCntRspInstance = nil;
     [self setTotalCnt:other.totalCnt];
   }
   if (other.unreadinfoListArray.count > 0) {
-    if (result.unreadinfoListArray == nil) {
-      result.unreadinfoListArray = [[NSMutableArray alloc] initWithArray:other.unreadinfoListArray];
+    if (resultImunreadMsgCntRsp.unreadinfoListArray == nil) {
+      resultImunreadMsgCntRsp.unreadinfoListArray = [[NSMutableArray alloc] initWithArray:other.unreadinfoListArray];
     } else {
-      [result.unreadinfoListArray addObjectsFromArray:other.unreadinfoListArray];
+      [resultImunreadMsgCntRsp.unreadinfoListArray addObjectsFromArray:other.unreadinfoListArray];
     }
   }
   if (other.hasAttachData) {
@@ -2531,72 +2590,72 @@ static IMUnreadMsgCntRsp* defaultIMUnreadMsgCntRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImunreadMsgCntRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImunreadMsgCntRsp.userId;
 }
 - (IMUnreadMsgCntRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImunreadMsgCntRsp.hasUserId = YES;
+  resultImunreadMsgCntRsp.userId = value;
   return self;
 }
 - (IMUnreadMsgCntRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImunreadMsgCntRsp.hasUserId = NO;
+  resultImunreadMsgCntRsp.userId = 0;
   return self;
 }
 - (BOOL) hasTotalCnt {
-  return result.hasTotalCnt;
+  return resultImunreadMsgCntRsp.hasTotalCnt;
 }
 - (UInt32) totalCnt {
-  return result.totalCnt;
+  return resultImunreadMsgCntRsp.totalCnt;
 }
 - (IMUnreadMsgCntRspBuilder*) setTotalCnt:(UInt32) value {
-  result.hasTotalCnt = YES;
-  result.totalCnt = value;
+  resultImunreadMsgCntRsp.hasTotalCnt = YES;
+  resultImunreadMsgCntRsp.totalCnt = value;
   return self;
 }
 - (IMUnreadMsgCntRspBuilder*) clearTotalCnt {
-  result.hasTotalCnt = NO;
-  result.totalCnt = 0;
+  resultImunreadMsgCntRsp.hasTotalCnt = NO;
+  resultImunreadMsgCntRsp.totalCnt = 0;
   return self;
 }
 - (NSMutableArray *)unreadinfoList {
-  return result.unreadinfoListArray;
+  return resultImunreadMsgCntRsp.unreadinfoListArray;
 }
 - (UnreadInfo*)unreadinfoListAtIndex:(NSUInteger)index {
-  return [result unreadinfoListAtIndex:index];
+  return [resultImunreadMsgCntRsp unreadinfoListAtIndex:index];
 }
 - (IMUnreadMsgCntRspBuilder *)addUnreadinfoList:(UnreadInfo*)value {
-  if (result.unreadinfoListArray == nil) {
-    result.unreadinfoListArray = [[NSMutableArray alloc]init];
+  if (resultImunreadMsgCntRsp.unreadinfoListArray == nil) {
+    resultImunreadMsgCntRsp.unreadinfoListArray = [[NSMutableArray alloc]init];
   }
-  [result.unreadinfoListArray addObject:value];
+  [resultImunreadMsgCntRsp.unreadinfoListArray addObject:value];
   return self;
 }
 - (IMUnreadMsgCntRspBuilder *)setUnreadinfoListArray:(NSArray *)array {
-  result.unreadinfoListArray = [[NSMutableArray alloc]initWithArray:array];
+  resultImunreadMsgCntRsp.unreadinfoListArray = [[NSMutableArray alloc]initWithArray:array];
   return self;
 }
 - (IMUnreadMsgCntRspBuilder *)clearUnreadinfoList {
-  result.unreadinfoListArray = nil;
+  resultImunreadMsgCntRsp.unreadinfoListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImunreadMsgCntRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImunreadMsgCntRsp.attachData;
 }
 - (IMUnreadMsgCntRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImunreadMsgCntRsp.hasAttachData = YES;
+  resultImunreadMsgCntRsp.attachData = value;
   return self;
 }
 - (IMUnreadMsgCntRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImunreadMsgCntRsp.hasAttachData = NO;
+  resultImunreadMsgCntRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -2615,49 +2674,46 @@ static IMUnreadMsgCntRsp* defaultIMUnreadMsgCntRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 - (BOOL) hasMsgIdBegin {
   return !!hasMsgIdBegin_;
 }
-- (void) setHasMsgIdBegin:(BOOL) value_ {
-  hasMsgIdBegin_ = !!value_;
+- (void) setHasMsgIdBegin:(BOOL) _value_ {
+  hasMsgIdBegin_ = !!_value_;
 }
 @synthesize msgIdBegin;
 - (BOOL) hasMsgCnt {
   return !!hasMsgCnt_;
 }
-- (void) setHasMsgCnt:(BOOL) value_ {
-  hasMsgCnt_ = !!value_;
+- (void) setHasMsgCnt:(BOOL) _value_ {
+  hasMsgCnt_ = !!_value_;
 }
 @synthesize msgCnt;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.sessionType = SessionTypeSessionTypeSingle;
@@ -2674,10 +2730,10 @@ static IMGetMsgListReq* defaultIMGetMsgListReqInstance = nil;
     defaultIMGetMsgListReqInstance = [[IMGetMsgListReq alloc] init];
   }
 }
-+ (IMGetMsgListReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGetMsgListReqInstance;
 }
-- (IMGetMsgListReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGetMsgListReqInstance;
 }
 - (BOOL) isInitialized {
@@ -2783,7 +2839,7 @@ static IMGetMsgListReq* defaultIMGetMsgListReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   if (self.hasSessionId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"sessionId", [NSNumber numberWithInteger:self.sessionId]];
@@ -2798,6 +2854,27 @@ static IMGetMsgListReq* defaultIMGetMsgListReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  if (self.hasMsgIdBegin) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.msgIdBegin] forKey: @"msgIdBegin"];
+  }
+  if (self.hasMsgCnt) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.msgCnt] forKey: @"msgCnt"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -2848,29 +2925,26 @@ static IMGetMsgListReq* defaultIMGetMsgListReqInstance = nil;
 @end
 
 @interface IMGetMsgListReqBuilder()
-@property (strong) IMGetMsgListReq* result;
+@property (strong) IMGetMsgListReq* resultImgetMsgListReq;
 @end
 
 @implementation IMGetMsgListReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgetMsgListReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGetMsgListReq alloc] init];
+    self.resultImgetMsgListReq = [[IMGetMsgListReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgetMsgListReq;
 }
 - (IMGetMsgListReqBuilder*) clear {
-  self.result = [[IMGetMsgListReq alloc] init];
+  self.resultImgetMsgListReq = [[IMGetMsgListReq alloc] init];
   return self;
 }
 - (IMGetMsgListReqBuilder*) clone {
-  return [IMGetMsgListReq builderWithPrototype:result];
+  return [IMGetMsgListReq builderWithPrototype:resultImgetMsgListReq];
 }
 - (IMGetMsgListReq*) defaultInstance {
   return [IMGetMsgListReq defaultInstance];
@@ -2880,8 +2954,8 @@ static IMGetMsgListReq* defaultIMGetMsgListReqInstance = nil;
   return [self buildPartial];
 }
 - (IMGetMsgListReq*) buildPartial {
-  IMGetMsgListReq* returnMe = result;
-  self.result = nil;
+  IMGetMsgListReq* returnMe = resultImgetMsgListReq;
+  self.resultImgetMsgListReq = nil;
   return returnMe;
 }
 - (IMGetMsgListReqBuilder*) mergeFrom:(IMGetMsgListReq*) other {
@@ -2960,99 +3034,99 @@ static IMGetMsgListReq* defaultIMGetMsgListReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgetMsgListReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgetMsgListReq.userId;
 }
 - (IMGetMsgListReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgetMsgListReq.hasUserId = YES;
+  resultImgetMsgListReq.userId = value;
   return self;
 }
 - (IMGetMsgListReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgetMsgListReq.hasUserId = NO;
+  resultImgetMsgListReq.userId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImgetMsgListReq.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImgetMsgListReq.sessionType;
 }
 - (IMGetMsgListReqBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImgetMsgListReq.hasSessionType = YES;
+  resultImgetMsgListReq.sessionType = value;
   return self;
 }
 - (IMGetMsgListReqBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImgetMsgListReq.hasSessionType = NO;
+  resultImgetMsgListReq.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImgetMsgListReq.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImgetMsgListReq.sessionId;
 }
 - (IMGetMsgListReqBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImgetMsgListReq.hasSessionId = YES;
+  resultImgetMsgListReq.sessionId = value;
   return self;
 }
 - (IMGetMsgListReqBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImgetMsgListReq.hasSessionId = NO;
+  resultImgetMsgListReq.sessionId = 0;
   return self;
 }
 - (BOOL) hasMsgIdBegin {
-  return result.hasMsgIdBegin;
+  return resultImgetMsgListReq.hasMsgIdBegin;
 }
 - (UInt32) msgIdBegin {
-  return result.msgIdBegin;
+  return resultImgetMsgListReq.msgIdBegin;
 }
 - (IMGetMsgListReqBuilder*) setMsgIdBegin:(UInt32) value {
-  result.hasMsgIdBegin = YES;
-  result.msgIdBegin = value;
+  resultImgetMsgListReq.hasMsgIdBegin = YES;
+  resultImgetMsgListReq.msgIdBegin = value;
   return self;
 }
 - (IMGetMsgListReqBuilder*) clearMsgIdBegin {
-  result.hasMsgIdBegin = NO;
-  result.msgIdBegin = 0;
+  resultImgetMsgListReq.hasMsgIdBegin = NO;
+  resultImgetMsgListReq.msgIdBegin = 0;
   return self;
 }
 - (BOOL) hasMsgCnt {
-  return result.hasMsgCnt;
+  return resultImgetMsgListReq.hasMsgCnt;
 }
 - (UInt32) msgCnt {
-  return result.msgCnt;
+  return resultImgetMsgListReq.msgCnt;
 }
 - (IMGetMsgListReqBuilder*) setMsgCnt:(UInt32) value {
-  result.hasMsgCnt = YES;
-  result.msgCnt = value;
+  resultImgetMsgListReq.hasMsgCnt = YES;
+  resultImgetMsgListReq.msgCnt = value;
   return self;
 }
 - (IMGetMsgListReqBuilder*) clearMsgCnt {
-  result.hasMsgCnt = NO;
-  result.msgCnt = 0;
+  resultImgetMsgListReq.hasMsgCnt = NO;
+  resultImgetMsgListReq.msgCnt = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgetMsgListReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgetMsgListReq.attachData;
 }
 - (IMGetMsgListReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgetMsgListReq.hasAttachData = YES;
+  resultImgetMsgListReq.attachData = value;
   return self;
 }
 - (IMGetMsgListReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgetMsgListReq.hasAttachData = NO;
+  resultImgetMsgListReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -3071,29 +3145,29 @@ static IMGetMsgListReq* defaultIMGetMsgListReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 - (BOOL) hasMsgIdBegin {
   return !!hasMsgIdBegin_;
 }
-- (void) setHasMsgIdBegin:(BOOL) value_ {
-  hasMsgIdBegin_ = !!value_;
+- (void) setHasMsgIdBegin:(BOOL) _value_ {
+  hasMsgIdBegin_ = !!_value_;
 }
 @synthesize msgIdBegin;
 @synthesize msgListArray;
@@ -3101,15 +3175,11 @@ static IMGetMsgListReq* defaultIMGetMsgListReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.msgListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.sessionType = SessionTypeSessionTypeSingle;
@@ -3125,10 +3195,10 @@ static IMGetMsgListRsp* defaultIMGetMsgListRspInstance = nil;
     defaultIMGetMsgListRspInstance = [[IMGetMsgListRsp alloc] init];
   }
 }
-+ (IMGetMsgListRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGetMsgListRspInstance;
 }
-- (IMGetMsgListRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGetMsgListRspInstance;
 }
 - (NSArray *)msgList {
@@ -3245,7 +3315,7 @@ static IMGetMsgListRsp* defaultIMGetMsgListRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   if (self.hasSessionId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"sessionId", [NSNumber numberWithInteger:self.sessionId]];
@@ -3263,6 +3333,29 @@ static IMGetMsgListRsp* defaultIMGetMsgListRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  if (self.hasMsgIdBegin) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.msgIdBegin] forKey: @"msgIdBegin"];
+  }
+  for (MsgInfo* element in self.msgListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"msgList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -3312,29 +3405,26 @@ static IMGetMsgListRsp* defaultIMGetMsgListRspInstance = nil;
 @end
 
 @interface IMGetMsgListRspBuilder()
-@property (strong) IMGetMsgListRsp* result;
+@property (strong) IMGetMsgListRsp* resultImgetMsgListRsp;
 @end
 
 @implementation IMGetMsgListRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgetMsgListRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGetMsgListRsp alloc] init];
+    self.resultImgetMsgListRsp = [[IMGetMsgListRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgetMsgListRsp;
 }
 - (IMGetMsgListRspBuilder*) clear {
-  self.result = [[IMGetMsgListRsp alloc] init];
+  self.resultImgetMsgListRsp = [[IMGetMsgListRsp alloc] init];
   return self;
 }
 - (IMGetMsgListRspBuilder*) clone {
-  return [IMGetMsgListRsp builderWithPrototype:result];
+  return [IMGetMsgListRsp builderWithPrototype:resultImgetMsgListRsp];
 }
 - (IMGetMsgListRsp*) defaultInstance {
   return [IMGetMsgListRsp defaultInstance];
@@ -3344,8 +3434,8 @@ static IMGetMsgListRsp* defaultIMGetMsgListRspInstance = nil;
   return [self buildPartial];
 }
 - (IMGetMsgListRsp*) buildPartial {
-  IMGetMsgListRsp* returnMe = result;
-  self.result = nil;
+  IMGetMsgListRsp* returnMe = resultImgetMsgListRsp;
+  self.resultImgetMsgListRsp = nil;
   return returnMe;
 }
 - (IMGetMsgListRspBuilder*) mergeFrom:(IMGetMsgListRsp*) other {
@@ -3365,10 +3455,10 @@ static IMGetMsgListRsp* defaultIMGetMsgListRspInstance = nil;
     [self setMsgIdBegin:other.msgIdBegin];
   }
   if (other.msgListArray.count > 0) {
-    if (result.msgListArray == nil) {
-      result.msgListArray = [[NSMutableArray alloc] initWithArray:other.msgListArray];
+    if (resultImgetMsgListRsp.msgListArray == nil) {
+      resultImgetMsgListRsp.msgListArray = [[NSMutableArray alloc] initWithArray:other.msgListArray];
     } else {
-      [result.msgListArray addObjectsFromArray:other.msgListArray];
+      [resultImgetMsgListRsp.msgListArray addObjectsFromArray:other.msgListArray];
     }
   }
   if (other.hasAttachData) {
@@ -3430,104 +3520,104 @@ static IMGetMsgListRsp* defaultIMGetMsgListRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgetMsgListRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgetMsgListRsp.userId;
 }
 - (IMGetMsgListRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgetMsgListRsp.hasUserId = YES;
+  resultImgetMsgListRsp.userId = value;
   return self;
 }
 - (IMGetMsgListRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgetMsgListRsp.hasUserId = NO;
+  resultImgetMsgListRsp.userId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImgetMsgListRsp.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImgetMsgListRsp.sessionType;
 }
 - (IMGetMsgListRspBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImgetMsgListRsp.hasSessionType = YES;
+  resultImgetMsgListRsp.sessionType = value;
   return self;
 }
 - (IMGetMsgListRspBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImgetMsgListRsp.hasSessionType = NO;
+  resultImgetMsgListRsp.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImgetMsgListRsp.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImgetMsgListRsp.sessionId;
 }
 - (IMGetMsgListRspBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImgetMsgListRsp.hasSessionId = YES;
+  resultImgetMsgListRsp.sessionId = value;
   return self;
 }
 - (IMGetMsgListRspBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImgetMsgListRsp.hasSessionId = NO;
+  resultImgetMsgListRsp.sessionId = 0;
   return self;
 }
 - (BOOL) hasMsgIdBegin {
-  return result.hasMsgIdBegin;
+  return resultImgetMsgListRsp.hasMsgIdBegin;
 }
 - (UInt32) msgIdBegin {
-  return result.msgIdBegin;
+  return resultImgetMsgListRsp.msgIdBegin;
 }
 - (IMGetMsgListRspBuilder*) setMsgIdBegin:(UInt32) value {
-  result.hasMsgIdBegin = YES;
-  result.msgIdBegin = value;
+  resultImgetMsgListRsp.hasMsgIdBegin = YES;
+  resultImgetMsgListRsp.msgIdBegin = value;
   return self;
 }
 - (IMGetMsgListRspBuilder*) clearMsgIdBegin {
-  result.hasMsgIdBegin = NO;
-  result.msgIdBegin = 0;
+  resultImgetMsgListRsp.hasMsgIdBegin = NO;
+  resultImgetMsgListRsp.msgIdBegin = 0;
   return self;
 }
 - (NSMutableArray *)msgList {
-  return result.msgListArray;
+  return resultImgetMsgListRsp.msgListArray;
 }
 - (MsgInfo*)msgListAtIndex:(NSUInteger)index {
-  return [result msgListAtIndex:index];
+  return [resultImgetMsgListRsp msgListAtIndex:index];
 }
 - (IMGetMsgListRspBuilder *)addMsgList:(MsgInfo*)value {
-  if (result.msgListArray == nil) {
-    result.msgListArray = [[NSMutableArray alloc]init];
+  if (resultImgetMsgListRsp.msgListArray == nil) {
+    resultImgetMsgListRsp.msgListArray = [[NSMutableArray alloc]init];
   }
-  [result.msgListArray addObject:value];
+  [resultImgetMsgListRsp.msgListArray addObject:value];
   return self;
 }
 - (IMGetMsgListRspBuilder *)setMsgListArray:(NSArray *)array {
-  result.msgListArray = [[NSMutableArray alloc]initWithArray:array];
+  resultImgetMsgListRsp.msgListArray = [[NSMutableArray alloc]initWithArray:array];
   return self;
 }
 - (IMGetMsgListRspBuilder *)clearMsgList {
-  result.msgListArray = nil;
+  resultImgetMsgListRsp.msgListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgetMsgListRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgetMsgListRsp.attachData;
 }
 - (IMGetMsgListRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgetMsgListRsp.hasAttachData = YES;
+  resultImgetMsgListRsp.attachData = value;
   return self;
 }
 - (IMGetMsgListRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgetMsgListRsp.hasAttachData = NO;
+  resultImgetMsgListRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -3544,35 +3634,32 @@ static IMGetMsgListRsp* defaultIMGetMsgListRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.sessionType = SessionTypeSessionTypeSingle;
@@ -3587,10 +3674,10 @@ static IMGetLatestMsgIdReq* defaultIMGetLatestMsgIdReqInstance = nil;
     defaultIMGetLatestMsgIdReqInstance = [[IMGetLatestMsgIdReq alloc] init];
   }
 }
-+ (IMGetLatestMsgIdReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGetLatestMsgIdReqInstance;
 }
-- (IMGetLatestMsgIdReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGetLatestMsgIdReqInstance;
 }
 - (BOOL) isInitialized {
@@ -3678,7 +3765,7 @@ static IMGetLatestMsgIdReq* defaultIMGetLatestMsgIdReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   if (self.hasSessionId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"sessionId", [NSNumber numberWithInteger:self.sessionId]];
@@ -3687,6 +3774,21 @@ static IMGetLatestMsgIdReq* defaultIMGetLatestMsgIdReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -3727,29 +3829,26 @@ static IMGetLatestMsgIdReq* defaultIMGetLatestMsgIdReqInstance = nil;
 @end
 
 @interface IMGetLatestMsgIdReqBuilder()
-@property (strong) IMGetLatestMsgIdReq* result;
+@property (strong) IMGetLatestMsgIdReq* resultImgetLatestMsgIdReq;
 @end
 
 @implementation IMGetLatestMsgIdReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgetLatestMsgIdReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGetLatestMsgIdReq alloc] init];
+    self.resultImgetLatestMsgIdReq = [[IMGetLatestMsgIdReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgetLatestMsgIdReq;
 }
 - (IMGetLatestMsgIdReqBuilder*) clear {
-  self.result = [[IMGetLatestMsgIdReq alloc] init];
+  self.resultImgetLatestMsgIdReq = [[IMGetLatestMsgIdReq alloc] init];
   return self;
 }
 - (IMGetLatestMsgIdReqBuilder*) clone {
-  return [IMGetLatestMsgIdReq builderWithPrototype:result];
+  return [IMGetLatestMsgIdReq builderWithPrototype:resultImgetLatestMsgIdReq];
 }
 - (IMGetLatestMsgIdReq*) defaultInstance {
   return [IMGetLatestMsgIdReq defaultInstance];
@@ -3759,8 +3858,8 @@ static IMGetLatestMsgIdReq* defaultIMGetLatestMsgIdReqInstance = nil;
   return [self buildPartial];
 }
 - (IMGetLatestMsgIdReq*) buildPartial {
-  IMGetLatestMsgIdReq* returnMe = result;
-  self.result = nil;
+  IMGetLatestMsgIdReq* returnMe = resultImgetLatestMsgIdReq;
+  self.resultImgetLatestMsgIdReq = nil;
   return returnMe;
 }
 - (IMGetLatestMsgIdReqBuilder*) mergeFrom:(IMGetLatestMsgIdReq*) other {
@@ -3825,67 +3924,67 @@ static IMGetLatestMsgIdReq* defaultIMGetLatestMsgIdReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgetLatestMsgIdReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgetLatestMsgIdReq.userId;
 }
 - (IMGetLatestMsgIdReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgetLatestMsgIdReq.hasUserId = YES;
+  resultImgetLatestMsgIdReq.userId = value;
   return self;
 }
 - (IMGetLatestMsgIdReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgetLatestMsgIdReq.hasUserId = NO;
+  resultImgetLatestMsgIdReq.userId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImgetLatestMsgIdReq.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImgetLatestMsgIdReq.sessionType;
 }
 - (IMGetLatestMsgIdReqBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImgetLatestMsgIdReq.hasSessionType = YES;
+  resultImgetLatestMsgIdReq.sessionType = value;
   return self;
 }
 - (IMGetLatestMsgIdReqBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImgetLatestMsgIdReq.hasSessionType = NO;
+  resultImgetLatestMsgIdReq.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImgetLatestMsgIdReq.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImgetLatestMsgIdReq.sessionId;
 }
 - (IMGetLatestMsgIdReqBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImgetLatestMsgIdReq.hasSessionId = YES;
+  resultImgetLatestMsgIdReq.sessionId = value;
   return self;
 }
 - (IMGetLatestMsgIdReqBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImgetLatestMsgIdReq.hasSessionId = NO;
+  resultImgetLatestMsgIdReq.sessionId = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgetLatestMsgIdReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgetLatestMsgIdReq.attachData;
 }
 - (IMGetLatestMsgIdReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgetLatestMsgIdReq.hasAttachData = YES;
+  resultImgetLatestMsgIdReq.attachData = value;
   return self;
 }
 - (IMGetLatestMsgIdReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgetLatestMsgIdReq.hasAttachData = NO;
+  resultImgetLatestMsgIdReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -3903,42 +4002,39 @@ static IMGetLatestMsgIdReq* defaultIMGetLatestMsgIdReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 - (BOOL) hasLatestMsgId {
   return !!hasLatestMsgId_;
 }
-- (void) setHasLatestMsgId:(BOOL) value_ {
-  hasLatestMsgId_ = !!value_;
+- (void) setHasLatestMsgId:(BOOL) _value_ {
+  hasLatestMsgId_ = !!_value_;
 }
 @synthesize latestMsgId;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.sessionType = SessionTypeSessionTypeSingle;
@@ -3954,10 +4050,10 @@ static IMGetLatestMsgIdRsp* defaultIMGetLatestMsgIdRspInstance = nil;
     defaultIMGetLatestMsgIdRspInstance = [[IMGetLatestMsgIdRsp alloc] init];
   }
 }
-+ (IMGetLatestMsgIdRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGetLatestMsgIdRspInstance;
 }
-- (IMGetLatestMsgIdRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGetLatestMsgIdRspInstance;
 }
 - (BOOL) isInitialized {
@@ -4054,7 +4150,7 @@ static IMGetLatestMsgIdRsp* defaultIMGetLatestMsgIdRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   if (self.hasSessionId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"sessionId", [NSNumber numberWithInteger:self.sessionId]];
@@ -4066,6 +4162,24 @@ static IMGetLatestMsgIdRsp* defaultIMGetLatestMsgIdRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  if (self.hasLatestMsgId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.latestMsgId] forKey: @"latestMsgId"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -4111,29 +4225,26 @@ static IMGetLatestMsgIdRsp* defaultIMGetLatestMsgIdRspInstance = nil;
 @end
 
 @interface IMGetLatestMsgIdRspBuilder()
-@property (strong) IMGetLatestMsgIdRsp* result;
+@property (strong) IMGetLatestMsgIdRsp* resultImgetLatestMsgIdRsp;
 @end
 
 @implementation IMGetLatestMsgIdRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgetLatestMsgIdRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGetLatestMsgIdRsp alloc] init];
+    self.resultImgetLatestMsgIdRsp = [[IMGetLatestMsgIdRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgetLatestMsgIdRsp;
 }
 - (IMGetLatestMsgIdRspBuilder*) clear {
-  self.result = [[IMGetLatestMsgIdRsp alloc] init];
+  self.resultImgetLatestMsgIdRsp = [[IMGetLatestMsgIdRsp alloc] init];
   return self;
 }
 - (IMGetLatestMsgIdRspBuilder*) clone {
-  return [IMGetLatestMsgIdRsp builderWithPrototype:result];
+  return [IMGetLatestMsgIdRsp builderWithPrototype:resultImgetLatestMsgIdRsp];
 }
 - (IMGetLatestMsgIdRsp*) defaultInstance {
   return [IMGetLatestMsgIdRsp defaultInstance];
@@ -4143,8 +4254,8 @@ static IMGetLatestMsgIdRsp* defaultIMGetLatestMsgIdRspInstance = nil;
   return [self buildPartial];
 }
 - (IMGetLatestMsgIdRsp*) buildPartial {
-  IMGetLatestMsgIdRsp* returnMe = result;
-  self.result = nil;
+  IMGetLatestMsgIdRsp* returnMe = resultImgetLatestMsgIdRsp;
+  self.resultImgetLatestMsgIdRsp = nil;
   return returnMe;
 }
 - (IMGetLatestMsgIdRspBuilder*) mergeFrom:(IMGetLatestMsgIdRsp*) other {
@@ -4216,83 +4327,83 @@ static IMGetLatestMsgIdRsp* defaultIMGetLatestMsgIdRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgetLatestMsgIdRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgetLatestMsgIdRsp.userId;
 }
 - (IMGetLatestMsgIdRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgetLatestMsgIdRsp.hasUserId = YES;
+  resultImgetLatestMsgIdRsp.userId = value;
   return self;
 }
 - (IMGetLatestMsgIdRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgetLatestMsgIdRsp.hasUserId = NO;
+  resultImgetLatestMsgIdRsp.userId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImgetLatestMsgIdRsp.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImgetLatestMsgIdRsp.sessionType;
 }
 - (IMGetLatestMsgIdRspBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImgetLatestMsgIdRsp.hasSessionType = YES;
+  resultImgetLatestMsgIdRsp.sessionType = value;
   return self;
 }
 - (IMGetLatestMsgIdRspBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImgetLatestMsgIdRsp.hasSessionType = NO;
+  resultImgetLatestMsgIdRsp.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImgetLatestMsgIdRsp.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImgetLatestMsgIdRsp.sessionId;
 }
 - (IMGetLatestMsgIdRspBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImgetLatestMsgIdRsp.hasSessionId = YES;
+  resultImgetLatestMsgIdRsp.sessionId = value;
   return self;
 }
 - (IMGetLatestMsgIdRspBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImgetLatestMsgIdRsp.hasSessionId = NO;
+  resultImgetLatestMsgIdRsp.sessionId = 0;
   return self;
 }
 - (BOOL) hasLatestMsgId {
-  return result.hasLatestMsgId;
+  return resultImgetLatestMsgIdRsp.hasLatestMsgId;
 }
 - (UInt32) latestMsgId {
-  return result.latestMsgId;
+  return resultImgetLatestMsgIdRsp.latestMsgId;
 }
 - (IMGetLatestMsgIdRspBuilder*) setLatestMsgId:(UInt32) value {
-  result.hasLatestMsgId = YES;
-  result.latestMsgId = value;
+  resultImgetLatestMsgIdRsp.hasLatestMsgId = YES;
+  resultImgetLatestMsgIdRsp.latestMsgId = value;
   return self;
 }
 - (IMGetLatestMsgIdRspBuilder*) clearLatestMsgId {
-  result.hasLatestMsgId = NO;
-  result.latestMsgId = 0;
+  resultImgetLatestMsgIdRsp.hasLatestMsgId = NO;
+  resultImgetLatestMsgIdRsp.latestMsgId = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgetLatestMsgIdRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgetLatestMsgIdRsp.attachData;
 }
 - (IMGetLatestMsgIdRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgetLatestMsgIdRsp.hasAttachData = YES;
+  resultImgetLatestMsgIdRsp.attachData = value;
   return self;
 }
 - (IMGetLatestMsgIdRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgetLatestMsgIdRsp.hasAttachData = NO;
+  resultImgetLatestMsgIdRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -4310,22 +4421,22 @@ static IMGetLatestMsgIdRsp* defaultIMGetLatestMsgIdRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 @synthesize msgIdListArray;
@@ -4333,15 +4444,11 @@ static IMGetLatestMsgIdRsp* defaultIMGetLatestMsgIdRspInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.msgIdListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.sessionType = SessionTypeSessionTypeSingle;
@@ -4356,10 +4463,10 @@ static IMGetMsgByIdReq* defaultIMGetMsgByIdReqInstance = nil;
     defaultIMGetMsgByIdReqInstance = [[IMGetMsgByIdReq alloc] init];
   }
 }
-+ (IMGetMsgByIdReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGetMsgByIdReqInstance;
 }
-- (IMGetMsgByIdReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGetMsgByIdReqInstance;
 }
 - (PBArray *)msgIdList {
@@ -4470,7 +4577,7 @@ static IMGetMsgByIdReq* defaultIMGetMsgByIdReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   if (self.hasSessionId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"sessionId", [NSNumber numberWithInteger:self.sessionId]];
@@ -4482,6 +4589,27 @@ static IMGetMsgByIdReq* defaultIMGetMsgByIdReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  NSMutableArray * msgIdListArrayArray = [NSMutableArray new];
+  NSUInteger msgIdListArrayCount=self.msgIdListArray.count;
+  for(int i=0;i<msgIdListArrayCount;i++){
+    [msgIdListArrayArray addObject: @([self.msgIdListArray uint32AtIndex:i])];
+  }
+  [dictionary setObject: msgIdListArrayArray forKey: @"msgIdList"];
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -4514,7 +4642,7 @@ static IMGetMsgByIdReq* defaultIMGetMsgByIdReqInstance = nil;
   if (self.hasSessionId) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.sessionId] hash];
   }
-  [self.msgIdListArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.msgIdListArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
   if (self.hasAttachData) {
@@ -4526,29 +4654,26 @@ static IMGetMsgByIdReq* defaultIMGetMsgByIdReqInstance = nil;
 @end
 
 @interface IMGetMsgByIdReqBuilder()
-@property (strong) IMGetMsgByIdReq* result;
+@property (strong) IMGetMsgByIdReq* resultImgetMsgByIdReq;
 @end
 
 @implementation IMGetMsgByIdReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgetMsgByIdReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGetMsgByIdReq alloc] init];
+    self.resultImgetMsgByIdReq = [[IMGetMsgByIdReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgetMsgByIdReq;
 }
 - (IMGetMsgByIdReqBuilder*) clear {
-  self.result = [[IMGetMsgByIdReq alloc] init];
+  self.resultImgetMsgByIdReq = [[IMGetMsgByIdReq alloc] init];
   return self;
 }
 - (IMGetMsgByIdReqBuilder*) clone {
-  return [IMGetMsgByIdReq builderWithPrototype:result];
+  return [IMGetMsgByIdReq builderWithPrototype:resultImgetMsgByIdReq];
 }
 - (IMGetMsgByIdReq*) defaultInstance {
   return [IMGetMsgByIdReq defaultInstance];
@@ -4558,8 +4683,8 @@ static IMGetMsgByIdReq* defaultIMGetMsgByIdReqInstance = nil;
   return [self buildPartial];
 }
 - (IMGetMsgByIdReq*) buildPartial {
-  IMGetMsgByIdReq* returnMe = result;
-  self.result = nil;
+  IMGetMsgByIdReq* returnMe = resultImgetMsgByIdReq;
+  self.resultImgetMsgByIdReq = nil;
   return returnMe;
 }
 - (IMGetMsgByIdReqBuilder*) mergeFrom:(IMGetMsgByIdReq*) other {
@@ -4576,10 +4701,10 @@ static IMGetMsgByIdReq* defaultIMGetMsgByIdReqInstance = nil;
     [self setSessionId:other.sessionId];
   }
   if (other.msgIdListArray.count > 0) {
-    if (result.msgIdListArray == nil) {
-      result.msgIdListArray = [other.msgIdListArray copy];
+    if (resultImgetMsgByIdReq.msgIdListArray == nil) {
+      resultImgetMsgByIdReq.msgIdListArray = [other.msgIdListArray copy];
     } else {
-      [result.msgIdListArray appendArray:other.msgIdListArray];
+      [resultImgetMsgByIdReq.msgIdListArray appendArray:other.msgIdListArray];
     }
   }
   if (other.hasAttachData) {
@@ -4635,92 +4760,92 @@ static IMGetMsgByIdReq* defaultIMGetMsgByIdReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgetMsgByIdReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgetMsgByIdReq.userId;
 }
 - (IMGetMsgByIdReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgetMsgByIdReq.hasUserId = YES;
+  resultImgetMsgByIdReq.userId = value;
   return self;
 }
 - (IMGetMsgByIdReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgetMsgByIdReq.hasUserId = NO;
+  resultImgetMsgByIdReq.userId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImgetMsgByIdReq.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImgetMsgByIdReq.sessionType;
 }
 - (IMGetMsgByIdReqBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImgetMsgByIdReq.hasSessionType = YES;
+  resultImgetMsgByIdReq.sessionType = value;
   return self;
 }
 - (IMGetMsgByIdReqBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImgetMsgByIdReq.hasSessionType = NO;
+  resultImgetMsgByIdReq.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImgetMsgByIdReq.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImgetMsgByIdReq.sessionId;
 }
 - (IMGetMsgByIdReqBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImgetMsgByIdReq.hasSessionId = YES;
+  resultImgetMsgByIdReq.sessionId = value;
   return self;
 }
 - (IMGetMsgByIdReqBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImgetMsgByIdReq.hasSessionId = NO;
+  resultImgetMsgByIdReq.sessionId = 0;
   return self;
 }
 - (PBAppendableArray *)msgIdList {
-  return result.msgIdListArray;
+  return resultImgetMsgByIdReq.msgIdListArray;
 }
 - (UInt32)msgIdListAtIndex:(NSUInteger)index {
-  return [result msgIdListAtIndex:index];
+  return [resultImgetMsgByIdReq msgIdListAtIndex:index];
 }
 - (IMGetMsgByIdReqBuilder *)addMsgIdList:(UInt32)value {
-  if (result.msgIdListArray == nil) {
-    result.msgIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
+  if (resultImgetMsgByIdReq.msgIdListArray == nil) {
+    resultImgetMsgByIdReq.msgIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
   }
-  [result.msgIdListArray addUint32:value];
+  [resultImgetMsgByIdReq.msgIdListArray addUint32:value];
   return self;
 }
 - (IMGetMsgByIdReqBuilder *)setMsgIdListArray:(NSArray *)array {
-  result.msgIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
+  resultImgetMsgByIdReq.msgIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGetMsgByIdReqBuilder *)setMsgIdListValues:(const UInt32 *)values count:(NSUInteger)count {
-  result.msgIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
+  resultImgetMsgByIdReq.msgIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGetMsgByIdReqBuilder *)clearMsgIdList {
-  result.msgIdListArray = nil;
+  resultImgetMsgByIdReq.msgIdListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgetMsgByIdReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgetMsgByIdReq.attachData;
 }
 - (IMGetMsgByIdReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgetMsgByIdReq.hasAttachData = YES;
+  resultImgetMsgByIdReq.attachData = value;
   return self;
 }
 - (IMGetMsgByIdReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgetMsgByIdReq.hasAttachData = NO;
+  resultImgetMsgByIdReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -4738,22 +4863,22 @@ static IMGetMsgByIdReq* defaultIMGetMsgByIdReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 @synthesize msgListArray;
@@ -4761,15 +4886,11 @@ static IMGetMsgByIdReq* defaultIMGetMsgByIdReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.msgListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.sessionType = SessionTypeSessionTypeSingle;
@@ -4784,10 +4905,10 @@ static IMGetMsgByIdRsp* defaultIMGetMsgByIdRspInstance = nil;
     defaultIMGetMsgByIdRspInstance = [[IMGetMsgByIdRsp alloc] init];
   }
 }
-+ (IMGetMsgByIdRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGetMsgByIdRspInstance;
 }
-- (IMGetMsgByIdRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGetMsgByIdRspInstance;
 }
 - (NSArray *)msgList {
@@ -4895,7 +5016,7 @@ static IMGetMsgByIdRsp* defaultIMGetMsgByIdRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   if (self.hasSessionId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"sessionId", [NSNumber numberWithInteger:self.sessionId]];
@@ -4910,6 +5031,26 @@ static IMGetMsgByIdRsp* defaultIMGetMsgByIdRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  for (MsgInfo* element in self.msgListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"msgList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -4954,29 +5095,26 @@ static IMGetMsgByIdRsp* defaultIMGetMsgByIdRspInstance = nil;
 @end
 
 @interface IMGetMsgByIdRspBuilder()
-@property (strong) IMGetMsgByIdRsp* result;
+@property (strong) IMGetMsgByIdRsp* resultImgetMsgByIdRsp;
 @end
 
 @implementation IMGetMsgByIdRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgetMsgByIdRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGetMsgByIdRsp alloc] init];
+    self.resultImgetMsgByIdRsp = [[IMGetMsgByIdRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgetMsgByIdRsp;
 }
 - (IMGetMsgByIdRspBuilder*) clear {
-  self.result = [[IMGetMsgByIdRsp alloc] init];
+  self.resultImgetMsgByIdRsp = [[IMGetMsgByIdRsp alloc] init];
   return self;
 }
 - (IMGetMsgByIdRspBuilder*) clone {
-  return [IMGetMsgByIdRsp builderWithPrototype:result];
+  return [IMGetMsgByIdRsp builderWithPrototype:resultImgetMsgByIdRsp];
 }
 - (IMGetMsgByIdRsp*) defaultInstance {
   return [IMGetMsgByIdRsp defaultInstance];
@@ -4986,8 +5124,8 @@ static IMGetMsgByIdRsp* defaultIMGetMsgByIdRspInstance = nil;
   return [self buildPartial];
 }
 - (IMGetMsgByIdRsp*) buildPartial {
-  IMGetMsgByIdRsp* returnMe = result;
-  self.result = nil;
+  IMGetMsgByIdRsp* returnMe = resultImgetMsgByIdRsp;
+  self.resultImgetMsgByIdRsp = nil;
   return returnMe;
 }
 - (IMGetMsgByIdRspBuilder*) mergeFrom:(IMGetMsgByIdRsp*) other {
@@ -5004,10 +5142,10 @@ static IMGetMsgByIdRsp* defaultIMGetMsgByIdRspInstance = nil;
     [self setSessionId:other.sessionId];
   }
   if (other.msgListArray.count > 0) {
-    if (result.msgListArray == nil) {
-      result.msgListArray = [[NSMutableArray alloc] initWithArray:other.msgListArray];
+    if (resultImgetMsgByIdRsp.msgListArray == nil) {
+      resultImgetMsgByIdRsp.msgListArray = [[NSMutableArray alloc] initWithArray:other.msgListArray];
     } else {
-      [result.msgListArray addObjectsFromArray:other.msgListArray];
+      [resultImgetMsgByIdRsp.msgListArray addObjectsFromArray:other.msgListArray];
     }
   }
   if (other.hasAttachData) {
@@ -5065,88 +5203,88 @@ static IMGetMsgByIdRsp* defaultIMGetMsgByIdRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgetMsgByIdRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgetMsgByIdRsp.userId;
 }
 - (IMGetMsgByIdRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgetMsgByIdRsp.hasUserId = YES;
+  resultImgetMsgByIdRsp.userId = value;
   return self;
 }
 - (IMGetMsgByIdRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgetMsgByIdRsp.hasUserId = NO;
+  resultImgetMsgByIdRsp.userId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImgetMsgByIdRsp.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImgetMsgByIdRsp.sessionType;
 }
 - (IMGetMsgByIdRspBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImgetMsgByIdRsp.hasSessionType = YES;
+  resultImgetMsgByIdRsp.sessionType = value;
   return self;
 }
 - (IMGetMsgByIdRspBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImgetMsgByIdRsp.hasSessionType = NO;
+  resultImgetMsgByIdRsp.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImgetMsgByIdRsp.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImgetMsgByIdRsp.sessionId;
 }
 - (IMGetMsgByIdRspBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImgetMsgByIdRsp.hasSessionId = YES;
+  resultImgetMsgByIdRsp.sessionId = value;
   return self;
 }
 - (IMGetMsgByIdRspBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImgetMsgByIdRsp.hasSessionId = NO;
+  resultImgetMsgByIdRsp.sessionId = 0;
   return self;
 }
 - (NSMutableArray *)msgList {
-  return result.msgListArray;
+  return resultImgetMsgByIdRsp.msgListArray;
 }
 - (MsgInfo*)msgListAtIndex:(NSUInteger)index {
-  return [result msgListAtIndex:index];
+  return [resultImgetMsgByIdRsp msgListAtIndex:index];
 }
 - (IMGetMsgByIdRspBuilder *)addMsgList:(MsgInfo*)value {
-  if (result.msgListArray == nil) {
-    result.msgListArray = [[NSMutableArray alloc]init];
+  if (resultImgetMsgByIdRsp.msgListArray == nil) {
+    resultImgetMsgByIdRsp.msgListArray = [[NSMutableArray alloc]init];
   }
-  [result.msgListArray addObject:value];
+  [resultImgetMsgByIdRsp.msgListArray addObject:value];
   return self;
 }
 - (IMGetMsgByIdRspBuilder *)setMsgListArray:(NSArray *)array {
-  result.msgListArray = [[NSMutableArray alloc]initWithArray:array];
+  resultImgetMsgByIdRsp.msgListArray = [[NSMutableArray alloc]initWithArray:array];
   return self;
 }
 - (IMGetMsgByIdRspBuilder *)clearMsgList {
-  result.msgListArray = nil;
+  resultImgetMsgByIdRsp.msgListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgetMsgByIdRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgetMsgByIdRsp.attachData;
 }
 - (IMGetMsgByIdRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgetMsgByIdRsp.hasAttachData = YES;
+  resultImgetMsgByIdRsp.attachData = value;
   return self;
 }
 - (IMGetMsgByIdRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgetMsgByIdRsp.hasAttachData = NO;
+  resultImgetMsgByIdRsp.attachData = [NSData data];
   return self;
 }
 @end

@@ -31,22 +31,22 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (BOOL) hasFromUserId {
   return !!hasFromUserId_;
 }
-- (void) setHasFromUserId:(BOOL) value_ {
-  hasFromUserId_ = !!value_;
+- (void) setHasFromUserId:(BOOL) _value_ {
+  hasFromUserId_ = !!_value_;
 }
 @synthesize fromUserId;
 - (BOOL) hasToUserId {
   return !!hasToUserId_;
 }
-- (void) setHasToUserId:(BOOL) value_ {
-  hasToUserId_ = !!value_;
+- (void) setHasToUserId:(BOOL) _value_ {
+  hasToUserId_ = !!_value_;
 }
 @synthesize toUserId;
 - (BOOL) hasCmdMsgData {
   return !!hasCmdMsgData_;
 }
-- (void) setHasCmdMsgData:(BOOL) value_ {
-  hasCmdMsgData_ = !!value_;
+- (void) setHasCmdMsgData:(BOOL) _value_ {
+  hasCmdMsgData_ = !!_value_;
 }
 @synthesize cmdMsgData;
 - (instancetype) init {
@@ -154,6 +154,18 @@ static IMP2PCmdMsg* defaultIMP2PCmdMsgInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"cmdMsgData", self.cmdMsgData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasFromUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fromUserId] forKey: @"fromUserId"];
+  }
+  if (self.hasToUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.toUserId] forKey: @"toUserId"];
+  }
+  if (self.hasCmdMsgData) {
+    [dictionary setObject: self.cmdMsgData forKey: @"cmdMsgData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {

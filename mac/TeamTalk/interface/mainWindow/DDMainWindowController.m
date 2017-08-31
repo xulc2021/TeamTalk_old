@@ -40,10 +40,12 @@
 #import "DDIntranetViewController.h"
 #import "DDIntranetEntity.h"
 #import "MTUserModule.h"
+#import "DDTestViewController.h"
 
 #define MAIN_WINDOW_NIB	@"DDMainWindow"		//Filename of the login window nib
 
 @interface DDMainWindowController ()
+
 
 - (void)p_initialFirstColumnViewControllers;
 
@@ -120,14 +122,6 @@
     _showSession = NO;
     [self.window setAlphaValue:0];
     [self.window fadeInAnimation];
-}
-
-
-
-- (void)windowDidLoad
-{
-    [super windowDidLoad];
-    
     [_statusItem setImage:[NSImage imageNamed:@"icon_statusbar"]];
     [_statusItem setHighlightMode:YES];
     [_statusItem setTarget:self];
@@ -139,11 +133,20 @@
     [_leftBarViewController selectTheItemAtIndex:0];
     _leftBarViewController.delegate = self;
     NSViewController* viewController = _firstColumnViewControllers[0];
+    //NSViewController* viewController = [DDRecentContactsViewController new];
+//    DDTestViewController *viewController = [DDTestViewController new];
+    
     CGFloat width = self.firstColumnView.bounds.size.width;
     CGFloat height = self.firstColumnView.bounds.size.height;
     [viewController.view setFrame:NSMakeRect(0, 0, width, height)];
     [self.firstColumnView addSubview:viewController.view];
 
+}
+
+
+- (void)windowDidLoad
+{
+    [super windowDidLoad];
 }
 
 - (void)windowWillClose:(NSNotification *)notification
@@ -605,9 +608,13 @@ static NSString* const SESSION_ID = @"sessionId";          //群消息到达
 - (void)p_initialFirstColumnViewControllers
 {
     _firstColumnViewControllers = [[NSMutableArray alloc] init];
-    DDRecentContactsViewController* recentContactsViewController = [[DDRecentContactsViewController alloc] initWithNibName:@"DDRecentContactsViewController" bundle:nil];
-    [recentContactsViewController initialData];
-    [recentContactsViewController setDelegate:self];
+//    DDRecentContactsViewController* recentContactsViewController = [[DDRecentContactsViewController alloc] initWithNibName:@"DDRecentContactsViewController" bundle:nil];
+    
+    DDRecentContactsViewController* recentContactsViewController = [DDRecentContactsViewController new];
+    
+    //[recentContactsViewController initialData];
+    //[recentContactsViewController setDelegate:self];
+    
     [_firstColumnViewControllers addObject:recentContactsViewController];
     
     DDGroupViewController* groupViewController = [[DDGroupViewController alloc] initWithNibName:@"DDGroupViewController" bundle:nil];

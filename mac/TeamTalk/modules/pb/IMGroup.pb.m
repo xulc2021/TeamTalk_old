@@ -31,21 +31,18 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.attachData = [NSData data];
@@ -58,10 +55,10 @@ static IMNormalGroupListReq* defaultIMNormalGroupListReqInstance = nil;
     defaultIMNormalGroupListReqInstance = [[IMNormalGroupListReq alloc] init];
   }
 }
-+ (IMNormalGroupListReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMNormalGroupListReqInstance;
 }
-- (IMNormalGroupListReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMNormalGroupListReqInstance;
 }
 - (BOOL) isInitialized {
@@ -135,6 +132,15 @@ static IMNormalGroupListReq* defaultIMNormalGroupListReqInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -164,29 +170,26 @@ static IMNormalGroupListReq* defaultIMNormalGroupListReqInstance = nil;
 @end
 
 @interface IMNormalGroupListReqBuilder()
-@property (strong) IMNormalGroupListReq* result;
+@property (strong) IMNormalGroupListReq* resultImnormalGroupListReq;
 @end
 
 @implementation IMNormalGroupListReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImnormalGroupListReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMNormalGroupListReq alloc] init];
+    self.resultImnormalGroupListReq = [[IMNormalGroupListReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImnormalGroupListReq;
 }
 - (IMNormalGroupListReqBuilder*) clear {
-  self.result = [[IMNormalGroupListReq alloc] init];
+  self.resultImnormalGroupListReq = [[IMNormalGroupListReq alloc] init];
   return self;
 }
 - (IMNormalGroupListReqBuilder*) clone {
-  return [IMNormalGroupListReq builderWithPrototype:result];
+  return [IMNormalGroupListReq builderWithPrototype:resultImnormalGroupListReq];
 }
 - (IMNormalGroupListReq*) defaultInstance {
   return [IMNormalGroupListReq defaultInstance];
@@ -196,8 +199,8 @@ static IMNormalGroupListReq* defaultIMNormalGroupListReqInstance = nil;
   return [self buildPartial];
 }
 - (IMNormalGroupListReq*) buildPartial {
-  IMNormalGroupListReq* returnMe = result;
-  self.result = nil;
+  IMNormalGroupListReq* returnMe = resultImnormalGroupListReq;
+  self.resultImnormalGroupListReq = nil;
   return returnMe;
 }
 - (IMNormalGroupListReqBuilder*) mergeFrom:(IMNormalGroupListReq*) other {
@@ -243,35 +246,35 @@ static IMNormalGroupListReq* defaultIMNormalGroupListReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImnormalGroupListReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImnormalGroupListReq.userId;
 }
 - (IMNormalGroupListReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImnormalGroupListReq.hasUserId = YES;
+  resultImnormalGroupListReq.userId = value;
   return self;
 }
 - (IMNormalGroupListReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImnormalGroupListReq.hasUserId = NO;
+  resultImnormalGroupListReq.userId = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImnormalGroupListReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImnormalGroupListReq.attachData;
 }
 - (IMNormalGroupListReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImnormalGroupListReq.hasAttachData = YES;
+  resultImnormalGroupListReq.attachData = value;
   return self;
 }
 - (IMNormalGroupListReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImnormalGroupListReq.hasAttachData = NO;
+  resultImnormalGroupListReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -287,8 +290,8 @@ static IMNormalGroupListReq* defaultIMNormalGroupListReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 @synthesize groupVersionListArray;
@@ -296,15 +299,11 @@ static IMNormalGroupListReq* defaultIMNormalGroupListReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.groupVersionListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.attachData = [NSData data];
@@ -317,10 +316,10 @@ static IMNormalGroupListRsp* defaultIMNormalGroupListRspInstance = nil;
     defaultIMNormalGroupListRspInstance = [[IMNormalGroupListRsp alloc] init];
   }
 }
-+ (IMNormalGroupListRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMNormalGroupListRspInstance;
 }
-- (IMNormalGroupListRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMNormalGroupListRspInstance;
 }
 - (NSArray *)groupVersionList {
@@ -420,6 +419,20 @@ static IMNormalGroupListRsp* defaultIMNormalGroupListRspInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  for (GroupVersionInfo* element in self.groupVersionListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"groupVersionList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -453,29 +466,26 @@ static IMNormalGroupListRsp* defaultIMNormalGroupListRspInstance = nil;
 @end
 
 @interface IMNormalGroupListRspBuilder()
-@property (strong) IMNormalGroupListRsp* result;
+@property (strong) IMNormalGroupListRsp* resultImnormalGroupListRsp;
 @end
 
 @implementation IMNormalGroupListRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImnormalGroupListRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMNormalGroupListRsp alloc] init];
+    self.resultImnormalGroupListRsp = [[IMNormalGroupListRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImnormalGroupListRsp;
 }
 - (IMNormalGroupListRspBuilder*) clear {
-  self.result = [[IMNormalGroupListRsp alloc] init];
+  self.resultImnormalGroupListRsp = [[IMNormalGroupListRsp alloc] init];
   return self;
 }
 - (IMNormalGroupListRspBuilder*) clone {
-  return [IMNormalGroupListRsp builderWithPrototype:result];
+  return [IMNormalGroupListRsp builderWithPrototype:resultImnormalGroupListRsp];
 }
 - (IMNormalGroupListRsp*) defaultInstance {
   return [IMNormalGroupListRsp defaultInstance];
@@ -485,8 +495,8 @@ static IMNormalGroupListRsp* defaultIMNormalGroupListRspInstance = nil;
   return [self buildPartial];
 }
 - (IMNormalGroupListRsp*) buildPartial {
-  IMNormalGroupListRsp* returnMe = result;
-  self.result = nil;
+  IMNormalGroupListRsp* returnMe = resultImnormalGroupListRsp;
+  self.resultImnormalGroupListRsp = nil;
   return returnMe;
 }
 - (IMNormalGroupListRspBuilder*) mergeFrom:(IMNormalGroupListRsp*) other {
@@ -497,10 +507,10 @@ static IMNormalGroupListRsp* defaultIMNormalGroupListRspInstance = nil;
     [self setUserId:other.userId];
   }
   if (other.groupVersionListArray.count > 0) {
-    if (result.groupVersionListArray == nil) {
-      result.groupVersionListArray = [[NSMutableArray alloc] initWithArray:other.groupVersionListArray];
+    if (resultImnormalGroupListRsp.groupVersionListArray == nil) {
+      resultImnormalGroupListRsp.groupVersionListArray = [[NSMutableArray alloc] initWithArray:other.groupVersionListArray];
     } else {
-      [result.groupVersionListArray addObjectsFromArray:other.groupVersionListArray];
+      [resultImnormalGroupListRsp.groupVersionListArray addObjectsFromArray:other.groupVersionListArray];
     }
   }
   if (other.hasAttachData) {
@@ -545,56 +555,56 @@ static IMNormalGroupListRsp* defaultIMNormalGroupListRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImnormalGroupListRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImnormalGroupListRsp.userId;
 }
 - (IMNormalGroupListRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImnormalGroupListRsp.hasUserId = YES;
+  resultImnormalGroupListRsp.userId = value;
   return self;
 }
 - (IMNormalGroupListRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImnormalGroupListRsp.hasUserId = NO;
+  resultImnormalGroupListRsp.userId = 0;
   return self;
 }
 - (NSMutableArray *)groupVersionList {
-  return result.groupVersionListArray;
+  return resultImnormalGroupListRsp.groupVersionListArray;
 }
 - (GroupVersionInfo*)groupVersionListAtIndex:(NSUInteger)index {
-  return [result groupVersionListAtIndex:index];
+  return [resultImnormalGroupListRsp groupVersionListAtIndex:index];
 }
 - (IMNormalGroupListRspBuilder *)addGroupVersionList:(GroupVersionInfo*)value {
-  if (result.groupVersionListArray == nil) {
-    result.groupVersionListArray = [[NSMutableArray alloc]init];
+  if (resultImnormalGroupListRsp.groupVersionListArray == nil) {
+    resultImnormalGroupListRsp.groupVersionListArray = [[NSMutableArray alloc]init];
   }
-  [result.groupVersionListArray addObject:value];
+  [resultImnormalGroupListRsp.groupVersionListArray addObject:value];
   return self;
 }
 - (IMNormalGroupListRspBuilder *)setGroupVersionListArray:(NSArray *)array {
-  result.groupVersionListArray = [[NSMutableArray alloc]initWithArray:array];
+  resultImnormalGroupListRsp.groupVersionListArray = [[NSMutableArray alloc]initWithArray:array];
   return self;
 }
 - (IMNormalGroupListRspBuilder *)clearGroupVersionList {
-  result.groupVersionListArray = nil;
+  resultImnormalGroupListRsp.groupVersionListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImnormalGroupListRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImnormalGroupListRsp.attachData;
 }
 - (IMNormalGroupListRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImnormalGroupListRsp.hasAttachData = YES;
+  resultImnormalGroupListRsp.attachData = value;
   return self;
 }
 - (IMNormalGroupListRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImnormalGroupListRsp.hasAttachData = NO;
+  resultImnormalGroupListRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -610,8 +620,8 @@ static IMNormalGroupListRsp* defaultIMNormalGroupListRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 @synthesize groupVersionListArray;
@@ -619,15 +629,11 @@ static IMNormalGroupListRsp* defaultIMNormalGroupListRspInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.groupVersionListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.attachData = [NSData data];
@@ -640,10 +646,10 @@ static IMGroupInfoListReq* defaultIMGroupInfoListReqInstance = nil;
     defaultIMGroupInfoListReqInstance = [[IMGroupInfoListReq alloc] init];
   }
 }
-+ (IMGroupInfoListReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGroupInfoListReqInstance;
 }
-- (IMGroupInfoListReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGroupInfoListReqInstance;
 }
 - (NSArray *)groupVersionList {
@@ -743,6 +749,20 @@ static IMGroupInfoListReq* defaultIMGroupInfoListReqInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  for (GroupVersionInfo* element in self.groupVersionListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"groupVersionList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -776,29 +796,26 @@ static IMGroupInfoListReq* defaultIMGroupInfoListReqInstance = nil;
 @end
 
 @interface IMGroupInfoListReqBuilder()
-@property (strong) IMGroupInfoListReq* result;
+@property (strong) IMGroupInfoListReq* resultImgroupInfoListReq;
 @end
 
 @implementation IMGroupInfoListReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgroupInfoListReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGroupInfoListReq alloc] init];
+    self.resultImgroupInfoListReq = [[IMGroupInfoListReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgroupInfoListReq;
 }
 - (IMGroupInfoListReqBuilder*) clear {
-  self.result = [[IMGroupInfoListReq alloc] init];
+  self.resultImgroupInfoListReq = [[IMGroupInfoListReq alloc] init];
   return self;
 }
 - (IMGroupInfoListReqBuilder*) clone {
-  return [IMGroupInfoListReq builderWithPrototype:result];
+  return [IMGroupInfoListReq builderWithPrototype:resultImgroupInfoListReq];
 }
 - (IMGroupInfoListReq*) defaultInstance {
   return [IMGroupInfoListReq defaultInstance];
@@ -808,8 +825,8 @@ static IMGroupInfoListReq* defaultIMGroupInfoListReqInstance = nil;
   return [self buildPartial];
 }
 - (IMGroupInfoListReq*) buildPartial {
-  IMGroupInfoListReq* returnMe = result;
-  self.result = nil;
+  IMGroupInfoListReq* returnMe = resultImgroupInfoListReq;
+  self.resultImgroupInfoListReq = nil;
   return returnMe;
 }
 - (IMGroupInfoListReqBuilder*) mergeFrom:(IMGroupInfoListReq*) other {
@@ -820,10 +837,10 @@ static IMGroupInfoListReq* defaultIMGroupInfoListReqInstance = nil;
     [self setUserId:other.userId];
   }
   if (other.groupVersionListArray.count > 0) {
-    if (result.groupVersionListArray == nil) {
-      result.groupVersionListArray = [[NSMutableArray alloc] initWithArray:other.groupVersionListArray];
+    if (resultImgroupInfoListReq.groupVersionListArray == nil) {
+      resultImgroupInfoListReq.groupVersionListArray = [[NSMutableArray alloc] initWithArray:other.groupVersionListArray];
     } else {
-      [result.groupVersionListArray addObjectsFromArray:other.groupVersionListArray];
+      [resultImgroupInfoListReq.groupVersionListArray addObjectsFromArray:other.groupVersionListArray];
     }
   }
   if (other.hasAttachData) {
@@ -868,56 +885,56 @@ static IMGroupInfoListReq* defaultIMGroupInfoListReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgroupInfoListReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgroupInfoListReq.userId;
 }
 - (IMGroupInfoListReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgroupInfoListReq.hasUserId = YES;
+  resultImgroupInfoListReq.userId = value;
   return self;
 }
 - (IMGroupInfoListReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgroupInfoListReq.hasUserId = NO;
+  resultImgroupInfoListReq.userId = 0;
   return self;
 }
 - (NSMutableArray *)groupVersionList {
-  return result.groupVersionListArray;
+  return resultImgroupInfoListReq.groupVersionListArray;
 }
 - (GroupVersionInfo*)groupVersionListAtIndex:(NSUInteger)index {
-  return [result groupVersionListAtIndex:index];
+  return [resultImgroupInfoListReq groupVersionListAtIndex:index];
 }
 - (IMGroupInfoListReqBuilder *)addGroupVersionList:(GroupVersionInfo*)value {
-  if (result.groupVersionListArray == nil) {
-    result.groupVersionListArray = [[NSMutableArray alloc]init];
+  if (resultImgroupInfoListReq.groupVersionListArray == nil) {
+    resultImgroupInfoListReq.groupVersionListArray = [[NSMutableArray alloc]init];
   }
-  [result.groupVersionListArray addObject:value];
+  [resultImgroupInfoListReq.groupVersionListArray addObject:value];
   return self;
 }
 - (IMGroupInfoListReqBuilder *)setGroupVersionListArray:(NSArray *)array {
-  result.groupVersionListArray = [[NSMutableArray alloc]initWithArray:array];
+  resultImgroupInfoListReq.groupVersionListArray = [[NSMutableArray alloc]initWithArray:array];
   return self;
 }
 - (IMGroupInfoListReqBuilder *)clearGroupVersionList {
-  result.groupVersionListArray = nil;
+  resultImgroupInfoListReq.groupVersionListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgroupInfoListReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgroupInfoListReq.attachData;
 }
 - (IMGroupInfoListReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgroupInfoListReq.hasAttachData = YES;
+  resultImgroupInfoListReq.attachData = value;
   return self;
 }
 - (IMGroupInfoListReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgroupInfoListReq.hasAttachData = NO;
+  resultImgroupInfoListReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -933,8 +950,8 @@ static IMGroupInfoListReq* defaultIMGroupInfoListReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 @synthesize groupInfoListArray;
@@ -942,15 +959,11 @@ static IMGroupInfoListReq* defaultIMGroupInfoListReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.groupInfoListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.attachData = [NSData data];
@@ -963,10 +976,10 @@ static IMGroupInfoListRsp* defaultIMGroupInfoListRspInstance = nil;
     defaultIMGroupInfoListRspInstance = [[IMGroupInfoListRsp alloc] init];
   }
 }
-+ (IMGroupInfoListRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGroupInfoListRspInstance;
 }
-- (IMGroupInfoListRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGroupInfoListRspInstance;
 }
 - (NSArray *)groupInfoList {
@@ -1066,6 +1079,20 @@ static IMGroupInfoListRsp* defaultIMGroupInfoListRspInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  for (GroupInfo* element in self.groupInfoListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"groupInfoList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -1099,29 +1126,26 @@ static IMGroupInfoListRsp* defaultIMGroupInfoListRspInstance = nil;
 @end
 
 @interface IMGroupInfoListRspBuilder()
-@property (strong) IMGroupInfoListRsp* result;
+@property (strong) IMGroupInfoListRsp* resultImgroupInfoListRsp;
 @end
 
 @implementation IMGroupInfoListRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgroupInfoListRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGroupInfoListRsp alloc] init];
+    self.resultImgroupInfoListRsp = [[IMGroupInfoListRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgroupInfoListRsp;
 }
 - (IMGroupInfoListRspBuilder*) clear {
-  self.result = [[IMGroupInfoListRsp alloc] init];
+  self.resultImgroupInfoListRsp = [[IMGroupInfoListRsp alloc] init];
   return self;
 }
 - (IMGroupInfoListRspBuilder*) clone {
-  return [IMGroupInfoListRsp builderWithPrototype:result];
+  return [IMGroupInfoListRsp builderWithPrototype:resultImgroupInfoListRsp];
 }
 - (IMGroupInfoListRsp*) defaultInstance {
   return [IMGroupInfoListRsp defaultInstance];
@@ -1131,8 +1155,8 @@ static IMGroupInfoListRsp* defaultIMGroupInfoListRspInstance = nil;
   return [self buildPartial];
 }
 - (IMGroupInfoListRsp*) buildPartial {
-  IMGroupInfoListRsp* returnMe = result;
-  self.result = nil;
+  IMGroupInfoListRsp* returnMe = resultImgroupInfoListRsp;
+  self.resultImgroupInfoListRsp = nil;
   return returnMe;
 }
 - (IMGroupInfoListRspBuilder*) mergeFrom:(IMGroupInfoListRsp*) other {
@@ -1143,10 +1167,10 @@ static IMGroupInfoListRsp* defaultIMGroupInfoListRspInstance = nil;
     [self setUserId:other.userId];
   }
   if (other.groupInfoListArray.count > 0) {
-    if (result.groupInfoListArray == nil) {
-      result.groupInfoListArray = [[NSMutableArray alloc] initWithArray:other.groupInfoListArray];
+    if (resultImgroupInfoListRsp.groupInfoListArray == nil) {
+      resultImgroupInfoListRsp.groupInfoListArray = [[NSMutableArray alloc] initWithArray:other.groupInfoListArray];
     } else {
-      [result.groupInfoListArray addObjectsFromArray:other.groupInfoListArray];
+      [resultImgroupInfoListRsp.groupInfoListArray addObjectsFromArray:other.groupInfoListArray];
     }
   }
   if (other.hasAttachData) {
@@ -1191,56 +1215,56 @@ static IMGroupInfoListRsp* defaultIMGroupInfoListRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgroupInfoListRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgroupInfoListRsp.userId;
 }
 - (IMGroupInfoListRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgroupInfoListRsp.hasUserId = YES;
+  resultImgroupInfoListRsp.userId = value;
   return self;
 }
 - (IMGroupInfoListRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgroupInfoListRsp.hasUserId = NO;
+  resultImgroupInfoListRsp.userId = 0;
   return self;
 }
 - (NSMutableArray *)groupInfoList {
-  return result.groupInfoListArray;
+  return resultImgroupInfoListRsp.groupInfoListArray;
 }
 - (GroupInfo*)groupInfoListAtIndex:(NSUInteger)index {
-  return [result groupInfoListAtIndex:index];
+  return [resultImgroupInfoListRsp groupInfoListAtIndex:index];
 }
 - (IMGroupInfoListRspBuilder *)addGroupInfoList:(GroupInfo*)value {
-  if (result.groupInfoListArray == nil) {
-    result.groupInfoListArray = [[NSMutableArray alloc]init];
+  if (resultImgroupInfoListRsp.groupInfoListArray == nil) {
+    resultImgroupInfoListRsp.groupInfoListArray = [[NSMutableArray alloc]init];
   }
-  [result.groupInfoListArray addObject:value];
+  [resultImgroupInfoListRsp.groupInfoListArray addObject:value];
   return self;
 }
 - (IMGroupInfoListRspBuilder *)setGroupInfoListArray:(NSArray *)array {
-  result.groupInfoListArray = [[NSMutableArray alloc]initWithArray:array];
+  resultImgroupInfoListRsp.groupInfoListArray = [[NSMutableArray alloc]initWithArray:array];
   return self;
 }
 - (IMGroupInfoListRspBuilder *)clearGroupInfoList {
-  result.groupInfoListArray = nil;
+  resultImgroupInfoListRsp.groupInfoListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgroupInfoListRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgroupInfoListRsp.attachData;
 }
 - (IMGroupInfoListRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgroupInfoListRsp.hasAttachData = YES;
+  resultImgroupInfoListRsp.attachData = value;
   return self;
 }
 - (IMGroupInfoListRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgroupInfoListRsp.hasAttachData = NO;
+  resultImgroupInfoListRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -1259,29 +1283,29 @@ static IMGroupInfoListRsp* defaultIMGroupInfoListRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasGroupType {
   return !!hasGroupType_;
 }
-- (void) setHasGroupType:(BOOL) value_ {
-  hasGroupType_ = !!value_;
+- (void) setHasGroupType:(BOOL) _value_ {
+  hasGroupType_ = !!_value_;
 }
 @synthesize groupType;
 - (BOOL) hasGroupName {
   return !!hasGroupName_;
 }
-- (void) setHasGroupName:(BOOL) value_ {
-  hasGroupName_ = !!value_;
+- (void) setHasGroupName:(BOOL) _value_ {
+  hasGroupName_ = !!_value_;
 }
 @synthesize groupName;
 - (BOOL) hasGroupAvatar {
   return !!hasGroupAvatar_;
 }
-- (void) setHasGroupAvatar:(BOOL) value_ {
-  hasGroupAvatar_ = !!value_;
+- (void) setHasGroupAvatar:(BOOL) _value_ {
+  hasGroupAvatar_ = !!_value_;
 }
 @synthesize groupAvatar;
 @synthesize memberIdListArray;
@@ -1289,17 +1313,11 @@ static IMGroupInfoListRsp* defaultIMGroupInfoListRspInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.groupName = nil;
-  self.groupAvatar = nil;
-  self.memberIdListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.groupType = GroupTypeGroupTypeTmp;
@@ -1315,10 +1333,10 @@ static IMGroupCreateReq* defaultIMGroupCreateReqInstance = nil;
     defaultIMGroupCreateReqInstance = [[IMGroupCreateReq alloc] init];
   }
 }
-+ (IMGroupCreateReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGroupCreateReqInstance;
 }
-- (IMGroupCreateReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGroupCreateReqInstance;
 }
 - (PBArray *)memberIdList {
@@ -1438,7 +1456,7 @@ static IMGroupCreateReq* defaultIMGroupCreateReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasGroupType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"groupType", self.groupType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"groupType", NSStringFromGroupType(self.groupType)];
   }
   if (self.hasGroupName) {
     [output appendFormat:@"%@%@: %@\n", indent, @"groupName", self.groupName];
@@ -1453,6 +1471,30 @@ static IMGroupCreateReq* defaultIMGroupCreateReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasGroupType) {
+    [dictionary setObject: @(self.groupType) forKey: @"groupType"];
+  }
+  if (self.hasGroupName) {
+    [dictionary setObject: self.groupName forKey: @"groupName"];
+  }
+  if (self.hasGroupAvatar) {
+    [dictionary setObject: self.groupAvatar forKey: @"groupAvatar"];
+  }
+  NSMutableArray * memberIdListArrayArray = [NSMutableArray new];
+  NSUInteger memberIdListArrayCount=self.memberIdListArray.count;
+  for(int i=0;i<memberIdListArrayCount;i++){
+    [memberIdListArrayArray addObject: @([self.memberIdListArray uint32AtIndex:i])];
+  }
+  [dictionary setObject: memberIdListArrayArray forKey: @"memberIdList"];
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -1490,7 +1532,7 @@ static IMGroupCreateReq* defaultIMGroupCreateReqInstance = nil;
   if (self.hasGroupAvatar) {
     hashCode = hashCode * 31 + [self.groupAvatar hash];
   }
-  [self.memberIdListArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.memberIdListArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
   if (self.hasAttachData) {
@@ -1502,29 +1544,26 @@ static IMGroupCreateReq* defaultIMGroupCreateReqInstance = nil;
 @end
 
 @interface IMGroupCreateReqBuilder()
-@property (strong) IMGroupCreateReq* result;
+@property (strong) IMGroupCreateReq* resultImgroupCreateReq;
 @end
 
 @implementation IMGroupCreateReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgroupCreateReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGroupCreateReq alloc] init];
+    self.resultImgroupCreateReq = [[IMGroupCreateReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgroupCreateReq;
 }
 - (IMGroupCreateReqBuilder*) clear {
-  self.result = [[IMGroupCreateReq alloc] init];
+  self.resultImgroupCreateReq = [[IMGroupCreateReq alloc] init];
   return self;
 }
 - (IMGroupCreateReqBuilder*) clone {
-  return [IMGroupCreateReq builderWithPrototype:result];
+  return [IMGroupCreateReq builderWithPrototype:resultImgroupCreateReq];
 }
 - (IMGroupCreateReq*) defaultInstance {
   return [IMGroupCreateReq defaultInstance];
@@ -1534,8 +1573,8 @@ static IMGroupCreateReq* defaultIMGroupCreateReqInstance = nil;
   return [self buildPartial];
 }
 - (IMGroupCreateReq*) buildPartial {
-  IMGroupCreateReq* returnMe = result;
-  self.result = nil;
+  IMGroupCreateReq* returnMe = resultImgroupCreateReq;
+  self.resultImgroupCreateReq = nil;
   return returnMe;
 }
 - (IMGroupCreateReqBuilder*) mergeFrom:(IMGroupCreateReq*) other {
@@ -1555,10 +1594,10 @@ static IMGroupCreateReq* defaultIMGroupCreateReqInstance = nil;
     [self setGroupAvatar:other.groupAvatar];
   }
   if (other.memberIdListArray.count > 0) {
-    if (result.memberIdListArray == nil) {
-      result.memberIdListArray = [other.memberIdListArray copy];
+    if (resultImgroupCreateReq.memberIdListArray == nil) {
+      resultImgroupCreateReq.memberIdListArray = [other.memberIdListArray copy];
     } else {
-      [result.memberIdListArray appendArray:other.memberIdListArray];
+      [resultImgroupCreateReq.memberIdListArray appendArray:other.memberIdListArray];
     }
   }
   if (other.hasAttachData) {
@@ -1618,108 +1657,108 @@ static IMGroupCreateReq* defaultIMGroupCreateReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgroupCreateReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgroupCreateReq.userId;
 }
 - (IMGroupCreateReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgroupCreateReq.hasUserId = YES;
+  resultImgroupCreateReq.userId = value;
   return self;
 }
 - (IMGroupCreateReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgroupCreateReq.hasUserId = NO;
+  resultImgroupCreateReq.userId = 0;
   return self;
 }
 - (BOOL) hasGroupType {
-  return result.hasGroupType;
+  return resultImgroupCreateReq.hasGroupType;
 }
 - (GroupType) groupType {
-  return result.groupType;
+  return resultImgroupCreateReq.groupType;
 }
 - (IMGroupCreateReqBuilder*) setGroupType:(GroupType) value {
-  result.hasGroupType = YES;
-  result.groupType = value;
+  resultImgroupCreateReq.hasGroupType = YES;
+  resultImgroupCreateReq.groupType = value;
   return self;
 }
 - (IMGroupCreateReqBuilder*) clearGroupType {
-  result.hasGroupType = NO;
-  result.groupType = GroupTypeGroupTypeTmp;
+  resultImgroupCreateReq.hasGroupType = NO;
+  resultImgroupCreateReq.groupType = GroupTypeGroupTypeTmp;
   return self;
 }
 - (BOOL) hasGroupName {
-  return result.hasGroupName;
+  return resultImgroupCreateReq.hasGroupName;
 }
 - (NSString*) groupName {
-  return result.groupName;
+  return resultImgroupCreateReq.groupName;
 }
 - (IMGroupCreateReqBuilder*) setGroupName:(NSString*) value {
-  result.hasGroupName = YES;
-  result.groupName = value;
+  resultImgroupCreateReq.hasGroupName = YES;
+  resultImgroupCreateReq.groupName = value;
   return self;
 }
 - (IMGroupCreateReqBuilder*) clearGroupName {
-  result.hasGroupName = NO;
-  result.groupName = @"";
+  resultImgroupCreateReq.hasGroupName = NO;
+  resultImgroupCreateReq.groupName = @"";
   return self;
 }
 - (BOOL) hasGroupAvatar {
-  return result.hasGroupAvatar;
+  return resultImgroupCreateReq.hasGroupAvatar;
 }
 - (NSString*) groupAvatar {
-  return result.groupAvatar;
+  return resultImgroupCreateReq.groupAvatar;
 }
 - (IMGroupCreateReqBuilder*) setGroupAvatar:(NSString*) value {
-  result.hasGroupAvatar = YES;
-  result.groupAvatar = value;
+  resultImgroupCreateReq.hasGroupAvatar = YES;
+  resultImgroupCreateReq.groupAvatar = value;
   return self;
 }
 - (IMGroupCreateReqBuilder*) clearGroupAvatar {
-  result.hasGroupAvatar = NO;
-  result.groupAvatar = @"";
+  resultImgroupCreateReq.hasGroupAvatar = NO;
+  resultImgroupCreateReq.groupAvatar = @"";
   return self;
 }
 - (PBAppendableArray *)memberIdList {
-  return result.memberIdListArray;
+  return resultImgroupCreateReq.memberIdListArray;
 }
 - (UInt32)memberIdListAtIndex:(NSUInteger)index {
-  return [result memberIdListAtIndex:index];
+  return [resultImgroupCreateReq memberIdListAtIndex:index];
 }
 - (IMGroupCreateReqBuilder *)addMemberIdList:(UInt32)value {
-  if (result.memberIdListArray == nil) {
-    result.memberIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
+  if (resultImgroupCreateReq.memberIdListArray == nil) {
+    resultImgroupCreateReq.memberIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
   }
-  [result.memberIdListArray addUint32:value];
+  [resultImgroupCreateReq.memberIdListArray addUint32:value];
   return self;
 }
 - (IMGroupCreateReqBuilder *)setMemberIdListArray:(NSArray *)array {
-  result.memberIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
+  resultImgroupCreateReq.memberIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupCreateReqBuilder *)setMemberIdListValues:(const UInt32 *)values count:(NSUInteger)count {
-  result.memberIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
+  resultImgroupCreateReq.memberIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupCreateReqBuilder *)clearMemberIdList {
-  result.memberIdListArray = nil;
+  resultImgroupCreateReq.memberIdListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgroupCreateReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgroupCreateReq.attachData;
 }
 - (IMGroupCreateReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgroupCreateReq.hasAttachData = YES;
+  resultImgroupCreateReq.attachData = value;
   return self;
 }
 - (IMGroupCreateReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgroupCreateReq.hasAttachData = NO;
+  resultImgroupCreateReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -1738,29 +1777,29 @@ static IMGroupCreateReq* defaultIMGroupCreateReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasResultCode {
   return !!hasResultCode_;
 }
-- (void) setHasResultCode:(BOOL) value_ {
-  hasResultCode_ = !!value_;
+- (void) setHasResultCode:(BOOL) _value_ {
+  hasResultCode_ = !!_value_;
 }
 @synthesize resultCode;
 - (BOOL) hasGroupId {
   return !!hasGroupId_;
 }
-- (void) setHasGroupId:(BOOL) value_ {
-  hasGroupId_ = !!value_;
+- (void) setHasGroupId:(BOOL) _value_ {
+  hasGroupId_ = !!_value_;
 }
 @synthesize groupId;
 - (BOOL) hasGroupName {
   return !!hasGroupName_;
 }
-- (void) setHasGroupName:(BOOL) value_ {
-  hasGroupName_ = !!value_;
+- (void) setHasGroupName:(BOOL) _value_ {
+  hasGroupName_ = !!_value_;
 }
 @synthesize groupName;
 @synthesize userIdListArray;
@@ -1768,16 +1807,11 @@ static IMGroupCreateReq* defaultIMGroupCreateReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.groupName = nil;
-  self.userIdListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.resultCode = 0;
@@ -1793,10 +1827,10 @@ static IMGroupCreateRsp* defaultIMGroupCreateRspInstance = nil;
     defaultIMGroupCreateRspInstance = [[IMGroupCreateRsp alloc] init];
   }
 }
-+ (IMGroupCreateRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGroupCreateRspInstance;
 }
-- (IMGroupCreateRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGroupCreateRspInstance;
 }
 - (PBArray *)userIdList {
@@ -1929,6 +1963,30 @@ static IMGroupCreateRsp* defaultIMGroupCreateRspInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasResultCode) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.resultCode] forKey: @"resultCode"];
+  }
+  if (self.hasGroupId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.groupId] forKey: @"groupId"];
+  }
+  if (self.hasGroupName) {
+    [dictionary setObject: self.groupName forKey: @"groupName"];
+  }
+  NSMutableArray * userIdListArrayArray = [NSMutableArray new];
+  NSUInteger userIdListArrayCount=self.userIdListArray.count;
+  for(int i=0;i<userIdListArrayCount;i++){
+    [userIdListArrayArray addObject: @([self.userIdListArray uint32AtIndex:i])];
+  }
+  [dictionary setObject: userIdListArrayArray forKey: @"userIdList"];
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -1965,7 +2023,7 @@ static IMGroupCreateRsp* defaultIMGroupCreateRspInstance = nil;
   if (self.hasGroupName) {
     hashCode = hashCode * 31 + [self.groupName hash];
   }
-  [self.userIdListArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.userIdListArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
   if (self.hasAttachData) {
@@ -1977,29 +2035,26 @@ static IMGroupCreateRsp* defaultIMGroupCreateRspInstance = nil;
 @end
 
 @interface IMGroupCreateRspBuilder()
-@property (strong) IMGroupCreateRsp* result;
+@property (strong) IMGroupCreateRsp* resultImgroupCreateRsp;
 @end
 
 @implementation IMGroupCreateRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgroupCreateRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGroupCreateRsp alloc] init];
+    self.resultImgroupCreateRsp = [[IMGroupCreateRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgroupCreateRsp;
 }
 - (IMGroupCreateRspBuilder*) clear {
-  self.result = [[IMGroupCreateRsp alloc] init];
+  self.resultImgroupCreateRsp = [[IMGroupCreateRsp alloc] init];
   return self;
 }
 - (IMGroupCreateRspBuilder*) clone {
-  return [IMGroupCreateRsp builderWithPrototype:result];
+  return [IMGroupCreateRsp builderWithPrototype:resultImgroupCreateRsp];
 }
 - (IMGroupCreateRsp*) defaultInstance {
   return [IMGroupCreateRsp defaultInstance];
@@ -2009,8 +2064,8 @@ static IMGroupCreateRsp* defaultIMGroupCreateRspInstance = nil;
   return [self buildPartial];
 }
 - (IMGroupCreateRsp*) buildPartial {
-  IMGroupCreateRsp* returnMe = result;
-  self.result = nil;
+  IMGroupCreateRsp* returnMe = resultImgroupCreateRsp;
+  self.resultImgroupCreateRsp = nil;
   return returnMe;
 }
 - (IMGroupCreateRspBuilder*) mergeFrom:(IMGroupCreateRsp*) other {
@@ -2030,10 +2085,10 @@ static IMGroupCreateRsp* defaultIMGroupCreateRspInstance = nil;
     [self setGroupName:other.groupName];
   }
   if (other.userIdListArray.count > 0) {
-    if (result.userIdListArray == nil) {
-      result.userIdListArray = [other.userIdListArray copy];
+    if (resultImgroupCreateRsp.userIdListArray == nil) {
+      resultImgroupCreateRsp.userIdListArray = [other.userIdListArray copy];
     } else {
-      [result.userIdListArray appendArray:other.userIdListArray];
+      [resultImgroupCreateRsp.userIdListArray appendArray:other.userIdListArray];
     }
   }
   if (other.hasAttachData) {
@@ -2088,108 +2143,108 @@ static IMGroupCreateRsp* defaultIMGroupCreateRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgroupCreateRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgroupCreateRsp.userId;
 }
 - (IMGroupCreateRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgroupCreateRsp.hasUserId = YES;
+  resultImgroupCreateRsp.userId = value;
   return self;
 }
 - (IMGroupCreateRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgroupCreateRsp.hasUserId = NO;
+  resultImgroupCreateRsp.userId = 0;
   return self;
 }
 - (BOOL) hasResultCode {
-  return result.hasResultCode;
+  return resultImgroupCreateRsp.hasResultCode;
 }
 - (UInt32) resultCode {
-  return result.resultCode;
+  return resultImgroupCreateRsp.resultCode;
 }
 - (IMGroupCreateRspBuilder*) setResultCode:(UInt32) value {
-  result.hasResultCode = YES;
-  result.resultCode = value;
+  resultImgroupCreateRsp.hasResultCode = YES;
+  resultImgroupCreateRsp.resultCode = value;
   return self;
 }
 - (IMGroupCreateRspBuilder*) clearResultCode {
-  result.hasResultCode = NO;
-  result.resultCode = 0;
+  resultImgroupCreateRsp.hasResultCode = NO;
+  resultImgroupCreateRsp.resultCode = 0;
   return self;
 }
 - (BOOL) hasGroupId {
-  return result.hasGroupId;
+  return resultImgroupCreateRsp.hasGroupId;
 }
 - (UInt32) groupId {
-  return result.groupId;
+  return resultImgroupCreateRsp.groupId;
 }
 - (IMGroupCreateRspBuilder*) setGroupId:(UInt32) value {
-  result.hasGroupId = YES;
-  result.groupId = value;
+  resultImgroupCreateRsp.hasGroupId = YES;
+  resultImgroupCreateRsp.groupId = value;
   return self;
 }
 - (IMGroupCreateRspBuilder*) clearGroupId {
-  result.hasGroupId = NO;
-  result.groupId = 0;
+  resultImgroupCreateRsp.hasGroupId = NO;
+  resultImgroupCreateRsp.groupId = 0;
   return self;
 }
 - (BOOL) hasGroupName {
-  return result.hasGroupName;
+  return resultImgroupCreateRsp.hasGroupName;
 }
 - (NSString*) groupName {
-  return result.groupName;
+  return resultImgroupCreateRsp.groupName;
 }
 - (IMGroupCreateRspBuilder*) setGroupName:(NSString*) value {
-  result.hasGroupName = YES;
-  result.groupName = value;
+  resultImgroupCreateRsp.hasGroupName = YES;
+  resultImgroupCreateRsp.groupName = value;
   return self;
 }
 - (IMGroupCreateRspBuilder*) clearGroupName {
-  result.hasGroupName = NO;
-  result.groupName = @"";
+  resultImgroupCreateRsp.hasGroupName = NO;
+  resultImgroupCreateRsp.groupName = @"";
   return self;
 }
 - (PBAppendableArray *)userIdList {
-  return result.userIdListArray;
+  return resultImgroupCreateRsp.userIdListArray;
 }
 - (UInt32)userIdListAtIndex:(NSUInteger)index {
-  return [result userIdListAtIndex:index];
+  return [resultImgroupCreateRsp userIdListAtIndex:index];
 }
 - (IMGroupCreateRspBuilder *)addUserIdList:(UInt32)value {
-  if (result.userIdListArray == nil) {
-    result.userIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
+  if (resultImgroupCreateRsp.userIdListArray == nil) {
+    resultImgroupCreateRsp.userIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
   }
-  [result.userIdListArray addUint32:value];
+  [resultImgroupCreateRsp.userIdListArray addUint32:value];
   return self;
 }
 - (IMGroupCreateRspBuilder *)setUserIdListArray:(NSArray *)array {
-  result.userIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
+  resultImgroupCreateRsp.userIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupCreateRspBuilder *)setUserIdListValues:(const UInt32 *)values count:(NSUInteger)count {
-  result.userIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
+  resultImgroupCreateRsp.userIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupCreateRspBuilder *)clearUserIdList {
-  result.userIdListArray = nil;
+  resultImgroupCreateRsp.userIdListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgroupCreateRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgroupCreateRsp.attachData;
 }
 - (IMGroupCreateRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgroupCreateRsp.hasAttachData = YES;
+  resultImgroupCreateRsp.attachData = value;
   return self;
 }
 - (IMGroupCreateRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgroupCreateRsp.hasAttachData = NO;
+  resultImgroupCreateRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -2207,22 +2262,22 @@ static IMGroupCreateRsp* defaultIMGroupCreateRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasChangeType {
   return !!hasChangeType_;
 }
-- (void) setHasChangeType:(BOOL) value_ {
-  hasChangeType_ = !!value_;
+- (void) setHasChangeType:(BOOL) _value_ {
+  hasChangeType_ = !!_value_;
 }
 @synthesize changeType;
 - (BOOL) hasGroupId {
   return !!hasGroupId_;
 }
-- (void) setHasGroupId:(BOOL) value_ {
-  hasGroupId_ = !!value_;
+- (void) setHasGroupId:(BOOL) _value_ {
+  hasGroupId_ = !!_value_;
 }
 @synthesize groupId;
 @synthesize memberIdListArray;
@@ -2230,15 +2285,11 @@ static IMGroupCreateRsp* defaultIMGroupCreateRspInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.memberIdListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.changeType = GroupModifyTypeGroupModifyTypeAdd;
@@ -2253,10 +2304,10 @@ static IMGroupChangeMemberReq* defaultIMGroupChangeMemberReqInstance = nil;
     defaultIMGroupChangeMemberReqInstance = [[IMGroupChangeMemberReq alloc] init];
   }
 }
-+ (IMGroupChangeMemberReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGroupChangeMemberReqInstance;
 }
-- (IMGroupChangeMemberReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGroupChangeMemberReqInstance;
 }
 - (PBArray *)memberIdList {
@@ -2367,7 +2418,7 @@ static IMGroupChangeMemberReq* defaultIMGroupChangeMemberReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasChangeType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"changeType", self.changeType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"changeType", NSStringFromGroupModifyType(self.changeType)];
   }
   if (self.hasGroupId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"groupId", [NSNumber numberWithInteger:self.groupId]];
@@ -2379,6 +2430,27 @@ static IMGroupChangeMemberReq* defaultIMGroupChangeMemberReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasChangeType) {
+    [dictionary setObject: @(self.changeType) forKey: @"changeType"];
+  }
+  if (self.hasGroupId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.groupId] forKey: @"groupId"];
+  }
+  NSMutableArray * memberIdListArrayArray = [NSMutableArray new];
+  NSUInteger memberIdListArrayCount=self.memberIdListArray.count;
+  for(int i=0;i<memberIdListArrayCount;i++){
+    [memberIdListArrayArray addObject: @([self.memberIdListArray uint32AtIndex:i])];
+  }
+  [dictionary setObject: memberIdListArrayArray forKey: @"memberIdList"];
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -2411,7 +2483,7 @@ static IMGroupChangeMemberReq* defaultIMGroupChangeMemberReqInstance = nil;
   if (self.hasGroupId) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.groupId] hash];
   }
-  [self.memberIdListArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.memberIdListArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
   if (self.hasAttachData) {
@@ -2423,29 +2495,26 @@ static IMGroupChangeMemberReq* defaultIMGroupChangeMemberReqInstance = nil;
 @end
 
 @interface IMGroupChangeMemberReqBuilder()
-@property (strong) IMGroupChangeMemberReq* result;
+@property (strong) IMGroupChangeMemberReq* resultImgroupChangeMemberReq;
 @end
 
 @implementation IMGroupChangeMemberReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgroupChangeMemberReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGroupChangeMemberReq alloc] init];
+    self.resultImgroupChangeMemberReq = [[IMGroupChangeMemberReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgroupChangeMemberReq;
 }
 - (IMGroupChangeMemberReqBuilder*) clear {
-  self.result = [[IMGroupChangeMemberReq alloc] init];
+  self.resultImgroupChangeMemberReq = [[IMGroupChangeMemberReq alloc] init];
   return self;
 }
 - (IMGroupChangeMemberReqBuilder*) clone {
-  return [IMGroupChangeMemberReq builderWithPrototype:result];
+  return [IMGroupChangeMemberReq builderWithPrototype:resultImgroupChangeMemberReq];
 }
 - (IMGroupChangeMemberReq*) defaultInstance {
   return [IMGroupChangeMemberReq defaultInstance];
@@ -2455,8 +2524,8 @@ static IMGroupChangeMemberReq* defaultIMGroupChangeMemberReqInstance = nil;
   return [self buildPartial];
 }
 - (IMGroupChangeMemberReq*) buildPartial {
-  IMGroupChangeMemberReq* returnMe = result;
-  self.result = nil;
+  IMGroupChangeMemberReq* returnMe = resultImgroupChangeMemberReq;
+  self.resultImgroupChangeMemberReq = nil;
   return returnMe;
 }
 - (IMGroupChangeMemberReqBuilder*) mergeFrom:(IMGroupChangeMemberReq*) other {
@@ -2473,10 +2542,10 @@ static IMGroupChangeMemberReq* defaultIMGroupChangeMemberReqInstance = nil;
     [self setGroupId:other.groupId];
   }
   if (other.memberIdListArray.count > 0) {
-    if (result.memberIdListArray == nil) {
-      result.memberIdListArray = [other.memberIdListArray copy];
+    if (resultImgroupChangeMemberReq.memberIdListArray == nil) {
+      resultImgroupChangeMemberReq.memberIdListArray = [other.memberIdListArray copy];
     } else {
-      [result.memberIdListArray appendArray:other.memberIdListArray];
+      [resultImgroupChangeMemberReq.memberIdListArray appendArray:other.memberIdListArray];
     }
   }
   if (other.hasAttachData) {
@@ -2532,92 +2601,92 @@ static IMGroupChangeMemberReq* defaultIMGroupChangeMemberReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgroupChangeMemberReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgroupChangeMemberReq.userId;
 }
 - (IMGroupChangeMemberReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgroupChangeMemberReq.hasUserId = YES;
+  resultImgroupChangeMemberReq.userId = value;
   return self;
 }
 - (IMGroupChangeMemberReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgroupChangeMemberReq.hasUserId = NO;
+  resultImgroupChangeMemberReq.userId = 0;
   return self;
 }
 - (BOOL) hasChangeType {
-  return result.hasChangeType;
+  return resultImgroupChangeMemberReq.hasChangeType;
 }
 - (GroupModifyType) changeType {
-  return result.changeType;
+  return resultImgroupChangeMemberReq.changeType;
 }
 - (IMGroupChangeMemberReqBuilder*) setChangeType:(GroupModifyType) value {
-  result.hasChangeType = YES;
-  result.changeType = value;
+  resultImgroupChangeMemberReq.hasChangeType = YES;
+  resultImgroupChangeMemberReq.changeType = value;
   return self;
 }
 - (IMGroupChangeMemberReqBuilder*) clearChangeType {
-  result.hasChangeType = NO;
-  result.changeType = GroupModifyTypeGroupModifyTypeAdd;
+  resultImgroupChangeMemberReq.hasChangeType = NO;
+  resultImgroupChangeMemberReq.changeType = GroupModifyTypeGroupModifyTypeAdd;
   return self;
 }
 - (BOOL) hasGroupId {
-  return result.hasGroupId;
+  return resultImgroupChangeMemberReq.hasGroupId;
 }
 - (UInt32) groupId {
-  return result.groupId;
+  return resultImgroupChangeMemberReq.groupId;
 }
 - (IMGroupChangeMemberReqBuilder*) setGroupId:(UInt32) value {
-  result.hasGroupId = YES;
-  result.groupId = value;
+  resultImgroupChangeMemberReq.hasGroupId = YES;
+  resultImgroupChangeMemberReq.groupId = value;
   return self;
 }
 - (IMGroupChangeMemberReqBuilder*) clearGroupId {
-  result.hasGroupId = NO;
-  result.groupId = 0;
+  resultImgroupChangeMemberReq.hasGroupId = NO;
+  resultImgroupChangeMemberReq.groupId = 0;
   return self;
 }
 - (PBAppendableArray *)memberIdList {
-  return result.memberIdListArray;
+  return resultImgroupChangeMemberReq.memberIdListArray;
 }
 - (UInt32)memberIdListAtIndex:(NSUInteger)index {
-  return [result memberIdListAtIndex:index];
+  return [resultImgroupChangeMemberReq memberIdListAtIndex:index];
 }
 - (IMGroupChangeMemberReqBuilder *)addMemberIdList:(UInt32)value {
-  if (result.memberIdListArray == nil) {
-    result.memberIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
+  if (resultImgroupChangeMemberReq.memberIdListArray == nil) {
+    resultImgroupChangeMemberReq.memberIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
   }
-  [result.memberIdListArray addUint32:value];
+  [resultImgroupChangeMemberReq.memberIdListArray addUint32:value];
   return self;
 }
 - (IMGroupChangeMemberReqBuilder *)setMemberIdListArray:(NSArray *)array {
-  result.memberIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
+  resultImgroupChangeMemberReq.memberIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupChangeMemberReqBuilder *)setMemberIdListValues:(const UInt32 *)values count:(NSUInteger)count {
-  result.memberIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
+  resultImgroupChangeMemberReq.memberIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupChangeMemberReqBuilder *)clearMemberIdList {
-  result.memberIdListArray = nil;
+  resultImgroupChangeMemberReq.memberIdListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgroupChangeMemberReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgroupChangeMemberReq.attachData;
 }
 - (IMGroupChangeMemberReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgroupChangeMemberReq.hasAttachData = YES;
+  resultImgroupChangeMemberReq.attachData = value;
   return self;
 }
 - (IMGroupChangeMemberReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgroupChangeMemberReq.hasAttachData = NO;
+  resultImgroupChangeMemberReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -2637,29 +2706,29 @@ static IMGroupChangeMemberReq* defaultIMGroupChangeMemberReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasChangeType {
   return !!hasChangeType_;
 }
-- (void) setHasChangeType:(BOOL) value_ {
-  hasChangeType_ = !!value_;
+- (void) setHasChangeType:(BOOL) _value_ {
+  hasChangeType_ = !!_value_;
 }
 @synthesize changeType;
 - (BOOL) hasResultCode {
   return !!hasResultCode_;
 }
-- (void) setHasResultCode:(BOOL) value_ {
-  hasResultCode_ = !!value_;
+- (void) setHasResultCode:(BOOL) _value_ {
+  hasResultCode_ = !!_value_;
 }
 @synthesize resultCode;
 - (BOOL) hasGroupId {
   return !!hasGroupId_;
 }
-- (void) setHasGroupId:(BOOL) value_ {
-  hasGroupId_ = !!value_;
+- (void) setHasGroupId:(BOOL) _value_ {
+  hasGroupId_ = !!_value_;
 }
 @synthesize groupId;
 @synthesize curUserIdListArray;
@@ -2669,16 +2738,11 @@ static IMGroupChangeMemberReq* defaultIMGroupChangeMemberReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.curUserIdListArray = nil;
-  self.chgUserIdListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.changeType = GroupModifyTypeGroupModifyTypeAdd;
@@ -2694,10 +2758,10 @@ static IMGroupChangeMemberRsp* defaultIMGroupChangeMemberRspInstance = nil;
     defaultIMGroupChangeMemberRspInstance = [[IMGroupChangeMemberRsp alloc] init];
   }
 }
-+ (IMGroupChangeMemberRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGroupChangeMemberRspInstance;
 }
-- (IMGroupChangeMemberRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGroupChangeMemberRspInstance;
 }
 - (PBArray *)curUserIdList {
@@ -2840,7 +2904,7 @@ static IMGroupChangeMemberRsp* defaultIMGroupChangeMemberRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasChangeType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"changeType", self.changeType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"changeType", NSStringFromGroupModifyType(self.changeType)];
   }
   if (self.hasResultCode) {
     [output appendFormat:@"%@%@: %@\n", indent, @"resultCode", [NSNumber numberWithInteger:self.resultCode]];
@@ -2858,6 +2922,36 @@ static IMGroupChangeMemberRsp* defaultIMGroupChangeMemberRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasChangeType) {
+    [dictionary setObject: @(self.changeType) forKey: @"changeType"];
+  }
+  if (self.hasResultCode) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.resultCode] forKey: @"resultCode"];
+  }
+  if (self.hasGroupId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.groupId] forKey: @"groupId"];
+  }
+  NSMutableArray * curUserIdListArrayArray = [NSMutableArray new];
+  NSUInteger curUserIdListArrayCount=self.curUserIdListArray.count;
+  for(int i=0;i<curUserIdListArrayCount;i++){
+    [curUserIdListArrayArray addObject: @([self.curUserIdListArray uint32AtIndex:i])];
+  }
+  [dictionary setObject: curUserIdListArrayArray forKey: @"curUserIdList"];
+  NSMutableArray * chgUserIdListArrayArray = [NSMutableArray new];
+  NSUInteger chgUserIdListArrayCount=self.chgUserIdListArray.count;
+  for(int i=0;i<chgUserIdListArrayCount;i++){
+    [chgUserIdListArrayArray addObject: @([self.chgUserIdListArray uint32AtIndex:i])];
+  }
+  [dictionary setObject: chgUserIdListArrayArray forKey: @"chgUserIdList"];
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -2896,10 +2990,10 @@ static IMGroupChangeMemberRsp* defaultIMGroupChangeMemberRspInstance = nil;
   if (self.hasGroupId) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.groupId] hash];
   }
-  [self.curUserIdListArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.curUserIdListArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
-  [self.chgUserIdListArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.chgUserIdListArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
   if (self.hasAttachData) {
@@ -2911,29 +3005,26 @@ static IMGroupChangeMemberRsp* defaultIMGroupChangeMemberRspInstance = nil;
 @end
 
 @interface IMGroupChangeMemberRspBuilder()
-@property (strong) IMGroupChangeMemberRsp* result;
+@property (strong) IMGroupChangeMemberRsp* resultImgroupChangeMemberRsp;
 @end
 
 @implementation IMGroupChangeMemberRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgroupChangeMemberRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGroupChangeMemberRsp alloc] init];
+    self.resultImgroupChangeMemberRsp = [[IMGroupChangeMemberRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgroupChangeMemberRsp;
 }
 - (IMGroupChangeMemberRspBuilder*) clear {
-  self.result = [[IMGroupChangeMemberRsp alloc] init];
+  self.resultImgroupChangeMemberRsp = [[IMGroupChangeMemberRsp alloc] init];
   return self;
 }
 - (IMGroupChangeMemberRspBuilder*) clone {
-  return [IMGroupChangeMemberRsp builderWithPrototype:result];
+  return [IMGroupChangeMemberRsp builderWithPrototype:resultImgroupChangeMemberRsp];
 }
 - (IMGroupChangeMemberRsp*) defaultInstance {
   return [IMGroupChangeMemberRsp defaultInstance];
@@ -2943,8 +3034,8 @@ static IMGroupChangeMemberRsp* defaultIMGroupChangeMemberRspInstance = nil;
   return [self buildPartial];
 }
 - (IMGroupChangeMemberRsp*) buildPartial {
-  IMGroupChangeMemberRsp* returnMe = result;
-  self.result = nil;
+  IMGroupChangeMemberRsp* returnMe = resultImgroupChangeMemberRsp;
+  self.resultImgroupChangeMemberRsp = nil;
   return returnMe;
 }
 - (IMGroupChangeMemberRspBuilder*) mergeFrom:(IMGroupChangeMemberRsp*) other {
@@ -2964,17 +3055,17 @@ static IMGroupChangeMemberRsp* defaultIMGroupChangeMemberRspInstance = nil;
     [self setGroupId:other.groupId];
   }
   if (other.curUserIdListArray.count > 0) {
-    if (result.curUserIdListArray == nil) {
-      result.curUserIdListArray = [other.curUserIdListArray copy];
+    if (resultImgroupChangeMemberRsp.curUserIdListArray == nil) {
+      resultImgroupChangeMemberRsp.curUserIdListArray = [other.curUserIdListArray copy];
     } else {
-      [result.curUserIdListArray appendArray:other.curUserIdListArray];
+      [resultImgroupChangeMemberRsp.curUserIdListArray appendArray:other.curUserIdListArray];
     }
   }
   if (other.chgUserIdListArray.count > 0) {
-    if (result.chgUserIdListArray == nil) {
-      result.chgUserIdListArray = [other.chgUserIdListArray copy];
+    if (resultImgroupChangeMemberRsp.chgUserIdListArray == nil) {
+      resultImgroupChangeMemberRsp.chgUserIdListArray = [other.chgUserIdListArray copy];
     } else {
-      [result.chgUserIdListArray appendArray:other.chgUserIdListArray];
+      [resultImgroupChangeMemberRsp.chgUserIdListArray appendArray:other.chgUserIdListArray];
     }
   }
   if (other.hasAttachData) {
@@ -3038,133 +3129,133 @@ static IMGroupChangeMemberRsp* defaultIMGroupChangeMemberRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgroupChangeMemberRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgroupChangeMemberRsp.userId;
 }
 - (IMGroupChangeMemberRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgroupChangeMemberRsp.hasUserId = YES;
+  resultImgroupChangeMemberRsp.userId = value;
   return self;
 }
 - (IMGroupChangeMemberRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgroupChangeMemberRsp.hasUserId = NO;
+  resultImgroupChangeMemberRsp.userId = 0;
   return self;
 }
 - (BOOL) hasChangeType {
-  return result.hasChangeType;
+  return resultImgroupChangeMemberRsp.hasChangeType;
 }
 - (GroupModifyType) changeType {
-  return result.changeType;
+  return resultImgroupChangeMemberRsp.changeType;
 }
 - (IMGroupChangeMemberRspBuilder*) setChangeType:(GroupModifyType) value {
-  result.hasChangeType = YES;
-  result.changeType = value;
+  resultImgroupChangeMemberRsp.hasChangeType = YES;
+  resultImgroupChangeMemberRsp.changeType = value;
   return self;
 }
 - (IMGroupChangeMemberRspBuilder*) clearChangeType {
-  result.hasChangeType = NO;
-  result.changeType = GroupModifyTypeGroupModifyTypeAdd;
+  resultImgroupChangeMemberRsp.hasChangeType = NO;
+  resultImgroupChangeMemberRsp.changeType = GroupModifyTypeGroupModifyTypeAdd;
   return self;
 }
 - (BOOL) hasResultCode {
-  return result.hasResultCode;
+  return resultImgroupChangeMemberRsp.hasResultCode;
 }
 - (UInt32) resultCode {
-  return result.resultCode;
+  return resultImgroupChangeMemberRsp.resultCode;
 }
 - (IMGroupChangeMemberRspBuilder*) setResultCode:(UInt32) value {
-  result.hasResultCode = YES;
-  result.resultCode = value;
+  resultImgroupChangeMemberRsp.hasResultCode = YES;
+  resultImgroupChangeMemberRsp.resultCode = value;
   return self;
 }
 - (IMGroupChangeMemberRspBuilder*) clearResultCode {
-  result.hasResultCode = NO;
-  result.resultCode = 0;
+  resultImgroupChangeMemberRsp.hasResultCode = NO;
+  resultImgroupChangeMemberRsp.resultCode = 0;
   return self;
 }
 - (BOOL) hasGroupId {
-  return result.hasGroupId;
+  return resultImgroupChangeMemberRsp.hasGroupId;
 }
 - (UInt32) groupId {
-  return result.groupId;
+  return resultImgroupChangeMemberRsp.groupId;
 }
 - (IMGroupChangeMemberRspBuilder*) setGroupId:(UInt32) value {
-  result.hasGroupId = YES;
-  result.groupId = value;
+  resultImgroupChangeMemberRsp.hasGroupId = YES;
+  resultImgroupChangeMemberRsp.groupId = value;
   return self;
 }
 - (IMGroupChangeMemberRspBuilder*) clearGroupId {
-  result.hasGroupId = NO;
-  result.groupId = 0;
+  resultImgroupChangeMemberRsp.hasGroupId = NO;
+  resultImgroupChangeMemberRsp.groupId = 0;
   return self;
 }
 - (PBAppendableArray *)curUserIdList {
-  return result.curUserIdListArray;
+  return resultImgroupChangeMemberRsp.curUserIdListArray;
 }
 - (UInt32)curUserIdListAtIndex:(NSUInteger)index {
-  return [result curUserIdListAtIndex:index];
+  return [resultImgroupChangeMemberRsp curUserIdListAtIndex:index];
 }
 - (IMGroupChangeMemberRspBuilder *)addCurUserIdList:(UInt32)value {
-  if (result.curUserIdListArray == nil) {
-    result.curUserIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
+  if (resultImgroupChangeMemberRsp.curUserIdListArray == nil) {
+    resultImgroupChangeMemberRsp.curUserIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
   }
-  [result.curUserIdListArray addUint32:value];
+  [resultImgroupChangeMemberRsp.curUserIdListArray addUint32:value];
   return self;
 }
 - (IMGroupChangeMemberRspBuilder *)setCurUserIdListArray:(NSArray *)array {
-  result.curUserIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
+  resultImgroupChangeMemberRsp.curUserIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupChangeMemberRspBuilder *)setCurUserIdListValues:(const UInt32 *)values count:(NSUInteger)count {
-  result.curUserIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
+  resultImgroupChangeMemberRsp.curUserIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupChangeMemberRspBuilder *)clearCurUserIdList {
-  result.curUserIdListArray = nil;
+  resultImgroupChangeMemberRsp.curUserIdListArray = nil;
   return self;
 }
 - (PBAppendableArray *)chgUserIdList {
-  return result.chgUserIdListArray;
+  return resultImgroupChangeMemberRsp.chgUserIdListArray;
 }
 - (UInt32)chgUserIdListAtIndex:(NSUInteger)index {
-  return [result chgUserIdListAtIndex:index];
+  return [resultImgroupChangeMemberRsp chgUserIdListAtIndex:index];
 }
 - (IMGroupChangeMemberRspBuilder *)addChgUserIdList:(UInt32)value {
-  if (result.chgUserIdListArray == nil) {
-    result.chgUserIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
+  if (resultImgroupChangeMemberRsp.chgUserIdListArray == nil) {
+    resultImgroupChangeMemberRsp.chgUserIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
   }
-  [result.chgUserIdListArray addUint32:value];
+  [resultImgroupChangeMemberRsp.chgUserIdListArray addUint32:value];
   return self;
 }
 - (IMGroupChangeMemberRspBuilder *)setChgUserIdListArray:(NSArray *)array {
-  result.chgUserIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
+  resultImgroupChangeMemberRsp.chgUserIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupChangeMemberRspBuilder *)setChgUserIdListValues:(const UInt32 *)values count:(NSUInteger)count {
-  result.chgUserIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
+  resultImgroupChangeMemberRsp.chgUserIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupChangeMemberRspBuilder *)clearChgUserIdList {
-  result.chgUserIdListArray = nil;
+  resultImgroupChangeMemberRsp.chgUserIdListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgroupChangeMemberRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgroupChangeMemberRsp.attachData;
 }
 - (IMGroupChangeMemberRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgroupChangeMemberRsp.hasAttachData = YES;
+  resultImgroupChangeMemberRsp.attachData = value;
   return self;
 }
 - (IMGroupChangeMemberRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgroupChangeMemberRsp.hasAttachData = NO;
+  resultImgroupChangeMemberRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -3181,35 +3272,32 @@ static IMGroupChangeMemberRsp* defaultIMGroupChangeMemberRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasGroupId {
   return !!hasGroupId_;
 }
-- (void) setHasGroupId:(BOOL) value_ {
-  hasGroupId_ = !!value_;
+- (void) setHasGroupId:(BOOL) _value_ {
+  hasGroupId_ = !!_value_;
 }
 @synthesize groupId;
 - (BOOL) hasShieldStatus {
   return !!hasShieldStatus_;
 }
-- (void) setHasShieldStatus:(BOOL) value_ {
-  hasShieldStatus_ = !!value_;
+- (void) setHasShieldStatus:(BOOL) _value_ {
+  hasShieldStatus_ = !!_value_;
 }
 @synthesize shieldStatus;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.groupId = 0;
@@ -3224,10 +3312,10 @@ static IMGroupShieldReq* defaultIMGroupShieldReqInstance = nil;
     defaultIMGroupShieldReqInstance = [[IMGroupShieldReq alloc] init];
   }
 }
-+ (IMGroupShieldReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGroupShieldReqInstance;
 }
-- (IMGroupShieldReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGroupShieldReqInstance;
 }
 - (BOOL) isInitialized {
@@ -3325,6 +3413,21 @@ static IMGroupShieldReq* defaultIMGroupShieldReqInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasGroupId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.groupId] forKey: @"groupId"];
+  }
+  if (self.hasShieldStatus) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.shieldStatus] forKey: @"shieldStatus"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -3364,29 +3467,26 @@ static IMGroupShieldReq* defaultIMGroupShieldReqInstance = nil;
 @end
 
 @interface IMGroupShieldReqBuilder()
-@property (strong) IMGroupShieldReq* result;
+@property (strong) IMGroupShieldReq* resultImgroupShieldReq;
 @end
 
 @implementation IMGroupShieldReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgroupShieldReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGroupShieldReq alloc] init];
+    self.resultImgroupShieldReq = [[IMGroupShieldReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgroupShieldReq;
 }
 - (IMGroupShieldReqBuilder*) clear {
-  self.result = [[IMGroupShieldReq alloc] init];
+  self.resultImgroupShieldReq = [[IMGroupShieldReq alloc] init];
   return self;
 }
 - (IMGroupShieldReqBuilder*) clone {
-  return [IMGroupShieldReq builderWithPrototype:result];
+  return [IMGroupShieldReq builderWithPrototype:resultImgroupShieldReq];
 }
 - (IMGroupShieldReq*) defaultInstance {
   return [IMGroupShieldReq defaultInstance];
@@ -3396,8 +3496,8 @@ static IMGroupShieldReq* defaultIMGroupShieldReqInstance = nil;
   return [self buildPartial];
 }
 - (IMGroupShieldReq*) buildPartial {
-  IMGroupShieldReq* returnMe = result;
-  self.result = nil;
+  IMGroupShieldReq* returnMe = resultImgroupShieldReq;
+  self.resultImgroupShieldReq = nil;
   return returnMe;
 }
 - (IMGroupShieldReqBuilder*) mergeFrom:(IMGroupShieldReq*) other {
@@ -3457,67 +3557,67 @@ static IMGroupShieldReq* defaultIMGroupShieldReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgroupShieldReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgroupShieldReq.userId;
 }
 - (IMGroupShieldReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgroupShieldReq.hasUserId = YES;
+  resultImgroupShieldReq.userId = value;
   return self;
 }
 - (IMGroupShieldReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgroupShieldReq.hasUserId = NO;
+  resultImgroupShieldReq.userId = 0;
   return self;
 }
 - (BOOL) hasGroupId {
-  return result.hasGroupId;
+  return resultImgroupShieldReq.hasGroupId;
 }
 - (UInt32) groupId {
-  return result.groupId;
+  return resultImgroupShieldReq.groupId;
 }
 - (IMGroupShieldReqBuilder*) setGroupId:(UInt32) value {
-  result.hasGroupId = YES;
-  result.groupId = value;
+  resultImgroupShieldReq.hasGroupId = YES;
+  resultImgroupShieldReq.groupId = value;
   return self;
 }
 - (IMGroupShieldReqBuilder*) clearGroupId {
-  result.hasGroupId = NO;
-  result.groupId = 0;
+  resultImgroupShieldReq.hasGroupId = NO;
+  resultImgroupShieldReq.groupId = 0;
   return self;
 }
 - (BOOL) hasShieldStatus {
-  return result.hasShieldStatus;
+  return resultImgroupShieldReq.hasShieldStatus;
 }
 - (UInt32) shieldStatus {
-  return result.shieldStatus;
+  return resultImgroupShieldReq.shieldStatus;
 }
 - (IMGroupShieldReqBuilder*) setShieldStatus:(UInt32) value {
-  result.hasShieldStatus = YES;
-  result.shieldStatus = value;
+  resultImgroupShieldReq.hasShieldStatus = YES;
+  resultImgroupShieldReq.shieldStatus = value;
   return self;
 }
 - (IMGroupShieldReqBuilder*) clearShieldStatus {
-  result.hasShieldStatus = NO;
-  result.shieldStatus = 0;
+  resultImgroupShieldReq.hasShieldStatus = NO;
+  resultImgroupShieldReq.shieldStatus = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgroupShieldReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgroupShieldReq.attachData;
 }
 - (IMGroupShieldReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgroupShieldReq.hasAttachData = YES;
+  resultImgroupShieldReq.attachData = value;
   return self;
 }
 - (IMGroupShieldReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgroupShieldReq.hasAttachData = NO;
+  resultImgroupShieldReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -3534,35 +3634,32 @@ static IMGroupShieldReq* defaultIMGroupShieldReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasGroupId {
   return !!hasGroupId_;
 }
-- (void) setHasGroupId:(BOOL) value_ {
-  hasGroupId_ = !!value_;
+- (void) setHasGroupId:(BOOL) _value_ {
+  hasGroupId_ = !!_value_;
 }
 @synthesize groupId;
 - (BOOL) hasResultCode {
   return !!hasResultCode_;
 }
-- (void) setHasResultCode:(BOOL) value_ {
-  hasResultCode_ = !!value_;
+- (void) setHasResultCode:(BOOL) _value_ {
+  hasResultCode_ = !!_value_;
 }
 @synthesize resultCode;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.groupId = 0;
@@ -3577,10 +3674,10 @@ static IMGroupShieldRsp* defaultIMGroupShieldRspInstance = nil;
     defaultIMGroupShieldRspInstance = [[IMGroupShieldRsp alloc] init];
   }
 }
-+ (IMGroupShieldRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGroupShieldRspInstance;
 }
-- (IMGroupShieldRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGroupShieldRspInstance;
 }
 - (BOOL) isInitialized {
@@ -3678,6 +3775,21 @@ static IMGroupShieldRsp* defaultIMGroupShieldRspInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasGroupId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.groupId] forKey: @"groupId"];
+  }
+  if (self.hasResultCode) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.resultCode] forKey: @"resultCode"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -3717,29 +3829,26 @@ static IMGroupShieldRsp* defaultIMGroupShieldRspInstance = nil;
 @end
 
 @interface IMGroupShieldRspBuilder()
-@property (strong) IMGroupShieldRsp* result;
+@property (strong) IMGroupShieldRsp* resultImgroupShieldRsp;
 @end
 
 @implementation IMGroupShieldRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgroupShieldRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGroupShieldRsp alloc] init];
+    self.resultImgroupShieldRsp = [[IMGroupShieldRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgroupShieldRsp;
 }
 - (IMGroupShieldRspBuilder*) clear {
-  self.result = [[IMGroupShieldRsp alloc] init];
+  self.resultImgroupShieldRsp = [[IMGroupShieldRsp alloc] init];
   return self;
 }
 - (IMGroupShieldRspBuilder*) clone {
-  return [IMGroupShieldRsp builderWithPrototype:result];
+  return [IMGroupShieldRsp builderWithPrototype:resultImgroupShieldRsp];
 }
 - (IMGroupShieldRsp*) defaultInstance {
   return [IMGroupShieldRsp defaultInstance];
@@ -3749,8 +3858,8 @@ static IMGroupShieldRsp* defaultIMGroupShieldRspInstance = nil;
   return [self buildPartial];
 }
 - (IMGroupShieldRsp*) buildPartial {
-  IMGroupShieldRsp* returnMe = result;
-  self.result = nil;
+  IMGroupShieldRsp* returnMe = resultImgroupShieldRsp;
+  self.resultImgroupShieldRsp = nil;
   return returnMe;
 }
 - (IMGroupShieldRspBuilder*) mergeFrom:(IMGroupShieldRsp*) other {
@@ -3810,67 +3919,67 @@ static IMGroupShieldRsp* defaultIMGroupShieldRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgroupShieldRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgroupShieldRsp.userId;
 }
 - (IMGroupShieldRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgroupShieldRsp.hasUserId = YES;
+  resultImgroupShieldRsp.userId = value;
   return self;
 }
 - (IMGroupShieldRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgroupShieldRsp.hasUserId = NO;
+  resultImgroupShieldRsp.userId = 0;
   return self;
 }
 - (BOOL) hasGroupId {
-  return result.hasGroupId;
+  return resultImgroupShieldRsp.hasGroupId;
 }
 - (UInt32) groupId {
-  return result.groupId;
+  return resultImgroupShieldRsp.groupId;
 }
 - (IMGroupShieldRspBuilder*) setGroupId:(UInt32) value {
-  result.hasGroupId = YES;
-  result.groupId = value;
+  resultImgroupShieldRsp.hasGroupId = YES;
+  resultImgroupShieldRsp.groupId = value;
   return self;
 }
 - (IMGroupShieldRspBuilder*) clearGroupId {
-  result.hasGroupId = NO;
-  result.groupId = 0;
+  resultImgroupShieldRsp.hasGroupId = NO;
+  resultImgroupShieldRsp.groupId = 0;
   return self;
 }
 - (BOOL) hasResultCode {
-  return result.hasResultCode;
+  return resultImgroupShieldRsp.hasResultCode;
 }
 - (UInt32) resultCode {
-  return result.resultCode;
+  return resultImgroupShieldRsp.resultCode;
 }
 - (IMGroupShieldRspBuilder*) setResultCode:(UInt32) value {
-  result.hasResultCode = YES;
-  result.resultCode = value;
+  resultImgroupShieldRsp.hasResultCode = YES;
+  resultImgroupShieldRsp.resultCode = value;
   return self;
 }
 - (IMGroupShieldRspBuilder*) clearResultCode {
-  result.hasResultCode = NO;
-  result.resultCode = 0;
+  resultImgroupShieldRsp.hasResultCode = NO;
+  resultImgroupShieldRsp.resultCode = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImgroupShieldRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImgroupShieldRsp.attachData;
 }
 - (IMGroupShieldRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImgroupShieldRsp.hasAttachData = YES;
+  resultImgroupShieldRsp.attachData = value;
   return self;
 }
 - (IMGroupShieldRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImgroupShieldRsp.hasAttachData = NO;
+  resultImgroupShieldRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -3888,33 +3997,29 @@ static IMGroupShieldRsp* defaultIMGroupShieldRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasChangeType {
   return !!hasChangeType_;
 }
-- (void) setHasChangeType:(BOOL) value_ {
-  hasChangeType_ = !!value_;
+- (void) setHasChangeType:(BOOL) _value_ {
+  hasChangeType_ = !!_value_;
 }
 @synthesize changeType;
 - (BOOL) hasGroupId {
   return !!hasGroupId_;
 }
-- (void) setHasGroupId:(BOOL) value_ {
-  hasGroupId_ = !!value_;
+- (void) setHasGroupId:(BOOL) _value_ {
+  hasGroupId_ = !!_value_;
 }
 @synthesize groupId;
 @synthesize curUserIdListArray;
 @dynamic curUserIdList;
 @synthesize chgUserIdListArray;
 @dynamic chgUserIdList;
-- (void) dealloc {
-  self.curUserIdListArray = nil;
-  self.chgUserIdListArray = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.changeType = GroupModifyTypeGroupModifyTypeAdd;
@@ -3928,10 +4033,10 @@ static IMGroupChangeMemberNotify* defaultIMGroupChangeMemberNotifyInstance = nil
     defaultIMGroupChangeMemberNotifyInstance = [[IMGroupChangeMemberNotify alloc] init];
   }
 }
-+ (IMGroupChangeMemberNotify*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMGroupChangeMemberNotifyInstance;
 }
-- (IMGroupChangeMemberNotify*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMGroupChangeMemberNotifyInstance;
 }
 - (PBArray *)curUserIdList {
@@ -4059,7 +4164,7 @@ static IMGroupChangeMemberNotify* defaultIMGroupChangeMemberNotifyInstance = nil
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasChangeType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"changeType", self.changeType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"changeType", NSStringFromGroupModifyType(self.changeType)];
   }
   if (self.hasGroupId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"groupId", [NSNumber numberWithInteger:self.groupId]];
@@ -4071,6 +4176,30 @@ static IMGroupChangeMemberNotify* defaultIMGroupChangeMemberNotifyInstance = nil
     [output appendFormat:@"%@%@: %@\n", indent, @"chgUserIdList", obj];
   }];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasChangeType) {
+    [dictionary setObject: @(self.changeType) forKey: @"changeType"];
+  }
+  if (self.hasGroupId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.groupId] forKey: @"groupId"];
+  }
+  NSMutableArray * curUserIdListArrayArray = [NSMutableArray new];
+  NSUInteger curUserIdListArrayCount=self.curUserIdListArray.count;
+  for(int i=0;i<curUserIdListArrayCount;i++){
+    [curUserIdListArrayArray addObject: @([self.curUserIdListArray uint32AtIndex:i])];
+  }
+  [dictionary setObject: curUserIdListArrayArray forKey: @"curUserIdList"];
+  NSMutableArray * chgUserIdListArrayArray = [NSMutableArray new];
+  NSUInteger chgUserIdListArrayCount=self.chgUserIdListArray.count;
+  for(int i=0;i<chgUserIdListArrayCount;i++){
+    [chgUserIdListArrayArray addObject: @([self.chgUserIdListArray uint32AtIndex:i])];
+  }
+  [dictionary setObject: chgUserIdListArrayArray forKey: @"chgUserIdList"];
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -4102,10 +4231,10 @@ static IMGroupChangeMemberNotify* defaultIMGroupChangeMemberNotifyInstance = nil
   if (self.hasGroupId) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.groupId] hash];
   }
-  [self.curUserIdListArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.curUserIdListArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
-  [self.chgUserIdListArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.chgUserIdListArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
   hashCode = hashCode * 31 + [self.unknownFields hash];
@@ -4114,29 +4243,26 @@ static IMGroupChangeMemberNotify* defaultIMGroupChangeMemberNotifyInstance = nil
 @end
 
 @interface IMGroupChangeMemberNotifyBuilder()
-@property (strong) IMGroupChangeMemberNotify* result;
+@property (strong) IMGroupChangeMemberNotify* resultImgroupChangeMemberNotify;
 @end
 
 @implementation IMGroupChangeMemberNotifyBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImgroupChangeMemberNotify;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMGroupChangeMemberNotify alloc] init];
+    self.resultImgroupChangeMemberNotify = [[IMGroupChangeMemberNotify alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImgroupChangeMemberNotify;
 }
 - (IMGroupChangeMemberNotifyBuilder*) clear {
-  self.result = [[IMGroupChangeMemberNotify alloc] init];
+  self.resultImgroupChangeMemberNotify = [[IMGroupChangeMemberNotify alloc] init];
   return self;
 }
 - (IMGroupChangeMemberNotifyBuilder*) clone {
-  return [IMGroupChangeMemberNotify builderWithPrototype:result];
+  return [IMGroupChangeMemberNotify builderWithPrototype:resultImgroupChangeMemberNotify];
 }
 - (IMGroupChangeMemberNotify*) defaultInstance {
   return [IMGroupChangeMemberNotify defaultInstance];
@@ -4146,8 +4272,8 @@ static IMGroupChangeMemberNotify* defaultIMGroupChangeMemberNotifyInstance = nil
   return [self buildPartial];
 }
 - (IMGroupChangeMemberNotify*) buildPartial {
-  IMGroupChangeMemberNotify* returnMe = result;
-  self.result = nil;
+  IMGroupChangeMemberNotify* returnMe = resultImgroupChangeMemberNotify;
+  self.resultImgroupChangeMemberNotify = nil;
   return returnMe;
 }
 - (IMGroupChangeMemberNotifyBuilder*) mergeFrom:(IMGroupChangeMemberNotify*) other {
@@ -4164,17 +4290,17 @@ static IMGroupChangeMemberNotify* defaultIMGroupChangeMemberNotifyInstance = nil
     [self setGroupId:other.groupId];
   }
   if (other.curUserIdListArray.count > 0) {
-    if (result.curUserIdListArray == nil) {
-      result.curUserIdListArray = [other.curUserIdListArray copy];
+    if (resultImgroupChangeMemberNotify.curUserIdListArray == nil) {
+      resultImgroupChangeMemberNotify.curUserIdListArray = [other.curUserIdListArray copy];
     } else {
-      [result.curUserIdListArray appendArray:other.curUserIdListArray];
+      [resultImgroupChangeMemberNotify.curUserIdListArray appendArray:other.curUserIdListArray];
     }
   }
   if (other.chgUserIdListArray.count > 0) {
-    if (result.chgUserIdListArray == nil) {
-      result.chgUserIdListArray = [other.chgUserIdListArray copy];
+    if (resultImgroupChangeMemberNotify.chgUserIdListArray == nil) {
+      resultImgroupChangeMemberNotify.chgUserIdListArray = [other.chgUserIdListArray copy];
     } else {
-      [result.chgUserIdListArray appendArray:other.chgUserIdListArray];
+      [resultImgroupChangeMemberNotify.chgUserIdListArray appendArray:other.chgUserIdListArray];
     }
   }
   [self mergeUnknownFields:other.unknownFields];
@@ -4227,101 +4353,101 @@ static IMGroupChangeMemberNotify* defaultIMGroupChangeMemberNotifyInstance = nil
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImgroupChangeMemberNotify.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImgroupChangeMemberNotify.userId;
 }
 - (IMGroupChangeMemberNotifyBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImgroupChangeMemberNotify.hasUserId = YES;
+  resultImgroupChangeMemberNotify.userId = value;
   return self;
 }
 - (IMGroupChangeMemberNotifyBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImgroupChangeMemberNotify.hasUserId = NO;
+  resultImgroupChangeMemberNotify.userId = 0;
   return self;
 }
 - (BOOL) hasChangeType {
-  return result.hasChangeType;
+  return resultImgroupChangeMemberNotify.hasChangeType;
 }
 - (GroupModifyType) changeType {
-  return result.changeType;
+  return resultImgroupChangeMemberNotify.changeType;
 }
 - (IMGroupChangeMemberNotifyBuilder*) setChangeType:(GroupModifyType) value {
-  result.hasChangeType = YES;
-  result.changeType = value;
+  resultImgroupChangeMemberNotify.hasChangeType = YES;
+  resultImgroupChangeMemberNotify.changeType = value;
   return self;
 }
 - (IMGroupChangeMemberNotifyBuilder*) clearChangeType {
-  result.hasChangeType = NO;
-  result.changeType = GroupModifyTypeGroupModifyTypeAdd;
+  resultImgroupChangeMemberNotify.hasChangeType = NO;
+  resultImgroupChangeMemberNotify.changeType = GroupModifyTypeGroupModifyTypeAdd;
   return self;
 }
 - (BOOL) hasGroupId {
-  return result.hasGroupId;
+  return resultImgroupChangeMemberNotify.hasGroupId;
 }
 - (UInt32) groupId {
-  return result.groupId;
+  return resultImgroupChangeMemberNotify.groupId;
 }
 - (IMGroupChangeMemberNotifyBuilder*) setGroupId:(UInt32) value {
-  result.hasGroupId = YES;
-  result.groupId = value;
+  resultImgroupChangeMemberNotify.hasGroupId = YES;
+  resultImgroupChangeMemberNotify.groupId = value;
   return self;
 }
 - (IMGroupChangeMemberNotifyBuilder*) clearGroupId {
-  result.hasGroupId = NO;
-  result.groupId = 0;
+  resultImgroupChangeMemberNotify.hasGroupId = NO;
+  resultImgroupChangeMemberNotify.groupId = 0;
   return self;
 }
 - (PBAppendableArray *)curUserIdList {
-  return result.curUserIdListArray;
+  return resultImgroupChangeMemberNotify.curUserIdListArray;
 }
 - (UInt32)curUserIdListAtIndex:(NSUInteger)index {
-  return [result curUserIdListAtIndex:index];
+  return [resultImgroupChangeMemberNotify curUserIdListAtIndex:index];
 }
 - (IMGroupChangeMemberNotifyBuilder *)addCurUserIdList:(UInt32)value {
-  if (result.curUserIdListArray == nil) {
-    result.curUserIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
+  if (resultImgroupChangeMemberNotify.curUserIdListArray == nil) {
+    resultImgroupChangeMemberNotify.curUserIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
   }
-  [result.curUserIdListArray addUint32:value];
+  [resultImgroupChangeMemberNotify.curUserIdListArray addUint32:value];
   return self;
 }
 - (IMGroupChangeMemberNotifyBuilder *)setCurUserIdListArray:(NSArray *)array {
-  result.curUserIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
+  resultImgroupChangeMemberNotify.curUserIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupChangeMemberNotifyBuilder *)setCurUserIdListValues:(const UInt32 *)values count:(NSUInteger)count {
-  result.curUserIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
+  resultImgroupChangeMemberNotify.curUserIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupChangeMemberNotifyBuilder *)clearCurUserIdList {
-  result.curUserIdListArray = nil;
+  resultImgroupChangeMemberNotify.curUserIdListArray = nil;
   return self;
 }
 - (PBAppendableArray *)chgUserIdList {
-  return result.chgUserIdListArray;
+  return resultImgroupChangeMemberNotify.chgUserIdListArray;
 }
 - (UInt32)chgUserIdListAtIndex:(NSUInteger)index {
-  return [result chgUserIdListAtIndex:index];
+  return [resultImgroupChangeMemberNotify chgUserIdListAtIndex:index];
 }
 - (IMGroupChangeMemberNotifyBuilder *)addChgUserIdList:(UInt32)value {
-  if (result.chgUserIdListArray == nil) {
-    result.chgUserIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
+  if (resultImgroupChangeMemberNotify.chgUserIdListArray == nil) {
+    resultImgroupChangeMemberNotify.chgUserIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
   }
-  [result.chgUserIdListArray addUint32:value];
+  [resultImgroupChangeMemberNotify.chgUserIdListArray addUint32:value];
   return self;
 }
 - (IMGroupChangeMemberNotifyBuilder *)setChgUserIdListArray:(NSArray *)array {
-  result.chgUserIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
+  resultImgroupChangeMemberNotify.chgUserIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupChangeMemberNotifyBuilder *)setChgUserIdListValues:(const UInt32 *)values count:(NSUInteger)count {
-  result.chgUserIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
+  resultImgroupChangeMemberNotify.chgUserIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMGroupChangeMemberNotifyBuilder *)clearChgUserIdList {
-  result.chgUserIdListArray = nil;
+  resultImgroupChangeMemberNotify.chgUserIdListArray = nil;
   return self;
 }
 @end

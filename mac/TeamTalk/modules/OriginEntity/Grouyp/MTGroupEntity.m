@@ -15,14 +15,14 @@
     self = [super init];
     if (self)
     {
-        _ID = [ID copy];
-        _name = [name copy];
-        _avatar = [avatar copy];
-        _groupCreatorId = [creatorId copy];
-        _groupType = groupType;
-        _isShield = shieldStatus;
-        _groupUserIds = [groupUserIds copy];
-        _groupVersion = groupVersion;
+        self.ID = [ID copy];
+        self.name = [name copy];
+        self.avatar = [avatar copy];
+        self.groupCreatorId = [creatorId copy];
+        self.groupType = groupType;
+        self.isShield = shieldStatus;
+        self.groupUserIds = [groupUserIds copy];
+        self.groupVersion = groupVersion;
     }
     return self;
 }

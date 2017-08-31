@@ -32,28 +32,25 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasLatestUpdateTime {
   return !!hasLatestUpdateTime_;
 }
-- (void) setHasLatestUpdateTime:(BOOL) value_ {
-  hasLatestUpdateTime_ = !!value_;
+- (void) setHasLatestUpdateTime:(BOOL) _value_ {
+  hasLatestUpdateTime_ = !!_value_;
 }
 @synthesize latestUpdateTime;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.latestUpdateTime = 0;
@@ -67,10 +64,10 @@ static IMRecentContactSessionReq* defaultIMRecentContactSessionReqInstance = nil
     defaultIMRecentContactSessionReqInstance = [[IMRecentContactSessionReq alloc] init];
   }
 }
-+ (IMRecentContactSessionReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMRecentContactSessionReqInstance;
 }
-- (IMRecentContactSessionReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMRecentContactSessionReqInstance;
 }
 - (BOOL) isInitialized {
@@ -156,6 +153,18 @@ static IMRecentContactSessionReq* defaultIMRecentContactSessionReqInstance = nil
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasLatestUpdateTime) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.latestUpdateTime] forKey: @"latestUpdateTime"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -190,29 +199,26 @@ static IMRecentContactSessionReq* defaultIMRecentContactSessionReqInstance = nil
 @end
 
 @interface IMRecentContactSessionReqBuilder()
-@property (strong) IMRecentContactSessionReq* result;
+@property (strong) IMRecentContactSessionReq* resultImrecentContactSessionReq;
 @end
 
 @implementation IMRecentContactSessionReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImrecentContactSessionReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMRecentContactSessionReq alloc] init];
+    self.resultImrecentContactSessionReq = [[IMRecentContactSessionReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImrecentContactSessionReq;
 }
 - (IMRecentContactSessionReqBuilder*) clear {
-  self.result = [[IMRecentContactSessionReq alloc] init];
+  self.resultImrecentContactSessionReq = [[IMRecentContactSessionReq alloc] init];
   return self;
 }
 - (IMRecentContactSessionReqBuilder*) clone {
-  return [IMRecentContactSessionReq builderWithPrototype:result];
+  return [IMRecentContactSessionReq builderWithPrototype:resultImrecentContactSessionReq];
 }
 - (IMRecentContactSessionReq*) defaultInstance {
   return [IMRecentContactSessionReq defaultInstance];
@@ -222,8 +228,8 @@ static IMRecentContactSessionReq* defaultIMRecentContactSessionReqInstance = nil
   return [self buildPartial];
 }
 - (IMRecentContactSessionReq*) buildPartial {
-  IMRecentContactSessionReq* returnMe = result;
-  self.result = nil;
+  IMRecentContactSessionReq* returnMe = resultImrecentContactSessionReq;
+  self.resultImrecentContactSessionReq = nil;
   return returnMe;
 }
 - (IMRecentContactSessionReqBuilder*) mergeFrom:(IMRecentContactSessionReq*) other {
@@ -276,51 +282,51 @@ static IMRecentContactSessionReq* defaultIMRecentContactSessionReqInstance = nil
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImrecentContactSessionReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImrecentContactSessionReq.userId;
 }
 - (IMRecentContactSessionReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImrecentContactSessionReq.hasUserId = YES;
+  resultImrecentContactSessionReq.userId = value;
   return self;
 }
 - (IMRecentContactSessionReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImrecentContactSessionReq.hasUserId = NO;
+  resultImrecentContactSessionReq.userId = 0;
   return self;
 }
 - (BOOL) hasLatestUpdateTime {
-  return result.hasLatestUpdateTime;
+  return resultImrecentContactSessionReq.hasLatestUpdateTime;
 }
 - (UInt32) latestUpdateTime {
-  return result.latestUpdateTime;
+  return resultImrecentContactSessionReq.latestUpdateTime;
 }
 - (IMRecentContactSessionReqBuilder*) setLatestUpdateTime:(UInt32) value {
-  result.hasLatestUpdateTime = YES;
-  result.latestUpdateTime = value;
+  resultImrecentContactSessionReq.hasLatestUpdateTime = YES;
+  resultImrecentContactSessionReq.latestUpdateTime = value;
   return self;
 }
 - (IMRecentContactSessionReqBuilder*) clearLatestUpdateTime {
-  result.hasLatestUpdateTime = NO;
-  result.latestUpdateTime = 0;
+  resultImrecentContactSessionReq.hasLatestUpdateTime = NO;
+  resultImrecentContactSessionReq.latestUpdateTime = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImrecentContactSessionReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImrecentContactSessionReq.attachData;
 }
 - (IMRecentContactSessionReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImrecentContactSessionReq.hasAttachData = YES;
+  resultImrecentContactSessionReq.attachData = value;
   return self;
 }
 - (IMRecentContactSessionReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImrecentContactSessionReq.hasAttachData = NO;
+  resultImrecentContactSessionReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -336,8 +342,8 @@ static IMRecentContactSessionReq* defaultIMRecentContactSessionReqInstance = nil
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 @synthesize contactSessionListArray;
@@ -345,15 +351,11 @@ static IMRecentContactSessionReq* defaultIMRecentContactSessionReqInstance = nil
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.contactSessionListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.attachData = [NSData data];
@@ -366,10 +368,10 @@ static IMRecentContactSessionRsp* defaultIMRecentContactSessionRspInstance = nil
     defaultIMRecentContactSessionRspInstance = [[IMRecentContactSessionRsp alloc] init];
   }
 }
-+ (IMRecentContactSessionRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMRecentContactSessionRspInstance;
 }
-- (IMRecentContactSessionRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMRecentContactSessionRspInstance;
 }
 - (NSArray *)contactSessionList {
@@ -469,6 +471,20 @@ static IMRecentContactSessionRsp* defaultIMRecentContactSessionRspInstance = nil
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  for (ContactSessionInfo* element in self.contactSessionListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"contactSessionList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -502,29 +518,26 @@ static IMRecentContactSessionRsp* defaultIMRecentContactSessionRspInstance = nil
 @end
 
 @interface IMRecentContactSessionRspBuilder()
-@property (strong) IMRecentContactSessionRsp* result;
+@property (strong) IMRecentContactSessionRsp* resultImrecentContactSessionRsp;
 @end
 
 @implementation IMRecentContactSessionRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImrecentContactSessionRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMRecentContactSessionRsp alloc] init];
+    self.resultImrecentContactSessionRsp = [[IMRecentContactSessionRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImrecentContactSessionRsp;
 }
 - (IMRecentContactSessionRspBuilder*) clear {
-  self.result = [[IMRecentContactSessionRsp alloc] init];
+  self.resultImrecentContactSessionRsp = [[IMRecentContactSessionRsp alloc] init];
   return self;
 }
 - (IMRecentContactSessionRspBuilder*) clone {
-  return [IMRecentContactSessionRsp builderWithPrototype:result];
+  return [IMRecentContactSessionRsp builderWithPrototype:resultImrecentContactSessionRsp];
 }
 - (IMRecentContactSessionRsp*) defaultInstance {
   return [IMRecentContactSessionRsp defaultInstance];
@@ -534,8 +547,8 @@ static IMRecentContactSessionRsp* defaultIMRecentContactSessionRspInstance = nil
   return [self buildPartial];
 }
 - (IMRecentContactSessionRsp*) buildPartial {
-  IMRecentContactSessionRsp* returnMe = result;
-  self.result = nil;
+  IMRecentContactSessionRsp* returnMe = resultImrecentContactSessionRsp;
+  self.resultImrecentContactSessionRsp = nil;
   return returnMe;
 }
 - (IMRecentContactSessionRspBuilder*) mergeFrom:(IMRecentContactSessionRsp*) other {
@@ -546,10 +559,10 @@ static IMRecentContactSessionRsp* defaultIMRecentContactSessionRspInstance = nil
     [self setUserId:other.userId];
   }
   if (other.contactSessionListArray.count > 0) {
-    if (result.contactSessionListArray == nil) {
-      result.contactSessionListArray = [[NSMutableArray alloc] initWithArray:other.contactSessionListArray];
+    if (resultImrecentContactSessionRsp.contactSessionListArray == nil) {
+      resultImrecentContactSessionRsp.contactSessionListArray = [[NSMutableArray alloc] initWithArray:other.contactSessionListArray];
     } else {
-      [result.contactSessionListArray addObjectsFromArray:other.contactSessionListArray];
+      [resultImrecentContactSessionRsp.contactSessionListArray addObjectsFromArray:other.contactSessionListArray];
     }
   }
   if (other.hasAttachData) {
@@ -594,56 +607,56 @@ static IMRecentContactSessionRsp* defaultIMRecentContactSessionRspInstance = nil
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImrecentContactSessionRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImrecentContactSessionRsp.userId;
 }
 - (IMRecentContactSessionRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImrecentContactSessionRsp.hasUserId = YES;
+  resultImrecentContactSessionRsp.userId = value;
   return self;
 }
 - (IMRecentContactSessionRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImrecentContactSessionRsp.hasUserId = NO;
+  resultImrecentContactSessionRsp.userId = 0;
   return self;
 }
 - (NSMutableArray *)contactSessionList {
-  return result.contactSessionListArray;
+  return resultImrecentContactSessionRsp.contactSessionListArray;
 }
 - (ContactSessionInfo*)contactSessionListAtIndex:(NSUInteger)index {
-  return [result contactSessionListAtIndex:index];
+  return [resultImrecentContactSessionRsp contactSessionListAtIndex:index];
 }
 - (IMRecentContactSessionRspBuilder *)addContactSessionList:(ContactSessionInfo*)value {
-  if (result.contactSessionListArray == nil) {
-    result.contactSessionListArray = [[NSMutableArray alloc]init];
+  if (resultImrecentContactSessionRsp.contactSessionListArray == nil) {
+    resultImrecentContactSessionRsp.contactSessionListArray = [[NSMutableArray alloc]init];
   }
-  [result.contactSessionListArray addObject:value];
+  [resultImrecentContactSessionRsp.contactSessionListArray addObject:value];
   return self;
 }
 - (IMRecentContactSessionRspBuilder *)setContactSessionListArray:(NSArray *)array {
-  result.contactSessionListArray = [[NSMutableArray alloc]initWithArray:array];
+  resultImrecentContactSessionRsp.contactSessionListArray = [[NSMutableArray alloc]initWithArray:array];
   return self;
 }
 - (IMRecentContactSessionRspBuilder *)clearContactSessionList {
-  result.contactSessionListArray = nil;
+  resultImrecentContactSessionRsp.contactSessionListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImrecentContactSessionRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImrecentContactSessionRsp.attachData;
 }
 - (IMRecentContactSessionRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImrecentContactSessionRsp.hasAttachData = YES;
+  resultImrecentContactSessionRsp.attachData = value;
   return self;
 }
 - (IMRecentContactSessionRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImrecentContactSessionRsp.hasAttachData = NO;
+  resultImrecentContactSessionRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -657,14 +670,11 @@ static IMRecentContactSessionRsp* defaultIMRecentContactSessionRspInstance = nil
 - (BOOL) hasUserStat {
   return !!hasUserStat_;
 }
-- (void) setHasUserStat:(BOOL) value_ {
-  hasUserStat_ = !!value_;
+- (void) setHasUserStat:(BOOL) _value_ {
+  hasUserStat_ = !!_value_;
 }
 @synthesize userStat;
-- (void) dealloc {
-  self.userStat = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userStat = [UserStat defaultInstance];
   }
@@ -676,10 +686,10 @@ static IMUserStatNotify* defaultIMUserStatNotifyInstance = nil;
     defaultIMUserStatNotifyInstance = [[IMUserStatNotify alloc] init];
   }
 }
-+ (IMUserStatNotify*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMUserStatNotifyInstance;
 }
-- (IMUserStatNotify*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMUserStatNotifyInstance;
 }
 - (BOOL) isInitialized {
@@ -750,6 +760,14 @@ static IMUserStatNotify* defaultIMUserStatNotifyInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserStat) {
+   NSMutableDictionary *messageDictionary = [NSMutableDictionary dictionary]; 
+   [self.userStat storeInDictionary:messageDictionary];
+   [dictionary setObject:[NSDictionary dictionaryWithDictionary:messageDictionary] forKey:@"userStat"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -774,29 +792,26 @@ static IMUserStatNotify* defaultIMUserStatNotifyInstance = nil;
 @end
 
 @interface IMUserStatNotifyBuilder()
-@property (strong) IMUserStatNotify* result;
+@property (strong) IMUserStatNotify* resultImuserStatNotify;
 @end
 
 @implementation IMUserStatNotifyBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImuserStatNotify;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMUserStatNotify alloc] init];
+    self.resultImuserStatNotify = [[IMUserStatNotify alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImuserStatNotify;
 }
 - (IMUserStatNotifyBuilder*) clear {
-  self.result = [[IMUserStatNotify alloc] init];
+  self.resultImuserStatNotify = [[IMUserStatNotify alloc] init];
   return self;
 }
 - (IMUserStatNotifyBuilder*) clone {
-  return [IMUserStatNotify builderWithPrototype:result];
+  return [IMUserStatNotify builderWithPrototype:resultImuserStatNotify];
 }
 - (IMUserStatNotify*) defaultInstance {
   return [IMUserStatNotify defaultInstance];
@@ -806,8 +821,8 @@ static IMUserStatNotify* defaultIMUserStatNotifyInstance = nil;
   return [self buildPartial];
 }
 - (IMUserStatNotify*) buildPartial {
-  IMUserStatNotify* returnMe = result;
-  self.result = nil;
+  IMUserStatNotify* returnMe = resultImuserStatNotify;
+  self.resultImuserStatNotify = nil;
   return returnMe;
 }
 - (IMUserStatNotifyBuilder*) mergeFrom:(IMUserStatNotify*) other {
@@ -851,33 +866,33 @@ static IMUserStatNotify* defaultIMUserStatNotifyInstance = nil;
   }
 }
 - (BOOL) hasUserStat {
-  return result.hasUserStat;
+  return resultImuserStatNotify.hasUserStat;
 }
 - (UserStat*) userStat {
-  return result.userStat;
+  return resultImuserStatNotify.userStat;
 }
 - (IMUserStatNotifyBuilder*) setUserStat:(UserStat*) value {
-  result.hasUserStat = YES;
-  result.userStat = value;
+  resultImuserStatNotify.hasUserStat = YES;
+  resultImuserStatNotify.userStat = value;
   return self;
 }
 - (IMUserStatNotifyBuilder*) setUserStatBuilder:(UserStatBuilder*) builderForValue {
   return [self setUserStat:[builderForValue build]];
 }
 - (IMUserStatNotifyBuilder*) mergeUserStat:(UserStat*) value {
-  if (result.hasUserStat &&
-      result.userStat != [UserStat defaultInstance]) {
-    result.userStat =
-      [[[UserStat builderWithPrototype:result.userStat] mergeFrom:value] buildPartial];
+  if (resultImuserStatNotify.hasUserStat &&
+      resultImuserStatNotify.userStat != [UserStat defaultInstance]) {
+    resultImuserStatNotify.userStat =
+      [[[UserStat builderWithPrototype:resultImuserStatNotify.userStat] mergeFrom:value] buildPartial];
   } else {
-    result.userStat = value;
+    resultImuserStatNotify.userStat = value;
   }
-  result.hasUserStat = YES;
+  resultImuserStatNotify.hasUserStat = YES;
   return self;
 }
 - (IMUserStatNotifyBuilder*) clearUserStat {
-  result.hasUserStat = NO;
-  result.userStat = [UserStat defaultInstance];
+  resultImuserStatNotify.hasUserStat = NO;
+  resultImuserStatNotify.userStat = [UserStat defaultInstance];
   return self;
 }
 @end
@@ -893,8 +908,8 @@ static IMUserStatNotify* defaultIMUserStatNotifyInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 @synthesize userIdListArray;
@@ -902,15 +917,11 @@ static IMUserStatNotify* defaultIMUserStatNotifyInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.userIdListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.attachData = [NSData data];
@@ -923,10 +934,10 @@ static IMUsersInfoReq* defaultIMUsersInfoReqInstance = nil;
     defaultIMUsersInfoReqInstance = [[IMUsersInfoReq alloc] init];
   }
 }
-+ (IMUsersInfoReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMUsersInfoReqInstance;
 }
-- (IMUsersInfoReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMUsersInfoReqInstance;
 }
 - (PBArray *)userIdList {
@@ -1026,6 +1037,21 @@ static IMUsersInfoReq* defaultIMUsersInfoReqInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  NSMutableArray * userIdListArrayArray = [NSMutableArray new];
+  NSUInteger userIdListArrayCount=self.userIdListArray.count;
+  for(int i=0;i<userIdListArrayCount;i++){
+    [userIdListArrayArray addObject: @([self.userIdListArray uint32AtIndex:i])];
+  }
+  [dictionary setObject: userIdListArrayArray forKey: @"userIdList"];
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -1047,7 +1073,7 @@ static IMUsersInfoReq* defaultIMUsersInfoReqInstance = nil;
   if (self.hasUserId) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.userId] hash];
   }
-  [self.userIdListArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.userIdListArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
   if (self.hasAttachData) {
@@ -1059,29 +1085,26 @@ static IMUsersInfoReq* defaultIMUsersInfoReqInstance = nil;
 @end
 
 @interface IMUsersInfoReqBuilder()
-@property (strong) IMUsersInfoReq* result;
+@property (strong) IMUsersInfoReq* resultImusersInfoReq;
 @end
 
 @implementation IMUsersInfoReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImusersInfoReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMUsersInfoReq alloc] init];
+    self.resultImusersInfoReq = [[IMUsersInfoReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImusersInfoReq;
 }
 - (IMUsersInfoReqBuilder*) clear {
-  self.result = [[IMUsersInfoReq alloc] init];
+  self.resultImusersInfoReq = [[IMUsersInfoReq alloc] init];
   return self;
 }
 - (IMUsersInfoReqBuilder*) clone {
-  return [IMUsersInfoReq builderWithPrototype:result];
+  return [IMUsersInfoReq builderWithPrototype:resultImusersInfoReq];
 }
 - (IMUsersInfoReq*) defaultInstance {
   return [IMUsersInfoReq defaultInstance];
@@ -1091,8 +1114,8 @@ static IMUsersInfoReq* defaultIMUsersInfoReqInstance = nil;
   return [self buildPartial];
 }
 - (IMUsersInfoReq*) buildPartial {
-  IMUsersInfoReq* returnMe = result;
-  self.result = nil;
+  IMUsersInfoReq* returnMe = resultImusersInfoReq;
+  self.resultImusersInfoReq = nil;
   return returnMe;
 }
 - (IMUsersInfoReqBuilder*) mergeFrom:(IMUsersInfoReq*) other {
@@ -1103,10 +1126,10 @@ static IMUsersInfoReq* defaultIMUsersInfoReqInstance = nil;
     [self setUserId:other.userId];
   }
   if (other.userIdListArray.count > 0) {
-    if (result.userIdListArray == nil) {
-      result.userIdListArray = [other.userIdListArray copy];
+    if (resultImusersInfoReq.userIdListArray == nil) {
+      resultImusersInfoReq.userIdListArray = [other.userIdListArray copy];
     } else {
-      [result.userIdListArray appendArray:other.userIdListArray];
+      [resultImusersInfoReq.userIdListArray appendArray:other.userIdListArray];
     }
   }
   if (other.hasAttachData) {
@@ -1149,60 +1172,60 @@ static IMUsersInfoReq* defaultIMUsersInfoReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImusersInfoReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImusersInfoReq.userId;
 }
 - (IMUsersInfoReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImusersInfoReq.hasUserId = YES;
+  resultImusersInfoReq.userId = value;
   return self;
 }
 - (IMUsersInfoReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImusersInfoReq.hasUserId = NO;
+  resultImusersInfoReq.userId = 0;
   return self;
 }
 - (PBAppendableArray *)userIdList {
-  return result.userIdListArray;
+  return resultImusersInfoReq.userIdListArray;
 }
 - (UInt32)userIdListAtIndex:(NSUInteger)index {
-  return [result userIdListAtIndex:index];
+  return [resultImusersInfoReq userIdListAtIndex:index];
 }
 - (IMUsersInfoReqBuilder *)addUserIdList:(UInt32)value {
-  if (result.userIdListArray == nil) {
-    result.userIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
+  if (resultImusersInfoReq.userIdListArray == nil) {
+    resultImusersInfoReq.userIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
   }
-  [result.userIdListArray addUint32:value];
+  [resultImusersInfoReq.userIdListArray addUint32:value];
   return self;
 }
 - (IMUsersInfoReqBuilder *)setUserIdListArray:(NSArray *)array {
-  result.userIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
+  resultImusersInfoReq.userIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMUsersInfoReqBuilder *)setUserIdListValues:(const UInt32 *)values count:(NSUInteger)count {
-  result.userIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
+  resultImusersInfoReq.userIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMUsersInfoReqBuilder *)clearUserIdList {
-  result.userIdListArray = nil;
+  resultImusersInfoReq.userIdListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImusersInfoReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImusersInfoReq.attachData;
 }
 - (IMUsersInfoReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImusersInfoReq.hasAttachData = YES;
+  resultImusersInfoReq.attachData = value;
   return self;
 }
 - (IMUsersInfoReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImusersInfoReq.hasAttachData = NO;
+  resultImusersInfoReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -1218,8 +1241,8 @@ static IMUsersInfoReq* defaultIMUsersInfoReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 @synthesize userInfoListArray;
@@ -1227,15 +1250,11 @@ static IMUsersInfoReq* defaultIMUsersInfoReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.userInfoListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.attachData = [NSData data];
@@ -1248,10 +1267,10 @@ static IMUsersInfoRsp* defaultIMUsersInfoRspInstance = nil;
     defaultIMUsersInfoRspInstance = [[IMUsersInfoRsp alloc] init];
   }
 }
-+ (IMUsersInfoRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMUsersInfoRspInstance;
 }
-- (IMUsersInfoRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMUsersInfoRspInstance;
 }
 - (NSArray *)userInfoList {
@@ -1351,6 +1370,20 @@ static IMUsersInfoRsp* defaultIMUsersInfoRspInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  for (UserInfo* element in self.userInfoListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"userInfoList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -1384,29 +1417,26 @@ static IMUsersInfoRsp* defaultIMUsersInfoRspInstance = nil;
 @end
 
 @interface IMUsersInfoRspBuilder()
-@property (strong) IMUsersInfoRsp* result;
+@property (strong) IMUsersInfoRsp* resultImusersInfoRsp;
 @end
 
 @implementation IMUsersInfoRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImusersInfoRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMUsersInfoRsp alloc] init];
+    self.resultImusersInfoRsp = [[IMUsersInfoRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImusersInfoRsp;
 }
 - (IMUsersInfoRspBuilder*) clear {
-  self.result = [[IMUsersInfoRsp alloc] init];
+  self.resultImusersInfoRsp = [[IMUsersInfoRsp alloc] init];
   return self;
 }
 - (IMUsersInfoRspBuilder*) clone {
-  return [IMUsersInfoRsp builderWithPrototype:result];
+  return [IMUsersInfoRsp builderWithPrototype:resultImusersInfoRsp];
 }
 - (IMUsersInfoRsp*) defaultInstance {
   return [IMUsersInfoRsp defaultInstance];
@@ -1416,8 +1446,8 @@ static IMUsersInfoRsp* defaultIMUsersInfoRspInstance = nil;
   return [self buildPartial];
 }
 - (IMUsersInfoRsp*) buildPartial {
-  IMUsersInfoRsp* returnMe = result;
-  self.result = nil;
+  IMUsersInfoRsp* returnMe = resultImusersInfoRsp;
+  self.resultImusersInfoRsp = nil;
   return returnMe;
 }
 - (IMUsersInfoRspBuilder*) mergeFrom:(IMUsersInfoRsp*) other {
@@ -1428,10 +1458,10 @@ static IMUsersInfoRsp* defaultIMUsersInfoRspInstance = nil;
     [self setUserId:other.userId];
   }
   if (other.userInfoListArray.count > 0) {
-    if (result.userInfoListArray == nil) {
-      result.userInfoListArray = [[NSMutableArray alloc] initWithArray:other.userInfoListArray];
+    if (resultImusersInfoRsp.userInfoListArray == nil) {
+      resultImusersInfoRsp.userInfoListArray = [[NSMutableArray alloc] initWithArray:other.userInfoListArray];
     } else {
-      [result.userInfoListArray addObjectsFromArray:other.userInfoListArray];
+      [resultImusersInfoRsp.userInfoListArray addObjectsFromArray:other.userInfoListArray];
     }
   }
   if (other.hasAttachData) {
@@ -1476,56 +1506,56 @@ static IMUsersInfoRsp* defaultIMUsersInfoRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImusersInfoRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImusersInfoRsp.userId;
 }
 - (IMUsersInfoRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImusersInfoRsp.hasUserId = YES;
+  resultImusersInfoRsp.userId = value;
   return self;
 }
 - (IMUsersInfoRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImusersInfoRsp.hasUserId = NO;
+  resultImusersInfoRsp.userId = 0;
   return self;
 }
 - (NSMutableArray *)userInfoList {
-  return result.userInfoListArray;
+  return resultImusersInfoRsp.userInfoListArray;
 }
 - (UserInfo*)userInfoListAtIndex:(NSUInteger)index {
-  return [result userInfoListAtIndex:index];
+  return [resultImusersInfoRsp userInfoListAtIndex:index];
 }
 - (IMUsersInfoRspBuilder *)addUserInfoList:(UserInfo*)value {
-  if (result.userInfoListArray == nil) {
-    result.userInfoListArray = [[NSMutableArray alloc]init];
+  if (resultImusersInfoRsp.userInfoListArray == nil) {
+    resultImusersInfoRsp.userInfoListArray = [[NSMutableArray alloc]init];
   }
-  [result.userInfoListArray addObject:value];
+  [resultImusersInfoRsp.userInfoListArray addObject:value];
   return self;
 }
 - (IMUsersInfoRspBuilder *)setUserInfoListArray:(NSArray *)array {
-  result.userInfoListArray = [[NSMutableArray alloc]initWithArray:array];
+  resultImusersInfoRsp.userInfoListArray = [[NSMutableArray alloc]initWithArray:array];
   return self;
 }
 - (IMUsersInfoRspBuilder *)clearUserInfoList {
-  result.userInfoListArray = nil;
+  resultImusersInfoRsp.userInfoListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImusersInfoRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImusersInfoRsp.attachData;
 }
 - (IMUsersInfoRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImusersInfoRsp.hasAttachData = YES;
+  resultImusersInfoRsp.attachData = value;
   return self;
 }
 - (IMUsersInfoRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImusersInfoRsp.hasAttachData = NO;
+  resultImusersInfoRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -1542,35 +1572,32 @@ static IMUsersInfoRsp* defaultIMUsersInfoRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.sessionType = SessionTypeSessionTypeSingle;
@@ -1585,10 +1612,10 @@ static IMRemoveSessionReq* defaultIMRemoveSessionReqInstance = nil;
     defaultIMRemoveSessionReqInstance = [[IMRemoveSessionReq alloc] init];
   }
 }
-+ (IMRemoveSessionReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMRemoveSessionReqInstance;
 }
-- (IMRemoveSessionReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMRemoveSessionReqInstance;
 }
 - (BOOL) isInitialized {
@@ -1676,7 +1703,7 @@ static IMRemoveSessionReq* defaultIMRemoveSessionReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   if (self.hasSessionId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"sessionId", [NSNumber numberWithInteger:self.sessionId]];
@@ -1685,6 +1712,21 @@ static IMRemoveSessionReq* defaultIMRemoveSessionReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -1725,29 +1767,26 @@ static IMRemoveSessionReq* defaultIMRemoveSessionReqInstance = nil;
 @end
 
 @interface IMRemoveSessionReqBuilder()
-@property (strong) IMRemoveSessionReq* result;
+@property (strong) IMRemoveSessionReq* resultImremoveSessionReq;
 @end
 
 @implementation IMRemoveSessionReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImremoveSessionReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMRemoveSessionReq alloc] init];
+    self.resultImremoveSessionReq = [[IMRemoveSessionReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImremoveSessionReq;
 }
 - (IMRemoveSessionReqBuilder*) clear {
-  self.result = [[IMRemoveSessionReq alloc] init];
+  self.resultImremoveSessionReq = [[IMRemoveSessionReq alloc] init];
   return self;
 }
 - (IMRemoveSessionReqBuilder*) clone {
-  return [IMRemoveSessionReq builderWithPrototype:result];
+  return [IMRemoveSessionReq builderWithPrototype:resultImremoveSessionReq];
 }
 - (IMRemoveSessionReq*) defaultInstance {
   return [IMRemoveSessionReq defaultInstance];
@@ -1757,8 +1796,8 @@ static IMRemoveSessionReq* defaultIMRemoveSessionReqInstance = nil;
   return [self buildPartial];
 }
 - (IMRemoveSessionReq*) buildPartial {
-  IMRemoveSessionReq* returnMe = result;
-  self.result = nil;
+  IMRemoveSessionReq* returnMe = resultImremoveSessionReq;
+  self.resultImremoveSessionReq = nil;
   return returnMe;
 }
 - (IMRemoveSessionReqBuilder*) mergeFrom:(IMRemoveSessionReq*) other {
@@ -1823,67 +1862,67 @@ static IMRemoveSessionReq* defaultIMRemoveSessionReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImremoveSessionReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImremoveSessionReq.userId;
 }
 - (IMRemoveSessionReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImremoveSessionReq.hasUserId = YES;
+  resultImremoveSessionReq.userId = value;
   return self;
 }
 - (IMRemoveSessionReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImremoveSessionReq.hasUserId = NO;
+  resultImremoveSessionReq.userId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImremoveSessionReq.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImremoveSessionReq.sessionType;
 }
 - (IMRemoveSessionReqBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImremoveSessionReq.hasSessionType = YES;
+  resultImremoveSessionReq.sessionType = value;
   return self;
 }
 - (IMRemoveSessionReqBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImremoveSessionReq.hasSessionType = NO;
+  resultImremoveSessionReq.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImremoveSessionReq.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImremoveSessionReq.sessionId;
 }
 - (IMRemoveSessionReqBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImremoveSessionReq.hasSessionId = YES;
+  resultImremoveSessionReq.sessionId = value;
   return self;
 }
 - (IMRemoveSessionReqBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImremoveSessionReq.hasSessionId = NO;
+  resultImremoveSessionReq.sessionId = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImremoveSessionReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImremoveSessionReq.attachData;
 }
 - (IMRemoveSessionReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImremoveSessionReq.hasAttachData = YES;
+  resultImremoveSessionReq.attachData = value;
   return self;
 }
 - (IMRemoveSessionReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImremoveSessionReq.hasAttachData = NO;
+  resultImremoveSessionReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -1901,42 +1940,39 @@ static IMRemoveSessionReq* defaultIMRemoveSessionReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasResultCode {
   return !!hasResultCode_;
 }
-- (void) setHasResultCode:(BOOL) value_ {
-  hasResultCode_ = !!value_;
+- (void) setHasResultCode:(BOOL) _value_ {
+  hasResultCode_ = !!_value_;
 }
 @synthesize resultCode;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.resultCode = 0;
@@ -1952,10 +1988,10 @@ static IMRemoveSessionRsp* defaultIMRemoveSessionRspInstance = nil;
     defaultIMRemoveSessionRspInstance = [[IMRemoveSessionRsp alloc] init];
   }
 }
-+ (IMRemoveSessionRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMRemoveSessionRspInstance;
 }
-- (IMRemoveSessionRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMRemoveSessionRspInstance;
 }
 - (BOOL) isInitialized {
@@ -2055,7 +2091,7 @@ static IMRemoveSessionRsp* defaultIMRemoveSessionRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"resultCode", [NSNumber numberWithInteger:self.resultCode]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   if (self.hasSessionId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"sessionId", [NSNumber numberWithInteger:self.sessionId]];
@@ -2064,6 +2100,24 @@ static IMRemoveSessionRsp* defaultIMRemoveSessionRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasResultCode) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.resultCode] forKey: @"resultCode"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -2109,29 +2163,26 @@ static IMRemoveSessionRsp* defaultIMRemoveSessionRspInstance = nil;
 @end
 
 @interface IMRemoveSessionRspBuilder()
-@property (strong) IMRemoveSessionRsp* result;
+@property (strong) IMRemoveSessionRsp* resultImremoveSessionRsp;
 @end
 
 @implementation IMRemoveSessionRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImremoveSessionRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMRemoveSessionRsp alloc] init];
+    self.resultImremoveSessionRsp = [[IMRemoveSessionRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImremoveSessionRsp;
 }
 - (IMRemoveSessionRspBuilder*) clear {
-  self.result = [[IMRemoveSessionRsp alloc] init];
+  self.resultImremoveSessionRsp = [[IMRemoveSessionRsp alloc] init];
   return self;
 }
 - (IMRemoveSessionRspBuilder*) clone {
-  return [IMRemoveSessionRsp builderWithPrototype:result];
+  return [IMRemoveSessionRsp builderWithPrototype:resultImremoveSessionRsp];
 }
 - (IMRemoveSessionRsp*) defaultInstance {
   return [IMRemoveSessionRsp defaultInstance];
@@ -2141,8 +2192,8 @@ static IMRemoveSessionRsp* defaultIMRemoveSessionRspInstance = nil;
   return [self buildPartial];
 }
 - (IMRemoveSessionRsp*) buildPartial {
-  IMRemoveSessionRsp* returnMe = result;
-  self.result = nil;
+  IMRemoveSessionRsp* returnMe = resultImremoveSessionRsp;
+  self.resultImremoveSessionRsp = nil;
   return returnMe;
 }
 - (IMRemoveSessionRspBuilder*) mergeFrom:(IMRemoveSessionRsp*) other {
@@ -2214,83 +2265,83 @@ static IMRemoveSessionRsp* defaultIMRemoveSessionRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImremoveSessionRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImremoveSessionRsp.userId;
 }
 - (IMRemoveSessionRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImremoveSessionRsp.hasUserId = YES;
+  resultImremoveSessionRsp.userId = value;
   return self;
 }
 - (IMRemoveSessionRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImremoveSessionRsp.hasUserId = NO;
+  resultImremoveSessionRsp.userId = 0;
   return self;
 }
 - (BOOL) hasResultCode {
-  return result.hasResultCode;
+  return resultImremoveSessionRsp.hasResultCode;
 }
 - (UInt32) resultCode {
-  return result.resultCode;
+  return resultImremoveSessionRsp.resultCode;
 }
 - (IMRemoveSessionRspBuilder*) setResultCode:(UInt32) value {
-  result.hasResultCode = YES;
-  result.resultCode = value;
+  resultImremoveSessionRsp.hasResultCode = YES;
+  resultImremoveSessionRsp.resultCode = value;
   return self;
 }
 - (IMRemoveSessionRspBuilder*) clearResultCode {
-  result.hasResultCode = NO;
-  result.resultCode = 0;
+  resultImremoveSessionRsp.hasResultCode = NO;
+  resultImremoveSessionRsp.resultCode = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImremoveSessionRsp.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImremoveSessionRsp.sessionType;
 }
 - (IMRemoveSessionRspBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImremoveSessionRsp.hasSessionType = YES;
+  resultImremoveSessionRsp.sessionType = value;
   return self;
 }
 - (IMRemoveSessionRspBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImremoveSessionRsp.hasSessionType = NO;
+  resultImremoveSessionRsp.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImremoveSessionRsp.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImremoveSessionRsp.sessionId;
 }
 - (IMRemoveSessionRspBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImremoveSessionRsp.hasSessionId = YES;
+  resultImremoveSessionRsp.sessionId = value;
   return self;
 }
 - (IMRemoveSessionRspBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImremoveSessionRsp.hasSessionId = NO;
+  resultImremoveSessionRsp.sessionId = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImremoveSessionRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImremoveSessionRsp.attachData;
 }
 - (IMRemoveSessionRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImremoveSessionRsp.hasAttachData = YES;
+  resultImremoveSessionRsp.attachData = value;
   return self;
 }
 - (IMRemoveSessionRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImremoveSessionRsp.hasAttachData = NO;
+  resultImremoveSessionRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -2306,28 +2357,25 @@ static IMRemoveSessionRsp* defaultIMRemoveSessionRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasLatestUpdateTime {
   return !!hasLatestUpdateTime_;
 }
-- (void) setHasLatestUpdateTime:(BOOL) value_ {
-  hasLatestUpdateTime_ = !!value_;
+- (void) setHasLatestUpdateTime:(BOOL) _value_ {
+  hasLatestUpdateTime_ = !!_value_;
 }
 @synthesize latestUpdateTime;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.latestUpdateTime = 0;
@@ -2341,10 +2389,10 @@ static IMAllUserReq* defaultIMAllUserReqInstance = nil;
     defaultIMAllUserReqInstance = [[IMAllUserReq alloc] init];
   }
 }
-+ (IMAllUserReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMAllUserReqInstance;
 }
-- (IMAllUserReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMAllUserReqInstance;
 }
 - (BOOL) isInitialized {
@@ -2430,6 +2478,18 @@ static IMAllUserReq* defaultIMAllUserReqInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasLatestUpdateTime) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.latestUpdateTime] forKey: @"latestUpdateTime"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -2464,29 +2524,26 @@ static IMAllUserReq* defaultIMAllUserReqInstance = nil;
 @end
 
 @interface IMAllUserReqBuilder()
-@property (strong) IMAllUserReq* result;
+@property (strong) IMAllUserReq* resultImallUserReq;
 @end
 
 @implementation IMAllUserReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImallUserReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMAllUserReq alloc] init];
+    self.resultImallUserReq = [[IMAllUserReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImallUserReq;
 }
 - (IMAllUserReqBuilder*) clear {
-  self.result = [[IMAllUserReq alloc] init];
+  self.resultImallUserReq = [[IMAllUserReq alloc] init];
   return self;
 }
 - (IMAllUserReqBuilder*) clone {
-  return [IMAllUserReq builderWithPrototype:result];
+  return [IMAllUserReq builderWithPrototype:resultImallUserReq];
 }
 - (IMAllUserReq*) defaultInstance {
   return [IMAllUserReq defaultInstance];
@@ -2496,8 +2553,8 @@ static IMAllUserReq* defaultIMAllUserReqInstance = nil;
   return [self buildPartial];
 }
 - (IMAllUserReq*) buildPartial {
-  IMAllUserReq* returnMe = result;
-  self.result = nil;
+  IMAllUserReq* returnMe = resultImallUserReq;
+  self.resultImallUserReq = nil;
   return returnMe;
 }
 - (IMAllUserReqBuilder*) mergeFrom:(IMAllUserReq*) other {
@@ -2550,51 +2607,51 @@ static IMAllUserReq* defaultIMAllUserReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImallUserReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImallUserReq.userId;
 }
 - (IMAllUserReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImallUserReq.hasUserId = YES;
+  resultImallUserReq.userId = value;
   return self;
 }
 - (IMAllUserReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImallUserReq.hasUserId = NO;
+  resultImallUserReq.userId = 0;
   return self;
 }
 - (BOOL) hasLatestUpdateTime {
-  return result.hasLatestUpdateTime;
+  return resultImallUserReq.hasLatestUpdateTime;
 }
 - (UInt32) latestUpdateTime {
-  return result.latestUpdateTime;
+  return resultImallUserReq.latestUpdateTime;
 }
 - (IMAllUserReqBuilder*) setLatestUpdateTime:(UInt32) value {
-  result.hasLatestUpdateTime = YES;
-  result.latestUpdateTime = value;
+  resultImallUserReq.hasLatestUpdateTime = YES;
+  resultImallUserReq.latestUpdateTime = value;
   return self;
 }
 - (IMAllUserReqBuilder*) clearLatestUpdateTime {
-  result.hasLatestUpdateTime = NO;
-  result.latestUpdateTime = 0;
+  resultImallUserReq.hasLatestUpdateTime = NO;
+  resultImallUserReq.latestUpdateTime = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImallUserReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImallUserReq.attachData;
 }
 - (IMAllUserReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImallUserReq.hasAttachData = YES;
+  resultImallUserReq.attachData = value;
   return self;
 }
 - (IMAllUserReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImallUserReq.hasAttachData = NO;
+  resultImallUserReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -2611,15 +2668,15 @@ static IMAllUserReq* defaultIMAllUserReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasLatestUpdateTime {
   return !!hasLatestUpdateTime_;
 }
-- (void) setHasLatestUpdateTime:(BOOL) value_ {
-  hasLatestUpdateTime_ = !!value_;
+- (void) setHasLatestUpdateTime:(BOOL) _value_ {
+  hasLatestUpdateTime_ = !!_value_;
 }
 @synthesize latestUpdateTime;
 @synthesize userListArray;
@@ -2627,15 +2684,11 @@ static IMAllUserReq* defaultIMAllUserReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.userListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.latestUpdateTime = 0;
@@ -2649,10 +2702,10 @@ static IMAllUserRsp* defaultIMAllUserRspInstance = nil;
     defaultIMAllUserRspInstance = [[IMAllUserRsp alloc] init];
   }
 }
-+ (IMAllUserRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMAllUserRspInstance;
 }
-- (IMAllUserRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMAllUserRspInstance;
 }
 - (NSArray *)userList {
@@ -2764,6 +2817,23 @@ static IMAllUserRsp* defaultIMAllUserRspInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasLatestUpdateTime) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.latestUpdateTime] forKey: @"latestUpdateTime"];
+  }
+  for (UserInfo* element in self.userListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"userList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -2802,29 +2872,26 @@ static IMAllUserRsp* defaultIMAllUserRspInstance = nil;
 @end
 
 @interface IMAllUserRspBuilder()
-@property (strong) IMAllUserRsp* result;
+@property (strong) IMAllUserRsp* resultImallUserRsp;
 @end
 
 @implementation IMAllUserRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImallUserRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMAllUserRsp alloc] init];
+    self.resultImallUserRsp = [[IMAllUserRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImallUserRsp;
 }
 - (IMAllUserRspBuilder*) clear {
-  self.result = [[IMAllUserRsp alloc] init];
+  self.resultImallUserRsp = [[IMAllUserRsp alloc] init];
   return self;
 }
 - (IMAllUserRspBuilder*) clone {
-  return [IMAllUserRsp builderWithPrototype:result];
+  return [IMAllUserRsp builderWithPrototype:resultImallUserRsp];
 }
 - (IMAllUserRsp*) defaultInstance {
   return [IMAllUserRsp defaultInstance];
@@ -2834,8 +2901,8 @@ static IMAllUserRsp* defaultIMAllUserRspInstance = nil;
   return [self buildPartial];
 }
 - (IMAllUserRsp*) buildPartial {
-  IMAllUserRsp* returnMe = result;
-  self.result = nil;
+  IMAllUserRsp* returnMe = resultImallUserRsp;
+  self.resultImallUserRsp = nil;
   return returnMe;
 }
 - (IMAllUserRspBuilder*) mergeFrom:(IMAllUserRsp*) other {
@@ -2849,10 +2916,10 @@ static IMAllUserRsp* defaultIMAllUserRspInstance = nil;
     [self setLatestUpdateTime:other.latestUpdateTime];
   }
   if (other.userListArray.count > 0) {
-    if (result.userListArray == nil) {
-      result.userListArray = [[NSMutableArray alloc] initWithArray:other.userListArray];
+    if (resultImallUserRsp.userListArray == nil) {
+      resultImallUserRsp.userListArray = [[NSMutableArray alloc] initWithArray:other.userListArray];
     } else {
-      [result.userListArray addObjectsFromArray:other.userListArray];
+      [resultImallUserRsp.userListArray addObjectsFromArray:other.userListArray];
     }
   }
   if (other.hasAttachData) {
@@ -2901,72 +2968,72 @@ static IMAllUserRsp* defaultIMAllUserRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImallUserRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImallUserRsp.userId;
 }
 - (IMAllUserRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImallUserRsp.hasUserId = YES;
+  resultImallUserRsp.userId = value;
   return self;
 }
 - (IMAllUserRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImallUserRsp.hasUserId = NO;
+  resultImallUserRsp.userId = 0;
   return self;
 }
 - (BOOL) hasLatestUpdateTime {
-  return result.hasLatestUpdateTime;
+  return resultImallUserRsp.hasLatestUpdateTime;
 }
 - (UInt32) latestUpdateTime {
-  return result.latestUpdateTime;
+  return resultImallUserRsp.latestUpdateTime;
 }
 - (IMAllUserRspBuilder*) setLatestUpdateTime:(UInt32) value {
-  result.hasLatestUpdateTime = YES;
-  result.latestUpdateTime = value;
+  resultImallUserRsp.hasLatestUpdateTime = YES;
+  resultImallUserRsp.latestUpdateTime = value;
   return self;
 }
 - (IMAllUserRspBuilder*) clearLatestUpdateTime {
-  result.hasLatestUpdateTime = NO;
-  result.latestUpdateTime = 0;
+  resultImallUserRsp.hasLatestUpdateTime = NO;
+  resultImallUserRsp.latestUpdateTime = 0;
   return self;
 }
 - (NSMutableArray *)userList {
-  return result.userListArray;
+  return resultImallUserRsp.userListArray;
 }
 - (UserInfo*)userListAtIndex:(NSUInteger)index {
-  return [result userListAtIndex:index];
+  return [resultImallUserRsp userListAtIndex:index];
 }
 - (IMAllUserRspBuilder *)addUserList:(UserInfo*)value {
-  if (result.userListArray == nil) {
-    result.userListArray = [[NSMutableArray alloc]init];
+  if (resultImallUserRsp.userListArray == nil) {
+    resultImallUserRsp.userListArray = [[NSMutableArray alloc]init];
   }
-  [result.userListArray addObject:value];
+  [resultImallUserRsp.userListArray addObject:value];
   return self;
 }
 - (IMAllUserRspBuilder *)setUserListArray:(NSArray *)array {
-  result.userListArray = [[NSMutableArray alloc]initWithArray:array];
+  resultImallUserRsp.userListArray = [[NSMutableArray alloc]initWithArray:array];
   return self;
 }
 - (IMAllUserRspBuilder *)clearUserList {
-  result.userListArray = nil;
+  resultImallUserRsp.userListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImallUserRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImallUserRsp.attachData;
 }
 - (IMAllUserRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImallUserRsp.hasAttachData = YES;
+  resultImallUserRsp.attachData = value;
   return self;
 }
 - (IMAllUserRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImallUserRsp.hasAttachData = NO;
+  resultImallUserRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -2982,8 +3049,8 @@ static IMAllUserRsp* defaultIMAllUserRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 @synthesize userIdListArray;
@@ -2991,15 +3058,11 @@ static IMAllUserRsp* defaultIMAllUserRspInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.userIdListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.attachData = [NSData data];
@@ -3012,10 +3075,10 @@ static IMUsersStatReq* defaultIMUsersStatReqInstance = nil;
     defaultIMUsersStatReqInstance = [[IMUsersStatReq alloc] init];
   }
 }
-+ (IMUsersStatReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMUsersStatReqInstance;
 }
-- (IMUsersStatReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMUsersStatReqInstance;
 }
 - (PBArray *)userIdList {
@@ -3115,6 +3178,21 @@ static IMUsersStatReq* defaultIMUsersStatReqInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  NSMutableArray * userIdListArrayArray = [NSMutableArray new];
+  NSUInteger userIdListArrayCount=self.userIdListArray.count;
+  for(int i=0;i<userIdListArrayCount;i++){
+    [userIdListArrayArray addObject: @([self.userIdListArray uint32AtIndex:i])];
+  }
+  [dictionary setObject: userIdListArrayArray forKey: @"userIdList"];
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -3136,7 +3214,7 @@ static IMUsersStatReq* defaultIMUsersStatReqInstance = nil;
   if (self.hasUserId) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.userId] hash];
   }
-  [self.userIdListArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.userIdListArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
   if (self.hasAttachData) {
@@ -3148,29 +3226,26 @@ static IMUsersStatReq* defaultIMUsersStatReqInstance = nil;
 @end
 
 @interface IMUsersStatReqBuilder()
-@property (strong) IMUsersStatReq* result;
+@property (strong) IMUsersStatReq* resultImusersStatReq;
 @end
 
 @implementation IMUsersStatReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImusersStatReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMUsersStatReq alloc] init];
+    self.resultImusersStatReq = [[IMUsersStatReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImusersStatReq;
 }
 - (IMUsersStatReqBuilder*) clear {
-  self.result = [[IMUsersStatReq alloc] init];
+  self.resultImusersStatReq = [[IMUsersStatReq alloc] init];
   return self;
 }
 - (IMUsersStatReqBuilder*) clone {
-  return [IMUsersStatReq builderWithPrototype:result];
+  return [IMUsersStatReq builderWithPrototype:resultImusersStatReq];
 }
 - (IMUsersStatReq*) defaultInstance {
   return [IMUsersStatReq defaultInstance];
@@ -3180,8 +3255,8 @@ static IMUsersStatReq* defaultIMUsersStatReqInstance = nil;
   return [self buildPartial];
 }
 - (IMUsersStatReq*) buildPartial {
-  IMUsersStatReq* returnMe = result;
-  self.result = nil;
+  IMUsersStatReq* returnMe = resultImusersStatReq;
+  self.resultImusersStatReq = nil;
   return returnMe;
 }
 - (IMUsersStatReqBuilder*) mergeFrom:(IMUsersStatReq*) other {
@@ -3192,10 +3267,10 @@ static IMUsersStatReq* defaultIMUsersStatReqInstance = nil;
     [self setUserId:other.userId];
   }
   if (other.userIdListArray.count > 0) {
-    if (result.userIdListArray == nil) {
-      result.userIdListArray = [other.userIdListArray copy];
+    if (resultImusersStatReq.userIdListArray == nil) {
+      resultImusersStatReq.userIdListArray = [other.userIdListArray copy];
     } else {
-      [result.userIdListArray appendArray:other.userIdListArray];
+      [resultImusersStatReq.userIdListArray appendArray:other.userIdListArray];
     }
   }
   if (other.hasAttachData) {
@@ -3238,60 +3313,60 @@ static IMUsersStatReq* defaultIMUsersStatReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImusersStatReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImusersStatReq.userId;
 }
 - (IMUsersStatReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImusersStatReq.hasUserId = YES;
+  resultImusersStatReq.userId = value;
   return self;
 }
 - (IMUsersStatReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImusersStatReq.hasUserId = NO;
+  resultImusersStatReq.userId = 0;
   return self;
 }
 - (PBAppendableArray *)userIdList {
-  return result.userIdListArray;
+  return resultImusersStatReq.userIdListArray;
 }
 - (UInt32)userIdListAtIndex:(NSUInteger)index {
-  return [result userIdListAtIndex:index];
+  return [resultImusersStatReq userIdListAtIndex:index];
 }
 - (IMUsersStatReqBuilder *)addUserIdList:(UInt32)value {
-  if (result.userIdListArray == nil) {
-    result.userIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
+  if (resultImusersStatReq.userIdListArray == nil) {
+    resultImusersStatReq.userIdListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
   }
-  [result.userIdListArray addUint32:value];
+  [resultImusersStatReq.userIdListArray addUint32:value];
   return self;
 }
 - (IMUsersStatReqBuilder *)setUserIdListArray:(NSArray *)array {
-  result.userIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
+  resultImusersStatReq.userIdListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMUsersStatReqBuilder *)setUserIdListValues:(const UInt32 *)values count:(NSUInteger)count {
-  result.userIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
+  resultImusersStatReq.userIdListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (IMUsersStatReqBuilder *)clearUserIdList {
-  result.userIdListArray = nil;
+  resultImusersStatReq.userIdListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImusersStatReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImusersStatReq.attachData;
 }
 - (IMUsersStatReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImusersStatReq.hasAttachData = YES;
+  resultImusersStatReq.attachData = value;
   return self;
 }
 - (IMUsersStatReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImusersStatReq.hasAttachData = NO;
+  resultImusersStatReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -3307,8 +3382,8 @@ static IMUsersStatReq* defaultIMUsersStatReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 @synthesize userStatListArray;
@@ -3316,15 +3391,11 @@ static IMUsersStatReq* defaultIMUsersStatReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.userStatListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.attachData = [NSData data];
@@ -3337,10 +3408,10 @@ static IMUsersStatRsp* defaultIMUsersStatRspInstance = nil;
     defaultIMUsersStatRspInstance = [[IMUsersStatRsp alloc] init];
   }
 }
-+ (IMUsersStatRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMUsersStatRspInstance;
 }
-- (IMUsersStatRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMUsersStatRspInstance;
 }
 - (NSArray *)userStatList {
@@ -3440,6 +3511,20 @@ static IMUsersStatRsp* defaultIMUsersStatRspInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  for (UserStat* element in self.userStatListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"userStatList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -3473,29 +3558,26 @@ static IMUsersStatRsp* defaultIMUsersStatRspInstance = nil;
 @end
 
 @interface IMUsersStatRspBuilder()
-@property (strong) IMUsersStatRsp* result;
+@property (strong) IMUsersStatRsp* resultImusersStatRsp;
 @end
 
 @implementation IMUsersStatRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImusersStatRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMUsersStatRsp alloc] init];
+    self.resultImusersStatRsp = [[IMUsersStatRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImusersStatRsp;
 }
 - (IMUsersStatRspBuilder*) clear {
-  self.result = [[IMUsersStatRsp alloc] init];
+  self.resultImusersStatRsp = [[IMUsersStatRsp alloc] init];
   return self;
 }
 - (IMUsersStatRspBuilder*) clone {
-  return [IMUsersStatRsp builderWithPrototype:result];
+  return [IMUsersStatRsp builderWithPrototype:resultImusersStatRsp];
 }
 - (IMUsersStatRsp*) defaultInstance {
   return [IMUsersStatRsp defaultInstance];
@@ -3505,8 +3587,8 @@ static IMUsersStatRsp* defaultIMUsersStatRspInstance = nil;
   return [self buildPartial];
 }
 - (IMUsersStatRsp*) buildPartial {
-  IMUsersStatRsp* returnMe = result;
-  self.result = nil;
+  IMUsersStatRsp* returnMe = resultImusersStatRsp;
+  self.resultImusersStatRsp = nil;
   return returnMe;
 }
 - (IMUsersStatRspBuilder*) mergeFrom:(IMUsersStatRsp*) other {
@@ -3517,10 +3599,10 @@ static IMUsersStatRsp* defaultIMUsersStatRspInstance = nil;
     [self setUserId:other.userId];
   }
   if (other.userStatListArray.count > 0) {
-    if (result.userStatListArray == nil) {
-      result.userStatListArray = [[NSMutableArray alloc] initWithArray:other.userStatListArray];
+    if (resultImusersStatRsp.userStatListArray == nil) {
+      resultImusersStatRsp.userStatListArray = [[NSMutableArray alloc] initWithArray:other.userStatListArray];
     } else {
-      [result.userStatListArray addObjectsFromArray:other.userStatListArray];
+      [resultImusersStatRsp.userStatListArray addObjectsFromArray:other.userStatListArray];
     }
   }
   if (other.hasAttachData) {
@@ -3565,56 +3647,56 @@ static IMUsersStatRsp* defaultIMUsersStatRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImusersStatRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImusersStatRsp.userId;
 }
 - (IMUsersStatRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImusersStatRsp.hasUserId = YES;
+  resultImusersStatRsp.userId = value;
   return self;
 }
 - (IMUsersStatRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImusersStatRsp.hasUserId = NO;
+  resultImusersStatRsp.userId = 0;
   return self;
 }
 - (NSMutableArray *)userStatList {
-  return result.userStatListArray;
+  return resultImusersStatRsp.userStatListArray;
 }
 - (UserStat*)userStatListAtIndex:(NSUInteger)index {
-  return [result userStatListAtIndex:index];
+  return [resultImusersStatRsp userStatListAtIndex:index];
 }
 - (IMUsersStatRspBuilder *)addUserStatList:(UserStat*)value {
-  if (result.userStatListArray == nil) {
-    result.userStatListArray = [[NSMutableArray alloc]init];
+  if (resultImusersStatRsp.userStatListArray == nil) {
+    resultImusersStatRsp.userStatListArray = [[NSMutableArray alloc]init];
   }
-  [result.userStatListArray addObject:value];
+  [resultImusersStatRsp.userStatListArray addObject:value];
   return self;
 }
 - (IMUsersStatRspBuilder *)setUserStatListArray:(NSArray *)array {
-  result.userStatListArray = [[NSMutableArray alloc]initWithArray:array];
+  resultImusersStatRsp.userStatListArray = [[NSMutableArray alloc]initWithArray:array];
   return self;
 }
 - (IMUsersStatRspBuilder *)clearUserStatList {
-  result.userStatListArray = nil;
+  resultImusersStatRsp.userStatListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImusersStatRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImusersStatRsp.attachData;
 }
 - (IMUsersStatRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImusersStatRsp.hasAttachData = YES;
+  resultImusersStatRsp.attachData = value;
   return self;
 }
 - (IMUsersStatRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImusersStatRsp.hasAttachData = NO;
+  resultImusersStatRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -3630,29 +3712,25 @@ static IMUsersStatRsp* defaultIMUsersStatRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasAvatarUrl {
   return !!hasAvatarUrl_;
 }
-- (void) setHasAvatarUrl:(BOOL) value_ {
-  hasAvatarUrl_ = !!value_;
+- (void) setHasAvatarUrl:(BOOL) _value_ {
+  hasAvatarUrl_ = !!_value_;
 }
 @synthesize avatarUrl;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.avatarUrl = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.avatarUrl = @"";
@@ -3666,10 +3744,10 @@ static IMChangeAvatarReq* defaultIMChangeAvatarReqInstance = nil;
     defaultIMChangeAvatarReqInstance = [[IMChangeAvatarReq alloc] init];
   }
 }
-+ (IMChangeAvatarReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMChangeAvatarReqInstance;
 }
-- (IMChangeAvatarReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMChangeAvatarReqInstance;
 }
 - (BOOL) isInitialized {
@@ -3755,6 +3833,18 @@ static IMChangeAvatarReq* defaultIMChangeAvatarReqInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasAvatarUrl) {
+    [dictionary setObject: self.avatarUrl forKey: @"avatarUrl"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -3789,29 +3879,26 @@ static IMChangeAvatarReq* defaultIMChangeAvatarReqInstance = nil;
 @end
 
 @interface IMChangeAvatarReqBuilder()
-@property (strong) IMChangeAvatarReq* result;
+@property (strong) IMChangeAvatarReq* resultImchangeAvatarReq;
 @end
 
 @implementation IMChangeAvatarReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImchangeAvatarReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMChangeAvatarReq alloc] init];
+    self.resultImchangeAvatarReq = [[IMChangeAvatarReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImchangeAvatarReq;
 }
 - (IMChangeAvatarReqBuilder*) clear {
-  self.result = [[IMChangeAvatarReq alloc] init];
+  self.resultImchangeAvatarReq = [[IMChangeAvatarReq alloc] init];
   return self;
 }
 - (IMChangeAvatarReqBuilder*) clone {
-  return [IMChangeAvatarReq builderWithPrototype:result];
+  return [IMChangeAvatarReq builderWithPrototype:resultImchangeAvatarReq];
 }
 - (IMChangeAvatarReq*) defaultInstance {
   return [IMChangeAvatarReq defaultInstance];
@@ -3821,8 +3908,8 @@ static IMChangeAvatarReq* defaultIMChangeAvatarReqInstance = nil;
   return [self buildPartial];
 }
 - (IMChangeAvatarReq*) buildPartial {
-  IMChangeAvatarReq* returnMe = result;
-  self.result = nil;
+  IMChangeAvatarReq* returnMe = resultImchangeAvatarReq;
+  self.resultImchangeAvatarReq = nil;
   return returnMe;
 }
 - (IMChangeAvatarReqBuilder*) mergeFrom:(IMChangeAvatarReq*) other {
@@ -3875,51 +3962,51 @@ static IMChangeAvatarReq* defaultIMChangeAvatarReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImchangeAvatarReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImchangeAvatarReq.userId;
 }
 - (IMChangeAvatarReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImchangeAvatarReq.hasUserId = YES;
+  resultImchangeAvatarReq.userId = value;
   return self;
 }
 - (IMChangeAvatarReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImchangeAvatarReq.hasUserId = NO;
+  resultImchangeAvatarReq.userId = 0;
   return self;
 }
 - (BOOL) hasAvatarUrl {
-  return result.hasAvatarUrl;
+  return resultImchangeAvatarReq.hasAvatarUrl;
 }
 - (NSString*) avatarUrl {
-  return result.avatarUrl;
+  return resultImchangeAvatarReq.avatarUrl;
 }
 - (IMChangeAvatarReqBuilder*) setAvatarUrl:(NSString*) value {
-  result.hasAvatarUrl = YES;
-  result.avatarUrl = value;
+  resultImchangeAvatarReq.hasAvatarUrl = YES;
+  resultImchangeAvatarReq.avatarUrl = value;
   return self;
 }
 - (IMChangeAvatarReqBuilder*) clearAvatarUrl {
-  result.hasAvatarUrl = NO;
-  result.avatarUrl = @"";
+  resultImchangeAvatarReq.hasAvatarUrl = NO;
+  resultImchangeAvatarReq.avatarUrl = @"";
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImchangeAvatarReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImchangeAvatarReq.attachData;
 }
 - (IMChangeAvatarReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImchangeAvatarReq.hasAttachData = YES;
+  resultImchangeAvatarReq.attachData = value;
   return self;
 }
 - (IMChangeAvatarReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImchangeAvatarReq.hasAttachData = NO;
+  resultImchangeAvatarReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -3935,28 +4022,25 @@ static IMChangeAvatarReq* defaultIMChangeAvatarReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasResultCode {
   return !!hasResultCode_;
 }
-- (void) setHasResultCode:(BOOL) value_ {
-  hasResultCode_ = !!value_;
+- (void) setHasResultCode:(BOOL) _value_ {
+  hasResultCode_ = !!_value_;
 }
 @synthesize resultCode;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.resultCode = 0;
@@ -3970,10 +4054,10 @@ static IMChangeAvatarRsp* defaultIMChangeAvatarRspInstance = nil;
     defaultIMChangeAvatarRspInstance = [[IMChangeAvatarRsp alloc] init];
   }
 }
-+ (IMChangeAvatarRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMChangeAvatarRspInstance;
 }
-- (IMChangeAvatarRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMChangeAvatarRspInstance;
 }
 - (BOOL) isInitialized {
@@ -4059,6 +4143,18 @@ static IMChangeAvatarRsp* defaultIMChangeAvatarRspInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasResultCode) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.resultCode] forKey: @"resultCode"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -4093,29 +4189,26 @@ static IMChangeAvatarRsp* defaultIMChangeAvatarRspInstance = nil;
 @end
 
 @interface IMChangeAvatarRspBuilder()
-@property (strong) IMChangeAvatarRsp* result;
+@property (strong) IMChangeAvatarRsp* resultImchangeAvatarRsp;
 @end
 
 @implementation IMChangeAvatarRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImchangeAvatarRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMChangeAvatarRsp alloc] init];
+    self.resultImchangeAvatarRsp = [[IMChangeAvatarRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImchangeAvatarRsp;
 }
 - (IMChangeAvatarRspBuilder*) clear {
-  self.result = [[IMChangeAvatarRsp alloc] init];
+  self.resultImchangeAvatarRsp = [[IMChangeAvatarRsp alloc] init];
   return self;
 }
 - (IMChangeAvatarRspBuilder*) clone {
-  return [IMChangeAvatarRsp builderWithPrototype:result];
+  return [IMChangeAvatarRsp builderWithPrototype:resultImchangeAvatarRsp];
 }
 - (IMChangeAvatarRsp*) defaultInstance {
   return [IMChangeAvatarRsp defaultInstance];
@@ -4125,8 +4218,8 @@ static IMChangeAvatarRsp* defaultIMChangeAvatarRspInstance = nil;
   return [self buildPartial];
 }
 - (IMChangeAvatarRsp*) buildPartial {
-  IMChangeAvatarRsp* returnMe = result;
-  self.result = nil;
+  IMChangeAvatarRsp* returnMe = resultImchangeAvatarRsp;
+  self.resultImchangeAvatarRsp = nil;
   return returnMe;
 }
 - (IMChangeAvatarRspBuilder*) mergeFrom:(IMChangeAvatarRsp*) other {
@@ -4179,51 +4272,51 @@ static IMChangeAvatarRsp* defaultIMChangeAvatarRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImchangeAvatarRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImchangeAvatarRsp.userId;
 }
 - (IMChangeAvatarRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImchangeAvatarRsp.hasUserId = YES;
+  resultImchangeAvatarRsp.userId = value;
   return self;
 }
 - (IMChangeAvatarRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImchangeAvatarRsp.hasUserId = NO;
+  resultImchangeAvatarRsp.userId = 0;
   return self;
 }
 - (BOOL) hasResultCode {
-  return result.hasResultCode;
+  return resultImchangeAvatarRsp.hasResultCode;
 }
 - (UInt32) resultCode {
-  return result.resultCode;
+  return resultImchangeAvatarRsp.resultCode;
 }
 - (IMChangeAvatarRspBuilder*) setResultCode:(UInt32) value {
-  result.hasResultCode = YES;
-  result.resultCode = value;
+  resultImchangeAvatarRsp.hasResultCode = YES;
+  resultImchangeAvatarRsp.resultCode = value;
   return self;
 }
 - (IMChangeAvatarRspBuilder*) clearResultCode {
-  result.hasResultCode = NO;
-  result.resultCode = 0;
+  resultImchangeAvatarRsp.hasResultCode = NO;
+  resultImchangeAvatarRsp.resultCode = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImchangeAvatarRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImchangeAvatarRsp.attachData;
 }
 - (IMChangeAvatarRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImchangeAvatarRsp.hasAttachData = YES;
+  resultImchangeAvatarRsp.attachData = value;
   return self;
 }
 - (IMChangeAvatarRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImchangeAvatarRsp.hasAttachData = NO;
+  resultImchangeAvatarRsp.attachData = [NSData data];
   return self;
 }
 @end
@@ -4238,20 +4331,18 @@ static IMChangeAvatarRsp* defaultIMChangeAvatarRspInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasLoginStat {
   return !!hasLoginStat_;
 }
-- (void) setHasLoginStat:(BOOL) value_ {
-  hasLoginStat_ = !!value_;
+- (void) setHasLoginStat:(BOOL) _value_ {
+  hasLoginStat_ = !!_value_;
 }
 @synthesize loginStat;
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.loginStat = UserStatTypeUserStatusOnline;
@@ -4264,10 +4355,10 @@ static IMPCLoginStatusNotify* defaultIMPCLoginStatusNotifyInstance = nil;
     defaultIMPCLoginStatusNotifyInstance = [[IMPCLoginStatusNotify alloc] init];
   }
 }
-+ (IMPCLoginStatusNotify*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMPCLoginStatusNotifyInstance;
 }
-- (IMPCLoginStatusNotify*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMPCLoginStatusNotifyInstance;
 }
 - (BOOL) isInitialized {
@@ -4340,9 +4431,18 @@ static IMPCLoginStatusNotify* defaultIMPCLoginStatusNotifyInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasLoginStat) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"loginStat", self.loginStat];
+    [output appendFormat:@"%@%@: %@\n", indent, @"loginStat", NSStringFromUserStatType(self.loginStat)];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasLoginStat) {
+    [dictionary setObject: @(self.loginStat) forKey: @"loginStat"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -4373,29 +4473,26 @@ static IMPCLoginStatusNotify* defaultIMPCLoginStatusNotifyInstance = nil;
 @end
 
 @interface IMPCLoginStatusNotifyBuilder()
-@property (strong) IMPCLoginStatusNotify* result;
+@property (strong) IMPCLoginStatusNotify* resultImpcloginStatusNotify;
 @end
 
 @implementation IMPCLoginStatusNotifyBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImpcloginStatusNotify;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMPCLoginStatusNotify alloc] init];
+    self.resultImpcloginStatusNotify = [[IMPCLoginStatusNotify alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImpcloginStatusNotify;
 }
 - (IMPCLoginStatusNotifyBuilder*) clear {
-  self.result = [[IMPCLoginStatusNotify alloc] init];
+  self.resultImpcloginStatusNotify = [[IMPCLoginStatusNotify alloc] init];
   return self;
 }
 - (IMPCLoginStatusNotifyBuilder*) clone {
-  return [IMPCLoginStatusNotify builderWithPrototype:result];
+  return [IMPCLoginStatusNotify builderWithPrototype:resultImpcloginStatusNotify];
 }
 - (IMPCLoginStatusNotify*) defaultInstance {
   return [IMPCLoginStatusNotify defaultInstance];
@@ -4405,8 +4502,8 @@ static IMPCLoginStatusNotify* defaultIMPCLoginStatusNotifyInstance = nil;
   return [self buildPartial];
 }
 - (IMPCLoginStatusNotify*) buildPartial {
-  IMPCLoginStatusNotify* returnMe = result;
-  self.result = nil;
+  IMPCLoginStatusNotify* returnMe = resultImpcloginStatusNotify;
+  self.resultImpcloginStatusNotify = nil;
   return returnMe;
 }
 - (IMPCLoginStatusNotifyBuilder*) mergeFrom:(IMPCLoginStatusNotify*) other {
@@ -4457,35 +4554,35 @@ static IMPCLoginStatusNotify* defaultIMPCLoginStatusNotifyInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImpcloginStatusNotify.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImpcloginStatusNotify.userId;
 }
 - (IMPCLoginStatusNotifyBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImpcloginStatusNotify.hasUserId = YES;
+  resultImpcloginStatusNotify.userId = value;
   return self;
 }
 - (IMPCLoginStatusNotifyBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImpcloginStatusNotify.hasUserId = NO;
+  resultImpcloginStatusNotify.userId = 0;
   return self;
 }
 - (BOOL) hasLoginStat {
-  return result.hasLoginStat;
+  return resultImpcloginStatusNotify.hasLoginStat;
 }
 - (UserStatType) loginStat {
-  return result.loginStat;
+  return resultImpcloginStatusNotify.loginStat;
 }
 - (IMPCLoginStatusNotifyBuilder*) setLoginStat:(UserStatType) value {
-  result.hasLoginStat = YES;
-  result.loginStat = value;
+  resultImpcloginStatusNotify.hasLoginStat = YES;
+  resultImpcloginStatusNotify.loginStat = value;
   return self;
 }
 - (IMPCLoginStatusNotifyBuilder*) clearLoginStat {
-  result.hasLoginStat = NO;
-  result.loginStat = UserStatTypeUserStatusOnline;
+  resultImpcloginStatusNotify.hasLoginStat = NO;
+  resultImpcloginStatusNotify.loginStat = UserStatTypeUserStatusOnline;
   return self;
 }
 @end
@@ -4501,27 +4598,25 @@ static IMPCLoginStatusNotify* defaultIMPCLoginStatusNotifyInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.sessionType = SessionTypeSessionTypeSingle;
@@ -4535,10 +4630,10 @@ static IMRemoveSessionNotify* defaultIMRemoveSessionNotifyInstance = nil;
     defaultIMRemoveSessionNotifyInstance = [[IMRemoveSessionNotify alloc] init];
   }
 }
-+ (IMRemoveSessionNotify*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMRemoveSessionNotifyInstance;
 }
-- (IMRemoveSessionNotify*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMRemoveSessionNotifyInstance;
 }
 - (BOOL) isInitialized {
@@ -4620,12 +4715,24 @@ static IMRemoveSessionNotify* defaultIMRemoveSessionNotifyInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   if (self.hasSessionId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"sessionId", [NSNumber numberWithInteger:self.sessionId]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -4661,29 +4768,26 @@ static IMRemoveSessionNotify* defaultIMRemoveSessionNotifyInstance = nil;
 @end
 
 @interface IMRemoveSessionNotifyBuilder()
-@property (strong) IMRemoveSessionNotify* result;
+@property (strong) IMRemoveSessionNotify* resultImremoveSessionNotify;
 @end
 
 @implementation IMRemoveSessionNotifyBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImremoveSessionNotify;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMRemoveSessionNotify alloc] init];
+    self.resultImremoveSessionNotify = [[IMRemoveSessionNotify alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImremoveSessionNotify;
 }
 - (IMRemoveSessionNotifyBuilder*) clear {
-  self.result = [[IMRemoveSessionNotify alloc] init];
+  self.resultImremoveSessionNotify = [[IMRemoveSessionNotify alloc] init];
   return self;
 }
 - (IMRemoveSessionNotifyBuilder*) clone {
-  return [IMRemoveSessionNotify builderWithPrototype:result];
+  return [IMRemoveSessionNotify builderWithPrototype:resultImremoveSessionNotify];
 }
 - (IMRemoveSessionNotify*) defaultInstance {
   return [IMRemoveSessionNotify defaultInstance];
@@ -4693,8 +4797,8 @@ static IMRemoveSessionNotify* defaultIMRemoveSessionNotifyInstance = nil;
   return [self buildPartial];
 }
 - (IMRemoveSessionNotify*) buildPartial {
-  IMRemoveSessionNotify* returnMe = result;
-  self.result = nil;
+  IMRemoveSessionNotify* returnMe = resultImremoveSessionNotify;
+  self.resultImremoveSessionNotify = nil;
   return returnMe;
 }
 - (IMRemoveSessionNotifyBuilder*) mergeFrom:(IMRemoveSessionNotify*) other {
@@ -4752,51 +4856,51 @@ static IMRemoveSessionNotify* defaultIMRemoveSessionNotifyInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImremoveSessionNotify.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImremoveSessionNotify.userId;
 }
 - (IMRemoveSessionNotifyBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImremoveSessionNotify.hasUserId = YES;
+  resultImremoveSessionNotify.userId = value;
   return self;
 }
 - (IMRemoveSessionNotifyBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImremoveSessionNotify.hasUserId = NO;
+  resultImremoveSessionNotify.userId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultImremoveSessionNotify.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultImremoveSessionNotify.sessionType;
 }
 - (IMRemoveSessionNotifyBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultImremoveSessionNotify.hasSessionType = YES;
+  resultImremoveSessionNotify.sessionType = value;
   return self;
 }
 - (IMRemoveSessionNotifyBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultImremoveSessionNotify.hasSessionType = NO;
+  resultImremoveSessionNotify.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultImremoveSessionNotify.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultImremoveSessionNotify.sessionId;
 }
 - (IMRemoveSessionNotifyBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultImremoveSessionNotify.hasSessionId = YES;
+  resultImremoveSessionNotify.sessionId = value;
   return self;
 }
 - (IMRemoveSessionNotifyBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultImremoveSessionNotify.hasSessionId = NO;
+  resultImremoveSessionNotify.sessionId = 0;
   return self;
 }
 @end
@@ -4812,28 +4916,25 @@ static IMRemoveSessionNotify* defaultIMRemoveSessionNotifyInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasLatestUpdateTime {
   return !!hasLatestUpdateTime_;
 }
-- (void) setHasLatestUpdateTime:(BOOL) value_ {
-  hasLatestUpdateTime_ = !!value_;
+- (void) setHasLatestUpdateTime:(BOOL) _value_ {
+  hasLatestUpdateTime_ = !!_value_;
 }
 @synthesize latestUpdateTime;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.latestUpdateTime = 0;
@@ -4847,10 +4948,10 @@ static IMDepartmentReq* defaultIMDepartmentReqInstance = nil;
     defaultIMDepartmentReqInstance = [[IMDepartmentReq alloc] init];
   }
 }
-+ (IMDepartmentReq*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMDepartmentReqInstance;
 }
-- (IMDepartmentReq*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMDepartmentReqInstance;
 }
 - (BOOL) isInitialized {
@@ -4936,6 +5037,18 @@ static IMDepartmentReq* defaultIMDepartmentReqInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasLatestUpdateTime) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.latestUpdateTime] forKey: @"latestUpdateTime"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -4970,29 +5083,26 @@ static IMDepartmentReq* defaultIMDepartmentReqInstance = nil;
 @end
 
 @interface IMDepartmentReqBuilder()
-@property (strong) IMDepartmentReq* result;
+@property (strong) IMDepartmentReq* resultImdepartmentReq;
 @end
 
 @implementation IMDepartmentReqBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImdepartmentReq;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMDepartmentReq alloc] init];
+    self.resultImdepartmentReq = [[IMDepartmentReq alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImdepartmentReq;
 }
 - (IMDepartmentReqBuilder*) clear {
-  self.result = [[IMDepartmentReq alloc] init];
+  self.resultImdepartmentReq = [[IMDepartmentReq alloc] init];
   return self;
 }
 - (IMDepartmentReqBuilder*) clone {
-  return [IMDepartmentReq builderWithPrototype:result];
+  return [IMDepartmentReq builderWithPrototype:resultImdepartmentReq];
 }
 - (IMDepartmentReq*) defaultInstance {
   return [IMDepartmentReq defaultInstance];
@@ -5002,8 +5112,8 @@ static IMDepartmentReq* defaultIMDepartmentReqInstance = nil;
   return [self buildPartial];
 }
 - (IMDepartmentReq*) buildPartial {
-  IMDepartmentReq* returnMe = result;
-  self.result = nil;
+  IMDepartmentReq* returnMe = resultImdepartmentReq;
+  self.resultImdepartmentReq = nil;
   return returnMe;
 }
 - (IMDepartmentReqBuilder*) mergeFrom:(IMDepartmentReq*) other {
@@ -5056,51 +5166,51 @@ static IMDepartmentReq* defaultIMDepartmentReqInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImdepartmentReq.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImdepartmentReq.userId;
 }
 - (IMDepartmentReqBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImdepartmentReq.hasUserId = YES;
+  resultImdepartmentReq.userId = value;
   return self;
 }
 - (IMDepartmentReqBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImdepartmentReq.hasUserId = NO;
+  resultImdepartmentReq.userId = 0;
   return self;
 }
 - (BOOL) hasLatestUpdateTime {
-  return result.hasLatestUpdateTime;
+  return resultImdepartmentReq.hasLatestUpdateTime;
 }
 - (UInt32) latestUpdateTime {
-  return result.latestUpdateTime;
+  return resultImdepartmentReq.latestUpdateTime;
 }
 - (IMDepartmentReqBuilder*) setLatestUpdateTime:(UInt32) value {
-  result.hasLatestUpdateTime = YES;
-  result.latestUpdateTime = value;
+  resultImdepartmentReq.hasLatestUpdateTime = YES;
+  resultImdepartmentReq.latestUpdateTime = value;
   return self;
 }
 - (IMDepartmentReqBuilder*) clearLatestUpdateTime {
-  result.hasLatestUpdateTime = NO;
-  result.latestUpdateTime = 0;
+  resultImdepartmentReq.hasLatestUpdateTime = NO;
+  resultImdepartmentReq.latestUpdateTime = 0;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImdepartmentReq.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImdepartmentReq.attachData;
 }
 - (IMDepartmentReqBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImdepartmentReq.hasAttachData = YES;
+  resultImdepartmentReq.attachData = value;
   return self;
 }
 - (IMDepartmentReqBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImdepartmentReq.hasAttachData = NO;
+  resultImdepartmentReq.attachData = [NSData data];
   return self;
 }
 @end
@@ -5117,15 +5227,15 @@ static IMDepartmentReq* defaultIMDepartmentReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasLatestUpdateTime {
   return !!hasLatestUpdateTime_;
 }
-- (void) setHasLatestUpdateTime:(BOOL) value_ {
-  hasLatestUpdateTime_ = !!value_;
+- (void) setHasLatestUpdateTime:(BOOL) _value_ {
+  hasLatestUpdateTime_ = !!_value_;
 }
 @synthesize latestUpdateTime;
 @synthesize deptListArray;
@@ -5133,15 +5243,11 @@ static IMDepartmentReq* defaultIMDepartmentReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
-- (void) dealloc {
-  self.deptListArray = nil;
-  self.attachData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.latestUpdateTime = 0;
@@ -5155,10 +5261,10 @@ static IMDepartmentRsp* defaultIMDepartmentRspInstance = nil;
     defaultIMDepartmentRspInstance = [[IMDepartmentRsp alloc] init];
   }
 }
-+ (IMDepartmentRsp*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMDepartmentRspInstance;
 }
-- (IMDepartmentRsp*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMDepartmentRspInstance;
 }
 - (NSArray *)deptList {
@@ -5270,6 +5376,23 @@ static IMDepartmentRsp* defaultIMDepartmentRspInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasLatestUpdateTime) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.latestUpdateTime] forKey: @"latestUpdateTime"];
+  }
+  for (DepartInfo* element in self.deptListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"deptList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -5308,29 +5431,26 @@ static IMDepartmentRsp* defaultIMDepartmentRspInstance = nil;
 @end
 
 @interface IMDepartmentRspBuilder()
-@property (strong) IMDepartmentRsp* result;
+@property (strong) IMDepartmentRsp* resultImdepartmentRsp;
 @end
 
 @implementation IMDepartmentRspBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImdepartmentRsp;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMDepartmentRsp alloc] init];
+    self.resultImdepartmentRsp = [[IMDepartmentRsp alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImdepartmentRsp;
 }
 - (IMDepartmentRspBuilder*) clear {
-  self.result = [[IMDepartmentRsp alloc] init];
+  self.resultImdepartmentRsp = [[IMDepartmentRsp alloc] init];
   return self;
 }
 - (IMDepartmentRspBuilder*) clone {
-  return [IMDepartmentRsp builderWithPrototype:result];
+  return [IMDepartmentRsp builderWithPrototype:resultImdepartmentRsp];
 }
 - (IMDepartmentRsp*) defaultInstance {
   return [IMDepartmentRsp defaultInstance];
@@ -5340,8 +5460,8 @@ static IMDepartmentRsp* defaultIMDepartmentRspInstance = nil;
   return [self buildPartial];
 }
 - (IMDepartmentRsp*) buildPartial {
-  IMDepartmentRsp* returnMe = result;
-  self.result = nil;
+  IMDepartmentRsp* returnMe = resultImdepartmentRsp;
+  self.resultImdepartmentRsp = nil;
   return returnMe;
 }
 - (IMDepartmentRspBuilder*) mergeFrom:(IMDepartmentRsp*) other {
@@ -5355,10 +5475,10 @@ static IMDepartmentRsp* defaultIMDepartmentRspInstance = nil;
     [self setLatestUpdateTime:other.latestUpdateTime];
   }
   if (other.deptListArray.count > 0) {
-    if (result.deptListArray == nil) {
-      result.deptListArray = [[NSMutableArray alloc] initWithArray:other.deptListArray];
+    if (resultImdepartmentRsp.deptListArray == nil) {
+      resultImdepartmentRsp.deptListArray = [[NSMutableArray alloc] initWithArray:other.deptListArray];
     } else {
-      [result.deptListArray addObjectsFromArray:other.deptListArray];
+      [resultImdepartmentRsp.deptListArray addObjectsFromArray:other.deptListArray];
     }
   }
   if (other.hasAttachData) {
@@ -5407,72 +5527,1263 @@ static IMDepartmentRsp* defaultIMDepartmentRspInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultImdepartmentRsp.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultImdepartmentRsp.userId;
 }
 - (IMDepartmentRspBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultImdepartmentRsp.hasUserId = YES;
+  resultImdepartmentRsp.userId = value;
   return self;
 }
 - (IMDepartmentRspBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultImdepartmentRsp.hasUserId = NO;
+  resultImdepartmentRsp.userId = 0;
   return self;
 }
 - (BOOL) hasLatestUpdateTime {
-  return result.hasLatestUpdateTime;
+  return resultImdepartmentRsp.hasLatestUpdateTime;
 }
 - (UInt32) latestUpdateTime {
-  return result.latestUpdateTime;
+  return resultImdepartmentRsp.latestUpdateTime;
 }
 - (IMDepartmentRspBuilder*) setLatestUpdateTime:(UInt32) value {
-  result.hasLatestUpdateTime = YES;
-  result.latestUpdateTime = value;
+  resultImdepartmentRsp.hasLatestUpdateTime = YES;
+  resultImdepartmentRsp.latestUpdateTime = value;
   return self;
 }
 - (IMDepartmentRspBuilder*) clearLatestUpdateTime {
-  result.hasLatestUpdateTime = NO;
-  result.latestUpdateTime = 0;
+  resultImdepartmentRsp.hasLatestUpdateTime = NO;
+  resultImdepartmentRsp.latestUpdateTime = 0;
   return self;
 }
 - (NSMutableArray *)deptList {
-  return result.deptListArray;
+  return resultImdepartmentRsp.deptListArray;
 }
 - (DepartInfo*)deptListAtIndex:(NSUInteger)index {
-  return [result deptListAtIndex:index];
+  return [resultImdepartmentRsp deptListAtIndex:index];
 }
 - (IMDepartmentRspBuilder *)addDeptList:(DepartInfo*)value {
-  if (result.deptListArray == nil) {
-    result.deptListArray = [[NSMutableArray alloc]init];
+  if (resultImdepartmentRsp.deptListArray == nil) {
+    resultImdepartmentRsp.deptListArray = [[NSMutableArray alloc]init];
   }
-  [result.deptListArray addObject:value];
+  [resultImdepartmentRsp.deptListArray addObject:value];
   return self;
 }
 - (IMDepartmentRspBuilder *)setDeptListArray:(NSArray *)array {
-  result.deptListArray = [[NSMutableArray alloc]initWithArray:array];
+  resultImdepartmentRsp.deptListArray = [[NSMutableArray alloc]initWithArray:array];
   return self;
 }
 - (IMDepartmentRspBuilder *)clearDeptList {
-  result.deptListArray = nil;
+  resultImdepartmentRsp.deptListArray = nil;
   return self;
 }
 - (BOOL) hasAttachData {
-  return result.hasAttachData;
+  return resultImdepartmentRsp.hasAttachData;
 }
 - (NSData*) attachData {
-  return result.attachData;
+  return resultImdepartmentRsp.attachData;
 }
 - (IMDepartmentRspBuilder*) setAttachData:(NSData*) value {
-  result.hasAttachData = YES;
-  result.attachData = value;
+  resultImdepartmentRsp.hasAttachData = YES;
+  resultImdepartmentRsp.attachData = value;
   return self;
 }
 - (IMDepartmentRspBuilder*) clearAttachData {
-  result.hasAttachData = NO;
-  result.attachData = [NSData data];
+  resultImdepartmentRsp.hasAttachData = NO;
+  resultImdepartmentRsp.attachData = [NSData data];
+  return self;
+}
+@end
+
+@interface IMAvatarChangedNotify ()
+@property UInt32 changedUserId;
+@property (strong) NSString* avatarUrl;
+@end
+
+@implementation IMAvatarChangedNotify
+
+- (BOOL) hasChangedUserId {
+  return !!hasChangedUserId_;
+}
+- (void) setHasChangedUserId:(BOOL) _value_ {
+  hasChangedUserId_ = !!_value_;
+}
+@synthesize changedUserId;
+- (BOOL) hasAvatarUrl {
+  return !!hasAvatarUrl_;
+}
+- (void) setHasAvatarUrl:(BOOL) _value_ {
+  hasAvatarUrl_ = !!_value_;
+}
+@synthesize avatarUrl;
+- (instancetype) init {
+  if ((self = [super init])) {
+    self.changedUserId = 0;
+    self.avatarUrl = @"";
+  }
+  return self;
+}
+static IMAvatarChangedNotify* defaultIMAvatarChangedNotifyInstance = nil;
++ (void) initialize {
+  if (self == [IMAvatarChangedNotify class]) {
+    defaultIMAvatarChangedNotifyInstance = [[IMAvatarChangedNotify alloc] init];
+  }
+}
++ (instancetype) defaultInstance {
+  return defaultIMAvatarChangedNotifyInstance;
+}
+- (instancetype) defaultInstance {
+  return defaultIMAvatarChangedNotifyInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasChangedUserId) {
+    return NO;
+  }
+  if (!self.hasAvatarUrl) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasChangedUserId) {
+    [output writeUInt32:1 value:self.changedUserId];
+  }
+  if (self.hasAvatarUrl) {
+    [output writeString:2 value:self.avatarUrl];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (SInt32) serializedSize {
+  __block SInt32 size_ = memoizedSerializedSize;
+  if (size_ != -1) {
+    return size_;
+  }
+
+  size_ = 0;
+  if (self.hasChangedUserId) {
+    size_ += computeUInt32Size(1, self.changedUserId);
+  }
+  if (self.hasAvatarUrl) {
+    size_ += computeStringSize(2, self.avatarUrl);
+  }
+  size_ += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size_;
+  return size_;
+}
++ (IMAvatarChangedNotify*) parseFromData:(NSData*) data {
+  return (IMAvatarChangedNotify*)[[[IMAvatarChangedNotify builder] mergeFromData:data] build];
+}
++ (IMAvatarChangedNotify*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMAvatarChangedNotify*)[[[IMAvatarChangedNotify builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (IMAvatarChangedNotify*) parseFromInputStream:(NSInputStream*) input {
+  return (IMAvatarChangedNotify*)[[[IMAvatarChangedNotify builder] mergeFromInputStream:input] build];
+}
++ (IMAvatarChangedNotify*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMAvatarChangedNotify*)[[[IMAvatarChangedNotify builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (IMAvatarChangedNotify*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (IMAvatarChangedNotify*)[[[IMAvatarChangedNotify builder] mergeFromCodedInputStream:input] build];
+}
++ (IMAvatarChangedNotify*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMAvatarChangedNotify*)[[[IMAvatarChangedNotify builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (IMAvatarChangedNotifyBuilder*) builder {
+  return [[IMAvatarChangedNotifyBuilder alloc] init];
+}
++ (IMAvatarChangedNotifyBuilder*) builderWithPrototype:(IMAvatarChangedNotify*) prototype {
+  return [[IMAvatarChangedNotify builder] mergeFrom:prototype];
+}
+- (IMAvatarChangedNotifyBuilder*) builder {
+  return [IMAvatarChangedNotify builder];
+}
+- (IMAvatarChangedNotifyBuilder*) toBuilder {
+  return [IMAvatarChangedNotify builderWithPrototype:self];
+}
+- (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
+  if (self.hasChangedUserId) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"changedUserId", [NSNumber numberWithInteger:self.changedUserId]];
+  }
+  if (self.hasAvatarUrl) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"avatarUrl", self.avatarUrl];
+  }
+  [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasChangedUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.changedUserId] forKey: @"changedUserId"];
+  }
+  if (self.hasAvatarUrl) {
+    [dictionary setObject: self.avatarUrl forKey: @"avatarUrl"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
+- (BOOL) isEqual:(id)other {
+  if (other == self) {
+    return YES;
+  }
+  if (![other isKindOfClass:[IMAvatarChangedNotify class]]) {
+    return NO;
+  }
+  IMAvatarChangedNotify *otherMessage = other;
+  return
+      self.hasChangedUserId == otherMessage.hasChangedUserId &&
+      (!self.hasChangedUserId || self.changedUserId == otherMessage.changedUserId) &&
+      self.hasAvatarUrl == otherMessage.hasAvatarUrl &&
+      (!self.hasAvatarUrl || [self.avatarUrl isEqual:otherMessage.avatarUrl]) &&
+      (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
+}
+- (NSUInteger) hash {
+  __block NSUInteger hashCode = 7;
+  if (self.hasChangedUserId) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.changedUserId] hash];
+  }
+  if (self.hasAvatarUrl) {
+    hashCode = hashCode * 31 + [self.avatarUrl hash];
+  }
+  hashCode = hashCode * 31 + [self.unknownFields hash];
+  return hashCode;
+}
+@end
+
+@interface IMAvatarChangedNotifyBuilder()
+@property (strong) IMAvatarChangedNotify* resultImavatarChangedNotify;
+@end
+
+@implementation IMAvatarChangedNotifyBuilder
+@synthesize resultImavatarChangedNotify;
+- (instancetype) init {
+  if ((self = [super init])) {
+    self.resultImavatarChangedNotify = [[IMAvatarChangedNotify alloc] init];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return resultImavatarChangedNotify;
+}
+- (IMAvatarChangedNotifyBuilder*) clear {
+  self.resultImavatarChangedNotify = [[IMAvatarChangedNotify alloc] init];
+  return self;
+}
+- (IMAvatarChangedNotifyBuilder*) clone {
+  return [IMAvatarChangedNotify builderWithPrototype:resultImavatarChangedNotify];
+}
+- (IMAvatarChangedNotify*) defaultInstance {
+  return [IMAvatarChangedNotify defaultInstance];
+}
+- (IMAvatarChangedNotify*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (IMAvatarChangedNotify*) buildPartial {
+  IMAvatarChangedNotify* returnMe = resultImavatarChangedNotify;
+  self.resultImavatarChangedNotify = nil;
+  return returnMe;
+}
+- (IMAvatarChangedNotifyBuilder*) mergeFrom:(IMAvatarChangedNotify*) other {
+  if (other == [IMAvatarChangedNotify defaultInstance]) {
+    return self;
+  }
+  if (other.hasChangedUserId) {
+    [self setChangedUserId:other.changedUserId];
+  }
+  if (other.hasAvatarUrl) {
+    [self setAvatarUrl:other.avatarUrl];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (IMAvatarChangedNotifyBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (IMAvatarChangedNotifyBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSetBuilder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    SInt32 tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setChangedUserId:[input readUInt32]];
+        break;
+      }
+      case 18: {
+        [self setAvatarUrl:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasChangedUserId {
+  return resultImavatarChangedNotify.hasChangedUserId;
+}
+- (UInt32) changedUserId {
+  return resultImavatarChangedNotify.changedUserId;
+}
+- (IMAvatarChangedNotifyBuilder*) setChangedUserId:(UInt32) value {
+  resultImavatarChangedNotify.hasChangedUserId = YES;
+  resultImavatarChangedNotify.changedUserId = value;
+  return self;
+}
+- (IMAvatarChangedNotifyBuilder*) clearChangedUserId {
+  resultImavatarChangedNotify.hasChangedUserId = NO;
+  resultImavatarChangedNotify.changedUserId = 0;
+  return self;
+}
+- (BOOL) hasAvatarUrl {
+  return resultImavatarChangedNotify.hasAvatarUrl;
+}
+- (NSString*) avatarUrl {
+  return resultImavatarChangedNotify.avatarUrl;
+}
+- (IMAvatarChangedNotifyBuilder*) setAvatarUrl:(NSString*) value {
+  resultImavatarChangedNotify.hasAvatarUrl = YES;
+  resultImavatarChangedNotify.avatarUrl = value;
+  return self;
+}
+- (IMAvatarChangedNotifyBuilder*) clearAvatarUrl {
+  resultImavatarChangedNotify.hasAvatarUrl = NO;
+  resultImavatarChangedNotify.avatarUrl = @"";
+  return self;
+}
+@end
+
+@interface IMChangeSignInfoReq ()
+@property UInt32 userId;
+@property (strong) NSString* signInfo;
+@property (strong) NSData* attachData;
+@end
+
+@implementation IMChangeSignInfoReq
+
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
+}
+@synthesize userId;
+- (BOOL) hasSignInfo {
+  return !!hasSignInfo_;
+}
+- (void) setHasSignInfo:(BOOL) _value_ {
+  hasSignInfo_ = !!_value_;
+}
+@synthesize signInfo;
+- (BOOL) hasAttachData {
+  return !!hasAttachData_;
+}
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
+}
+@synthesize attachData;
+- (instancetype) init {
+  if ((self = [super init])) {
+    self.userId = 0;
+    self.signInfo = @"";
+    self.attachData = [NSData data];
+  }
+  return self;
+}
+static IMChangeSignInfoReq* defaultIMChangeSignInfoReqInstance = nil;
++ (void) initialize {
+  if (self == [IMChangeSignInfoReq class]) {
+    defaultIMChangeSignInfoReqInstance = [[IMChangeSignInfoReq alloc] init];
+  }
+}
++ (instancetype) defaultInstance {
+  return defaultIMChangeSignInfoReqInstance;
+}
+- (instancetype) defaultInstance {
+  return defaultIMChangeSignInfoReqInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasUserId) {
+    return NO;
+  }
+  if (!self.hasSignInfo) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUserId) {
+    [output writeUInt32:1 value:self.userId];
+  }
+  if (self.hasSignInfo) {
+    [output writeString:2 value:self.signInfo];
+  }
+  if (self.hasAttachData) {
+    [output writeData:20 value:self.attachData];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (SInt32) serializedSize {
+  __block SInt32 size_ = memoizedSerializedSize;
+  if (size_ != -1) {
+    return size_;
+  }
+
+  size_ = 0;
+  if (self.hasUserId) {
+    size_ += computeUInt32Size(1, self.userId);
+  }
+  if (self.hasSignInfo) {
+    size_ += computeStringSize(2, self.signInfo);
+  }
+  if (self.hasAttachData) {
+    size_ += computeDataSize(20, self.attachData);
+  }
+  size_ += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size_;
+  return size_;
+}
++ (IMChangeSignInfoReq*) parseFromData:(NSData*) data {
+  return (IMChangeSignInfoReq*)[[[IMChangeSignInfoReq builder] mergeFromData:data] build];
+}
++ (IMChangeSignInfoReq*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMChangeSignInfoReq*)[[[IMChangeSignInfoReq builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (IMChangeSignInfoReq*) parseFromInputStream:(NSInputStream*) input {
+  return (IMChangeSignInfoReq*)[[[IMChangeSignInfoReq builder] mergeFromInputStream:input] build];
+}
++ (IMChangeSignInfoReq*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMChangeSignInfoReq*)[[[IMChangeSignInfoReq builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (IMChangeSignInfoReq*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (IMChangeSignInfoReq*)[[[IMChangeSignInfoReq builder] mergeFromCodedInputStream:input] build];
+}
++ (IMChangeSignInfoReq*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMChangeSignInfoReq*)[[[IMChangeSignInfoReq builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (IMChangeSignInfoReqBuilder*) builder {
+  return [[IMChangeSignInfoReqBuilder alloc] init];
+}
++ (IMChangeSignInfoReqBuilder*) builderWithPrototype:(IMChangeSignInfoReq*) prototype {
+  return [[IMChangeSignInfoReq builder] mergeFrom:prototype];
+}
+- (IMChangeSignInfoReqBuilder*) builder {
+  return [IMChangeSignInfoReq builder];
+}
+- (IMChangeSignInfoReqBuilder*) toBuilder {
+  return [IMChangeSignInfoReq builderWithPrototype:self];
+}
+- (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
+  if (self.hasUserId) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
+  }
+  if (self.hasSignInfo) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"signInfo", self.signInfo];
+  }
+  if (self.hasAttachData) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
+  }
+  [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasSignInfo) {
+    [dictionary setObject: self.signInfo forKey: @"signInfo"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
+- (BOOL) isEqual:(id)other {
+  if (other == self) {
+    return YES;
+  }
+  if (![other isKindOfClass:[IMChangeSignInfoReq class]]) {
+    return NO;
+  }
+  IMChangeSignInfoReq *otherMessage = other;
+  return
+      self.hasUserId == otherMessage.hasUserId &&
+      (!self.hasUserId || self.userId == otherMessage.userId) &&
+      self.hasSignInfo == otherMessage.hasSignInfo &&
+      (!self.hasSignInfo || [self.signInfo isEqual:otherMessage.signInfo]) &&
+      self.hasAttachData == otherMessage.hasAttachData &&
+      (!self.hasAttachData || [self.attachData isEqual:otherMessage.attachData]) &&
+      (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
+}
+- (NSUInteger) hash {
+  __block NSUInteger hashCode = 7;
+  if (self.hasUserId) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.userId] hash];
+  }
+  if (self.hasSignInfo) {
+    hashCode = hashCode * 31 + [self.signInfo hash];
+  }
+  if (self.hasAttachData) {
+    hashCode = hashCode * 31 + [self.attachData hash];
+  }
+  hashCode = hashCode * 31 + [self.unknownFields hash];
+  return hashCode;
+}
+@end
+
+@interface IMChangeSignInfoReqBuilder()
+@property (strong) IMChangeSignInfoReq* resultImchangeSignInfoReq;
+@end
+
+@implementation IMChangeSignInfoReqBuilder
+@synthesize resultImchangeSignInfoReq;
+- (instancetype) init {
+  if ((self = [super init])) {
+    self.resultImchangeSignInfoReq = [[IMChangeSignInfoReq alloc] init];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return resultImchangeSignInfoReq;
+}
+- (IMChangeSignInfoReqBuilder*) clear {
+  self.resultImchangeSignInfoReq = [[IMChangeSignInfoReq alloc] init];
+  return self;
+}
+- (IMChangeSignInfoReqBuilder*) clone {
+  return [IMChangeSignInfoReq builderWithPrototype:resultImchangeSignInfoReq];
+}
+- (IMChangeSignInfoReq*) defaultInstance {
+  return [IMChangeSignInfoReq defaultInstance];
+}
+- (IMChangeSignInfoReq*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (IMChangeSignInfoReq*) buildPartial {
+  IMChangeSignInfoReq* returnMe = resultImchangeSignInfoReq;
+  self.resultImchangeSignInfoReq = nil;
+  return returnMe;
+}
+- (IMChangeSignInfoReqBuilder*) mergeFrom:(IMChangeSignInfoReq*) other {
+  if (other == [IMChangeSignInfoReq defaultInstance]) {
+    return self;
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.hasSignInfo) {
+    [self setSignInfo:other.signInfo];
+  }
+  if (other.hasAttachData) {
+    [self setAttachData:other.attachData];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (IMChangeSignInfoReqBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (IMChangeSignInfoReqBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSetBuilder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    SInt32 tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setUserId:[input readUInt32]];
+        break;
+      }
+      case 18: {
+        [self setSignInfo:[input readString]];
+        break;
+      }
+      case 162: {
+        [self setAttachData:[input readData]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUserId {
+  return resultImchangeSignInfoReq.hasUserId;
+}
+- (UInt32) userId {
+  return resultImchangeSignInfoReq.userId;
+}
+- (IMChangeSignInfoReqBuilder*) setUserId:(UInt32) value {
+  resultImchangeSignInfoReq.hasUserId = YES;
+  resultImchangeSignInfoReq.userId = value;
+  return self;
+}
+- (IMChangeSignInfoReqBuilder*) clearUserId {
+  resultImchangeSignInfoReq.hasUserId = NO;
+  resultImchangeSignInfoReq.userId = 0;
+  return self;
+}
+- (BOOL) hasSignInfo {
+  return resultImchangeSignInfoReq.hasSignInfo;
+}
+- (NSString*) signInfo {
+  return resultImchangeSignInfoReq.signInfo;
+}
+- (IMChangeSignInfoReqBuilder*) setSignInfo:(NSString*) value {
+  resultImchangeSignInfoReq.hasSignInfo = YES;
+  resultImchangeSignInfoReq.signInfo = value;
+  return self;
+}
+- (IMChangeSignInfoReqBuilder*) clearSignInfo {
+  resultImchangeSignInfoReq.hasSignInfo = NO;
+  resultImchangeSignInfoReq.signInfo = @"";
+  return self;
+}
+- (BOOL) hasAttachData {
+  return resultImchangeSignInfoReq.hasAttachData;
+}
+- (NSData*) attachData {
+  return resultImchangeSignInfoReq.attachData;
+}
+- (IMChangeSignInfoReqBuilder*) setAttachData:(NSData*) value {
+  resultImchangeSignInfoReq.hasAttachData = YES;
+  resultImchangeSignInfoReq.attachData = value;
+  return self;
+}
+- (IMChangeSignInfoReqBuilder*) clearAttachData {
+  resultImchangeSignInfoReq.hasAttachData = NO;
+  resultImchangeSignInfoReq.attachData = [NSData data];
+  return self;
+}
+@end
+
+@interface IMChangeSignInfoRsp ()
+@property UInt32 userId;
+@property UInt32 resultCode;
+@property (strong) NSString* signInfo;
+@property (strong) NSData* attachData;
+@end
+
+@implementation IMChangeSignInfoRsp
+
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
+}
+@synthesize userId;
+- (BOOL) hasResultCode {
+  return !!hasResultCode_;
+}
+- (void) setHasResultCode:(BOOL) _value_ {
+  hasResultCode_ = !!_value_;
+}
+@synthesize resultCode;
+- (BOOL) hasSignInfo {
+  return !!hasSignInfo_;
+}
+- (void) setHasSignInfo:(BOOL) _value_ {
+  hasSignInfo_ = !!_value_;
+}
+@synthesize signInfo;
+- (BOOL) hasAttachData {
+  return !!hasAttachData_;
+}
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
+}
+@synthesize attachData;
+- (instancetype) init {
+  if ((self = [super init])) {
+    self.userId = 0;
+    self.resultCode = 0;
+    self.signInfo = @"";
+    self.attachData = [NSData data];
+  }
+  return self;
+}
+static IMChangeSignInfoRsp* defaultIMChangeSignInfoRspInstance = nil;
++ (void) initialize {
+  if (self == [IMChangeSignInfoRsp class]) {
+    defaultIMChangeSignInfoRspInstance = [[IMChangeSignInfoRsp alloc] init];
+  }
+}
++ (instancetype) defaultInstance {
+  return defaultIMChangeSignInfoRspInstance;
+}
+- (instancetype) defaultInstance {
+  return defaultIMChangeSignInfoRspInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasUserId) {
+    return NO;
+  }
+  if (!self.hasResultCode) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUserId) {
+    [output writeUInt32:1 value:self.userId];
+  }
+  if (self.hasResultCode) {
+    [output writeUInt32:2 value:self.resultCode];
+  }
+  if (self.hasSignInfo) {
+    [output writeString:3 value:self.signInfo];
+  }
+  if (self.hasAttachData) {
+    [output writeData:20 value:self.attachData];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (SInt32) serializedSize {
+  __block SInt32 size_ = memoizedSerializedSize;
+  if (size_ != -1) {
+    return size_;
+  }
+
+  size_ = 0;
+  if (self.hasUserId) {
+    size_ += computeUInt32Size(1, self.userId);
+  }
+  if (self.hasResultCode) {
+    size_ += computeUInt32Size(2, self.resultCode);
+  }
+  if (self.hasSignInfo) {
+    size_ += computeStringSize(3, self.signInfo);
+  }
+  if (self.hasAttachData) {
+    size_ += computeDataSize(20, self.attachData);
+  }
+  size_ += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size_;
+  return size_;
+}
++ (IMChangeSignInfoRsp*) parseFromData:(NSData*) data {
+  return (IMChangeSignInfoRsp*)[[[IMChangeSignInfoRsp builder] mergeFromData:data] build];
+}
++ (IMChangeSignInfoRsp*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMChangeSignInfoRsp*)[[[IMChangeSignInfoRsp builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (IMChangeSignInfoRsp*) parseFromInputStream:(NSInputStream*) input {
+  return (IMChangeSignInfoRsp*)[[[IMChangeSignInfoRsp builder] mergeFromInputStream:input] build];
+}
++ (IMChangeSignInfoRsp*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMChangeSignInfoRsp*)[[[IMChangeSignInfoRsp builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (IMChangeSignInfoRsp*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (IMChangeSignInfoRsp*)[[[IMChangeSignInfoRsp builder] mergeFromCodedInputStream:input] build];
+}
++ (IMChangeSignInfoRsp*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMChangeSignInfoRsp*)[[[IMChangeSignInfoRsp builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (IMChangeSignInfoRspBuilder*) builder {
+  return [[IMChangeSignInfoRspBuilder alloc] init];
+}
++ (IMChangeSignInfoRspBuilder*) builderWithPrototype:(IMChangeSignInfoRsp*) prototype {
+  return [[IMChangeSignInfoRsp builder] mergeFrom:prototype];
+}
+- (IMChangeSignInfoRspBuilder*) builder {
+  return [IMChangeSignInfoRsp builder];
+}
+- (IMChangeSignInfoRspBuilder*) toBuilder {
+  return [IMChangeSignInfoRsp builderWithPrototype:self];
+}
+- (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
+  if (self.hasUserId) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
+  }
+  if (self.hasResultCode) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"resultCode", [NSNumber numberWithInteger:self.resultCode]];
+  }
+  if (self.hasSignInfo) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"signInfo", self.signInfo];
+  }
+  if (self.hasAttachData) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
+  }
+  [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasResultCode) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.resultCode] forKey: @"resultCode"];
+  }
+  if (self.hasSignInfo) {
+    [dictionary setObject: self.signInfo forKey: @"signInfo"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
+- (BOOL) isEqual:(id)other {
+  if (other == self) {
+    return YES;
+  }
+  if (![other isKindOfClass:[IMChangeSignInfoRsp class]]) {
+    return NO;
+  }
+  IMChangeSignInfoRsp *otherMessage = other;
+  return
+      self.hasUserId == otherMessage.hasUserId &&
+      (!self.hasUserId || self.userId == otherMessage.userId) &&
+      self.hasResultCode == otherMessage.hasResultCode &&
+      (!self.hasResultCode || self.resultCode == otherMessage.resultCode) &&
+      self.hasSignInfo == otherMessage.hasSignInfo &&
+      (!self.hasSignInfo || [self.signInfo isEqual:otherMessage.signInfo]) &&
+      self.hasAttachData == otherMessage.hasAttachData &&
+      (!self.hasAttachData || [self.attachData isEqual:otherMessage.attachData]) &&
+      (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
+}
+- (NSUInteger) hash {
+  __block NSUInteger hashCode = 7;
+  if (self.hasUserId) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.userId] hash];
+  }
+  if (self.hasResultCode) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.resultCode] hash];
+  }
+  if (self.hasSignInfo) {
+    hashCode = hashCode * 31 + [self.signInfo hash];
+  }
+  if (self.hasAttachData) {
+    hashCode = hashCode * 31 + [self.attachData hash];
+  }
+  hashCode = hashCode * 31 + [self.unknownFields hash];
+  return hashCode;
+}
+@end
+
+@interface IMChangeSignInfoRspBuilder()
+@property (strong) IMChangeSignInfoRsp* resultImchangeSignInfoRsp;
+@end
+
+@implementation IMChangeSignInfoRspBuilder
+@synthesize resultImchangeSignInfoRsp;
+- (instancetype) init {
+  if ((self = [super init])) {
+    self.resultImchangeSignInfoRsp = [[IMChangeSignInfoRsp alloc] init];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return resultImchangeSignInfoRsp;
+}
+- (IMChangeSignInfoRspBuilder*) clear {
+  self.resultImchangeSignInfoRsp = [[IMChangeSignInfoRsp alloc] init];
+  return self;
+}
+- (IMChangeSignInfoRspBuilder*) clone {
+  return [IMChangeSignInfoRsp builderWithPrototype:resultImchangeSignInfoRsp];
+}
+- (IMChangeSignInfoRsp*) defaultInstance {
+  return [IMChangeSignInfoRsp defaultInstance];
+}
+- (IMChangeSignInfoRsp*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (IMChangeSignInfoRsp*) buildPartial {
+  IMChangeSignInfoRsp* returnMe = resultImchangeSignInfoRsp;
+  self.resultImchangeSignInfoRsp = nil;
+  return returnMe;
+}
+- (IMChangeSignInfoRspBuilder*) mergeFrom:(IMChangeSignInfoRsp*) other {
+  if (other == [IMChangeSignInfoRsp defaultInstance]) {
+    return self;
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.hasResultCode) {
+    [self setResultCode:other.resultCode];
+  }
+  if (other.hasSignInfo) {
+    [self setSignInfo:other.signInfo];
+  }
+  if (other.hasAttachData) {
+    [self setAttachData:other.attachData];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (IMChangeSignInfoRspBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (IMChangeSignInfoRspBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSetBuilder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    SInt32 tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setUserId:[input readUInt32]];
+        break;
+      }
+      case 16: {
+        [self setResultCode:[input readUInt32]];
+        break;
+      }
+      case 26: {
+        [self setSignInfo:[input readString]];
+        break;
+      }
+      case 162: {
+        [self setAttachData:[input readData]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUserId {
+  return resultImchangeSignInfoRsp.hasUserId;
+}
+- (UInt32) userId {
+  return resultImchangeSignInfoRsp.userId;
+}
+- (IMChangeSignInfoRspBuilder*) setUserId:(UInt32) value {
+  resultImchangeSignInfoRsp.hasUserId = YES;
+  resultImchangeSignInfoRsp.userId = value;
+  return self;
+}
+- (IMChangeSignInfoRspBuilder*) clearUserId {
+  resultImchangeSignInfoRsp.hasUserId = NO;
+  resultImchangeSignInfoRsp.userId = 0;
+  return self;
+}
+- (BOOL) hasResultCode {
+  return resultImchangeSignInfoRsp.hasResultCode;
+}
+- (UInt32) resultCode {
+  return resultImchangeSignInfoRsp.resultCode;
+}
+- (IMChangeSignInfoRspBuilder*) setResultCode:(UInt32) value {
+  resultImchangeSignInfoRsp.hasResultCode = YES;
+  resultImchangeSignInfoRsp.resultCode = value;
+  return self;
+}
+- (IMChangeSignInfoRspBuilder*) clearResultCode {
+  resultImchangeSignInfoRsp.hasResultCode = NO;
+  resultImchangeSignInfoRsp.resultCode = 0;
+  return self;
+}
+- (BOOL) hasSignInfo {
+  return resultImchangeSignInfoRsp.hasSignInfo;
+}
+- (NSString*) signInfo {
+  return resultImchangeSignInfoRsp.signInfo;
+}
+- (IMChangeSignInfoRspBuilder*) setSignInfo:(NSString*) value {
+  resultImchangeSignInfoRsp.hasSignInfo = YES;
+  resultImchangeSignInfoRsp.signInfo = value;
+  return self;
+}
+- (IMChangeSignInfoRspBuilder*) clearSignInfo {
+  resultImchangeSignInfoRsp.hasSignInfo = NO;
+  resultImchangeSignInfoRsp.signInfo = @"";
+  return self;
+}
+- (BOOL) hasAttachData {
+  return resultImchangeSignInfoRsp.hasAttachData;
+}
+- (NSData*) attachData {
+  return resultImchangeSignInfoRsp.attachData;
+}
+- (IMChangeSignInfoRspBuilder*) setAttachData:(NSData*) value {
+  resultImchangeSignInfoRsp.hasAttachData = YES;
+  resultImchangeSignInfoRsp.attachData = value;
+  return self;
+}
+- (IMChangeSignInfoRspBuilder*) clearAttachData {
+  resultImchangeSignInfoRsp.hasAttachData = NO;
+  resultImchangeSignInfoRsp.attachData = [NSData data];
+  return self;
+}
+@end
+
+@interface IMSignInfoChangedNotify ()
+@property UInt32 changedUserId;
+@property (strong) NSString* signInfo;
+@end
+
+@implementation IMSignInfoChangedNotify
+
+- (BOOL) hasChangedUserId {
+  return !!hasChangedUserId_;
+}
+- (void) setHasChangedUserId:(BOOL) _value_ {
+  hasChangedUserId_ = !!_value_;
+}
+@synthesize changedUserId;
+- (BOOL) hasSignInfo {
+  return !!hasSignInfo_;
+}
+- (void) setHasSignInfo:(BOOL) _value_ {
+  hasSignInfo_ = !!_value_;
+}
+@synthesize signInfo;
+- (instancetype) init {
+  if ((self = [super init])) {
+    self.changedUserId = 0;
+    self.signInfo = @"";
+  }
+  return self;
+}
+static IMSignInfoChangedNotify* defaultIMSignInfoChangedNotifyInstance = nil;
++ (void) initialize {
+  if (self == [IMSignInfoChangedNotify class]) {
+    defaultIMSignInfoChangedNotifyInstance = [[IMSignInfoChangedNotify alloc] init];
+  }
+}
++ (instancetype) defaultInstance {
+  return defaultIMSignInfoChangedNotifyInstance;
+}
+- (instancetype) defaultInstance {
+  return defaultIMSignInfoChangedNotifyInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasChangedUserId) {
+    return NO;
+  }
+  if (!self.hasSignInfo) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasChangedUserId) {
+    [output writeUInt32:1 value:self.changedUserId];
+  }
+  if (self.hasSignInfo) {
+    [output writeString:2 value:self.signInfo];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (SInt32) serializedSize {
+  __block SInt32 size_ = memoizedSerializedSize;
+  if (size_ != -1) {
+    return size_;
+  }
+
+  size_ = 0;
+  if (self.hasChangedUserId) {
+    size_ += computeUInt32Size(1, self.changedUserId);
+  }
+  if (self.hasSignInfo) {
+    size_ += computeStringSize(2, self.signInfo);
+  }
+  size_ += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size_;
+  return size_;
+}
++ (IMSignInfoChangedNotify*) parseFromData:(NSData*) data {
+  return (IMSignInfoChangedNotify*)[[[IMSignInfoChangedNotify builder] mergeFromData:data] build];
+}
++ (IMSignInfoChangedNotify*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMSignInfoChangedNotify*)[[[IMSignInfoChangedNotify builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (IMSignInfoChangedNotify*) parseFromInputStream:(NSInputStream*) input {
+  return (IMSignInfoChangedNotify*)[[[IMSignInfoChangedNotify builder] mergeFromInputStream:input] build];
+}
++ (IMSignInfoChangedNotify*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMSignInfoChangedNotify*)[[[IMSignInfoChangedNotify builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (IMSignInfoChangedNotify*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (IMSignInfoChangedNotify*)[[[IMSignInfoChangedNotify builder] mergeFromCodedInputStream:input] build];
+}
++ (IMSignInfoChangedNotify*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (IMSignInfoChangedNotify*)[[[IMSignInfoChangedNotify builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (IMSignInfoChangedNotifyBuilder*) builder {
+  return [[IMSignInfoChangedNotifyBuilder alloc] init];
+}
++ (IMSignInfoChangedNotifyBuilder*) builderWithPrototype:(IMSignInfoChangedNotify*) prototype {
+  return [[IMSignInfoChangedNotify builder] mergeFrom:prototype];
+}
+- (IMSignInfoChangedNotifyBuilder*) builder {
+  return [IMSignInfoChangedNotify builder];
+}
+- (IMSignInfoChangedNotifyBuilder*) toBuilder {
+  return [IMSignInfoChangedNotify builderWithPrototype:self];
+}
+- (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
+  if (self.hasChangedUserId) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"changedUserId", [NSNumber numberWithInteger:self.changedUserId]];
+  }
+  if (self.hasSignInfo) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"signInfo", self.signInfo];
+  }
+  [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasChangedUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.changedUserId] forKey: @"changedUserId"];
+  }
+  if (self.hasSignInfo) {
+    [dictionary setObject: self.signInfo forKey: @"signInfo"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
+- (BOOL) isEqual:(id)other {
+  if (other == self) {
+    return YES;
+  }
+  if (![other isKindOfClass:[IMSignInfoChangedNotify class]]) {
+    return NO;
+  }
+  IMSignInfoChangedNotify *otherMessage = other;
+  return
+      self.hasChangedUserId == otherMessage.hasChangedUserId &&
+      (!self.hasChangedUserId || self.changedUserId == otherMessage.changedUserId) &&
+      self.hasSignInfo == otherMessage.hasSignInfo &&
+      (!self.hasSignInfo || [self.signInfo isEqual:otherMessage.signInfo]) &&
+      (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
+}
+- (NSUInteger) hash {
+  __block NSUInteger hashCode = 7;
+  if (self.hasChangedUserId) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.changedUserId] hash];
+  }
+  if (self.hasSignInfo) {
+    hashCode = hashCode * 31 + [self.signInfo hash];
+  }
+  hashCode = hashCode * 31 + [self.unknownFields hash];
+  return hashCode;
+}
+@end
+
+@interface IMSignInfoChangedNotifyBuilder()
+@property (strong) IMSignInfoChangedNotify* resultImsignInfoChangedNotify;
+@end
+
+@implementation IMSignInfoChangedNotifyBuilder
+@synthesize resultImsignInfoChangedNotify;
+- (instancetype) init {
+  if ((self = [super init])) {
+    self.resultImsignInfoChangedNotify = [[IMSignInfoChangedNotify alloc] init];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return resultImsignInfoChangedNotify;
+}
+- (IMSignInfoChangedNotifyBuilder*) clear {
+  self.resultImsignInfoChangedNotify = [[IMSignInfoChangedNotify alloc] init];
+  return self;
+}
+- (IMSignInfoChangedNotifyBuilder*) clone {
+  return [IMSignInfoChangedNotify builderWithPrototype:resultImsignInfoChangedNotify];
+}
+- (IMSignInfoChangedNotify*) defaultInstance {
+  return [IMSignInfoChangedNotify defaultInstance];
+}
+- (IMSignInfoChangedNotify*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (IMSignInfoChangedNotify*) buildPartial {
+  IMSignInfoChangedNotify* returnMe = resultImsignInfoChangedNotify;
+  self.resultImsignInfoChangedNotify = nil;
+  return returnMe;
+}
+- (IMSignInfoChangedNotifyBuilder*) mergeFrom:(IMSignInfoChangedNotify*) other {
+  if (other == [IMSignInfoChangedNotify defaultInstance]) {
+    return self;
+  }
+  if (other.hasChangedUserId) {
+    [self setChangedUserId:other.changedUserId];
+  }
+  if (other.hasSignInfo) {
+    [self setSignInfo:other.signInfo];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (IMSignInfoChangedNotifyBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (IMSignInfoChangedNotifyBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSetBuilder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    SInt32 tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setChangedUserId:[input readUInt32]];
+        break;
+      }
+      case 18: {
+        [self setSignInfo:[input readString]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasChangedUserId {
+  return resultImsignInfoChangedNotify.hasChangedUserId;
+}
+- (UInt32) changedUserId {
+  return resultImsignInfoChangedNotify.changedUserId;
+}
+- (IMSignInfoChangedNotifyBuilder*) setChangedUserId:(UInt32) value {
+  resultImsignInfoChangedNotify.hasChangedUserId = YES;
+  resultImsignInfoChangedNotify.changedUserId = value;
+  return self;
+}
+- (IMSignInfoChangedNotifyBuilder*) clearChangedUserId {
+  resultImsignInfoChangedNotify.hasChangedUserId = NO;
+  resultImsignInfoChangedNotify.changedUserId = 0;
+  return self;
+}
+- (BOOL) hasSignInfo {
+  return resultImsignInfoChangedNotify.hasSignInfo;
+}
+- (NSString*) signInfo {
+  return resultImsignInfoChangedNotify.signInfo;
+}
+- (IMSignInfoChangedNotifyBuilder*) setSignInfo:(NSString*) value {
+  resultImsignInfoChangedNotify.hasSignInfo = YES;
+  resultImsignInfoChangedNotify.signInfo = value;
+  return self;
+}
+- (IMSignInfoChangedNotifyBuilder*) clearSignInfo {
+  resultImsignInfoChangedNotify.hasSignInfo = NO;
+  resultImsignInfoChangedNotify.signInfo = @"";
   return self;
 }
 @end

@@ -51,9 +51,12 @@
 {
     NSString* _selectedSessionID;
 }
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+
+-(instancetype) initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+
+    
     if (self) {
         // Initialization code here.
         _selectedSessionID = @"";
@@ -66,6 +69,7 @@
     [_tableView setHeaderView:nil];
     [_tableView setTarget:self];
     [_tableView setAction:@selector(p_clickTheTableView)];
+    //_actionMenu.delegate = self;
 
     self.popover = [[NSPopover alloc] init];
     self.popover.contentViewController = _searchViewController;

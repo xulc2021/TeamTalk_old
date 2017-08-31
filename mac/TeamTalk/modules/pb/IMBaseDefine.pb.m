@@ -35,6 +35,29 @@ BOOL ServiceIDIsValidValue(ServiceID value) {
       return NO;
   }
 }
+NSString *NSStringFromServiceID(ServiceID value) {
+  switch (value) {
+    case ServiceIDSidLogin:
+      return @"ServiceIDSidLogin";
+    case ServiceIDSidBuddyList:
+      return @"ServiceIDSidBuddyList";
+    case ServiceIDSidMsg:
+      return @"ServiceIDSidMsg";
+    case ServiceIDSidGroup:
+      return @"ServiceIDSidGroup";
+    case ServiceIDSidFile:
+      return @"ServiceIDSidFile";
+    case ServiceIDSidSwitchService:
+      return @"ServiceIDSidSwitchService";
+    case ServiceIDSidOther:
+      return @"ServiceIDSidOther";
+    case ServiceIDSidInternal:
+      return @"ServiceIDSidInternal";
+    default:
+      return nil;
+  }
+}
+
 BOOL LoginCmdIDIsValidValue(LoginCmdID value) {
   switch (value) {
     case LoginCmdIDCidLoginReqMsgserver:
@@ -48,11 +71,52 @@ BOOL LoginCmdIDIsValidValue(LoginCmdID value) {
     case LoginCmdIDCidLoginResDevicetoken:
     case LoginCmdIDCidLoginReqKickpcclient:
     case LoginCmdIDCidLoginResKickpcclient:
+    case LoginCmdIDCidLoginReqPushShield:
+    case LoginCmdIDCidLoginResPushShield:
+    case LoginCmdIDCidLoginReqQueryPushShield:
+    case LoginCmdIDCidLoginResQueryPushShield:
       return YES;
     default:
       return NO;
   }
 }
+NSString *NSStringFromLoginCmdID(LoginCmdID value) {
+  switch (value) {
+    case LoginCmdIDCidLoginReqMsgserver:
+      return @"LoginCmdIDCidLoginReqMsgserver";
+    case LoginCmdIDCidLoginResMsgserver:
+      return @"LoginCmdIDCidLoginResMsgserver";
+    case LoginCmdIDCidLoginReqUserlogin:
+      return @"LoginCmdIDCidLoginReqUserlogin";
+    case LoginCmdIDCidLoginResUserlogin:
+      return @"LoginCmdIDCidLoginResUserlogin";
+    case LoginCmdIDCidLoginReqLoginout:
+      return @"LoginCmdIDCidLoginReqLoginout";
+    case LoginCmdIDCidLoginResLoginout:
+      return @"LoginCmdIDCidLoginResLoginout";
+    case LoginCmdIDCidLoginKickUser:
+      return @"LoginCmdIDCidLoginKickUser";
+    case LoginCmdIDCidLoginReqDevicetoken:
+      return @"LoginCmdIDCidLoginReqDevicetoken";
+    case LoginCmdIDCidLoginResDevicetoken:
+      return @"LoginCmdIDCidLoginResDevicetoken";
+    case LoginCmdIDCidLoginReqKickpcclient:
+      return @"LoginCmdIDCidLoginReqKickpcclient";
+    case LoginCmdIDCidLoginResKickpcclient:
+      return @"LoginCmdIDCidLoginResKickpcclient";
+    case LoginCmdIDCidLoginReqPushShield:
+      return @"LoginCmdIDCidLoginReqPushShield";
+    case LoginCmdIDCidLoginResPushShield:
+      return @"LoginCmdIDCidLoginResPushShield";
+    case LoginCmdIDCidLoginReqQueryPushShield:
+      return @"LoginCmdIDCidLoginReqQueryPushShield";
+    case LoginCmdIDCidLoginResQueryPushShield:
+      return @"LoginCmdIDCidLoginResQueryPushShield";
+    default:
+      return nil;
+  }
+}
+
 BOOL BuddyListCmdIDIsValidValue(BuddyListCmdID value) {
   switch (value) {
     case BuddyListCmdIDCidBuddyListRecentContactSessionRequest:
@@ -72,11 +136,64 @@ BOOL BuddyListCmdIDIsValidValue(BuddyListCmdID value) {
     case BuddyListCmdIDCidBuddyListRemoveSessionNotify:
     case BuddyListCmdIDCidBuddyListDepartmentRequest:
     case BuddyListCmdIDCidBuddyListDepartmentResponse:
+    case BuddyListCmdIDCidBuddyListAvatarChangedNotify:
+    case BuddyListCmdIDCidBuddyListChangeSignInfoRequest:
+    case BuddyListCmdIDCidBuddyListChangeSignInfoResponse:
+    case BuddyListCmdIDCidBuddyListSignInfoChangedNotify:
       return YES;
     default:
       return NO;
   }
 }
+NSString *NSStringFromBuddyListCmdID(BuddyListCmdID value) {
+  switch (value) {
+    case BuddyListCmdIDCidBuddyListRecentContactSessionRequest:
+      return @"BuddyListCmdIDCidBuddyListRecentContactSessionRequest";
+    case BuddyListCmdIDCidBuddyListRecentContactSessionResponse:
+      return @"BuddyListCmdIDCidBuddyListRecentContactSessionResponse";
+    case BuddyListCmdIDCidBuddyListStatusNotify:
+      return @"BuddyListCmdIDCidBuddyListStatusNotify";
+    case BuddyListCmdIDCidBuddyListUserInfoRequest:
+      return @"BuddyListCmdIDCidBuddyListUserInfoRequest";
+    case BuddyListCmdIDCidBuddyListUserInfoResponse:
+      return @"BuddyListCmdIDCidBuddyListUserInfoResponse";
+    case BuddyListCmdIDCidBuddyListRemoveSessionReq:
+      return @"BuddyListCmdIDCidBuddyListRemoveSessionReq";
+    case BuddyListCmdIDCidBuddyListRemoveSessionRes:
+      return @"BuddyListCmdIDCidBuddyListRemoveSessionRes";
+    case BuddyListCmdIDCidBuddyListAllUserRequest:
+      return @"BuddyListCmdIDCidBuddyListAllUserRequest";
+    case BuddyListCmdIDCidBuddyListAllUserResponse:
+      return @"BuddyListCmdIDCidBuddyListAllUserResponse";
+    case BuddyListCmdIDCidBuddyListUsersStatusRequest:
+      return @"BuddyListCmdIDCidBuddyListUsersStatusRequest";
+    case BuddyListCmdIDCidBuddyListUsersStatusResponse:
+      return @"BuddyListCmdIDCidBuddyListUsersStatusResponse";
+    case BuddyListCmdIDCidBuddyListChangeAvatarRequest:
+      return @"BuddyListCmdIDCidBuddyListChangeAvatarRequest";
+    case BuddyListCmdIDCidBuddyListChangeAvatarResponse:
+      return @"BuddyListCmdIDCidBuddyListChangeAvatarResponse";
+    case BuddyListCmdIDCidBuddyListPcLoginStatusNotify:
+      return @"BuddyListCmdIDCidBuddyListPcLoginStatusNotify";
+    case BuddyListCmdIDCidBuddyListRemoveSessionNotify:
+      return @"BuddyListCmdIDCidBuddyListRemoveSessionNotify";
+    case BuddyListCmdIDCidBuddyListDepartmentRequest:
+      return @"BuddyListCmdIDCidBuddyListDepartmentRequest";
+    case BuddyListCmdIDCidBuddyListDepartmentResponse:
+      return @"BuddyListCmdIDCidBuddyListDepartmentResponse";
+    case BuddyListCmdIDCidBuddyListAvatarChangedNotify:
+      return @"BuddyListCmdIDCidBuddyListAvatarChangedNotify";
+    case BuddyListCmdIDCidBuddyListChangeSignInfoRequest:
+      return @"BuddyListCmdIDCidBuddyListChangeSignInfoRequest";
+    case BuddyListCmdIDCidBuddyListChangeSignInfoResponse:
+      return @"BuddyListCmdIDCidBuddyListChangeSignInfoResponse";
+    case BuddyListCmdIDCidBuddyListSignInfoChangedNotify:
+      return @"BuddyListCmdIDCidBuddyListSignInfoChangedNotify";
+    default:
+      return nil;
+  }
+}
+
 BOOL MessageCmdIDIsValidValue(MessageCmdID value) {
   switch (value) {
     case MessageCmdIDCidMsgData:
@@ -98,6 +215,41 @@ BOOL MessageCmdIDIsValidValue(MessageCmdID value) {
       return NO;
   }
 }
+NSString *NSStringFromMessageCmdID(MessageCmdID value) {
+  switch (value) {
+    case MessageCmdIDCidMsgData:
+      return @"MessageCmdIDCidMsgData";
+    case MessageCmdIDCidMsgDataAck:
+      return @"MessageCmdIDCidMsgDataAck";
+    case MessageCmdIDCidMsgReadAck:
+      return @"MessageCmdIDCidMsgReadAck";
+    case MessageCmdIDCidMsgReadNotify:
+      return @"MessageCmdIDCidMsgReadNotify";
+    case MessageCmdIDCidMsgTimeRequest:
+      return @"MessageCmdIDCidMsgTimeRequest";
+    case MessageCmdIDCidMsgTimeResponse:
+      return @"MessageCmdIDCidMsgTimeResponse";
+    case MessageCmdIDCidMsgUnreadCntRequest:
+      return @"MessageCmdIDCidMsgUnreadCntRequest";
+    case MessageCmdIDCidMsgUnreadCntResponse:
+      return @"MessageCmdIDCidMsgUnreadCntResponse";
+    case MessageCmdIDCidMsgListRequest:
+      return @"MessageCmdIDCidMsgListRequest";
+    case MessageCmdIDCidMsgListResponse:
+      return @"MessageCmdIDCidMsgListResponse";
+    case MessageCmdIDCidMsgGetLatestMsgIdReq:
+      return @"MessageCmdIDCidMsgGetLatestMsgIdReq";
+    case MessageCmdIDCidMsgGetLatestMsgIdRsp:
+      return @"MessageCmdIDCidMsgGetLatestMsgIdRsp";
+    case MessageCmdIDCidMsgGetByMsgIdReq:
+      return @"MessageCmdIDCidMsgGetByMsgIdReq";
+    case MessageCmdIDCidMsgGetByMsgIdRes:
+      return @"MessageCmdIDCidMsgGetByMsgIdRes";
+    default:
+      return nil;
+  }
+}
+
 BOOL GroupCmdIDIsValidValue(GroupCmdID value) {
   switch (value) {
     case GroupCmdIDCidGroupNormalListRequest:
@@ -116,6 +268,35 @@ BOOL GroupCmdIDIsValidValue(GroupCmdID value) {
       return NO;
   }
 }
+NSString *NSStringFromGroupCmdID(GroupCmdID value) {
+  switch (value) {
+    case GroupCmdIDCidGroupNormalListRequest:
+      return @"GroupCmdIDCidGroupNormalListRequest";
+    case GroupCmdIDCidGroupNormalListResponse:
+      return @"GroupCmdIDCidGroupNormalListResponse";
+    case GroupCmdIDCidGroupInfoRequest:
+      return @"GroupCmdIDCidGroupInfoRequest";
+    case GroupCmdIDCidGroupInfoResponse:
+      return @"GroupCmdIDCidGroupInfoResponse";
+    case GroupCmdIDCidGroupCreateRequest:
+      return @"GroupCmdIDCidGroupCreateRequest";
+    case GroupCmdIDCidGroupCreateResponse:
+      return @"GroupCmdIDCidGroupCreateResponse";
+    case GroupCmdIDCidGroupChangeMemberRequest:
+      return @"GroupCmdIDCidGroupChangeMemberRequest";
+    case GroupCmdIDCidGroupChangeMemberResponse:
+      return @"GroupCmdIDCidGroupChangeMemberResponse";
+    case GroupCmdIDCidGroupShieldGroupRequest:
+      return @"GroupCmdIDCidGroupShieldGroupRequest";
+    case GroupCmdIDCidGroupShieldGroupResponse:
+      return @"GroupCmdIDCidGroupShieldGroupResponse";
+    case GroupCmdIDCidGroupChangeMemberNotify:
+      return @"GroupCmdIDCidGroupChangeMemberNotify";
+    default:
+      return nil;
+  }
+}
+
 BOOL FileCmdIDIsValidValue(FileCmdID value) {
   switch (value) {
     case FileCmdIDCidFileLoginReq:
@@ -135,6 +316,37 @@ BOOL FileCmdIDIsValidValue(FileCmdID value) {
       return NO;
   }
 }
+NSString *NSStringFromFileCmdID(FileCmdID value) {
+  switch (value) {
+    case FileCmdIDCidFileLoginReq:
+      return @"FileCmdIDCidFileLoginReq";
+    case FileCmdIDCidFileLoginRes:
+      return @"FileCmdIDCidFileLoginRes";
+    case FileCmdIDCidFileState:
+      return @"FileCmdIDCidFileState";
+    case FileCmdIDCidFilePullDataReq:
+      return @"FileCmdIDCidFilePullDataReq";
+    case FileCmdIDCidFilePullDataRsp:
+      return @"FileCmdIDCidFilePullDataRsp";
+    case FileCmdIDCidFileRequest:
+      return @"FileCmdIDCidFileRequest";
+    case FileCmdIDCidFileResponse:
+      return @"FileCmdIDCidFileResponse";
+    case FileCmdIDCidFileNotify:
+      return @"FileCmdIDCidFileNotify";
+    case FileCmdIDCidFileHasOfflineReq:
+      return @"FileCmdIDCidFileHasOfflineReq";
+    case FileCmdIDCidFileHasOfflineRes:
+      return @"FileCmdIDCidFileHasOfflineRes";
+    case FileCmdIDCidFileAddOfflineReq:
+      return @"FileCmdIDCidFileAddOfflineReq";
+    case FileCmdIDCidFileDelOfflineReq:
+      return @"FileCmdIDCidFileDelOfflineReq";
+    default:
+      return nil;
+  }
+}
+
 BOOL SwitchServiceCmdIDIsValidValue(SwitchServiceCmdID value) {
   switch (value) {
     case SwitchServiceCmdIDCidSwitchP2PCmd:
@@ -143,6 +355,15 @@ BOOL SwitchServiceCmdIDIsValidValue(SwitchServiceCmdID value) {
       return NO;
   }
 }
+NSString *NSStringFromSwitchServiceCmdID(SwitchServiceCmdID value) {
+  switch (value) {
+    case SwitchServiceCmdIDCidSwitchP2PCmd:
+      return @"SwitchServiceCmdIDCidSwitchP2PCmd";
+    default:
+      return nil;
+  }
+}
+
 BOOL OtherCmdIDIsValidValue(OtherCmdID value) {
   switch (value) {
     case OtherCmdIDCidOtherHeartbeat:
@@ -171,17 +392,55 @@ BOOL OtherCmdIDIsValidValue(OtherCmdID value) {
       return NO;
   }
 }
-BOOL InternalCmdIDIsValidValue(InternalCmdID value) {
+NSString *NSStringFromOtherCmdID(OtherCmdID value) {
   switch (value) {
-    case InternalCmdIDCidInternalSyncAuthInfoReq:
-    case InternalCmdIDCidInternalSyncAuthInfoRsp:
-    case InternalCmdIDCidInternalUserIdByNickNameReq:
-    case InternalCmdIDCidInternalUserIdByNickNameRsp:
-      return YES;
+    case OtherCmdIDCidOtherHeartbeat:
+      return @"OtherCmdIDCidOtherHeartbeat";
+    case OtherCmdIDCidOtherStopRecvPacket:
+      return @"OtherCmdIDCidOtherStopRecvPacket";
+    case OtherCmdIDCidOtherValidateReq:
+      return @"OtherCmdIDCidOtherValidateReq";
+    case OtherCmdIDCidOtherValidateRsp:
+      return @"OtherCmdIDCidOtherValidateRsp";
+    case OtherCmdIDCidOtherGetDeviceTokenReq:
+      return @"OtherCmdIDCidOtherGetDeviceTokenReq";
+    case OtherCmdIDCidOtherGetDeviceTokenRsp:
+      return @"OtherCmdIDCidOtherGetDeviceTokenRsp";
+    case OtherCmdIDCidOtherRoleSet:
+      return @"OtherCmdIDCidOtherRoleSet";
+    case OtherCmdIDCidOtherOnlineUserInfo:
+      return @"OtherCmdIDCidOtherOnlineUserInfo";
+    case OtherCmdIDCidOtherMsgServInfo:
+      return @"OtherCmdIDCidOtherMsgServInfo";
+    case OtherCmdIDCidOtherUserStatusUpdate:
+      return @"OtherCmdIDCidOtherUserStatusUpdate";
+    case OtherCmdIDCidOtherUserCntUpdate:
+      return @"OtherCmdIDCidOtherUserCntUpdate";
+    case OtherCmdIDCidOtherServerKickUser:
+      return @"OtherCmdIDCidOtherServerKickUser";
+    case OtherCmdIDCidOtherLoginStatusNotify:
+      return @"OtherCmdIDCidOtherLoginStatusNotify";
+    case OtherCmdIDCidOtherPushToUserReq:
+      return @"OtherCmdIDCidOtherPushToUserReq";
+    case OtherCmdIDCidOtherPushToUserRsp:
+      return @"OtherCmdIDCidOtherPushToUserRsp";
+    case OtherCmdIDCidOtherGetShieldReq:
+      return @"OtherCmdIDCidOtherGetShieldReq";
+    case OtherCmdIDCidOtherGetShieldRsp:
+      return @"OtherCmdIDCidOtherGetShieldRsp";
+    case OtherCmdIDCidOtherFileTransferReq:
+      return @"OtherCmdIDCidOtherFileTransferReq";
+    case OtherCmdIDCidOtherFileTransferRsp:
+      return @"OtherCmdIDCidOtherFileTransferRsp";
+    case OtherCmdIDCidOtherFileServerIpReq:
+      return @"OtherCmdIDCidOtherFileServerIpReq";
+    case OtherCmdIDCidOtherFileServerIpRsp:
+      return @"OtherCmdIDCidOtherFileServerIpRsp";
     default:
-      return NO;
+      return nil;
   }
 }
+
 BOOL ResultTypeIsValidValue(ResultType value) {
   switch (value) {
     case ResultTypeRefuseReasonNone:
@@ -197,6 +456,29 @@ BOOL ResultTypeIsValidValue(ResultType value) {
       return NO;
   }
 }
+NSString *NSStringFromResultType(ResultType value) {
+  switch (value) {
+    case ResultTypeRefuseReasonNone:
+      return @"ResultTypeRefuseReasonNone";
+    case ResultTypeRefuseReasonNoMsgServer:
+      return @"ResultTypeRefuseReasonNoMsgServer";
+    case ResultTypeRefuseReasonMsgServerFull:
+      return @"ResultTypeRefuseReasonMsgServerFull";
+    case ResultTypeRefuseReasonNoDbServer:
+      return @"ResultTypeRefuseReasonNoDbServer";
+    case ResultTypeRefuseReasonNoLoginServer:
+      return @"ResultTypeRefuseReasonNoLoginServer";
+    case ResultTypeRefuseReasonNoRouteServer:
+      return @"ResultTypeRefuseReasonNoRouteServer";
+    case ResultTypeRefuseReasonDbValidateFailed:
+      return @"ResultTypeRefuseReasonDbValidateFailed";
+    case ResultTypeRefuseReasonVersionTooOld:
+      return @"ResultTypeRefuseReasonVersionTooOld";
+    default:
+      return nil;
+  }
+}
+
 BOOL KickReasonTypeIsValidValue(KickReasonType value) {
   switch (value) {
     case KickReasonTypeKickReasonDuplicateUser:
@@ -206,6 +488,17 @@ BOOL KickReasonTypeIsValidValue(KickReasonType value) {
       return NO;
   }
 }
+NSString *NSStringFromKickReasonType(KickReasonType value) {
+  switch (value) {
+    case KickReasonTypeKickReasonDuplicateUser:
+      return @"KickReasonTypeKickReasonDuplicateUser";
+    case KickReasonTypeKickReasonMobileKick:
+      return @"KickReasonTypeKickReasonMobileKick";
+    default:
+      return nil;
+  }
+}
+
 BOOL OnlineListTypeIsValidValue(OnlineListType value) {
   switch (value) {
     case OnlineListTypeOnlineListTypeFriendList:
@@ -214,6 +507,15 @@ BOOL OnlineListTypeIsValidValue(OnlineListType value) {
       return NO;
   }
 }
+NSString *NSStringFromOnlineListType(OnlineListType value) {
+  switch (value) {
+    case OnlineListTypeOnlineListTypeFriendList:
+      return @"OnlineListTypeOnlineListTypeFriendList";
+    default:
+      return nil;
+  }
+}
+
 BOOL UserStatTypeIsValidValue(UserStatType value) {
   switch (value) {
     case UserStatTypeUserStatusOnline:
@@ -224,6 +526,19 @@ BOOL UserStatTypeIsValidValue(UserStatType value) {
       return NO;
   }
 }
+NSString *NSStringFromUserStatType(UserStatType value) {
+  switch (value) {
+    case UserStatTypeUserStatusOnline:
+      return @"UserStatTypeUserStatusOnline";
+    case UserStatTypeUserStatusOffline:
+      return @"UserStatTypeUserStatusOffline";
+    case UserStatTypeUserStatusLeave:
+      return @"UserStatTypeUserStatusLeave";
+    default:
+      return nil;
+  }
+}
+
 BOOL SessionTypeIsValidValue(SessionType value) {
   switch (value) {
     case SessionTypeSessionTypeSingle:
@@ -233,6 +548,17 @@ BOOL SessionTypeIsValidValue(SessionType value) {
       return NO;
   }
 }
+NSString *NSStringFromSessionType(SessionType value) {
+  switch (value) {
+    case SessionTypeSessionTypeSingle:
+      return @"SessionTypeSessionTypeSingle";
+    case SessionTypeSessionTypeGroup:
+      return @"SessionTypeSessionTypeGroup";
+    default:
+      return nil;
+  }
+}
+
 BOOL MsgTypeIsValidValue(MsgType value) {
   switch (value) {
     case MsgTypeMsgTypeSingleText:
@@ -244,6 +570,21 @@ BOOL MsgTypeIsValidValue(MsgType value) {
       return NO;
   }
 }
+NSString *NSStringFromMsgType(MsgType value) {
+  switch (value) {
+    case MsgTypeMsgTypeSingleText:
+      return @"MsgTypeMsgTypeSingleText";
+    case MsgTypeMsgTypeSingleAudio:
+      return @"MsgTypeMsgTypeSingleAudio";
+    case MsgTypeMsgTypeGroupText:
+      return @"MsgTypeMsgTypeGroupText";
+    case MsgTypeMsgTypeGroupAudio:
+      return @"MsgTypeMsgTypeGroupAudio";
+    default:
+      return nil;
+  }
+}
+
 BOOL ClientTypeIsValidValue(ClientType value) {
   switch (value) {
     case ClientTypeClientTypeWindows:
@@ -255,6 +596,21 @@ BOOL ClientTypeIsValidValue(ClientType value) {
       return NO;
   }
 }
+NSString *NSStringFromClientType(ClientType value) {
+  switch (value) {
+    case ClientTypeClientTypeWindows:
+      return @"ClientTypeClientTypeWindows";
+    case ClientTypeClientTypeMac:
+      return @"ClientTypeClientTypeMac";
+    case ClientTypeClientTypeIos:
+      return @"ClientTypeClientTypeIos";
+    case ClientTypeClientTypeAndroid:
+      return @"ClientTypeClientTypeAndroid";
+    default:
+      return nil;
+  }
+}
+
 BOOL GroupTypeIsValidValue(GroupType value) {
   switch (value) {
     case GroupTypeGroupTypeNormal:
@@ -264,6 +620,17 @@ BOOL GroupTypeIsValidValue(GroupType value) {
       return NO;
   }
 }
+NSString *NSStringFromGroupType(GroupType value) {
+  switch (value) {
+    case GroupTypeGroupTypeNormal:
+      return @"GroupTypeGroupTypeNormal";
+    case GroupTypeGroupTypeTmp:
+      return @"GroupTypeGroupTypeTmp";
+    default:
+      return nil;
+  }
+}
+
 BOOL GroupModifyTypeIsValidValue(GroupModifyType value) {
   switch (value) {
     case GroupModifyTypeGroupModifyTypeAdd:
@@ -273,15 +640,37 @@ BOOL GroupModifyTypeIsValidValue(GroupModifyType value) {
       return NO;
   }
 }
-BOOL FileTypeIsValidValue(PBFileType value) {
+NSString *NSStringFromGroupModifyType(GroupModifyType value) {
   switch (value) {
-    case FileTypeFileTypeOnline:
-    case FileTypeFileTypeOffline:
+    case GroupModifyTypeGroupModifyTypeAdd:
+      return @"GroupModifyTypeGroupModifyTypeAdd";
+    case GroupModifyTypeGroupModifyTypeDel:
+      return @"GroupModifyTypeGroupModifyTypeDel";
+    default:
+      return nil;
+  }
+}
+
+BOOL TransferFileTypeIsValidValue(TransferFileType value) {
+  switch (value) {
+    case TransferFileTypeFileTypeOnline:
+    case TransferFileTypeFileTypeOffline:
       return YES;
     default:
       return NO;
   }
 }
+NSString *NSStringFromTransferFileType(TransferFileType value) {
+  switch (value) {
+    case TransferFileTypeFileTypeOnline:
+      return @"TransferFileTypeFileTypeOnline";
+    case TransferFileTypeFileTypeOffline:
+      return @"TransferFileTypeFileTypeOffline";
+    default:
+      return nil;
+  }
+}
+
 BOOL ClientFileStateIsValidValue(ClientFileState value) {
   switch (value) {
     case ClientFileStateClientFilePeerReady:
@@ -293,6 +682,21 @@ BOOL ClientFileStateIsValidValue(ClientFileState value) {
       return NO;
   }
 }
+NSString *NSStringFromClientFileState(ClientFileState value) {
+  switch (value) {
+    case ClientFileStateClientFilePeerReady:
+      return @"ClientFileStateClientFilePeerReady";
+    case ClientFileStateClientFileCancel:
+      return @"ClientFileStateClientFileCancel";
+    case ClientFileStateClientFileRefuse:
+      return @"ClientFileStateClientFileRefuse";
+    case ClientFileStateClientFileDone:
+      return @"ClientFileStateClientFileDone";
+    default:
+      return nil;
+  }
+}
+
 BOOL ClientFileRoleIsValidValue(ClientFileRole value) {
   switch (value) {
     case ClientFileRoleClientRealtimeSender:
@@ -304,6 +708,21 @@ BOOL ClientFileRoleIsValidValue(ClientFileRole value) {
       return NO;
   }
 }
+NSString *NSStringFromClientFileRole(ClientFileRole value) {
+  switch (value) {
+    case ClientFileRoleClientRealtimeSender:
+      return @"ClientFileRoleClientRealtimeSender";
+    case ClientFileRoleClientRealtimeRecver:
+      return @"ClientFileRoleClientRealtimeRecver";
+    case ClientFileRoleClientOfflineUpload:
+      return @"ClientFileRoleClientOfflineUpload";
+    case ClientFileRoleClientOfflineDownload:
+      return @"ClientFileRoleClientOfflineDownload";
+    default:
+      return nil;
+  }
+}
+
 BOOL FileServerErrorIsValidValue(FileServerError value) {
   switch (value) {
     case FileServerErrorFileServerErrnoOk:
@@ -324,6 +743,39 @@ BOOL FileServerErrorIsValidValue(FileServerError value) {
       return NO;
   }
 }
+NSString *NSStringFromFileServerError(FileServerError value) {
+  switch (value) {
+    case FileServerErrorFileServerErrnoOk:
+      return @"FileServerErrorFileServerErrnoOk";
+    case FileServerErrorFileServerErrnoCreateTaskIdError:
+      return @"FileServerErrorFileServerErrnoCreateTaskIdError";
+    case FileServerErrorFileServerErrnoCreateTaskError:
+      return @"FileServerErrorFileServerErrnoCreateTaskError";
+    case FileServerErrorFileServerErrnoLoginInvalidToken:
+      return @"FileServerErrorFileServerErrnoLoginInvalidToken";
+    case FileServerErrorFileServerErrnoInvalidUserForTask:
+      return @"FileServerErrorFileServerErrnoInvalidUserForTask";
+    case FileServerErrorFileServerErrnoPullDataWithInvalidTaskId:
+      return @"FileServerErrorFileServerErrnoPullDataWithInvalidTaskId";
+    case FileServerErrorFileServerErrnoPullDataIllieageUser:
+      return @"FileServerErrorFileServerErrnoPullDataIllieageUser";
+    case FileServerErrorFileServerErrnoPullDataMkdirError:
+      return @"FileServerErrorFileServerErrnoPullDataMkdirError";
+    case FileServerErrorFileServerErrnoPullDataOpenFileError:
+      return @"FileServerErrorFileServerErrnoPullDataOpenFileError";
+    case FileServerErrorFileServerErrnoPullDataReadFileHeaderError:
+      return @"FileServerErrorFileServerErrnoPullDataReadFileHeaderError";
+    case FileServerErrorFileServerErrnoPullDataAllocMemError:
+      return @"FileServerErrorFileServerErrnoPullDataAllocMemError";
+    case FileServerErrorFileServerErrnoPullDataSeekOffsetError:
+      return @"FileServerErrorFileServerErrnoPullDataSeekOffsetError";
+    case FileServerErrorFileServerErrnoPullDataFinished:
+      return @"FileServerErrorFileServerErrnoPullDataFinished";
+    default:
+      return nil;
+  }
+}
+
 BOOL SessionStatusTypeIsValidValue(SessionStatusType value) {
   switch (value) {
     case SessionStatusTypeSessionStatusOk:
@@ -333,6 +785,17 @@ BOOL SessionStatusTypeIsValidValue(SessionStatusType value) {
       return NO;
   }
 }
+NSString *NSStringFromSessionStatusType(SessionStatusType value) {
+  switch (value) {
+    case SessionStatusTypeSessionStatusOk:
+      return @"SessionStatusTypeSessionStatusOk";
+    case SessionStatusTypeSessionStatusDelete:
+      return @"SessionStatusTypeSessionStatusDelete";
+    default:
+      return nil;
+  }
+}
+
 BOOL DepartmentStatusTypeIsValidValue(DepartmentStatusType value) {
   switch (value) {
     case DepartmentStatusTypeDeptStatusOk:
@@ -342,6 +805,17 @@ BOOL DepartmentStatusTypeIsValidValue(DepartmentStatusType value) {
       return NO;
   }
 }
+NSString *NSStringFromDepartmentStatusType(DepartmentStatusType value) {
+  switch (value) {
+    case DepartmentStatusTypeDeptStatusOk:
+      return @"DepartmentStatusTypeDeptStatusOk";
+    case DepartmentStatusTypeDeptStatusDelete:
+      return @"DepartmentStatusTypeDeptStatusDelete";
+    default:
+      return nil;
+  }
+}
+
 @interface IpAddr ()
 @property (strong) NSString* ip;
 @property UInt32 port;
@@ -352,21 +826,18 @@ BOOL DepartmentStatusTypeIsValidValue(DepartmentStatusType value) {
 - (BOOL) hasIp {
   return !!hasIp_;
 }
-- (void) setHasIp:(BOOL) value_ {
-  hasIp_ = !!value_;
+- (void) setHasIp:(BOOL) _value_ {
+  hasIp_ = !!_value_;
 }
 @synthesize ip;
 - (BOOL) hasPort {
   return !!hasPort_;
 }
-- (void) setHasPort:(BOOL) value_ {
-  hasPort_ = !!value_;
+- (void) setHasPort:(BOOL) _value_ {
+  hasPort_ = !!_value_;
 }
 @synthesize port;
-- (void) dealloc {
-  self.ip = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.ip = @"";
     self.port = 0;
@@ -379,10 +850,10 @@ static IpAddr* defaultIpAddrInstance = nil;
     defaultIpAddrInstance = [[IpAddr alloc] init];
   }
 }
-+ (IpAddr*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIpAddrInstance;
 }
-- (IpAddr*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIpAddrInstance;
 }
 - (BOOL) isInitialized {
@@ -459,6 +930,15 @@ static IpAddr* defaultIpAddrInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasIp) {
+    [dictionary setObject: self.ip forKey: @"ip"];
+  }
+  if (self.hasPort) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.port] forKey: @"port"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -488,29 +968,26 @@ static IpAddr* defaultIpAddrInstance = nil;
 @end
 
 @interface IpAddrBuilder()
-@property (strong) IpAddr* result;
+@property (strong) IpAddr* resultIpAddr;
 @end
 
 @implementation IpAddrBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultIpAddr;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IpAddr alloc] init];
+    self.resultIpAddr = [[IpAddr alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultIpAddr;
 }
 - (IpAddrBuilder*) clear {
-  self.result = [[IpAddr alloc] init];
+  self.resultIpAddr = [[IpAddr alloc] init];
   return self;
 }
 - (IpAddrBuilder*) clone {
-  return [IpAddr builderWithPrototype:result];
+  return [IpAddr builderWithPrototype:resultIpAddr];
 }
 - (IpAddr*) defaultInstance {
   return [IpAddr defaultInstance];
@@ -520,8 +997,8 @@ static IpAddr* defaultIpAddrInstance = nil;
   return [self buildPartial];
 }
 - (IpAddr*) buildPartial {
-  IpAddr* returnMe = result;
-  self.result = nil;
+  IpAddr* returnMe = resultIpAddr;
+  self.resultIpAddr = nil;
   return returnMe;
 }
 - (IpAddrBuilder*) mergeFrom:(IpAddr*) other {
@@ -567,35 +1044,35 @@ static IpAddr* defaultIpAddrInstance = nil;
   }
 }
 - (BOOL) hasIp {
-  return result.hasIp;
+  return resultIpAddr.hasIp;
 }
 - (NSString*) ip {
-  return result.ip;
+  return resultIpAddr.ip;
 }
 - (IpAddrBuilder*) setIp:(NSString*) value {
-  result.hasIp = YES;
-  result.ip = value;
+  resultIpAddr.hasIp = YES;
+  resultIpAddr.ip = value;
   return self;
 }
 - (IpAddrBuilder*) clearIp {
-  result.hasIp = NO;
-  result.ip = @"";
+  resultIpAddr.hasIp = NO;
+  resultIpAddr.ip = @"";
   return self;
 }
 - (BOOL) hasPort {
-  return result.hasPort;
+  return resultIpAddr.hasPort;
 }
 - (UInt32) port {
-  return result.port;
+  return resultIpAddr.port;
 }
 - (IpAddrBuilder*) setPort:(UInt32) value {
-  result.hasPort = YES;
-  result.port = value;
+  resultIpAddr.hasPort = YES;
+  resultIpAddr.port = value;
   return self;
 }
 - (IpAddrBuilder*) clearPort {
-  result.hasPort = NO;
-  result.port = 0;
+  resultIpAddr.hasPort = NO;
+  resultIpAddr.port = 0;
   return self;
 }
 @end
@@ -611,6 +1088,7 @@ static IpAddr* defaultIpAddrInstance = nil;
 @property (strong) NSString* userTel;
 @property (strong) NSString* userDomain;
 @property UInt32 status;
+@property (strong) NSString* signInfo;
 @end
 
 @implementation UserInfo
@@ -618,82 +1096,81 @@ static IpAddr* defaultIpAddrInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasUserGender {
   return !!hasUserGender_;
 }
-- (void) setHasUserGender:(BOOL) value_ {
-  hasUserGender_ = !!value_;
+- (void) setHasUserGender:(BOOL) _value_ {
+  hasUserGender_ = !!_value_;
 }
 @synthesize userGender;
 - (BOOL) hasUserNickName {
   return !!hasUserNickName_;
 }
-- (void) setHasUserNickName:(BOOL) value_ {
-  hasUserNickName_ = !!value_;
+- (void) setHasUserNickName:(BOOL) _value_ {
+  hasUserNickName_ = !!_value_;
 }
 @synthesize userNickName;
 - (BOOL) hasAvatarUrl {
   return !!hasAvatarUrl_;
 }
-- (void) setHasAvatarUrl:(BOOL) value_ {
-  hasAvatarUrl_ = !!value_;
+- (void) setHasAvatarUrl:(BOOL) _value_ {
+  hasAvatarUrl_ = !!_value_;
 }
 @synthesize avatarUrl;
 - (BOOL) hasDepartmentId {
   return !!hasDepartmentId_;
 }
-- (void) setHasDepartmentId:(BOOL) value_ {
-  hasDepartmentId_ = !!value_;
+- (void) setHasDepartmentId:(BOOL) _value_ {
+  hasDepartmentId_ = !!_value_;
 }
 @synthesize departmentId;
 - (BOOL) hasEmail {
   return !!hasEmail_;
 }
-- (void) setHasEmail:(BOOL) value_ {
-  hasEmail_ = !!value_;
+- (void) setHasEmail:(BOOL) _value_ {
+  hasEmail_ = !!_value_;
 }
 @synthesize email;
 - (BOOL) hasUserRealName {
   return !!hasUserRealName_;
 }
-- (void) setHasUserRealName:(BOOL) value_ {
-  hasUserRealName_ = !!value_;
+- (void) setHasUserRealName:(BOOL) _value_ {
+  hasUserRealName_ = !!_value_;
 }
 @synthesize userRealName;
 - (BOOL) hasUserTel {
   return !!hasUserTel_;
 }
-- (void) setHasUserTel:(BOOL) value_ {
-  hasUserTel_ = !!value_;
+- (void) setHasUserTel:(BOOL) _value_ {
+  hasUserTel_ = !!_value_;
 }
 @synthesize userTel;
 - (BOOL) hasUserDomain {
   return !!hasUserDomain_;
 }
-- (void) setHasUserDomain:(BOOL) value_ {
-  hasUserDomain_ = !!value_;
+- (void) setHasUserDomain:(BOOL) _value_ {
+  hasUserDomain_ = !!_value_;
 }
 @synthesize userDomain;
 - (BOOL) hasStatus {
   return !!hasStatus_;
 }
-- (void) setHasStatus:(BOOL) value_ {
-  hasStatus_ = !!value_;
+- (void) setHasStatus:(BOOL) _value_ {
+  hasStatus_ = !!_value_;
 }
 @synthesize status;
-- (void) dealloc {
-  self.userNickName = nil;
-  self.avatarUrl = nil;
-  self.email = nil;
-  self.userRealName = nil;
-  self.userTel = nil;
-  self.userDomain = nil;
+- (BOOL) hasSignInfo {
+  return !!hasSignInfo_;
 }
-- (id) init {
+- (void) setHasSignInfo:(BOOL) _value_ {
+  hasSignInfo_ = !!_value_;
+}
+@synthesize signInfo;
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.userGender = 0;
@@ -705,6 +1182,7 @@ static IpAddr* defaultIpAddrInstance = nil;
     self.userTel = @"";
     self.userDomain = @"";
     self.status = 0;
+    self.signInfo = @"";
   }
   return self;
 }
@@ -714,10 +1192,10 @@ static UserInfo* defaultUserInfoInstance = nil;
     defaultUserInfoInstance = [[UserInfo alloc] init];
   }
 }
-+ (UserInfo*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultUserInfoInstance;
 }
-- (UserInfo*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultUserInfoInstance;
 }
 - (BOOL) isInitialized {
@@ -784,6 +1262,9 @@ static UserInfo* defaultUserInfoInstance = nil;
   if (self.hasStatus) {
     [output writeUInt32:10 value:self.status];
   }
+  if (self.hasSignInfo) {
+    [output writeString:11 value:self.signInfo];
+  }
   [self.unknownFields writeToCodedOutputStream:output];
 }
 - (SInt32) serializedSize {
@@ -822,6 +1303,9 @@ static UserInfo* defaultUserInfoInstance = nil;
   }
   if (self.hasStatus) {
     size_ += computeUInt32Size(10, self.status);
+  }
+  if (self.hasSignInfo) {
+    size_ += computeStringSize(11, self.signInfo);
   }
   size_ += self.unknownFields.serializedSize;
   memoizedSerializedSize = size_;
@@ -888,7 +1372,46 @@ static UserInfo* defaultUserInfoInstance = nil;
   if (self.hasStatus) {
     [output appendFormat:@"%@%@: %@\n", indent, @"status", [NSNumber numberWithInteger:self.status]];
   }
+  if (self.hasSignInfo) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"signInfo", self.signInfo];
+  }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasUserGender) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userGender] forKey: @"userGender"];
+  }
+  if (self.hasUserNickName) {
+    [dictionary setObject: self.userNickName forKey: @"userNickName"];
+  }
+  if (self.hasAvatarUrl) {
+    [dictionary setObject: self.avatarUrl forKey: @"avatarUrl"];
+  }
+  if (self.hasDepartmentId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.departmentId] forKey: @"departmentId"];
+  }
+  if (self.hasEmail) {
+    [dictionary setObject: self.email forKey: @"email"];
+  }
+  if (self.hasUserRealName) {
+    [dictionary setObject: self.userRealName forKey: @"userRealName"];
+  }
+  if (self.hasUserTel) {
+    [dictionary setObject: self.userTel forKey: @"userTel"];
+  }
+  if (self.hasUserDomain) {
+    [dictionary setObject: self.userDomain forKey: @"userDomain"];
+  }
+  if (self.hasStatus) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.status] forKey: @"status"];
+  }
+  if (self.hasSignInfo) {
+    [dictionary setObject: self.signInfo forKey: @"signInfo"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -919,6 +1442,8 @@ static UserInfo* defaultUserInfoInstance = nil;
       (!self.hasUserDomain || [self.userDomain isEqual:otherMessage.userDomain]) &&
       self.hasStatus == otherMessage.hasStatus &&
       (!self.hasStatus || self.status == otherMessage.status) &&
+      self.hasSignInfo == otherMessage.hasSignInfo &&
+      (!self.hasSignInfo || [self.signInfo isEqual:otherMessage.signInfo]) &&
       (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
 }
 - (NSUInteger) hash {
@@ -953,35 +1478,35 @@ static UserInfo* defaultUserInfoInstance = nil;
   if (self.hasStatus) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.status] hash];
   }
+  if (self.hasSignInfo) {
+    hashCode = hashCode * 31 + [self.signInfo hash];
+  }
   hashCode = hashCode * 31 + [self.unknownFields hash];
   return hashCode;
 }
 @end
 
 @interface UserInfoBuilder()
-@property (strong) UserInfo* result;
+@property (strong) UserInfo* resultUserInfo;
 @end
 
 @implementation UserInfoBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultUserInfo;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[UserInfo alloc] init];
+    self.resultUserInfo = [[UserInfo alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultUserInfo;
 }
 - (UserInfoBuilder*) clear {
-  self.result = [[UserInfo alloc] init];
+  self.resultUserInfo = [[UserInfo alloc] init];
   return self;
 }
 - (UserInfoBuilder*) clone {
-  return [UserInfo builderWithPrototype:result];
+  return [UserInfo builderWithPrototype:resultUserInfo];
 }
 - (UserInfo*) defaultInstance {
   return [UserInfo defaultInstance];
@@ -991,8 +1516,8 @@ static UserInfo* defaultUserInfoInstance = nil;
   return [self buildPartial];
 }
 - (UserInfo*) buildPartial {
-  UserInfo* returnMe = result;
-  self.result = nil;
+  UserInfo* returnMe = resultUserInfo;
+  self.resultUserInfo = nil;
   return returnMe;
 }
 - (UserInfoBuilder*) mergeFrom:(UserInfo*) other {
@@ -1028,6 +1553,9 @@ static UserInfo* defaultUserInfoInstance = nil;
   }
   if (other.hasStatus) {
     [self setStatus:other.status];
+  }
+  if (other.hasSignInfo) {
+    [self setSignInfo:other.signInfo];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1090,167 +1618,187 @@ static UserInfo* defaultUserInfoInstance = nil;
         [self setStatus:[input readUInt32]];
         break;
       }
+      case 90: {
+        [self setSignInfo:[input readString]];
+        break;
+      }
     }
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultUserInfo.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultUserInfo.userId;
 }
 - (UserInfoBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultUserInfo.hasUserId = YES;
+  resultUserInfo.userId = value;
   return self;
 }
 - (UserInfoBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultUserInfo.hasUserId = NO;
+  resultUserInfo.userId = 0;
   return self;
 }
 - (BOOL) hasUserGender {
-  return result.hasUserGender;
+  return resultUserInfo.hasUserGender;
 }
 - (UInt32) userGender {
-  return result.userGender;
+  return resultUserInfo.userGender;
 }
 - (UserInfoBuilder*) setUserGender:(UInt32) value {
-  result.hasUserGender = YES;
-  result.userGender = value;
+  resultUserInfo.hasUserGender = YES;
+  resultUserInfo.userGender = value;
   return self;
 }
 - (UserInfoBuilder*) clearUserGender {
-  result.hasUserGender = NO;
-  result.userGender = 0;
+  resultUserInfo.hasUserGender = NO;
+  resultUserInfo.userGender = 0;
   return self;
 }
 - (BOOL) hasUserNickName {
-  return result.hasUserNickName;
+  return resultUserInfo.hasUserNickName;
 }
 - (NSString*) userNickName {
-  return result.userNickName;
+  return resultUserInfo.userNickName;
 }
 - (UserInfoBuilder*) setUserNickName:(NSString*) value {
-  result.hasUserNickName = YES;
-  result.userNickName = value;
+  resultUserInfo.hasUserNickName = YES;
+  resultUserInfo.userNickName = value;
   return self;
 }
 - (UserInfoBuilder*) clearUserNickName {
-  result.hasUserNickName = NO;
-  result.userNickName = @"";
+  resultUserInfo.hasUserNickName = NO;
+  resultUserInfo.userNickName = @"";
   return self;
 }
 - (BOOL) hasAvatarUrl {
-  return result.hasAvatarUrl;
+  return resultUserInfo.hasAvatarUrl;
 }
 - (NSString*) avatarUrl {
-  return result.avatarUrl;
+  return resultUserInfo.avatarUrl;
 }
 - (UserInfoBuilder*) setAvatarUrl:(NSString*) value {
-  result.hasAvatarUrl = YES;
-  result.avatarUrl = value;
+  resultUserInfo.hasAvatarUrl = YES;
+  resultUserInfo.avatarUrl = value;
   return self;
 }
 - (UserInfoBuilder*) clearAvatarUrl {
-  result.hasAvatarUrl = NO;
-  result.avatarUrl = @"";
+  resultUserInfo.hasAvatarUrl = NO;
+  resultUserInfo.avatarUrl = @"";
   return self;
 }
 - (BOOL) hasDepartmentId {
-  return result.hasDepartmentId;
+  return resultUserInfo.hasDepartmentId;
 }
 - (UInt32) departmentId {
-  return result.departmentId;
+  return resultUserInfo.departmentId;
 }
 - (UserInfoBuilder*) setDepartmentId:(UInt32) value {
-  result.hasDepartmentId = YES;
-  result.departmentId = value;
+  resultUserInfo.hasDepartmentId = YES;
+  resultUserInfo.departmentId = value;
   return self;
 }
 - (UserInfoBuilder*) clearDepartmentId {
-  result.hasDepartmentId = NO;
-  result.departmentId = 0;
+  resultUserInfo.hasDepartmentId = NO;
+  resultUserInfo.departmentId = 0;
   return self;
 }
 - (BOOL) hasEmail {
-  return result.hasEmail;
+  return resultUserInfo.hasEmail;
 }
 - (NSString*) email {
-  return result.email;
+  return resultUserInfo.email;
 }
 - (UserInfoBuilder*) setEmail:(NSString*) value {
-  result.hasEmail = YES;
-  result.email = value;
+  resultUserInfo.hasEmail = YES;
+  resultUserInfo.email = value;
   return self;
 }
 - (UserInfoBuilder*) clearEmail {
-  result.hasEmail = NO;
-  result.email = @"";
+  resultUserInfo.hasEmail = NO;
+  resultUserInfo.email = @"";
   return self;
 }
 - (BOOL) hasUserRealName {
-  return result.hasUserRealName;
+  return resultUserInfo.hasUserRealName;
 }
 - (NSString*) userRealName {
-  return result.userRealName;
+  return resultUserInfo.userRealName;
 }
 - (UserInfoBuilder*) setUserRealName:(NSString*) value {
-  result.hasUserRealName = YES;
-  result.userRealName = value;
+  resultUserInfo.hasUserRealName = YES;
+  resultUserInfo.userRealName = value;
   return self;
 }
 - (UserInfoBuilder*) clearUserRealName {
-  result.hasUserRealName = NO;
-  result.userRealName = @"";
+  resultUserInfo.hasUserRealName = NO;
+  resultUserInfo.userRealName = @"";
   return self;
 }
 - (BOOL) hasUserTel {
-  return result.hasUserTel;
+  return resultUserInfo.hasUserTel;
 }
 - (NSString*) userTel {
-  return result.userTel;
+  return resultUserInfo.userTel;
 }
 - (UserInfoBuilder*) setUserTel:(NSString*) value {
-  result.hasUserTel = YES;
-  result.userTel = value;
+  resultUserInfo.hasUserTel = YES;
+  resultUserInfo.userTel = value;
   return self;
 }
 - (UserInfoBuilder*) clearUserTel {
-  result.hasUserTel = NO;
-  result.userTel = @"";
+  resultUserInfo.hasUserTel = NO;
+  resultUserInfo.userTel = @"";
   return self;
 }
 - (BOOL) hasUserDomain {
-  return result.hasUserDomain;
+  return resultUserInfo.hasUserDomain;
 }
 - (NSString*) userDomain {
-  return result.userDomain;
+  return resultUserInfo.userDomain;
 }
 - (UserInfoBuilder*) setUserDomain:(NSString*) value {
-  result.hasUserDomain = YES;
-  result.userDomain = value;
+  resultUserInfo.hasUserDomain = YES;
+  resultUserInfo.userDomain = value;
   return self;
 }
 - (UserInfoBuilder*) clearUserDomain {
-  result.hasUserDomain = NO;
-  result.userDomain = @"";
+  resultUserInfo.hasUserDomain = NO;
+  resultUserInfo.userDomain = @"";
   return self;
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+  return resultUserInfo.hasStatus;
 }
 - (UInt32) status {
-  return result.status;
+  return resultUserInfo.status;
 }
 - (UserInfoBuilder*) setStatus:(UInt32) value {
-  result.hasStatus = YES;
-  result.status = value;
+  resultUserInfo.hasStatus = YES;
+  resultUserInfo.status = value;
   return self;
 }
 - (UserInfoBuilder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = 0;
+  resultUserInfo.hasStatus = NO;
+  resultUserInfo.status = 0;
+  return self;
+}
+- (BOOL) hasSignInfo {
+  return resultUserInfo.hasSignInfo;
+}
+- (NSString*) signInfo {
+  return resultUserInfo.signInfo;
+}
+- (UserInfoBuilder*) setSignInfo:(NSString*) value {
+  resultUserInfo.hasSignInfo = YES;
+  resultUserInfo.signInfo = value;
+  return self;
+}
+- (UserInfoBuilder*) clearSignInfo {
+  resultUserInfo.hasSignInfo = NO;
+  resultUserInfo.signInfo = @"";
   return self;
 }
 @end
@@ -1271,63 +1819,60 @@ static UserInfo* defaultUserInfoInstance = nil;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
 - (BOOL) hasSessionStatus {
   return !!hasSessionStatus_;
 }
-- (void) setHasSessionStatus:(BOOL) value_ {
-  hasSessionStatus_ = !!value_;
+- (void) setHasSessionStatus:(BOOL) _value_ {
+  hasSessionStatus_ = !!_value_;
 }
 @synthesize sessionStatus;
 - (BOOL) hasUpdatedTime {
   return !!hasUpdatedTime_;
 }
-- (void) setHasUpdatedTime:(BOOL) value_ {
-  hasUpdatedTime_ = !!value_;
+- (void) setHasUpdatedTime:(BOOL) _value_ {
+  hasUpdatedTime_ = !!_value_;
 }
 @synthesize updatedTime;
 - (BOOL) hasLatestMsgId {
   return !!hasLatestMsgId_;
 }
-- (void) setHasLatestMsgId:(BOOL) value_ {
-  hasLatestMsgId_ = !!value_;
+- (void) setHasLatestMsgId:(BOOL) _value_ {
+  hasLatestMsgId_ = !!_value_;
 }
 @synthesize latestMsgId;
 - (BOOL) hasLatestMsgData {
   return !!hasLatestMsgData_;
 }
-- (void) setHasLatestMsgData:(BOOL) value_ {
-  hasLatestMsgData_ = !!value_;
+- (void) setHasLatestMsgData:(BOOL) _value_ {
+  hasLatestMsgData_ = !!_value_;
 }
 @synthesize latestMsgData;
 - (BOOL) hasLatestMsgType {
   return !!hasLatestMsgType_;
 }
-- (void) setHasLatestMsgType:(BOOL) value_ {
-  hasLatestMsgType_ = !!value_;
+- (void) setHasLatestMsgType:(BOOL) _value_ {
+  hasLatestMsgType_ = !!_value_;
 }
 @synthesize latestMsgType;
 - (BOOL) hasLatestMsgFromUserId {
   return !!hasLatestMsgFromUserId_;
 }
-- (void) setHasLatestMsgFromUserId:(BOOL) value_ {
-  hasLatestMsgFromUserId_ = !!value_;
+- (void) setHasLatestMsgFromUserId:(BOOL) _value_ {
+  hasLatestMsgFromUserId_ = !!_value_;
 }
 @synthesize latestMsgFromUserId;
-- (void) dealloc {
-  self.latestMsgData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.sessionId = 0;
     self.sessionType = SessionTypeSessionTypeSingle;
@@ -1346,10 +1891,10 @@ static ContactSessionInfo* defaultContactSessionInfoInstance = nil;
     defaultContactSessionInfoInstance = [[ContactSessionInfo alloc] init];
   }
 }
-+ (ContactSessionInfo*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultContactSessionInfoInstance;
 }
-- (ContactSessionInfo*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultContactSessionInfoInstance;
 }
 - (BOOL) isInitialized {
@@ -1476,10 +2021,10 @@ static ContactSessionInfo* defaultContactSessionInfoInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"sessionId", [NSNumber numberWithInteger:self.sessionId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   if (self.hasSessionStatus) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionStatus", self.sessionStatus];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionStatus", NSStringFromSessionStatusType(self.sessionStatus)];
   }
   if (self.hasUpdatedTime) {
     [output appendFormat:@"%@%@: %@\n", indent, @"updatedTime", [NSNumber numberWithInteger:self.updatedTime]];
@@ -1491,12 +2036,39 @@ static ContactSessionInfo* defaultContactSessionInfoInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"latestMsgData", self.latestMsgData];
   }
   if (self.hasLatestMsgType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"latestMsgType", self.latestMsgType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"latestMsgType", NSStringFromMsgType(self.latestMsgType)];
   }
   if (self.hasLatestMsgFromUserId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"latestMsgFromUserId", [NSNumber numberWithInteger:self.latestMsgFromUserId]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  if (self.hasSessionStatus) {
+    [dictionary setObject: @(self.sessionStatus) forKey: @"sessionStatus"];
+  }
+  if (self.hasUpdatedTime) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.updatedTime] forKey: @"updatedTime"];
+  }
+  if (self.hasLatestMsgId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.latestMsgId] forKey: @"latestMsgId"];
+  }
+  if (self.hasLatestMsgData) {
+    [dictionary setObject: self.latestMsgData forKey: @"latestMsgData"];
+  }
+  if (self.hasLatestMsgType) {
+    [dictionary setObject: @(self.latestMsgType) forKey: @"latestMsgType"];
+  }
+  if (self.hasLatestMsgFromUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.latestMsgFromUserId] forKey: @"latestMsgFromUserId"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -1557,29 +2129,26 @@ static ContactSessionInfo* defaultContactSessionInfoInstance = nil;
 @end
 
 @interface ContactSessionInfoBuilder()
-@property (strong) ContactSessionInfo* result;
+@property (strong) ContactSessionInfo* resultContactSessionInfo;
 @end
 
 @implementation ContactSessionInfoBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultContactSessionInfo;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[ContactSessionInfo alloc] init];
+    self.resultContactSessionInfo = [[ContactSessionInfo alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultContactSessionInfo;
 }
 - (ContactSessionInfoBuilder*) clear {
-  self.result = [[ContactSessionInfo alloc] init];
+  self.resultContactSessionInfo = [[ContactSessionInfo alloc] init];
   return self;
 }
 - (ContactSessionInfoBuilder*) clone {
-  return [ContactSessionInfo builderWithPrototype:result];
+  return [ContactSessionInfo builderWithPrototype:resultContactSessionInfo];
 }
 - (ContactSessionInfo*) defaultInstance {
   return [ContactSessionInfo defaultInstance];
@@ -1589,8 +2158,8 @@ static ContactSessionInfo* defaultContactSessionInfoInstance = nil;
   return [self buildPartial];
 }
 - (ContactSessionInfo*) buildPartial {
-  ContactSessionInfo* returnMe = result;
-  self.result = nil;
+  ContactSessionInfo* returnMe = resultContactSessionInfo;
+  self.resultContactSessionInfo = nil;
   return returnMe;
 }
 - (ContactSessionInfoBuilder*) mergeFrom:(ContactSessionInfo*) other {
@@ -1693,131 +2262,131 @@ static ContactSessionInfo* defaultContactSessionInfoInstance = nil;
   }
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultContactSessionInfo.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultContactSessionInfo.sessionId;
 }
 - (ContactSessionInfoBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultContactSessionInfo.hasSessionId = YES;
+  resultContactSessionInfo.sessionId = value;
   return self;
 }
 - (ContactSessionInfoBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultContactSessionInfo.hasSessionId = NO;
+  resultContactSessionInfo.sessionId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultContactSessionInfo.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultContactSessionInfo.sessionType;
 }
 - (ContactSessionInfoBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultContactSessionInfo.hasSessionType = YES;
+  resultContactSessionInfo.sessionType = value;
   return self;
 }
 - (ContactSessionInfoBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultContactSessionInfo.hasSessionType = NO;
+  resultContactSessionInfo.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 - (BOOL) hasSessionStatus {
-  return result.hasSessionStatus;
+  return resultContactSessionInfo.hasSessionStatus;
 }
 - (SessionStatusType) sessionStatus {
-  return result.sessionStatus;
+  return resultContactSessionInfo.sessionStatus;
 }
 - (ContactSessionInfoBuilder*) setSessionStatus:(SessionStatusType) value {
-  result.hasSessionStatus = YES;
-  result.sessionStatus = value;
+  resultContactSessionInfo.hasSessionStatus = YES;
+  resultContactSessionInfo.sessionStatus = value;
   return self;
 }
 - (ContactSessionInfoBuilder*) clearSessionStatus {
-  result.hasSessionStatus = NO;
-  result.sessionStatus = SessionStatusTypeSessionStatusOk;
+  resultContactSessionInfo.hasSessionStatus = NO;
+  resultContactSessionInfo.sessionStatus = SessionStatusTypeSessionStatusOk;
   return self;
 }
 - (BOOL) hasUpdatedTime {
-  return result.hasUpdatedTime;
+  return resultContactSessionInfo.hasUpdatedTime;
 }
 - (UInt32) updatedTime {
-  return result.updatedTime;
+  return resultContactSessionInfo.updatedTime;
 }
 - (ContactSessionInfoBuilder*) setUpdatedTime:(UInt32) value {
-  result.hasUpdatedTime = YES;
-  result.updatedTime = value;
+  resultContactSessionInfo.hasUpdatedTime = YES;
+  resultContactSessionInfo.updatedTime = value;
   return self;
 }
 - (ContactSessionInfoBuilder*) clearUpdatedTime {
-  result.hasUpdatedTime = NO;
-  result.updatedTime = 0;
+  resultContactSessionInfo.hasUpdatedTime = NO;
+  resultContactSessionInfo.updatedTime = 0;
   return self;
 }
 - (BOOL) hasLatestMsgId {
-  return result.hasLatestMsgId;
+  return resultContactSessionInfo.hasLatestMsgId;
 }
 - (UInt32) latestMsgId {
-  return result.latestMsgId;
+  return resultContactSessionInfo.latestMsgId;
 }
 - (ContactSessionInfoBuilder*) setLatestMsgId:(UInt32) value {
-  result.hasLatestMsgId = YES;
-  result.latestMsgId = value;
+  resultContactSessionInfo.hasLatestMsgId = YES;
+  resultContactSessionInfo.latestMsgId = value;
   return self;
 }
 - (ContactSessionInfoBuilder*) clearLatestMsgId {
-  result.hasLatestMsgId = NO;
-  result.latestMsgId = 0;
+  resultContactSessionInfo.hasLatestMsgId = NO;
+  resultContactSessionInfo.latestMsgId = 0;
   return self;
 }
 - (BOOL) hasLatestMsgData {
-  return result.hasLatestMsgData;
+  return resultContactSessionInfo.hasLatestMsgData;
 }
 - (NSData*) latestMsgData {
-  return result.latestMsgData;
+  return resultContactSessionInfo.latestMsgData;
 }
 - (ContactSessionInfoBuilder*) setLatestMsgData:(NSData*) value {
-  result.hasLatestMsgData = YES;
-  result.latestMsgData = value;
+  resultContactSessionInfo.hasLatestMsgData = YES;
+  resultContactSessionInfo.latestMsgData = value;
   return self;
 }
 - (ContactSessionInfoBuilder*) clearLatestMsgData {
-  result.hasLatestMsgData = NO;
-  result.latestMsgData = [NSData data];
+  resultContactSessionInfo.hasLatestMsgData = NO;
+  resultContactSessionInfo.latestMsgData = [NSData data];
   return self;
 }
 - (BOOL) hasLatestMsgType {
-  return result.hasLatestMsgType;
+  return resultContactSessionInfo.hasLatestMsgType;
 }
 - (MsgType) latestMsgType {
-  return result.latestMsgType;
+  return resultContactSessionInfo.latestMsgType;
 }
 - (ContactSessionInfoBuilder*) setLatestMsgType:(MsgType) value {
-  result.hasLatestMsgType = YES;
-  result.latestMsgType = value;
+  resultContactSessionInfo.hasLatestMsgType = YES;
+  resultContactSessionInfo.latestMsgType = value;
   return self;
 }
 - (ContactSessionInfoBuilder*) clearLatestMsgType {
-  result.hasLatestMsgType = NO;
-  result.latestMsgType = MsgTypeMsgTypeSingleText;
+  resultContactSessionInfo.hasLatestMsgType = NO;
+  resultContactSessionInfo.latestMsgType = MsgTypeMsgTypeSingleText;
   return self;
 }
 - (BOOL) hasLatestMsgFromUserId {
-  return result.hasLatestMsgFromUserId;
+  return resultContactSessionInfo.hasLatestMsgFromUserId;
 }
 - (UInt32) latestMsgFromUserId {
-  return result.latestMsgFromUserId;
+  return resultContactSessionInfo.latestMsgFromUserId;
 }
 - (ContactSessionInfoBuilder*) setLatestMsgFromUserId:(UInt32) value {
-  result.hasLatestMsgFromUserId = YES;
-  result.latestMsgFromUserId = value;
+  resultContactSessionInfo.hasLatestMsgFromUserId = YES;
+  resultContactSessionInfo.latestMsgFromUserId = value;
   return self;
 }
 - (ContactSessionInfoBuilder*) clearLatestMsgFromUserId {
-  result.hasLatestMsgFromUserId = NO;
-  result.latestMsgFromUserId = 0;
+  resultContactSessionInfo.hasLatestMsgFromUserId = NO;
+  resultContactSessionInfo.latestMsgFromUserId = 0;
   return self;
 }
 @end
@@ -1832,20 +2401,18 @@ static ContactSessionInfo* defaultContactSessionInfoInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasStatus {
   return !!hasStatus_;
 }
-- (void) setHasStatus:(BOOL) value_ {
-  hasStatus_ = !!value_;
+- (void) setHasStatus:(BOOL) _value_ {
+  hasStatus_ = !!_value_;
 }
 @synthesize status;
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.status = UserStatTypeUserStatusOnline;
@@ -1858,10 +2425,10 @@ static UserStat* defaultUserStatInstance = nil;
     defaultUserStatInstance = [[UserStat alloc] init];
   }
 }
-+ (UserStat*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultUserStatInstance;
 }
-- (UserStat*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultUserStatInstance;
 }
 - (BOOL) isInitialized {
@@ -1934,9 +2501,18 @@ static UserStat* defaultUserStatInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasStatus) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"status", self.status];
+    [output appendFormat:@"%@%@: %@\n", indent, @"status", NSStringFromUserStatType(self.status)];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasStatus) {
+    [dictionary setObject: @(self.status) forKey: @"status"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -1967,29 +2543,26 @@ static UserStat* defaultUserStatInstance = nil;
 @end
 
 @interface UserStatBuilder()
-@property (strong) UserStat* result;
+@property (strong) UserStat* resultUserStat;
 @end
 
 @implementation UserStatBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultUserStat;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[UserStat alloc] init];
+    self.resultUserStat = [[UserStat alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultUserStat;
 }
 - (UserStatBuilder*) clear {
-  self.result = [[UserStat alloc] init];
+  self.resultUserStat = [[UserStat alloc] init];
   return self;
 }
 - (UserStatBuilder*) clone {
-  return [UserStat builderWithPrototype:result];
+  return [UserStat builderWithPrototype:resultUserStat];
 }
 - (UserStat*) defaultInstance {
   return [UserStat defaultInstance];
@@ -1999,8 +2572,8 @@ static UserStat* defaultUserStatInstance = nil;
   return [self buildPartial];
 }
 - (UserStat*) buildPartial {
-  UserStat* returnMe = result;
-  self.result = nil;
+  UserStat* returnMe = resultUserStat;
+  self.resultUserStat = nil;
   return returnMe;
 }
 - (UserStatBuilder*) mergeFrom:(UserStat*) other {
@@ -2051,35 +2624,35 @@ static UserStat* defaultUserStatInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultUserStat.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultUserStat.userId;
 }
 - (UserStatBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultUserStat.hasUserId = YES;
+  resultUserStat.userId = value;
   return self;
 }
 - (UserStatBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultUserStat.hasUserId = NO;
+  resultUserStat.userId = 0;
   return self;
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+  return resultUserStat.hasStatus;
 }
 - (UserStatType) status {
-  return result.status;
+  return resultUserStat.status;
 }
 - (UserStatBuilder*) setStatus:(UserStatType) value {
-  result.hasStatus = YES;
-  result.status = value;
+  resultUserStat.hasStatus = YES;
+  resultUserStat.status = value;
   return self;
 }
 - (UserStatBuilder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = UserStatTypeUserStatusOnline;
+  resultUserStat.hasStatus = NO;
+  resultUserStat.status = UserStatTypeUserStatusOnline;
   return self;
 }
 @end
@@ -2095,27 +2668,25 @@ static UserStat* defaultUserStatInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasStatus {
   return !!hasStatus_;
 }
-- (void) setHasStatus:(BOOL) value_ {
-  hasStatus_ = !!value_;
+- (void) setHasStatus:(BOOL) _value_ {
+  hasStatus_ = !!_value_;
 }
 @synthesize status;
 - (BOOL) hasClientType {
   return !!hasClientType_;
 }
-- (void) setHasClientType:(BOOL) value_ {
-  hasClientType_ = !!value_;
+- (void) setHasClientType:(BOOL) _value_ {
+  hasClientType_ = !!_value_;
 }
 @synthesize clientType;
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.status = UserStatTypeUserStatusOnline;
@@ -2129,10 +2700,10 @@ static ServerUserStat* defaultServerUserStatInstance = nil;
     defaultServerUserStatInstance = [[ServerUserStat alloc] init];
   }
 }
-+ (ServerUserStat*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultServerUserStatInstance;
 }
-- (ServerUserStat*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultServerUserStatInstance;
 }
 - (BOOL) isInitialized {
@@ -2214,12 +2785,24 @@ static ServerUserStat* defaultServerUserStatInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasStatus) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"status", self.status];
+    [output appendFormat:@"%@%@: %@\n", indent, @"status", NSStringFromUserStatType(self.status)];
   }
   if (self.hasClientType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"clientType", self.clientType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"clientType", NSStringFromClientType(self.clientType)];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasStatus) {
+    [dictionary setObject: @(self.status) forKey: @"status"];
+  }
+  if (self.hasClientType) {
+    [dictionary setObject: @(self.clientType) forKey: @"clientType"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -2255,29 +2838,26 @@ static ServerUserStat* defaultServerUserStatInstance = nil;
 @end
 
 @interface ServerUserStatBuilder()
-@property (strong) ServerUserStat* result;
+@property (strong) ServerUserStat* resultServerUserStat;
 @end
 
 @implementation ServerUserStatBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultServerUserStat;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[ServerUserStat alloc] init];
+    self.resultServerUserStat = [[ServerUserStat alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultServerUserStat;
 }
 - (ServerUserStatBuilder*) clear {
-  self.result = [[ServerUserStat alloc] init];
+  self.resultServerUserStat = [[ServerUserStat alloc] init];
   return self;
 }
 - (ServerUserStatBuilder*) clone {
-  return [ServerUserStat builderWithPrototype:result];
+  return [ServerUserStat builderWithPrototype:resultServerUserStat];
 }
 - (ServerUserStat*) defaultInstance {
   return [ServerUserStat defaultInstance];
@@ -2287,8 +2867,8 @@ static ServerUserStat* defaultServerUserStatInstance = nil;
   return [self buildPartial];
 }
 - (ServerUserStat*) buildPartial {
-  ServerUserStat* returnMe = result;
-  self.result = nil;
+  ServerUserStat* returnMe = resultServerUserStat;
+  self.resultServerUserStat = nil;
   return returnMe;
 }
 - (ServerUserStatBuilder*) mergeFrom:(ServerUserStat*) other {
@@ -2351,51 +2931,51 @@ static ServerUserStat* defaultServerUserStatInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultServerUserStat.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultServerUserStat.userId;
 }
 - (ServerUserStatBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultServerUserStat.hasUserId = YES;
+  resultServerUserStat.userId = value;
   return self;
 }
 - (ServerUserStatBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultServerUserStat.hasUserId = NO;
+  resultServerUserStat.userId = 0;
   return self;
 }
 - (BOOL) hasStatus {
-  return result.hasStatus;
+  return resultServerUserStat.hasStatus;
 }
 - (UserStatType) status {
-  return result.status;
+  return resultServerUserStat.status;
 }
 - (ServerUserStatBuilder*) setStatus:(UserStatType) value {
-  result.hasStatus = YES;
-  result.status = value;
+  resultServerUserStat.hasStatus = YES;
+  resultServerUserStat.status = value;
   return self;
 }
 - (ServerUserStatBuilder*) clearStatus {
-  result.hasStatus = NO;
-  result.status = UserStatTypeUserStatusOnline;
+  resultServerUserStat.hasStatus = NO;
+  resultServerUserStat.status = UserStatTypeUserStatusOnline;
   return self;
 }
 - (BOOL) hasClientType {
-  return result.hasClientType;
+  return resultServerUserStat.hasClientType;
 }
 - (ClientType) clientType {
-  return result.clientType;
+  return resultServerUserStat.clientType;
 }
 - (ServerUserStatBuilder*) setClientType:(ClientType) value {
-  result.hasClientType = YES;
-  result.clientType = value;
+  resultServerUserStat.hasClientType = YES;
+  resultServerUserStat.clientType = value;
   return self;
 }
 - (ServerUserStatBuilder*) clearClientType {
-  result.hasClientType = NO;
-  result.clientType = ClientTypeClientTypeWindows;
+  resultServerUserStat.hasClientType = NO;
+  resultServerUserStat.clientType = ClientTypeClientTypeWindows;
   return self;
 }
 @end
@@ -2415,56 +2995,53 @@ static ServerUserStat* defaultServerUserStatInstance = nil;
 - (BOOL) hasSessionId {
   return !!hasSessionId_;
 }
-- (void) setHasSessionId:(BOOL) value_ {
-  hasSessionId_ = !!value_;
+- (void) setHasSessionId:(BOOL) _value_ {
+  hasSessionId_ = !!_value_;
 }
 @synthesize sessionId;
 - (BOOL) hasSessionType {
   return !!hasSessionType_;
 }
-- (void) setHasSessionType:(BOOL) value_ {
-  hasSessionType_ = !!value_;
+- (void) setHasSessionType:(BOOL) _value_ {
+  hasSessionType_ = !!_value_;
 }
 @synthesize sessionType;
 - (BOOL) hasUnreadCnt {
   return !!hasUnreadCnt_;
 }
-- (void) setHasUnreadCnt:(BOOL) value_ {
-  hasUnreadCnt_ = !!value_;
+- (void) setHasUnreadCnt:(BOOL) _value_ {
+  hasUnreadCnt_ = !!_value_;
 }
 @synthesize unreadCnt;
 - (BOOL) hasLatestMsgId {
   return !!hasLatestMsgId_;
 }
-- (void) setHasLatestMsgId:(BOOL) value_ {
-  hasLatestMsgId_ = !!value_;
+- (void) setHasLatestMsgId:(BOOL) _value_ {
+  hasLatestMsgId_ = !!_value_;
 }
 @synthesize latestMsgId;
 - (BOOL) hasLatestMsgData {
   return !!hasLatestMsgData_;
 }
-- (void) setHasLatestMsgData:(BOOL) value_ {
-  hasLatestMsgData_ = !!value_;
+- (void) setHasLatestMsgData:(BOOL) _value_ {
+  hasLatestMsgData_ = !!_value_;
 }
 @synthesize latestMsgData;
 - (BOOL) hasLatestMsgType {
   return !!hasLatestMsgType_;
 }
-- (void) setHasLatestMsgType:(BOOL) value_ {
-  hasLatestMsgType_ = !!value_;
+- (void) setHasLatestMsgType:(BOOL) _value_ {
+  hasLatestMsgType_ = !!_value_;
 }
 @synthesize latestMsgType;
 - (BOOL) hasLatestMsgFromUserId {
   return !!hasLatestMsgFromUserId_;
 }
-- (void) setHasLatestMsgFromUserId:(BOOL) value_ {
-  hasLatestMsgFromUserId_ = !!value_;
+- (void) setHasLatestMsgFromUserId:(BOOL) _value_ {
+  hasLatestMsgFromUserId_ = !!_value_;
 }
 @synthesize latestMsgFromUserId;
-- (void) dealloc {
-  self.latestMsgData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.sessionId = 0;
     self.sessionType = SessionTypeSessionTypeSingle;
@@ -2482,10 +3059,10 @@ static UnreadInfo* defaultUnreadInfoInstance = nil;
     defaultUnreadInfoInstance = [[UnreadInfo alloc] init];
   }
 }
-+ (UnreadInfo*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultUnreadInfoInstance;
 }
-- (UnreadInfo*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultUnreadInfoInstance;
 }
 - (BOOL) isInitialized {
@@ -2603,7 +3180,7 @@ static UnreadInfo* defaultUnreadInfoInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"sessionId", [NSNumber numberWithInteger:self.sessionId]];
   }
   if (self.hasSessionType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"sessionType", self.sessionType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"sessionType", NSStringFromSessionType(self.sessionType)];
   }
   if (self.hasUnreadCnt) {
     [output appendFormat:@"%@%@: %@\n", indent, @"unreadCnt", [NSNumber numberWithInteger:self.unreadCnt]];
@@ -2615,12 +3192,36 @@ static UnreadInfo* defaultUnreadInfoInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"latestMsgData", self.latestMsgData];
   }
   if (self.hasLatestMsgType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"latestMsgType", self.latestMsgType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"latestMsgType", NSStringFromMsgType(self.latestMsgType)];
   }
   if (self.hasLatestMsgFromUserId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"latestMsgFromUserId", [NSNumber numberWithInteger:self.latestMsgFromUserId]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.sessionId] forKey: @"sessionId"];
+  }
+  if (self.hasSessionType) {
+    [dictionary setObject: @(self.sessionType) forKey: @"sessionType"];
+  }
+  if (self.hasUnreadCnt) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.unreadCnt] forKey: @"unreadCnt"];
+  }
+  if (self.hasLatestMsgId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.latestMsgId] forKey: @"latestMsgId"];
+  }
+  if (self.hasLatestMsgData) {
+    [dictionary setObject: self.latestMsgData forKey: @"latestMsgData"];
+  }
+  if (self.hasLatestMsgType) {
+    [dictionary setObject: @(self.latestMsgType) forKey: @"latestMsgType"];
+  }
+  if (self.hasLatestMsgFromUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.latestMsgFromUserId] forKey: @"latestMsgFromUserId"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -2676,29 +3277,26 @@ static UnreadInfo* defaultUnreadInfoInstance = nil;
 @end
 
 @interface UnreadInfoBuilder()
-@property (strong) UnreadInfo* result;
+@property (strong) UnreadInfo* resultUnreadInfo;
 @end
 
 @implementation UnreadInfoBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultUnreadInfo;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[UnreadInfo alloc] init];
+    self.resultUnreadInfo = [[UnreadInfo alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultUnreadInfo;
 }
 - (UnreadInfoBuilder*) clear {
-  self.result = [[UnreadInfo alloc] init];
+  self.resultUnreadInfo = [[UnreadInfo alloc] init];
   return self;
 }
 - (UnreadInfoBuilder*) clone {
-  return [UnreadInfo builderWithPrototype:result];
+  return [UnreadInfo builderWithPrototype:resultUnreadInfo];
 }
 - (UnreadInfo*) defaultInstance {
   return [UnreadInfo defaultInstance];
@@ -2708,8 +3306,8 @@ static UnreadInfo* defaultUnreadInfoInstance = nil;
   return [self buildPartial];
 }
 - (UnreadInfo*) buildPartial {
-  UnreadInfo* returnMe = result;
-  self.result = nil;
+  UnreadInfo* returnMe = resultUnreadInfo;
+  self.resultUnreadInfo = nil;
   return returnMe;
 }
 - (UnreadInfoBuilder*) mergeFrom:(UnreadInfo*) other {
@@ -2800,115 +3398,115 @@ static UnreadInfo* defaultUnreadInfoInstance = nil;
   }
 }
 - (BOOL) hasSessionId {
-  return result.hasSessionId;
+  return resultUnreadInfo.hasSessionId;
 }
 - (UInt32) sessionId {
-  return result.sessionId;
+  return resultUnreadInfo.sessionId;
 }
 - (UnreadInfoBuilder*) setSessionId:(UInt32) value {
-  result.hasSessionId = YES;
-  result.sessionId = value;
+  resultUnreadInfo.hasSessionId = YES;
+  resultUnreadInfo.sessionId = value;
   return self;
 }
 - (UnreadInfoBuilder*) clearSessionId {
-  result.hasSessionId = NO;
-  result.sessionId = 0;
+  resultUnreadInfo.hasSessionId = NO;
+  resultUnreadInfo.sessionId = 0;
   return self;
 }
 - (BOOL) hasSessionType {
-  return result.hasSessionType;
+  return resultUnreadInfo.hasSessionType;
 }
 - (SessionType) sessionType {
-  return result.sessionType;
+  return resultUnreadInfo.sessionType;
 }
 - (UnreadInfoBuilder*) setSessionType:(SessionType) value {
-  result.hasSessionType = YES;
-  result.sessionType = value;
+  resultUnreadInfo.hasSessionType = YES;
+  resultUnreadInfo.sessionType = value;
   return self;
 }
 - (UnreadInfoBuilder*) clearSessionType {
-  result.hasSessionType = NO;
-  result.sessionType = SessionTypeSessionTypeSingle;
+  resultUnreadInfo.hasSessionType = NO;
+  resultUnreadInfo.sessionType = SessionTypeSessionTypeSingle;
   return self;
 }
 - (BOOL) hasUnreadCnt {
-  return result.hasUnreadCnt;
+  return resultUnreadInfo.hasUnreadCnt;
 }
 - (UInt32) unreadCnt {
-  return result.unreadCnt;
+  return resultUnreadInfo.unreadCnt;
 }
 - (UnreadInfoBuilder*) setUnreadCnt:(UInt32) value {
-  result.hasUnreadCnt = YES;
-  result.unreadCnt = value;
+  resultUnreadInfo.hasUnreadCnt = YES;
+  resultUnreadInfo.unreadCnt = value;
   return self;
 }
 - (UnreadInfoBuilder*) clearUnreadCnt {
-  result.hasUnreadCnt = NO;
-  result.unreadCnt = 0;
+  resultUnreadInfo.hasUnreadCnt = NO;
+  resultUnreadInfo.unreadCnt = 0;
   return self;
 }
 - (BOOL) hasLatestMsgId {
-  return result.hasLatestMsgId;
+  return resultUnreadInfo.hasLatestMsgId;
 }
 - (UInt32) latestMsgId {
-  return result.latestMsgId;
+  return resultUnreadInfo.latestMsgId;
 }
 - (UnreadInfoBuilder*) setLatestMsgId:(UInt32) value {
-  result.hasLatestMsgId = YES;
-  result.latestMsgId = value;
+  resultUnreadInfo.hasLatestMsgId = YES;
+  resultUnreadInfo.latestMsgId = value;
   return self;
 }
 - (UnreadInfoBuilder*) clearLatestMsgId {
-  result.hasLatestMsgId = NO;
-  result.latestMsgId = 0;
+  resultUnreadInfo.hasLatestMsgId = NO;
+  resultUnreadInfo.latestMsgId = 0;
   return self;
 }
 - (BOOL) hasLatestMsgData {
-  return result.hasLatestMsgData;
+  return resultUnreadInfo.hasLatestMsgData;
 }
 - (NSData*) latestMsgData {
-  return result.latestMsgData;
+  return resultUnreadInfo.latestMsgData;
 }
 - (UnreadInfoBuilder*) setLatestMsgData:(NSData*) value {
-  result.hasLatestMsgData = YES;
-  result.latestMsgData = value;
+  resultUnreadInfo.hasLatestMsgData = YES;
+  resultUnreadInfo.latestMsgData = value;
   return self;
 }
 - (UnreadInfoBuilder*) clearLatestMsgData {
-  result.hasLatestMsgData = NO;
-  result.latestMsgData = [NSData data];
+  resultUnreadInfo.hasLatestMsgData = NO;
+  resultUnreadInfo.latestMsgData = [NSData data];
   return self;
 }
 - (BOOL) hasLatestMsgType {
-  return result.hasLatestMsgType;
+  return resultUnreadInfo.hasLatestMsgType;
 }
 - (MsgType) latestMsgType {
-  return result.latestMsgType;
+  return resultUnreadInfo.latestMsgType;
 }
 - (UnreadInfoBuilder*) setLatestMsgType:(MsgType) value {
-  result.hasLatestMsgType = YES;
-  result.latestMsgType = value;
+  resultUnreadInfo.hasLatestMsgType = YES;
+  resultUnreadInfo.latestMsgType = value;
   return self;
 }
 - (UnreadInfoBuilder*) clearLatestMsgType {
-  result.hasLatestMsgType = NO;
-  result.latestMsgType = MsgTypeMsgTypeSingleText;
+  resultUnreadInfo.hasLatestMsgType = NO;
+  resultUnreadInfo.latestMsgType = MsgTypeMsgTypeSingleText;
   return self;
 }
 - (BOOL) hasLatestMsgFromUserId {
-  return result.hasLatestMsgFromUserId;
+  return resultUnreadInfo.hasLatestMsgFromUserId;
 }
 - (UInt32) latestMsgFromUserId {
-  return result.latestMsgFromUserId;
+  return resultUnreadInfo.latestMsgFromUserId;
 }
 - (UnreadInfoBuilder*) setLatestMsgFromUserId:(UInt32) value {
-  result.hasLatestMsgFromUserId = YES;
-  result.latestMsgFromUserId = value;
+  resultUnreadInfo.hasLatestMsgFromUserId = YES;
+  resultUnreadInfo.latestMsgFromUserId = value;
   return self;
 }
 - (UnreadInfoBuilder*) clearLatestMsgFromUserId {
-  result.hasLatestMsgFromUserId = NO;
-  result.latestMsgFromUserId = 0;
+  resultUnreadInfo.hasLatestMsgFromUserId = NO;
+  resultUnreadInfo.latestMsgFromUserId = 0;
   return self;
 }
 @end
@@ -2926,42 +3524,39 @@ static UnreadInfo* defaultUnreadInfoInstance = nil;
 - (BOOL) hasMsgId {
   return !!hasMsgId_;
 }
-- (void) setHasMsgId:(BOOL) value_ {
-  hasMsgId_ = !!value_;
+- (void) setHasMsgId:(BOOL) _value_ {
+  hasMsgId_ = !!_value_;
 }
 @synthesize msgId;
 - (BOOL) hasFromSessionId {
   return !!hasFromSessionId_;
 }
-- (void) setHasFromSessionId:(BOOL) value_ {
-  hasFromSessionId_ = !!value_;
+- (void) setHasFromSessionId:(BOOL) _value_ {
+  hasFromSessionId_ = !!_value_;
 }
 @synthesize fromSessionId;
 - (BOOL) hasCreateTime {
   return !!hasCreateTime_;
 }
-- (void) setHasCreateTime:(BOOL) value_ {
-  hasCreateTime_ = !!value_;
+- (void) setHasCreateTime:(BOOL) _value_ {
+  hasCreateTime_ = !!_value_;
 }
 @synthesize createTime;
 - (BOOL) hasMsgType {
   return !!hasMsgType_;
 }
-- (void) setHasMsgType:(BOOL) value_ {
-  hasMsgType_ = !!value_;
+- (void) setHasMsgType:(BOOL) _value_ {
+  hasMsgType_ = !!_value_;
 }
 @synthesize msgType;
 - (BOOL) hasMsgData {
   return !!hasMsgData_;
 }
-- (void) setHasMsgData:(BOOL) value_ {
-  hasMsgData_ = !!value_;
+- (void) setHasMsgData:(BOOL) _value_ {
+  hasMsgData_ = !!_value_;
 }
 @synthesize msgData;
-- (void) dealloc {
-  self.msgData = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.msgId = 0;
     self.fromSessionId = 0;
@@ -2977,10 +3572,10 @@ static MsgInfo* defaultMsgInfoInstance = nil;
     defaultMsgInfoInstance = [[MsgInfo alloc] init];
   }
 }
-+ (MsgInfo*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultMsgInfoInstance;
 }
-- (MsgInfo*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultMsgInfoInstance;
 }
 - (BOOL) isInitialized {
@@ -3086,12 +3681,30 @@ static MsgInfo* defaultMsgInfoInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"createTime", [NSNumber numberWithInteger:self.createTime]];
   }
   if (self.hasMsgType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"msgType", self.msgType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"msgType", NSStringFromMsgType(self.msgType)];
   }
   if (self.hasMsgData) {
     [output appendFormat:@"%@%@: %@\n", indent, @"msgData", self.msgData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasMsgId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.msgId] forKey: @"msgId"];
+  }
+  if (self.hasFromSessionId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fromSessionId] forKey: @"fromSessionId"];
+  }
+  if (self.hasCreateTime) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.createTime] forKey: @"createTime"];
+  }
+  if (self.hasMsgType) {
+    [dictionary setObject: @(self.msgType) forKey: @"msgType"];
+  }
+  if (self.hasMsgData) {
+    [dictionary setObject: self.msgData forKey: @"msgData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -3137,29 +3750,26 @@ static MsgInfo* defaultMsgInfoInstance = nil;
 @end
 
 @interface MsgInfoBuilder()
-@property (strong) MsgInfo* result;
+@property (strong) MsgInfo* resultMsgInfo;
 @end
 
 @implementation MsgInfoBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultMsgInfo;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[MsgInfo alloc] init];
+    self.resultMsgInfo = [[MsgInfo alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultMsgInfo;
 }
 - (MsgInfoBuilder*) clear {
-  self.result = [[MsgInfo alloc] init];
+  self.resultMsgInfo = [[MsgInfo alloc] init];
   return self;
 }
 - (MsgInfoBuilder*) clone {
-  return [MsgInfo builderWithPrototype:result];
+  return [MsgInfo builderWithPrototype:resultMsgInfo];
 }
 - (MsgInfo*) defaultInstance {
   return [MsgInfo defaultInstance];
@@ -3169,8 +3779,8 @@ static MsgInfo* defaultMsgInfoInstance = nil;
   return [self buildPartial];
 }
 - (MsgInfo*) buildPartial {
-  MsgInfo* returnMe = result;
-  self.result = nil;
+  MsgInfo* returnMe = resultMsgInfo;
+  self.resultMsgInfo = nil;
   return returnMe;
 }
 - (MsgInfoBuilder*) mergeFrom:(MsgInfo*) other {
@@ -3242,83 +3852,83 @@ static MsgInfo* defaultMsgInfoInstance = nil;
   }
 }
 - (BOOL) hasMsgId {
-  return result.hasMsgId;
+  return resultMsgInfo.hasMsgId;
 }
 - (UInt32) msgId {
-  return result.msgId;
+  return resultMsgInfo.msgId;
 }
 - (MsgInfoBuilder*) setMsgId:(UInt32) value {
-  result.hasMsgId = YES;
-  result.msgId = value;
+  resultMsgInfo.hasMsgId = YES;
+  resultMsgInfo.msgId = value;
   return self;
 }
 - (MsgInfoBuilder*) clearMsgId {
-  result.hasMsgId = NO;
-  result.msgId = 0;
+  resultMsgInfo.hasMsgId = NO;
+  resultMsgInfo.msgId = 0;
   return self;
 }
 - (BOOL) hasFromSessionId {
-  return result.hasFromSessionId;
+  return resultMsgInfo.hasFromSessionId;
 }
 - (UInt32) fromSessionId {
-  return result.fromSessionId;
+  return resultMsgInfo.fromSessionId;
 }
 - (MsgInfoBuilder*) setFromSessionId:(UInt32) value {
-  result.hasFromSessionId = YES;
-  result.fromSessionId = value;
+  resultMsgInfo.hasFromSessionId = YES;
+  resultMsgInfo.fromSessionId = value;
   return self;
 }
 - (MsgInfoBuilder*) clearFromSessionId {
-  result.hasFromSessionId = NO;
-  result.fromSessionId = 0;
+  resultMsgInfo.hasFromSessionId = NO;
+  resultMsgInfo.fromSessionId = 0;
   return self;
 }
 - (BOOL) hasCreateTime {
-  return result.hasCreateTime;
+  return resultMsgInfo.hasCreateTime;
 }
 - (UInt32) createTime {
-  return result.createTime;
+  return resultMsgInfo.createTime;
 }
 - (MsgInfoBuilder*) setCreateTime:(UInt32) value {
-  result.hasCreateTime = YES;
-  result.createTime = value;
+  resultMsgInfo.hasCreateTime = YES;
+  resultMsgInfo.createTime = value;
   return self;
 }
 - (MsgInfoBuilder*) clearCreateTime {
-  result.hasCreateTime = NO;
-  result.createTime = 0;
+  resultMsgInfo.hasCreateTime = NO;
+  resultMsgInfo.createTime = 0;
   return self;
 }
 - (BOOL) hasMsgType {
-  return result.hasMsgType;
+  return resultMsgInfo.hasMsgType;
 }
 - (MsgType) msgType {
-  return result.msgType;
+  return resultMsgInfo.msgType;
 }
 - (MsgInfoBuilder*) setMsgType:(MsgType) value {
-  result.hasMsgType = YES;
-  result.msgType = value;
+  resultMsgInfo.hasMsgType = YES;
+  resultMsgInfo.msgType = value;
   return self;
 }
 - (MsgInfoBuilder*) clearMsgType {
-  result.hasMsgType = NO;
-  result.msgType = MsgTypeMsgTypeSingleText;
+  resultMsgInfo.hasMsgType = NO;
+  resultMsgInfo.msgType = MsgTypeMsgTypeSingleText;
   return self;
 }
 - (BOOL) hasMsgData {
-  return result.hasMsgData;
+  return resultMsgInfo.hasMsgData;
 }
 - (NSData*) msgData {
-  return result.msgData;
+  return resultMsgInfo.msgData;
 }
 - (MsgInfoBuilder*) setMsgData:(NSData*) value {
-  result.hasMsgData = YES;
-  result.msgData = value;
+  resultMsgInfo.hasMsgData = YES;
+  resultMsgInfo.msgData = value;
   return self;
 }
 - (MsgInfoBuilder*) clearMsgData {
-  result.hasMsgData = NO;
-  result.msgData = [NSData data];
+  resultMsgInfo.hasMsgData = NO;
+  resultMsgInfo.msgData = [NSData data];
   return self;
 }
 @end
@@ -3333,20 +3943,18 @@ static MsgInfo* defaultMsgInfoInstance = nil;
 - (BOOL) hasGroupId {
   return !!hasGroupId_;
 }
-- (void) setHasGroupId:(BOOL) value_ {
-  hasGroupId_ = !!value_;
+- (void) setHasGroupId:(BOOL) _value_ {
+  hasGroupId_ = !!_value_;
 }
 @synthesize groupId;
 - (BOOL) hasVersion {
   return !!hasVersion_;
 }
-- (void) setHasVersion:(BOOL) value_ {
-  hasVersion_ = !!value_;
+- (void) setHasVersion:(BOOL) _value_ {
+  hasVersion_ = !!_value_;
 }
 @synthesize version;
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.groupId = 0;
     self.version = 0;
@@ -3359,10 +3967,10 @@ static GroupVersionInfo* defaultGroupVersionInfoInstance = nil;
     defaultGroupVersionInfoInstance = [[GroupVersionInfo alloc] init];
   }
 }
-+ (GroupVersionInfo*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultGroupVersionInfoInstance;
 }
-- (GroupVersionInfo*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultGroupVersionInfoInstance;
 }
 - (BOOL) isInitialized {
@@ -3439,6 +4047,15 @@ static GroupVersionInfo* defaultGroupVersionInfoInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasGroupId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.groupId] forKey: @"groupId"];
+  }
+  if (self.hasVersion) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.version] forKey: @"version"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -3468,29 +4085,26 @@ static GroupVersionInfo* defaultGroupVersionInfoInstance = nil;
 @end
 
 @interface GroupVersionInfoBuilder()
-@property (strong) GroupVersionInfo* result;
+@property (strong) GroupVersionInfo* resultGroupVersionInfo;
 @end
 
 @implementation GroupVersionInfoBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultGroupVersionInfo;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[GroupVersionInfo alloc] init];
+    self.resultGroupVersionInfo = [[GroupVersionInfo alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultGroupVersionInfo;
 }
 - (GroupVersionInfoBuilder*) clear {
-  self.result = [[GroupVersionInfo alloc] init];
+  self.resultGroupVersionInfo = [[GroupVersionInfo alloc] init];
   return self;
 }
 - (GroupVersionInfoBuilder*) clone {
-  return [GroupVersionInfo builderWithPrototype:result];
+  return [GroupVersionInfo builderWithPrototype:resultGroupVersionInfo];
 }
 - (GroupVersionInfo*) defaultInstance {
   return [GroupVersionInfo defaultInstance];
@@ -3500,8 +4114,8 @@ static GroupVersionInfo* defaultGroupVersionInfoInstance = nil;
   return [self buildPartial];
 }
 - (GroupVersionInfo*) buildPartial {
-  GroupVersionInfo* returnMe = result;
-  self.result = nil;
+  GroupVersionInfo* returnMe = resultGroupVersionInfo;
+  self.resultGroupVersionInfo = nil;
   return returnMe;
 }
 - (GroupVersionInfoBuilder*) mergeFrom:(GroupVersionInfo*) other {
@@ -3547,35 +4161,35 @@ static GroupVersionInfo* defaultGroupVersionInfoInstance = nil;
   }
 }
 - (BOOL) hasGroupId {
-  return result.hasGroupId;
+  return resultGroupVersionInfo.hasGroupId;
 }
 - (UInt32) groupId {
-  return result.groupId;
+  return resultGroupVersionInfo.groupId;
 }
 - (GroupVersionInfoBuilder*) setGroupId:(UInt32) value {
-  result.hasGroupId = YES;
-  result.groupId = value;
+  resultGroupVersionInfo.hasGroupId = YES;
+  resultGroupVersionInfo.groupId = value;
   return self;
 }
 - (GroupVersionInfoBuilder*) clearGroupId {
-  result.hasGroupId = NO;
-  result.groupId = 0;
+  resultGroupVersionInfo.hasGroupId = NO;
+  resultGroupVersionInfo.groupId = 0;
   return self;
 }
 - (BOOL) hasVersion {
-  return result.hasVersion;
+  return resultGroupVersionInfo.hasVersion;
 }
 - (UInt32) version {
-  return result.version;
+  return resultGroupVersionInfo.version;
 }
 - (GroupVersionInfoBuilder*) setVersion:(UInt32) value {
-  result.hasVersion = YES;
-  result.version = value;
+  resultGroupVersionInfo.hasVersion = YES;
+  resultGroupVersionInfo.version = value;
   return self;
 }
 - (GroupVersionInfoBuilder*) clearVersion {
-  result.hasVersion = NO;
-  result.version = 0;
+  resultGroupVersionInfo.hasVersion = NO;
+  resultGroupVersionInfo.version = 0;
   return self;
 }
 @end
@@ -3596,60 +4210,55 @@ static GroupVersionInfo* defaultGroupVersionInfoInstance = nil;
 - (BOOL) hasGroupId {
   return !!hasGroupId_;
 }
-- (void) setHasGroupId:(BOOL) value_ {
-  hasGroupId_ = !!value_;
+- (void) setHasGroupId:(BOOL) _value_ {
+  hasGroupId_ = !!_value_;
 }
 @synthesize groupId;
 - (BOOL) hasVersion {
   return !!hasVersion_;
 }
-- (void) setHasVersion:(BOOL) value_ {
-  hasVersion_ = !!value_;
+- (void) setHasVersion:(BOOL) _value_ {
+  hasVersion_ = !!_value_;
 }
 @synthesize version;
 - (BOOL) hasGroupName {
   return !!hasGroupName_;
 }
-- (void) setHasGroupName:(BOOL) value_ {
-  hasGroupName_ = !!value_;
+- (void) setHasGroupName:(BOOL) _value_ {
+  hasGroupName_ = !!_value_;
 }
 @synthesize groupName;
 - (BOOL) hasGroupAvatar {
   return !!hasGroupAvatar_;
 }
-- (void) setHasGroupAvatar:(BOOL) value_ {
-  hasGroupAvatar_ = !!value_;
+- (void) setHasGroupAvatar:(BOOL) _value_ {
+  hasGroupAvatar_ = !!_value_;
 }
 @synthesize groupAvatar;
 - (BOOL) hasGroupCreatorId {
   return !!hasGroupCreatorId_;
 }
-- (void) setHasGroupCreatorId:(BOOL) value_ {
-  hasGroupCreatorId_ = !!value_;
+- (void) setHasGroupCreatorId:(BOOL) _value_ {
+  hasGroupCreatorId_ = !!_value_;
 }
 @synthesize groupCreatorId;
 - (BOOL) hasGroupType {
   return !!hasGroupType_;
 }
-- (void) setHasGroupType:(BOOL) value_ {
-  hasGroupType_ = !!value_;
+- (void) setHasGroupType:(BOOL) _value_ {
+  hasGroupType_ = !!_value_;
 }
 @synthesize groupType;
 - (BOOL) hasShieldStatus {
   return !!hasShieldStatus_;
 }
-- (void) setHasShieldStatus:(BOOL) value_ {
-  hasShieldStatus_ = !!value_;
+- (void) setHasShieldStatus:(BOOL) _value_ {
+  hasShieldStatus_ = !!_value_;
 }
 @synthesize shieldStatus;
 @synthesize groupMemberListArray;
 @dynamic groupMemberList;
-- (void) dealloc {
-  self.groupName = nil;
-  self.groupAvatar = nil;
-  self.groupMemberListArray = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.groupId = 0;
     self.version = 0;
@@ -3667,10 +4276,10 @@ static GroupInfo* defaultGroupInfoInstance = nil;
     defaultGroupInfoInstance = [[GroupInfo alloc] init];
   }
 }
-+ (GroupInfo*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultGroupInfoInstance;
 }
-- (GroupInfo*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultGroupInfoInstance;
 }
 - (PBArray *)groupMemberList {
@@ -3823,7 +4432,7 @@ static GroupInfo* defaultGroupInfoInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"groupCreatorId", [NSNumber numberWithInteger:self.groupCreatorId]];
   }
   if (self.hasGroupType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"groupType", self.groupType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"groupType", NSStringFromGroupType(self.groupType)];
   }
   if (self.hasShieldStatus) {
     [output appendFormat:@"%@%@: %@\n", indent, @"shieldStatus", [NSNumber numberWithInteger:self.shieldStatus]];
@@ -3832,6 +4441,36 @@ static GroupInfo* defaultGroupInfoInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"groupMemberList", obj];
   }];
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasGroupId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.groupId] forKey: @"groupId"];
+  }
+  if (self.hasVersion) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.version] forKey: @"version"];
+  }
+  if (self.hasGroupName) {
+    [dictionary setObject: self.groupName forKey: @"groupName"];
+  }
+  if (self.hasGroupAvatar) {
+    [dictionary setObject: self.groupAvatar forKey: @"groupAvatar"];
+  }
+  if (self.hasGroupCreatorId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.groupCreatorId] forKey: @"groupCreatorId"];
+  }
+  if (self.hasGroupType) {
+    [dictionary setObject: @(self.groupType) forKey: @"groupType"];
+  }
+  if (self.hasShieldStatus) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.shieldStatus] forKey: @"shieldStatus"];
+  }
+  NSMutableArray * groupMemberListArrayArray = [NSMutableArray new];
+  NSUInteger groupMemberListArrayCount=self.groupMemberListArray.count;
+  for(int i=0;i<groupMemberListArrayCount;i++){
+    [groupMemberListArrayArray addObject: @([self.groupMemberListArray uint32AtIndex:i])];
+  }
+  [dictionary setObject: groupMemberListArrayArray forKey: @"groupMemberList"];
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -3882,7 +4521,7 @@ static GroupInfo* defaultGroupInfoInstance = nil;
   if (self.hasShieldStatus) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.shieldStatus] hash];
   }
-  [self.groupMemberListArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+  [self.groupMemberListArray enumerateObjectsUsingBlock:^(NSNumber *obj, NSUInteger idx, BOOL *stop) {
     hashCode = hashCode * 31 + [obj longValue];
   }];
   hashCode = hashCode * 31 + [self.unknownFields hash];
@@ -3891,29 +4530,26 @@ static GroupInfo* defaultGroupInfoInstance = nil;
 @end
 
 @interface GroupInfoBuilder()
-@property (strong) GroupInfo* result;
+@property (strong) GroupInfo* resultGroupInfo;
 @end
 
 @implementation GroupInfoBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultGroupInfo;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[GroupInfo alloc] init];
+    self.resultGroupInfo = [[GroupInfo alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultGroupInfo;
 }
 - (GroupInfoBuilder*) clear {
-  self.result = [[GroupInfo alloc] init];
+  self.resultGroupInfo = [[GroupInfo alloc] init];
   return self;
 }
 - (GroupInfoBuilder*) clone {
-  return [GroupInfo builderWithPrototype:result];
+  return [GroupInfo builderWithPrototype:resultGroupInfo];
 }
 - (GroupInfo*) defaultInstance {
   return [GroupInfo defaultInstance];
@@ -3923,8 +4559,8 @@ static GroupInfo* defaultGroupInfoInstance = nil;
   return [self buildPartial];
 }
 - (GroupInfo*) buildPartial {
-  GroupInfo* returnMe = result;
-  self.result = nil;
+  GroupInfo* returnMe = resultGroupInfo;
+  self.resultGroupInfo = nil;
   return returnMe;
 }
 - (GroupInfoBuilder*) mergeFrom:(GroupInfo*) other {
@@ -3953,10 +4589,10 @@ static GroupInfo* defaultGroupInfoInstance = nil;
     [self setShieldStatus:other.shieldStatus];
   }
   if (other.groupMemberListArray.count > 0) {
-    if (result.groupMemberListArray == nil) {
-      result.groupMemberListArray = [other.groupMemberListArray copy];
+    if (resultGroupInfo.groupMemberListArray == nil) {
+      resultGroupInfo.groupMemberListArray = [other.groupMemberListArray copy];
     } else {
-      [result.groupMemberListArray appendArray:other.groupMemberListArray];
+      [resultGroupInfo.groupMemberListArray appendArray:other.groupMemberListArray];
     }
   }
   [self mergeUnknownFields:other.unknownFields];
@@ -4021,140 +4657,140 @@ static GroupInfo* defaultGroupInfoInstance = nil;
   }
 }
 - (BOOL) hasGroupId {
-  return result.hasGroupId;
+  return resultGroupInfo.hasGroupId;
 }
 - (UInt32) groupId {
-  return result.groupId;
+  return resultGroupInfo.groupId;
 }
 - (GroupInfoBuilder*) setGroupId:(UInt32) value {
-  result.hasGroupId = YES;
-  result.groupId = value;
+  resultGroupInfo.hasGroupId = YES;
+  resultGroupInfo.groupId = value;
   return self;
 }
 - (GroupInfoBuilder*) clearGroupId {
-  result.hasGroupId = NO;
-  result.groupId = 0;
+  resultGroupInfo.hasGroupId = NO;
+  resultGroupInfo.groupId = 0;
   return self;
 }
 - (BOOL) hasVersion {
-  return result.hasVersion;
+  return resultGroupInfo.hasVersion;
 }
 - (UInt32) version {
-  return result.version;
+  return resultGroupInfo.version;
 }
 - (GroupInfoBuilder*) setVersion:(UInt32) value {
-  result.hasVersion = YES;
-  result.version = value;
+  resultGroupInfo.hasVersion = YES;
+  resultGroupInfo.version = value;
   return self;
 }
 - (GroupInfoBuilder*) clearVersion {
-  result.hasVersion = NO;
-  result.version = 0;
+  resultGroupInfo.hasVersion = NO;
+  resultGroupInfo.version = 0;
   return self;
 }
 - (BOOL) hasGroupName {
-  return result.hasGroupName;
+  return resultGroupInfo.hasGroupName;
 }
 - (NSString*) groupName {
-  return result.groupName;
+  return resultGroupInfo.groupName;
 }
 - (GroupInfoBuilder*) setGroupName:(NSString*) value {
-  result.hasGroupName = YES;
-  result.groupName = value;
+  resultGroupInfo.hasGroupName = YES;
+  resultGroupInfo.groupName = value;
   return self;
 }
 - (GroupInfoBuilder*) clearGroupName {
-  result.hasGroupName = NO;
-  result.groupName = @"";
+  resultGroupInfo.hasGroupName = NO;
+  resultGroupInfo.groupName = @"";
   return self;
 }
 - (BOOL) hasGroupAvatar {
-  return result.hasGroupAvatar;
+  return resultGroupInfo.hasGroupAvatar;
 }
 - (NSString*) groupAvatar {
-  return result.groupAvatar;
+  return resultGroupInfo.groupAvatar;
 }
 - (GroupInfoBuilder*) setGroupAvatar:(NSString*) value {
-  result.hasGroupAvatar = YES;
-  result.groupAvatar = value;
+  resultGroupInfo.hasGroupAvatar = YES;
+  resultGroupInfo.groupAvatar = value;
   return self;
 }
 - (GroupInfoBuilder*) clearGroupAvatar {
-  result.hasGroupAvatar = NO;
-  result.groupAvatar = @"";
+  resultGroupInfo.hasGroupAvatar = NO;
+  resultGroupInfo.groupAvatar = @"";
   return self;
 }
 - (BOOL) hasGroupCreatorId {
-  return result.hasGroupCreatorId;
+  return resultGroupInfo.hasGroupCreatorId;
 }
 - (UInt32) groupCreatorId {
-  return result.groupCreatorId;
+  return resultGroupInfo.groupCreatorId;
 }
 - (GroupInfoBuilder*) setGroupCreatorId:(UInt32) value {
-  result.hasGroupCreatorId = YES;
-  result.groupCreatorId = value;
+  resultGroupInfo.hasGroupCreatorId = YES;
+  resultGroupInfo.groupCreatorId = value;
   return self;
 }
 - (GroupInfoBuilder*) clearGroupCreatorId {
-  result.hasGroupCreatorId = NO;
-  result.groupCreatorId = 0;
+  resultGroupInfo.hasGroupCreatorId = NO;
+  resultGroupInfo.groupCreatorId = 0;
   return self;
 }
 - (BOOL) hasGroupType {
-  return result.hasGroupType;
+  return resultGroupInfo.hasGroupType;
 }
 - (GroupType) groupType {
-  return result.groupType;
+  return resultGroupInfo.groupType;
 }
 - (GroupInfoBuilder*) setGroupType:(GroupType) value {
-  result.hasGroupType = YES;
-  result.groupType = value;
+  resultGroupInfo.hasGroupType = YES;
+  resultGroupInfo.groupType = value;
   return self;
 }
 - (GroupInfoBuilder*) clearGroupType {
-  result.hasGroupType = NO;
-  result.groupType = GroupTypeGroupTypeNormal;
+  resultGroupInfo.hasGroupType = NO;
+  resultGroupInfo.groupType = GroupTypeGroupTypeNormal;
   return self;
 }
 - (BOOL) hasShieldStatus {
-  return result.hasShieldStatus;
+  return resultGroupInfo.hasShieldStatus;
 }
 - (UInt32) shieldStatus {
-  return result.shieldStatus;
+  return resultGroupInfo.shieldStatus;
 }
 - (GroupInfoBuilder*) setShieldStatus:(UInt32) value {
-  result.hasShieldStatus = YES;
-  result.shieldStatus = value;
+  resultGroupInfo.hasShieldStatus = YES;
+  resultGroupInfo.shieldStatus = value;
   return self;
 }
 - (GroupInfoBuilder*) clearShieldStatus {
-  result.hasShieldStatus = NO;
-  result.shieldStatus = 0;
+  resultGroupInfo.hasShieldStatus = NO;
+  resultGroupInfo.shieldStatus = 0;
   return self;
 }
 - (PBAppendableArray *)groupMemberList {
-  return result.groupMemberListArray;
+  return resultGroupInfo.groupMemberListArray;
 }
 - (UInt32)groupMemberListAtIndex:(NSUInteger)index {
-  return [result groupMemberListAtIndex:index];
+  return [resultGroupInfo groupMemberListAtIndex:index];
 }
 - (GroupInfoBuilder *)addGroupMemberList:(UInt32)value {
-  if (result.groupMemberListArray == nil) {
-    result.groupMemberListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
+  if (resultGroupInfo.groupMemberListArray == nil) {
+    resultGroupInfo.groupMemberListArray = [PBAppendableArray arrayWithValueType:PBArrayValueTypeUInt32];
   }
-  [result.groupMemberListArray addUint32:value];
+  [resultGroupInfo.groupMemberListArray addUint32:value];
   return self;
 }
 - (GroupInfoBuilder *)setGroupMemberListArray:(NSArray *)array {
-  result.groupMemberListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
+  resultGroupInfo.groupMemberListArray = [PBAppendableArray arrayWithArray:array valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (GroupInfoBuilder *)setGroupMemberListValues:(const UInt32 *)values count:(NSUInteger)count {
-  result.groupMemberListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
+  resultGroupInfo.groupMemberListArray = [PBAppendableArray arrayWithValues:values count:count valueType:PBArrayValueTypeUInt32];
   return self;
 }
 - (GroupInfoBuilder *)clearGroupMemberList {
-  result.groupMemberListArray = nil;
+  resultGroupInfo.groupMemberListArray = nil;
   return self;
 }
 @end
@@ -4172,42 +4808,39 @@ static GroupInfo* defaultGroupInfoInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasUserType {
   return !!hasUserType_;
 }
-- (void) setHasUserType:(BOOL) value_ {
-  hasUserType_ = !!value_;
+- (void) setHasUserType:(BOOL) _value_ {
+  hasUserType_ = !!_value_;
 }
 @synthesize userType;
 - (BOOL) hasToken {
   return !!hasToken_;
 }
-- (void) setHasToken:(BOOL) value_ {
-  hasToken_ = !!value_;
+- (void) setHasToken:(BOOL) _value_ {
+  hasToken_ = !!_value_;
 }
 @synthesize token;
 - (BOOL) hasPushCount {
   return !!hasPushCount_;
 }
-- (void) setHasPushCount:(BOOL) value_ {
-  hasPushCount_ = !!value_;
+- (void) setHasPushCount:(BOOL) _value_ {
+  hasPushCount_ = !!_value_;
 }
 @synthesize pushCount;
 - (BOOL) hasPushType {
   return !!hasPushType_;
 }
-- (void) setHasPushType:(BOOL) value_ {
-  hasPushType_ = !!value_;
+- (void) setHasPushType:(BOOL) _value_ {
+  hasPushType_ = !!_value_;
 }
 @synthesize pushType;
-- (void) dealloc {
-  self.token = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.userType = ClientTypeClientTypeWindows;
@@ -4223,10 +4856,10 @@ static UserTokenInfo* defaultUserTokenInfoInstance = nil;
     defaultUserTokenInfoInstance = [[UserTokenInfo alloc] init];
   }
 }
-+ (UserTokenInfo*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultUserTokenInfoInstance;
 }
-- (UserTokenInfo*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultUserTokenInfoInstance;
 }
 - (BOOL) isInitialized {
@@ -4326,7 +4959,7 @@ static UserTokenInfo* defaultUserTokenInfoInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasUserType) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"userType", self.userType];
+    [output appendFormat:@"%@%@: %@\n", indent, @"userType", NSStringFromClientType(self.userType)];
   }
   if (self.hasToken) {
     [output appendFormat:@"%@%@: %@\n", indent, @"token", self.token];
@@ -4338,6 +4971,24 @@ static UserTokenInfo* defaultUserTokenInfoInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"pushType", [NSNumber numberWithInteger:self.pushType]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasUserType) {
+    [dictionary setObject: @(self.userType) forKey: @"userType"];
+  }
+  if (self.hasToken) {
+    [dictionary setObject: self.token forKey: @"token"];
+  }
+  if (self.hasPushCount) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.pushCount] forKey: @"pushCount"];
+  }
+  if (self.hasPushType) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.pushType] forKey: @"pushType"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -4383,29 +5034,26 @@ static UserTokenInfo* defaultUserTokenInfoInstance = nil;
 @end
 
 @interface UserTokenInfoBuilder()
-@property (strong) UserTokenInfo* result;
+@property (strong) UserTokenInfo* resultUserTokenInfo;
 @end
 
 @implementation UserTokenInfoBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultUserTokenInfo;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[UserTokenInfo alloc] init];
+    self.resultUserTokenInfo = [[UserTokenInfo alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultUserTokenInfo;
 }
 - (UserTokenInfoBuilder*) clear {
-  self.result = [[UserTokenInfo alloc] init];
+  self.resultUserTokenInfo = [[UserTokenInfo alloc] init];
   return self;
 }
 - (UserTokenInfoBuilder*) clone {
-  return [UserTokenInfo builderWithPrototype:result];
+  return [UserTokenInfo builderWithPrototype:resultUserTokenInfo];
 }
 - (UserTokenInfo*) defaultInstance {
   return [UserTokenInfo defaultInstance];
@@ -4415,8 +5063,8 @@ static UserTokenInfo* defaultUserTokenInfoInstance = nil;
   return [self buildPartial];
 }
 - (UserTokenInfo*) buildPartial {
-  UserTokenInfo* returnMe = result;
-  self.result = nil;
+  UserTokenInfo* returnMe = resultUserTokenInfo;
+  self.resultUserTokenInfo = nil;
   return returnMe;
 }
 - (UserTokenInfoBuilder*) mergeFrom:(UserTokenInfo*) other {
@@ -4488,83 +5136,83 @@ static UserTokenInfo* defaultUserTokenInfoInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultUserTokenInfo.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultUserTokenInfo.userId;
 }
 - (UserTokenInfoBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultUserTokenInfo.hasUserId = YES;
+  resultUserTokenInfo.userId = value;
   return self;
 }
 - (UserTokenInfoBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultUserTokenInfo.hasUserId = NO;
+  resultUserTokenInfo.userId = 0;
   return self;
 }
 - (BOOL) hasUserType {
-  return result.hasUserType;
+  return resultUserTokenInfo.hasUserType;
 }
 - (ClientType) userType {
-  return result.userType;
+  return resultUserTokenInfo.userType;
 }
 - (UserTokenInfoBuilder*) setUserType:(ClientType) value {
-  result.hasUserType = YES;
-  result.userType = value;
+  resultUserTokenInfo.hasUserType = YES;
+  resultUserTokenInfo.userType = value;
   return self;
 }
 - (UserTokenInfoBuilder*) clearUserType {
-  result.hasUserType = NO;
-  result.userType = ClientTypeClientTypeWindows;
+  resultUserTokenInfo.hasUserType = NO;
+  resultUserTokenInfo.userType = ClientTypeClientTypeWindows;
   return self;
 }
 - (BOOL) hasToken {
-  return result.hasToken;
+  return resultUserTokenInfo.hasToken;
 }
 - (NSString*) token {
-  return result.token;
+  return resultUserTokenInfo.token;
 }
 - (UserTokenInfoBuilder*) setToken:(NSString*) value {
-  result.hasToken = YES;
-  result.token = value;
+  resultUserTokenInfo.hasToken = YES;
+  resultUserTokenInfo.token = value;
   return self;
 }
 - (UserTokenInfoBuilder*) clearToken {
-  result.hasToken = NO;
-  result.token = @"";
+  resultUserTokenInfo.hasToken = NO;
+  resultUserTokenInfo.token = @"";
   return self;
 }
 - (BOOL) hasPushCount {
-  return result.hasPushCount;
+  return resultUserTokenInfo.hasPushCount;
 }
 - (UInt32) pushCount {
-  return result.pushCount;
+  return resultUserTokenInfo.pushCount;
 }
 - (UserTokenInfoBuilder*) setPushCount:(UInt32) value {
-  result.hasPushCount = YES;
-  result.pushCount = value;
+  resultUserTokenInfo.hasPushCount = YES;
+  resultUserTokenInfo.pushCount = value;
   return self;
 }
 - (UserTokenInfoBuilder*) clearPushCount {
-  result.hasPushCount = NO;
-  result.pushCount = 0;
+  resultUserTokenInfo.hasPushCount = NO;
+  resultUserTokenInfo.pushCount = 0;
   return self;
 }
 - (BOOL) hasPushType {
-  return result.hasPushType;
+  return resultUserTokenInfo.hasPushType;
 }
 - (UInt32) pushType {
-  return result.pushType;
+  return resultUserTokenInfo.pushType;
 }
 - (UserTokenInfoBuilder*) setPushType:(UInt32) value {
-  result.hasPushType = YES;
-  result.pushType = value;
+  resultUserTokenInfo.hasPushType = YES;
+  resultUserTokenInfo.pushType = value;
   return self;
 }
 - (UserTokenInfoBuilder*) clearPushType {
-  result.hasPushType = NO;
-  result.pushType = 0;
+  resultUserTokenInfo.hasPushType = NO;
+  resultUserTokenInfo.pushType = 0;
   return self;
 }
 @end
@@ -4579,21 +5227,18 @@ static UserTokenInfo* defaultUserTokenInfoInstance = nil;
 - (BOOL) hasUserToken {
   return !!hasUserToken_;
 }
-- (void) setHasUserToken:(BOOL) value_ {
-  hasUserToken_ = !!value_;
+- (void) setHasUserToken:(BOOL) _value_ {
+  hasUserToken_ = !!_value_;
 }
 @synthesize userToken;
 - (BOOL) hasResultCode {
   return !!hasResultCode_;
 }
-- (void) setHasResultCode:(BOOL) value_ {
-  hasResultCode_ = !!value_;
+- (void) setHasResultCode:(BOOL) _value_ {
+  hasResultCode_ = !!_value_;
 }
 @synthesize resultCode;
-- (void) dealloc {
-  self.userToken = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userToken = @"";
     self.resultCode = 0;
@@ -4606,10 +5251,10 @@ static PushResult* defaultPushResultInstance = nil;
     defaultPushResultInstance = [[PushResult alloc] init];
   }
 }
-+ (PushResult*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultPushResultInstance;
 }
-- (PushResult*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultPushResultInstance;
 }
 - (BOOL) isInitialized {
@@ -4686,6 +5331,15 @@ static PushResult* defaultPushResultInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserToken) {
+    [dictionary setObject: self.userToken forKey: @"userToken"];
+  }
+  if (self.hasResultCode) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.resultCode] forKey: @"resultCode"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -4715,29 +5369,26 @@ static PushResult* defaultPushResultInstance = nil;
 @end
 
 @interface PushResultBuilder()
-@property (strong) PushResult* result;
+@property (strong) PushResult* resultPushResult;
 @end
 
 @implementation PushResultBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultPushResult;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[PushResult alloc] init];
+    self.resultPushResult = [[PushResult alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultPushResult;
 }
 - (PushResultBuilder*) clear {
-  self.result = [[PushResult alloc] init];
+  self.resultPushResult = [[PushResult alloc] init];
   return self;
 }
 - (PushResultBuilder*) clone {
-  return [PushResult builderWithPrototype:result];
+  return [PushResult builderWithPrototype:resultPushResult];
 }
 - (PushResult*) defaultInstance {
   return [PushResult defaultInstance];
@@ -4747,8 +5398,8 @@ static PushResult* defaultPushResultInstance = nil;
   return [self buildPartial];
 }
 - (PushResult*) buildPartial {
-  PushResult* returnMe = result;
-  self.result = nil;
+  PushResult* returnMe = resultPushResult;
+  self.resultPushResult = nil;
   return returnMe;
 }
 - (PushResultBuilder*) mergeFrom:(PushResult*) other {
@@ -4794,35 +5445,35 @@ static PushResult* defaultPushResultInstance = nil;
   }
 }
 - (BOOL) hasUserToken {
-  return result.hasUserToken;
+  return resultPushResult.hasUserToken;
 }
 - (NSString*) userToken {
-  return result.userToken;
+  return resultPushResult.userToken;
 }
 - (PushResultBuilder*) setUserToken:(NSString*) value {
-  result.hasUserToken = YES;
-  result.userToken = value;
+  resultPushResult.hasUserToken = YES;
+  resultPushResult.userToken = value;
   return self;
 }
 - (PushResultBuilder*) clearUserToken {
-  result.hasUserToken = NO;
-  result.userToken = @"";
+  resultPushResult.hasUserToken = NO;
+  resultPushResult.userToken = @"";
   return self;
 }
 - (BOOL) hasResultCode {
-  return result.hasResultCode;
+  return resultPushResult.hasResultCode;
 }
 - (UInt32) resultCode {
-  return result.resultCode;
+  return resultPushResult.resultCode;
 }
 - (PushResultBuilder*) setResultCode:(UInt32) value {
-  result.hasResultCode = YES;
-  result.resultCode = value;
+  resultPushResult.hasResultCode = YES;
+  resultPushResult.resultCode = value;
   return self;
 }
 - (PushResultBuilder*) clearResultCode {
-  result.hasResultCode = NO;
-  result.resultCode = 0;
+  resultPushResult.hasResultCode = NO;
+  resultPushResult.resultCode = 0;
   return self;
 }
 @end
@@ -4838,27 +5489,25 @@ static PushResult* defaultPushResultInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasGroupId {
   return !!hasGroupId_;
 }
-- (void) setHasGroupId:(BOOL) value_ {
-  hasGroupId_ = !!value_;
+- (void) setHasGroupId:(BOOL) _value_ {
+  hasGroupId_ = !!_value_;
 }
 @synthesize groupId;
 - (BOOL) hasShieldStatus {
   return !!hasShieldStatus_;
 }
-- (void) setHasShieldStatus:(BOOL) value_ {
-  hasShieldStatus_ = !!value_;
+- (void) setHasShieldStatus:(BOOL) _value_ {
+  hasShieldStatus_ = !!_value_;
 }
 @synthesize shieldStatus;
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.userId = 0;
     self.groupId = 0;
@@ -4872,10 +5521,10 @@ static ShieldStatus* defaultShieldStatusInstance = nil;
     defaultShieldStatusInstance = [[ShieldStatus alloc] init];
   }
 }
-+ (ShieldStatus*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultShieldStatusInstance;
 }
-- (ShieldStatus*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultShieldStatusInstance;
 }
 - (BOOL) isInitialized {
@@ -4964,6 +5613,18 @@ static ShieldStatus* defaultShieldStatusInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasGroupId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.groupId] forKey: @"groupId"];
+  }
+  if (self.hasShieldStatus) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.shieldStatus] forKey: @"shieldStatus"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -4998,29 +5659,26 @@ static ShieldStatus* defaultShieldStatusInstance = nil;
 @end
 
 @interface ShieldStatusBuilder()
-@property (strong) ShieldStatus* result;
+@property (strong) ShieldStatus* resultShieldStatus;
 @end
 
 @implementation ShieldStatusBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultShieldStatus;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[ShieldStatus alloc] init];
+    self.resultShieldStatus = [[ShieldStatus alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultShieldStatus;
 }
 - (ShieldStatusBuilder*) clear {
-  self.result = [[ShieldStatus alloc] init];
+  self.resultShieldStatus = [[ShieldStatus alloc] init];
   return self;
 }
 - (ShieldStatusBuilder*) clone {
-  return [ShieldStatus builderWithPrototype:result];
+  return [ShieldStatus builderWithPrototype:resultShieldStatus];
 }
 - (ShieldStatus*) defaultInstance {
   return [ShieldStatus defaultInstance];
@@ -5030,8 +5688,8 @@ static ShieldStatus* defaultShieldStatusInstance = nil;
   return [self buildPartial];
 }
 - (ShieldStatus*) buildPartial {
-  ShieldStatus* returnMe = result;
-  self.result = nil;
+  ShieldStatus* returnMe = resultShieldStatus;
+  self.resultShieldStatus = nil;
   return returnMe;
 }
 - (ShieldStatusBuilder*) mergeFrom:(ShieldStatus*) other {
@@ -5084,51 +5742,51 @@ static ShieldStatus* defaultShieldStatusInstance = nil;
   }
 }
 - (BOOL) hasUserId {
-  return result.hasUserId;
+  return resultShieldStatus.hasUserId;
 }
 - (UInt32) userId {
-  return result.userId;
+  return resultShieldStatus.userId;
 }
 - (ShieldStatusBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
+  resultShieldStatus.hasUserId = YES;
+  resultShieldStatus.userId = value;
   return self;
 }
 - (ShieldStatusBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
+  resultShieldStatus.hasUserId = NO;
+  resultShieldStatus.userId = 0;
   return self;
 }
 - (BOOL) hasGroupId {
-  return result.hasGroupId;
+  return resultShieldStatus.hasGroupId;
 }
 - (UInt32) groupId {
-  return result.groupId;
+  return resultShieldStatus.groupId;
 }
 - (ShieldStatusBuilder*) setGroupId:(UInt32) value {
-  result.hasGroupId = YES;
-  result.groupId = value;
+  resultShieldStatus.hasGroupId = YES;
+  resultShieldStatus.groupId = value;
   return self;
 }
 - (ShieldStatusBuilder*) clearGroupId {
-  result.hasGroupId = NO;
-  result.groupId = 0;
+  resultShieldStatus.hasGroupId = NO;
+  resultShieldStatus.groupId = 0;
   return self;
 }
 - (BOOL) hasShieldStatus {
-  return result.hasShieldStatus;
+  return resultShieldStatus.hasShieldStatus;
 }
 - (UInt32) shieldStatus {
-  return result.shieldStatus;
+  return resultShieldStatus.shieldStatus;
 }
 - (ShieldStatusBuilder*) setShieldStatus:(UInt32) value {
-  result.hasShieldStatus = YES;
-  result.shieldStatus = value;
+  resultShieldStatus.hasShieldStatus = YES;
+  resultShieldStatus.shieldStatus = value;
   return self;
 }
 - (ShieldStatusBuilder*) clearShieldStatus {
-  result.hasShieldStatus = NO;
-  result.shieldStatus = 0;
+  resultShieldStatus.hasShieldStatus = NO;
+  resultShieldStatus.shieldStatus = 0;
   return self;
 }
 @end
@@ -5145,36 +5803,32 @@ static ShieldStatus* defaultShieldStatusInstance = nil;
 - (BOOL) hasFromUserId {
   return !!hasFromUserId_;
 }
-- (void) setHasFromUserId:(BOOL) value_ {
-  hasFromUserId_ = !!value_;
+- (void) setHasFromUserId:(BOOL) _value_ {
+  hasFromUserId_ = !!_value_;
 }
 @synthesize fromUserId;
 - (BOOL) hasTaskId {
   return !!hasTaskId_;
 }
-- (void) setHasTaskId:(BOOL) value_ {
-  hasTaskId_ = !!value_;
+- (void) setHasTaskId:(BOOL) _value_ {
+  hasTaskId_ = !!_value_;
 }
 @synthesize taskId;
 - (BOOL) hasFileName {
   return !!hasFileName_;
 }
-- (void) setHasFileName:(BOOL) value_ {
-  hasFileName_ = !!value_;
+- (void) setHasFileName:(BOOL) _value_ {
+  hasFileName_ = !!_value_;
 }
 @synthesize fileName;
 - (BOOL) hasFileSize {
   return !!hasFileSize_;
 }
-- (void) setHasFileSize:(BOOL) value_ {
-  hasFileSize_ = !!value_;
+- (void) setHasFileSize:(BOOL) _value_ {
+  hasFileSize_ = !!_value_;
 }
 @synthesize fileSize;
-- (void) dealloc {
-  self.taskId = nil;
-  self.fileName = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.fromUserId = 0;
     self.taskId = @"";
@@ -5189,10 +5843,10 @@ static OfflineFileInfo* defaultOfflineFileInfoInstance = nil;
     defaultOfflineFileInfoInstance = [[OfflineFileInfo alloc] init];
   }
 }
-+ (OfflineFileInfo*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultOfflineFileInfoInstance;
 }
-- (OfflineFileInfo*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultOfflineFileInfoInstance;
 }
 - (BOOL) isInitialized {
@@ -5293,6 +5947,21 @@ static OfflineFileInfo* defaultOfflineFileInfoInstance = nil;
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasFromUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fromUserId] forKey: @"fromUserId"];
+  }
+  if (self.hasTaskId) {
+    [dictionary setObject: self.taskId forKey: @"taskId"];
+  }
+  if (self.hasFileName) {
+    [dictionary setObject: self.fileName forKey: @"fileName"];
+  }
+  if (self.hasFileSize) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fileSize] forKey: @"fileSize"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -5332,29 +6001,26 @@ static OfflineFileInfo* defaultOfflineFileInfoInstance = nil;
 @end
 
 @interface OfflineFileInfoBuilder()
-@property (strong) OfflineFileInfo* result;
+@property (strong) OfflineFileInfo* resultOfflineFileInfo;
 @end
 
 @implementation OfflineFileInfoBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultOfflineFileInfo;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[OfflineFileInfo alloc] init];
+    self.resultOfflineFileInfo = [[OfflineFileInfo alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultOfflineFileInfo;
 }
 - (OfflineFileInfoBuilder*) clear {
-  self.result = [[OfflineFileInfo alloc] init];
+  self.resultOfflineFileInfo = [[OfflineFileInfo alloc] init];
   return self;
 }
 - (OfflineFileInfoBuilder*) clone {
-  return [OfflineFileInfo builderWithPrototype:result];
+  return [OfflineFileInfo builderWithPrototype:resultOfflineFileInfo];
 }
 - (OfflineFileInfo*) defaultInstance {
   return [OfflineFileInfo defaultInstance];
@@ -5364,8 +6030,8 @@ static OfflineFileInfo* defaultOfflineFileInfoInstance = nil;
   return [self buildPartial];
 }
 - (OfflineFileInfo*) buildPartial {
-  OfflineFileInfo* returnMe = result;
-  self.result = nil;
+  OfflineFileInfo* returnMe = resultOfflineFileInfo;
+  self.resultOfflineFileInfo = nil;
   return returnMe;
 }
 - (OfflineFileInfoBuilder*) mergeFrom:(OfflineFileInfo*) other {
@@ -5425,525 +6091,67 @@ static OfflineFileInfo* defaultOfflineFileInfoInstance = nil;
   }
 }
 - (BOOL) hasFromUserId {
-  return result.hasFromUserId;
+  return resultOfflineFileInfo.hasFromUserId;
 }
 - (UInt32) fromUserId {
-  return result.fromUserId;
+  return resultOfflineFileInfo.fromUserId;
 }
 - (OfflineFileInfoBuilder*) setFromUserId:(UInt32) value {
-  result.hasFromUserId = YES;
-  result.fromUserId = value;
+  resultOfflineFileInfo.hasFromUserId = YES;
+  resultOfflineFileInfo.fromUserId = value;
   return self;
 }
 - (OfflineFileInfoBuilder*) clearFromUserId {
-  result.hasFromUserId = NO;
-  result.fromUserId = 0;
+  resultOfflineFileInfo.hasFromUserId = NO;
+  resultOfflineFileInfo.fromUserId = 0;
   return self;
 }
 - (BOOL) hasTaskId {
-  return result.hasTaskId;
+  return resultOfflineFileInfo.hasTaskId;
 }
 - (NSString*) taskId {
-  return result.taskId;
+  return resultOfflineFileInfo.taskId;
 }
 - (OfflineFileInfoBuilder*) setTaskId:(NSString*) value {
-  result.hasTaskId = YES;
-  result.taskId = value;
+  resultOfflineFileInfo.hasTaskId = YES;
+  resultOfflineFileInfo.taskId = value;
   return self;
 }
 - (OfflineFileInfoBuilder*) clearTaskId {
-  result.hasTaskId = NO;
-  result.taskId = @"";
+  resultOfflineFileInfo.hasTaskId = NO;
+  resultOfflineFileInfo.taskId = @"";
   return self;
 }
 - (BOOL) hasFileName {
-  return result.hasFileName;
+  return resultOfflineFileInfo.hasFileName;
 }
 - (NSString*) fileName {
-  return result.fileName;
+  return resultOfflineFileInfo.fileName;
 }
 - (OfflineFileInfoBuilder*) setFileName:(NSString*) value {
-  result.hasFileName = YES;
-  result.fileName = value;
+  resultOfflineFileInfo.hasFileName = YES;
+  resultOfflineFileInfo.fileName = value;
   return self;
 }
 - (OfflineFileInfoBuilder*) clearFileName {
-  result.hasFileName = NO;
-  result.fileName = @"";
+  resultOfflineFileInfo.hasFileName = NO;
+  resultOfflineFileInfo.fileName = @"";
   return self;
 }
 - (BOOL) hasFileSize {
-  return result.hasFileSize;
+  return resultOfflineFileInfo.hasFileSize;
 }
 - (UInt32) fileSize {
-  return result.fileSize;
+  return resultOfflineFileInfo.fileSize;
 }
 - (OfflineFileInfoBuilder*) setFileSize:(UInt32) value {
-  result.hasFileSize = YES;
-  result.fileSize = value;
+  resultOfflineFileInfo.hasFileSize = YES;
+  resultOfflineFileInfo.fileSize = value;
   return self;
 }
 - (OfflineFileInfoBuilder*) clearFileSize {
-  result.hasFileSize = NO;
-  result.fileSize = 0;
-  return self;
-}
-@end
-
-@interface AuthInfo ()
-@property (strong) NSString* appKey;
-@property UInt32 userId;
-@property (strong) NSString* allowdUserIds;
-@property (strong) NSString* allowdGroupIds;
-@property (strong) NSString* authInterfaces;
-@property (strong) NSString* authIps;
-@end
-
-@implementation AuthInfo
-
-- (BOOL) hasAppKey {
-  return !!hasAppKey_;
-}
-- (void) setHasAppKey:(BOOL) value_ {
-  hasAppKey_ = !!value_;
-}
-@synthesize appKey;
-- (BOOL) hasUserId {
-  return !!hasUserId_;
-}
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
-}
-@synthesize userId;
-- (BOOL) hasAllowdUserIds {
-  return !!hasAllowdUserIds_;
-}
-- (void) setHasAllowdUserIds:(BOOL) value_ {
-  hasAllowdUserIds_ = !!value_;
-}
-@synthesize allowdUserIds;
-- (BOOL) hasAllowdGroupIds {
-  return !!hasAllowdGroupIds_;
-}
-- (void) setHasAllowdGroupIds:(BOOL) value_ {
-  hasAllowdGroupIds_ = !!value_;
-}
-@synthesize allowdGroupIds;
-- (BOOL) hasAuthInterfaces {
-  return !!hasAuthInterfaces_;
-}
-- (void) setHasAuthInterfaces:(BOOL) value_ {
-  hasAuthInterfaces_ = !!value_;
-}
-@synthesize authInterfaces;
-- (BOOL) hasAuthIps {
-  return !!hasAuthIps_;
-}
-- (void) setHasAuthIps:(BOOL) value_ {
-  hasAuthIps_ = !!value_;
-}
-@synthesize authIps;
-- (void) dealloc {
-  self.appKey = nil;
-  self.allowdUserIds = nil;
-  self.allowdGroupIds = nil;
-  self.authInterfaces = nil;
-  self.authIps = nil;
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.appKey = @"";
-    self.userId = 0;
-    self.allowdUserIds = @"";
-    self.allowdGroupIds = @"";
-    self.authInterfaces = @"";
-    self.authIps = @"";
-  }
-  return self;
-}
-static AuthInfo* defaultAuthInfoInstance = nil;
-+ (void) initialize {
-  if (self == [AuthInfo class]) {
-    defaultAuthInfoInstance = [[AuthInfo alloc] init];
-  }
-}
-+ (AuthInfo*) defaultInstance {
-  return defaultAuthInfoInstance;
-}
-- (AuthInfo*) defaultInstance {
-  return defaultAuthInfoInstance;
-}
-- (BOOL) isInitialized {
-  if (!self.hasAppKey) {
-    return NO;
-  }
-  if (!self.hasUserId) {
-    return NO;
-  }
-  if (!self.hasAllowdUserIds) {
-    return NO;
-  }
-  if (!self.hasAllowdGroupIds) {
-    return NO;
-  }
-  if (!self.hasAuthInterfaces) {
-    return NO;
-  }
-  if (!self.hasAuthIps) {
-    return NO;
-  }
-  return YES;
-}
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasAppKey) {
-    [output writeString:1 value:self.appKey];
-  }
-  if (self.hasUserId) {
-    [output writeUInt32:2 value:self.userId];
-  }
-  if (self.hasAllowdUserIds) {
-    [output writeString:3 value:self.allowdUserIds];
-  }
-  if (self.hasAllowdGroupIds) {
-    [output writeString:4 value:self.allowdGroupIds];
-  }
-  if (self.hasAuthInterfaces) {
-    [output writeString:5 value:self.authInterfaces];
-  }
-  if (self.hasAuthIps) {
-    [output writeString:6 value:self.authIps];
-  }
-  [self.unknownFields writeToCodedOutputStream:output];
-}
-- (SInt32) serializedSize {
-  __block SInt32 size_ = memoizedSerializedSize;
-  if (size_ != -1) {
-    return size_;
-  }
-
-  size_ = 0;
-  if (self.hasAppKey) {
-    size_ += computeStringSize(1, self.appKey);
-  }
-  if (self.hasUserId) {
-    size_ += computeUInt32Size(2, self.userId);
-  }
-  if (self.hasAllowdUserIds) {
-    size_ += computeStringSize(3, self.allowdUserIds);
-  }
-  if (self.hasAllowdGroupIds) {
-    size_ += computeStringSize(4, self.allowdGroupIds);
-  }
-  if (self.hasAuthInterfaces) {
-    size_ += computeStringSize(5, self.authInterfaces);
-  }
-  if (self.hasAuthIps) {
-    size_ += computeStringSize(6, self.authIps);
-  }
-  size_ += self.unknownFields.serializedSize;
-  memoizedSerializedSize = size_;
-  return size_;
-}
-+ (AuthInfo*) parseFromData:(NSData*) data {
-  return (AuthInfo*)[[[AuthInfo builder] mergeFromData:data] build];
-}
-+ (AuthInfo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (AuthInfo*)[[[AuthInfo builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
-}
-+ (AuthInfo*) parseFromInputStream:(NSInputStream*) input {
-  return (AuthInfo*)[[[AuthInfo builder] mergeFromInputStream:input] build];
-}
-+ (AuthInfo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (AuthInfo*)[[[AuthInfo builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (AuthInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (AuthInfo*)[[[AuthInfo builder] mergeFromCodedInputStream:input] build];
-}
-+ (AuthInfo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (AuthInfo*)[[[AuthInfo builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
-}
-+ (AuthInfoBuilder*) builder {
-  return [[AuthInfoBuilder alloc] init];
-}
-+ (AuthInfoBuilder*) builderWithPrototype:(AuthInfo*) prototype {
-  return [[AuthInfo builder] mergeFrom:prototype];
-}
-- (AuthInfoBuilder*) builder {
-  return [AuthInfo builder];
-}
-- (AuthInfoBuilder*) toBuilder {
-  return [AuthInfo builderWithPrototype:self];
-}
-- (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
-  if (self.hasAppKey) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"appKey", self.appKey];
-  }
-  if (self.hasUserId) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
-  }
-  if (self.hasAllowdUserIds) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"allowdUserIds", self.allowdUserIds];
-  }
-  if (self.hasAllowdGroupIds) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"allowdGroupIds", self.allowdGroupIds];
-  }
-  if (self.hasAuthInterfaces) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"authInterfaces", self.authInterfaces];
-  }
-  if (self.hasAuthIps) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"authIps", self.authIps];
-  }
-  [self.unknownFields writeDescriptionTo:output withIndent:indent];
-}
-- (BOOL) isEqual:(id)other {
-  if (other == self) {
-    return YES;
-  }
-  if (![other isKindOfClass:[AuthInfo class]]) {
-    return NO;
-  }
-  AuthInfo *otherMessage = other;
-  return
-      self.hasAppKey == otherMessage.hasAppKey &&
-      (!self.hasAppKey || [self.appKey isEqual:otherMessage.appKey]) &&
-      self.hasUserId == otherMessage.hasUserId &&
-      (!self.hasUserId || self.userId == otherMessage.userId) &&
-      self.hasAllowdUserIds == otherMessage.hasAllowdUserIds &&
-      (!self.hasAllowdUserIds || [self.allowdUserIds isEqual:otherMessage.allowdUserIds]) &&
-      self.hasAllowdGroupIds == otherMessage.hasAllowdGroupIds &&
-      (!self.hasAllowdGroupIds || [self.allowdGroupIds isEqual:otherMessage.allowdGroupIds]) &&
-      self.hasAuthInterfaces == otherMessage.hasAuthInterfaces &&
-      (!self.hasAuthInterfaces || [self.authInterfaces isEqual:otherMessage.authInterfaces]) &&
-      self.hasAuthIps == otherMessage.hasAuthIps &&
-      (!self.hasAuthIps || [self.authIps isEqual:otherMessage.authIps]) &&
-      (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
-}
-- (NSUInteger) hash {
-  __block NSUInteger hashCode = 7;
-  if (self.hasAppKey) {
-    hashCode = hashCode * 31 + [self.appKey hash];
-  }
-  if (self.hasUserId) {
-    hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.userId] hash];
-  }
-  if (self.hasAllowdUserIds) {
-    hashCode = hashCode * 31 + [self.allowdUserIds hash];
-  }
-  if (self.hasAllowdGroupIds) {
-    hashCode = hashCode * 31 + [self.allowdGroupIds hash];
-  }
-  if (self.hasAuthInterfaces) {
-    hashCode = hashCode * 31 + [self.authInterfaces hash];
-  }
-  if (self.hasAuthIps) {
-    hashCode = hashCode * 31 + [self.authIps hash];
-  }
-  hashCode = hashCode * 31 + [self.unknownFields hash];
-  return hashCode;
-}
-@end
-
-@interface AuthInfoBuilder()
-@property (strong) AuthInfo* result;
-@end
-
-@implementation AuthInfoBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
-  if ((self = [super init])) {
-    self.result = [[AuthInfo alloc] init];
-  }
-  return self;
-}
-- (PBGeneratedMessage*) internalGetResult {
-  return result;
-}
-- (AuthInfoBuilder*) clear {
-  self.result = [[AuthInfo alloc] init];
-  return self;
-}
-- (AuthInfoBuilder*) clone {
-  return [AuthInfo builderWithPrototype:result];
-}
-- (AuthInfo*) defaultInstance {
-  return [AuthInfo defaultInstance];
-}
-- (AuthInfo*) build {
-  [self checkInitialized];
-  return [self buildPartial];
-}
-- (AuthInfo*) buildPartial {
-  AuthInfo* returnMe = result;
-  self.result = nil;
-  return returnMe;
-}
-- (AuthInfoBuilder*) mergeFrom:(AuthInfo*) other {
-  if (other == [AuthInfo defaultInstance]) {
-    return self;
-  }
-  if (other.hasAppKey) {
-    [self setAppKey:other.appKey];
-  }
-  if (other.hasUserId) {
-    [self setUserId:other.userId];
-  }
-  if (other.hasAllowdUserIds) {
-    [self setAllowdUserIds:other.allowdUserIds];
-  }
-  if (other.hasAllowdGroupIds) {
-    [self setAllowdGroupIds:other.allowdGroupIds];
-  }
-  if (other.hasAuthInterfaces) {
-    [self setAuthInterfaces:other.authInterfaces];
-  }
-  if (other.hasAuthIps) {
-    [self setAuthIps:other.authIps];
-  }
-  [self mergeUnknownFields:other.unknownFields];
-  return self;
-}
-- (AuthInfoBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
-}
-- (AuthInfoBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSetBuilder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (YES) {
-    SInt32 tag = [input readTag];
-    switch (tag) {
-      case 0:
-        [self setUnknownFields:[unknownFields build]];
-        return self;
-      default: {
-        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-          [self setUnknownFields:[unknownFields build]];
-          return self;
-        }
-        break;
-      }
-      case 10: {
-        [self setAppKey:[input readString]];
-        break;
-      }
-      case 16: {
-        [self setUserId:[input readUInt32]];
-        break;
-      }
-      case 26: {
-        [self setAllowdUserIds:[input readString]];
-        break;
-      }
-      case 34: {
-        [self setAllowdGroupIds:[input readString]];
-        break;
-      }
-      case 42: {
-        [self setAuthInterfaces:[input readString]];
-        break;
-      }
-      case 50: {
-        [self setAuthIps:[input readString]];
-        break;
-      }
-    }
-  }
-}
-- (BOOL) hasAppKey {
-  return result.hasAppKey;
-}
-- (NSString*) appKey {
-  return result.appKey;
-}
-- (AuthInfoBuilder*) setAppKey:(NSString*) value {
-  result.hasAppKey = YES;
-  result.appKey = value;
-  return self;
-}
-- (AuthInfoBuilder*) clearAppKey {
-  result.hasAppKey = NO;
-  result.appKey = @"";
-  return self;
-}
-- (BOOL) hasUserId {
-  return result.hasUserId;
-}
-- (UInt32) userId {
-  return result.userId;
-}
-- (AuthInfoBuilder*) setUserId:(UInt32) value {
-  result.hasUserId = YES;
-  result.userId = value;
-  return self;
-}
-- (AuthInfoBuilder*) clearUserId {
-  result.hasUserId = NO;
-  result.userId = 0;
-  return self;
-}
-- (BOOL) hasAllowdUserIds {
-  return result.hasAllowdUserIds;
-}
-- (NSString*) allowdUserIds {
-  return result.allowdUserIds;
-}
-- (AuthInfoBuilder*) setAllowdUserIds:(NSString*) value {
-  result.hasAllowdUserIds = YES;
-  result.allowdUserIds = value;
-  return self;
-}
-- (AuthInfoBuilder*) clearAllowdUserIds {
-  result.hasAllowdUserIds = NO;
-  result.allowdUserIds = @"";
-  return self;
-}
-- (BOOL) hasAllowdGroupIds {
-  return result.hasAllowdGroupIds;
-}
-- (NSString*) allowdGroupIds {
-  return result.allowdGroupIds;
-}
-- (AuthInfoBuilder*) setAllowdGroupIds:(NSString*) value {
-  result.hasAllowdGroupIds = YES;
-  result.allowdGroupIds = value;
-  return self;
-}
-- (AuthInfoBuilder*) clearAllowdGroupIds {
-  result.hasAllowdGroupIds = NO;
-  result.allowdGroupIds = @"";
-  return self;
-}
-- (BOOL) hasAuthInterfaces {
-  return result.hasAuthInterfaces;
-}
-- (NSString*) authInterfaces {
-  return result.authInterfaces;
-}
-- (AuthInfoBuilder*) setAuthInterfaces:(NSString*) value {
-  result.hasAuthInterfaces = YES;
-  result.authInterfaces = value;
-  return self;
-}
-- (AuthInfoBuilder*) clearAuthInterfaces {
-  result.hasAuthInterfaces = NO;
-  result.authInterfaces = @"";
-  return self;
-}
-- (BOOL) hasAuthIps {
-  return result.hasAuthIps;
-}
-- (NSString*) authIps {
-  return result.authIps;
-}
-- (AuthInfoBuilder*) setAuthIps:(NSString*) value {
-  result.hasAuthIps = YES;
-  result.authIps = value;
-  return self;
-}
-- (AuthInfoBuilder*) clearAuthIps {
-  result.hasAuthIps = NO;
-  result.authIps = @"";
+  resultOfflineFileInfo.hasFileSize = NO;
+  resultOfflineFileInfo.fileSize = 0;
   return self;
 }
 @end
@@ -5961,42 +6169,39 @@ static AuthInfo* defaultAuthInfoInstance = nil;
 - (BOOL) hasDeptId {
   return !!hasDeptId_;
 }
-- (void) setHasDeptId:(BOOL) value_ {
-  hasDeptId_ = !!value_;
+- (void) setHasDeptId:(BOOL) _value_ {
+  hasDeptId_ = !!_value_;
 }
 @synthesize deptId;
 - (BOOL) hasPriority {
   return !!hasPriority_;
 }
-- (void) setHasPriority:(BOOL) value_ {
-  hasPriority_ = !!value_;
+- (void) setHasPriority:(BOOL) _value_ {
+  hasPriority_ = !!_value_;
 }
 @synthesize priority;
 - (BOOL) hasDeptName {
   return !!hasDeptName_;
 }
-- (void) setHasDeptName:(BOOL) value_ {
-  hasDeptName_ = !!value_;
+- (void) setHasDeptName:(BOOL) _value_ {
+  hasDeptName_ = !!_value_;
 }
 @synthesize deptName;
 - (BOOL) hasParentDeptId {
   return !!hasParentDeptId_;
 }
-- (void) setHasParentDeptId:(BOOL) value_ {
-  hasParentDeptId_ = !!value_;
+- (void) setHasParentDeptId:(BOOL) _value_ {
+  hasParentDeptId_ = !!_value_;
 }
 @synthesize parentDeptId;
 - (BOOL) hasDeptStatus {
   return !!hasDeptStatus_;
 }
-- (void) setHasDeptStatus:(BOOL) value_ {
-  hasDeptStatus_ = !!value_;
+- (void) setHasDeptStatus:(BOOL) _value_ {
+  hasDeptStatus_ = !!_value_;
 }
 @synthesize deptStatus;
-- (void) dealloc {
-  self.deptName = nil;
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
     self.deptId = 0;
     self.priority = 0;
@@ -6012,10 +6217,10 @@ static DepartInfo* defaultDepartInfoInstance = nil;
     defaultDepartInfoInstance = [[DepartInfo alloc] init];
   }
 }
-+ (DepartInfo*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultDepartInfoInstance;
 }
-- (DepartInfo*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultDepartInfoInstance;
 }
 - (BOOL) isInitialized {
@@ -6124,9 +6329,27 @@ static DepartInfo* defaultDepartInfoInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"parentDeptId", [NSNumber numberWithInteger:self.parentDeptId]];
   }
   if (self.hasDeptStatus) {
-    [output appendFormat:@"%@%@: %d\n", indent, @"deptStatus", self.deptStatus];
+    [output appendFormat:@"%@%@: %@\n", indent, @"deptStatus", NSStringFromDepartmentStatusType(self.deptStatus)];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasDeptId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.deptId] forKey: @"deptId"];
+  }
+  if (self.hasPriority) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.priority] forKey: @"priority"];
+  }
+  if (self.hasDeptName) {
+    [dictionary setObject: self.deptName forKey: @"deptName"];
+  }
+  if (self.hasParentDeptId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.parentDeptId] forKey: @"parentDeptId"];
+  }
+  if (self.hasDeptStatus) {
+    [dictionary setObject: @(self.deptStatus) forKey: @"deptStatus"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -6172,29 +6395,26 @@ static DepartInfo* defaultDepartInfoInstance = nil;
 @end
 
 @interface DepartInfoBuilder()
-@property (strong) DepartInfo* result;
+@property (strong) DepartInfo* resultDepartInfo;
 @end
 
 @implementation DepartInfoBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultDepartInfo;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[DepartInfo alloc] init];
+    self.resultDepartInfo = [[DepartInfo alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultDepartInfo;
 }
 - (DepartInfoBuilder*) clear {
-  self.result = [[DepartInfo alloc] init];
+  self.resultDepartInfo = [[DepartInfo alloc] init];
   return self;
 }
 - (DepartInfoBuilder*) clone {
-  return [DepartInfo builderWithPrototype:result];
+  return [DepartInfo builderWithPrototype:resultDepartInfo];
 }
 - (DepartInfo*) defaultInstance {
   return [DepartInfo defaultInstance];
@@ -6204,8 +6424,8 @@ static DepartInfo* defaultDepartInfoInstance = nil;
   return [self buildPartial];
 }
 - (DepartInfo*) buildPartial {
-  DepartInfo* returnMe = result;
-  self.result = nil;
+  DepartInfo* returnMe = resultDepartInfo;
+  self.resultDepartInfo = nil;
   return returnMe;
 }
 - (DepartInfoBuilder*) mergeFrom:(DepartInfo*) other {
@@ -6277,83 +6497,344 @@ static DepartInfo* defaultDepartInfoInstance = nil;
   }
 }
 - (BOOL) hasDeptId {
-  return result.hasDeptId;
+  return resultDepartInfo.hasDeptId;
 }
 - (UInt32) deptId {
-  return result.deptId;
+  return resultDepartInfo.deptId;
 }
 - (DepartInfoBuilder*) setDeptId:(UInt32) value {
-  result.hasDeptId = YES;
-  result.deptId = value;
+  resultDepartInfo.hasDeptId = YES;
+  resultDepartInfo.deptId = value;
   return self;
 }
 - (DepartInfoBuilder*) clearDeptId {
-  result.hasDeptId = NO;
-  result.deptId = 0;
+  resultDepartInfo.hasDeptId = NO;
+  resultDepartInfo.deptId = 0;
   return self;
 }
 - (BOOL) hasPriority {
-  return result.hasPriority;
+  return resultDepartInfo.hasPriority;
 }
 - (UInt32) priority {
-  return result.priority;
+  return resultDepartInfo.priority;
 }
 - (DepartInfoBuilder*) setPriority:(UInt32) value {
-  result.hasPriority = YES;
-  result.priority = value;
+  resultDepartInfo.hasPriority = YES;
+  resultDepartInfo.priority = value;
   return self;
 }
 - (DepartInfoBuilder*) clearPriority {
-  result.hasPriority = NO;
-  result.priority = 0;
+  resultDepartInfo.hasPriority = NO;
+  resultDepartInfo.priority = 0;
   return self;
 }
 - (BOOL) hasDeptName {
-  return result.hasDeptName;
+  return resultDepartInfo.hasDeptName;
 }
 - (NSString*) deptName {
-  return result.deptName;
+  return resultDepartInfo.deptName;
 }
 - (DepartInfoBuilder*) setDeptName:(NSString*) value {
-  result.hasDeptName = YES;
-  result.deptName = value;
+  resultDepartInfo.hasDeptName = YES;
+  resultDepartInfo.deptName = value;
   return self;
 }
 - (DepartInfoBuilder*) clearDeptName {
-  result.hasDeptName = NO;
-  result.deptName = @"";
+  resultDepartInfo.hasDeptName = NO;
+  resultDepartInfo.deptName = @"";
   return self;
 }
 - (BOOL) hasParentDeptId {
-  return result.hasParentDeptId;
+  return resultDepartInfo.hasParentDeptId;
 }
 - (UInt32) parentDeptId {
-  return result.parentDeptId;
+  return resultDepartInfo.parentDeptId;
 }
 - (DepartInfoBuilder*) setParentDeptId:(UInt32) value {
-  result.hasParentDeptId = YES;
-  result.parentDeptId = value;
+  resultDepartInfo.hasParentDeptId = YES;
+  resultDepartInfo.parentDeptId = value;
   return self;
 }
 - (DepartInfoBuilder*) clearParentDeptId {
-  result.hasParentDeptId = NO;
-  result.parentDeptId = 0;
+  resultDepartInfo.hasParentDeptId = NO;
+  resultDepartInfo.parentDeptId = 0;
   return self;
 }
 - (BOOL) hasDeptStatus {
-  return result.hasDeptStatus;
+  return resultDepartInfo.hasDeptStatus;
 }
 - (DepartmentStatusType) deptStatus {
-  return result.deptStatus;
+  return resultDepartInfo.deptStatus;
 }
 - (DepartInfoBuilder*) setDeptStatus:(DepartmentStatusType) value {
-  result.hasDeptStatus = YES;
-  result.deptStatus = value;
+  resultDepartInfo.hasDeptStatus = YES;
+  resultDepartInfo.deptStatus = value;
   return self;
 }
 - (DepartInfoBuilder*) clearDeptStatus {
-  result.hasDeptStatus = NO;
-  result.deptStatus = DepartmentStatusTypeDeptStatusOk;
+  resultDepartInfo.hasDeptStatus = NO;
+  resultDepartInfo.deptStatus = DepartmentStatusTypeDeptStatusOk;
+  return self;
+}
+@end
+
+@interface PushShieldStatus ()
+@property UInt32 userId;
+@property UInt32 shieldStatus;
+@end
+
+@implementation PushShieldStatus
+
+- (BOOL) hasUserId {
+  return !!hasUserId_;
+}
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
+}
+@synthesize userId;
+- (BOOL) hasShieldStatus {
+  return !!hasShieldStatus_;
+}
+- (void) setHasShieldStatus:(BOOL) _value_ {
+  hasShieldStatus_ = !!_value_;
+}
+@synthesize shieldStatus;
+- (instancetype) init {
+  if ((self = [super init])) {
+    self.userId = 0;
+    self.shieldStatus = 0;
+  }
+  return self;
+}
+static PushShieldStatus* defaultPushShieldStatusInstance = nil;
++ (void) initialize {
+  if (self == [PushShieldStatus class]) {
+    defaultPushShieldStatusInstance = [[PushShieldStatus alloc] init];
+  }
+}
++ (instancetype) defaultInstance {
+  return defaultPushShieldStatusInstance;
+}
+- (instancetype) defaultInstance {
+  return defaultPushShieldStatusInstance;
+}
+- (BOOL) isInitialized {
+  if (!self.hasUserId) {
+    return NO;
+  }
+  if (!self.hasShieldStatus) {
+    return NO;
+  }
+  return YES;
+}
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasUserId) {
+    [output writeUInt32:1 value:self.userId];
+  }
+  if (self.hasShieldStatus) {
+    [output writeUInt32:2 value:self.shieldStatus];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
+}
+- (SInt32) serializedSize {
+  __block SInt32 size_ = memoizedSerializedSize;
+  if (size_ != -1) {
+    return size_;
+  }
+
+  size_ = 0;
+  if (self.hasUserId) {
+    size_ += computeUInt32Size(1, self.userId);
+  }
+  if (self.hasShieldStatus) {
+    size_ += computeUInt32Size(2, self.shieldStatus);
+  }
+  size_ += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size_;
+  return size_;
+}
++ (PushShieldStatus*) parseFromData:(NSData*) data {
+  return (PushShieldStatus*)[[[PushShieldStatus builder] mergeFromData:data] build];
+}
++ (PushShieldStatus*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PushShieldStatus*)[[[PushShieldStatus builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+}
++ (PushShieldStatus*) parseFromInputStream:(NSInputStream*) input {
+  return (PushShieldStatus*)[[[PushShieldStatus builder] mergeFromInputStream:input] build];
+}
++ (PushShieldStatus*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PushShieldStatus*)[[[PushShieldStatus builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PushShieldStatus*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (PushShieldStatus*)[[[PushShieldStatus builder] mergeFromCodedInputStream:input] build];
+}
++ (PushShieldStatus*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (PushShieldStatus*)[[[PushShieldStatus builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+}
++ (PushShieldStatusBuilder*) builder {
+  return [[PushShieldStatusBuilder alloc] init];
+}
++ (PushShieldStatusBuilder*) builderWithPrototype:(PushShieldStatus*) prototype {
+  return [[PushShieldStatus builder] mergeFrom:prototype];
+}
+- (PushShieldStatusBuilder*) builder {
+  return [PushShieldStatus builder];
+}
+- (PushShieldStatusBuilder*) toBuilder {
+  return [PushShieldStatus builderWithPrototype:self];
+}
+- (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
+  if (self.hasUserId) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
+  }
+  if (self.hasShieldStatus) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"shieldStatus", [NSNumber numberWithInteger:self.shieldStatus]];
+  }
+  [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasShieldStatus) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.shieldStatus] forKey: @"shieldStatus"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
+}
+- (BOOL) isEqual:(id)other {
+  if (other == self) {
+    return YES;
+  }
+  if (![other isKindOfClass:[PushShieldStatus class]]) {
+    return NO;
+  }
+  PushShieldStatus *otherMessage = other;
+  return
+      self.hasUserId == otherMessage.hasUserId &&
+      (!self.hasUserId || self.userId == otherMessage.userId) &&
+      self.hasShieldStatus == otherMessage.hasShieldStatus &&
+      (!self.hasShieldStatus || self.shieldStatus == otherMessage.shieldStatus) &&
+      (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
+}
+- (NSUInteger) hash {
+  __block NSUInteger hashCode = 7;
+  if (self.hasUserId) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.userId] hash];
+  }
+  if (self.hasShieldStatus) {
+    hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.shieldStatus] hash];
+  }
+  hashCode = hashCode * 31 + [self.unknownFields hash];
+  return hashCode;
+}
+@end
+
+@interface PushShieldStatusBuilder()
+@property (strong) PushShieldStatus* resultPushShieldStatus;
+@end
+
+@implementation PushShieldStatusBuilder
+@synthesize resultPushShieldStatus;
+- (instancetype) init {
+  if ((self = [super init])) {
+    self.resultPushShieldStatus = [[PushShieldStatus alloc] init];
+  }
+  return self;
+}
+- (PBGeneratedMessage*) internalGetResult {
+  return resultPushShieldStatus;
+}
+- (PushShieldStatusBuilder*) clear {
+  self.resultPushShieldStatus = [[PushShieldStatus alloc] init];
+  return self;
+}
+- (PushShieldStatusBuilder*) clone {
+  return [PushShieldStatus builderWithPrototype:resultPushShieldStatus];
+}
+- (PushShieldStatus*) defaultInstance {
+  return [PushShieldStatus defaultInstance];
+}
+- (PushShieldStatus*) build {
+  [self checkInitialized];
+  return [self buildPartial];
+}
+- (PushShieldStatus*) buildPartial {
+  PushShieldStatus* returnMe = resultPushShieldStatus;
+  self.resultPushShieldStatus = nil;
+  return returnMe;
+}
+- (PushShieldStatusBuilder*) mergeFrom:(PushShieldStatus*) other {
+  if (other == [PushShieldStatus defaultInstance]) {
+    return self;
+  }
+  if (other.hasUserId) {
+    [self setUserId:other.userId];
+  }
+  if (other.hasShieldStatus) {
+    [self setShieldStatus:other.shieldStatus];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+- (PushShieldStatusBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+- (PushShieldStatusBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSetBuilder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
+  while (YES) {
+    SInt32 tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
+        }
+        break;
+      }
+      case 8: {
+        [self setUserId:[input readUInt32]];
+        break;
+      }
+      case 16: {
+        [self setShieldStatus:[input readUInt32]];
+        break;
+      }
+    }
+  }
+}
+- (BOOL) hasUserId {
+  return resultPushShieldStatus.hasUserId;
+}
+- (UInt32) userId {
+  return resultPushShieldStatus.userId;
+}
+- (PushShieldStatusBuilder*) setUserId:(UInt32) value {
+  resultPushShieldStatus.hasUserId = YES;
+  resultPushShieldStatus.userId = value;
+  return self;
+}
+- (PushShieldStatusBuilder*) clearUserId {
+  resultPushShieldStatus.hasUserId = NO;
+  resultPushShieldStatus.userId = 0;
+  return self;
+}
+- (BOOL) hasShieldStatus {
+  return resultPushShieldStatus.hasShieldStatus;
+}
+- (UInt32) shieldStatus {
+  return resultPushShieldStatus.shieldStatus;
+}
+- (PushShieldStatusBuilder*) setShieldStatus:(UInt32) value {
+  resultPushShieldStatus.hasShieldStatus = YES;
+  resultPushShieldStatus.shieldStatus = value;
+  return self;
+}
+- (PushShieldStatusBuilder*) clearShieldStatus {
+  resultPushShieldStatus.hasShieldStatus = NO;
+  resultPushShieldStatus.shieldStatus = 0;
   return self;
 }
 @end

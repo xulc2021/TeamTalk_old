@@ -80,7 +80,7 @@
                     NSUInteger serverTime = [object[@"serverTime"] integerValue];
                     DDLog(@"-------------------------------------------> local:%f \n remote:%lu",[[NSDate date] timeIntervalSince1970],(unsigned long)serverTime);
                     [weakSelf p_loginSuccess:user];
-                    _lastLoginUser = [user ID];
+                    _lastLoginUser = [NSString stringWithString:[user ID]];
                     log4Info(@"验证用户信息通过");
                     success(user);
                 } failure:^(id object) {
@@ -112,7 +112,7 @@
             [_msgServer loginWithUsername:_lastLoginUserName Password:_lastLoginPassword success:^(id object) {
                 MTUserEntity* user = object[@"user"];
                 [weakSelf p_loginSuccess:user];
-                _lastLoginUser = [user ID];
+                _lastLoginUser = [NSString stringWithString:[user ID]];
                 success(user);
             } failure:^(id object) {
                 DDLog(@"login#登录验证失败");
@@ -136,10 +136,10 @@
 
 - (void)p_loginSuccess:(MTUserEntity*)user
 {
-    [DDClientState shareInstance].userID = [user.ID copy];
+    NSString *userId = [NSString stringWithString:[user ID]];
+    [DDClientState shareInstance].userID = userId;
     [[MTSysConfigModule shareInstance] getSysConfigFromLocal];
     [DDClientState shareInstance].userState = DDUserOnline;
-    
     [[MTUserModule shareInstance] addMaintainOriginEntities:@[user]];
 }
 

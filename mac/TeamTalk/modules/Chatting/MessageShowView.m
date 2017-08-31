@@ -79,7 +79,7 @@ static void* kNameButtonUserID = @"NameButtonUserIDKey";
 
 - (void)awakeFromNib
 {
-    [self.documentView setFlipped:YES];
+    //[self.documentView setFlipped:YES];
     _documentBeginAddGap = YES;
     _loading = NO;
     [self setDelegate:self];

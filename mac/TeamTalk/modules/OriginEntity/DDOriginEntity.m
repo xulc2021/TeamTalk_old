@@ -9,7 +9,4 @@
 #import "DDOriginEntity.h"
 
 @implementation DDOriginEntity
-@synthesize ID = _ID;
-@synthesize name = _name;
-@synthesize avatar = _avatar;
 @end

@@ -9,24 +9,15 @@
 #import "DDOriginEntity.h"
 #import "IMBaseDefine.pb.h"
 @interface MTUserEntity : DDOriginEntity
-{
-    NSInteger _gender;
-    NSInteger _department;
-    NSString* _email;
-    NSString* _realName;
-    NSString* _userDomain;
-    NSString* _tel;
-    NSInteger _status;
-    NSString* _departmentName;
-}
-@property (nonatomic,assign,readonly)NSInteger gender;
-@property (nonatomic,assign,readonly)NSInteger department;
-@property (nonatomic,retain,readonly)NSString* email;
-@property (nonatomic,retain,readonly)NSString* realName;
-@property (nonatomic,retain,readonly)NSString* userDomain;
-@property (nonatomic,retain,readonly)NSString* tel;
-@property (nonatomic,assign,readonly)NSInteger status;
-@property (nonatomic,retain,readonly)NSString* departmentName;
+
+@property (nonatomic,assign)NSInteger gender;
+@property (nonatomic,assign)NSInteger department;
+@property (nonatomic,strong)NSString* email;
+@property (nonatomic,strong)NSString* realName;
+@property (nonatomic,strong)NSString* userDomain;
+@property (nonatomic,strong)NSString* tel;
+@property (nonatomic,assign)NSInteger status;
+@property (nonatomic,strong)NSString* departmentName;
 
 - (instancetype)initWithID:(NSString*)ID name:(NSString*)name avatar:(NSString*)avatar gender:(NSInteger)gender department:(NSInteger)department email:(NSString*)email realName:(NSString*)realName userDomain:(NSString*)userDomain tel:(NSString*)tel status:(NSInteger)status;
 

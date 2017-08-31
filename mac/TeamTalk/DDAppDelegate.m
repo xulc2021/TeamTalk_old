@@ -167,8 +167,12 @@
 - (void)showMainWindowController
 {
     [_loginWindowController close];
-    [[DDMainWindowController instance].window makeKeyAndOrderFront:nil];
-    self.showWindow = [DDMainWindowController instance].window;
+    DDMainWindowController *mainWindowController = [DDMainWindowController instance];
+    //[mainWindowController showWindow:self];
+    [mainWindowController loadWindow];
+    [mainWindowController showWindow:self];
+    //[mainWindowController.window makeKeyAndOrderFront:self];
+    self.showWindow = mainWindowController.window;
 }
 
 - (void)p_clearOldCachePath

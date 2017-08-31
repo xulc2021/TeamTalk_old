@@ -28,7 +28,8 @@
 @property (nonatomic,weak)IBOutlet NSClipView* clipView;
 @property (nonatomic,strong)NSPopover *popover;
 @property (nonatomic,assign)int isShowPop;
-@property (strong) IBOutlet NSMenu *menu;
+//@property (weak) IBOutlet NSMenu *menu;
+@property (strong) IBOutlet NSMenu *actionMenu;
 
 - (void)selectSession:(NSString*)session;
 

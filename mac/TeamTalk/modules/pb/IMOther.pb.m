@@ -25,9 +25,7 @@ static PBExtensionRegistry* extensionRegistry = nil;
 
 @implementation IMHeartBeat
 
-- (void) dealloc {
-}
-- (id) init {
+- (instancetype) init {
   if ((self = [super init])) {
   }
   return self;
@@ -38,10 +36,10 @@ static IMHeartBeat* defaultIMHeartBeatInstance = nil;
     defaultIMHeartBeatInstance = [[IMHeartBeat alloc] init];
   }
 }
-+ (IMHeartBeat*) defaultInstance {
++ (instancetype) defaultInstance {
   return defaultIMHeartBeatInstance;
 }
-- (IMHeartBeat*) defaultInstance {
+- (instancetype) defaultInstance {
   return defaultIMHeartBeatInstance;
 }
 - (BOOL) isInitialized {
@@ -94,6 +92,9 @@ static IMHeartBeat* defaultIMHeartBeatInstance = nil;
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
 }
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  [self.unknownFields storeInDictionary:dictionary];
+}
 - (BOOL) isEqual:(id)other {
   if (other == self) {
     return YES;
@@ -113,29 +114,26 @@ static IMHeartBeat* defaultIMHeartBeatInstance = nil;
 @end
 
 @interface IMHeartBeatBuilder()
-@property (strong) IMHeartBeat* result;
+@property (strong) IMHeartBeat* resultImheartBeat;
 @end
 
 @implementation IMHeartBeatBuilder
-@synthesize result;
-- (void) dealloc {
-  self.result = nil;
-}
-- (id) init {
+@synthesize resultImheartBeat;
+- (instancetype) init {
   if ((self = [super init])) {
-    self.result = [[IMHeartBeat alloc] init];
+    self.resultImheartBeat = [[IMHeartBeat alloc] init];
   }
   return self;
 }
 - (PBGeneratedMessage*) internalGetResult {
-  return result;
+  return resultImheartBeat;
 }
 - (IMHeartBeatBuilder*) clear {
-  self.result = [[IMHeartBeat alloc] init];
+  self.resultImheartBeat = [[IMHeartBeat alloc] init];
   return self;
 }
 - (IMHeartBeatBuilder*) clone {
-  return [IMHeartBeat builderWithPrototype:result];
+  return [IMHeartBeat builderWithPrototype:resultImheartBeat];
 }
 - (IMHeartBeat*) defaultInstance {
   return [IMHeartBeat defaultInstance];
@@ -145,8 +143,8 @@ static IMHeartBeat* defaultIMHeartBeatInstance = nil;
   return [self buildPartial];
 }
 - (IMHeartBeat*) buildPartial {
-  IMHeartBeat* returnMe = result;
-  self.result = nil;
+  IMHeartBeat* returnMe = resultImheartBeat;
+  self.resultImheartBeat = nil;
   return returnMe;
 }
 - (IMHeartBeatBuilder*) mergeFrom:(IMHeartBeat*) other {

@@ -10,29 +10,22 @@
 #import "MTImageCache.h"
 #import "MTDepartmentManager.h"
 @implementation MTUserEntity
-@synthesize gender = _gender;
-@synthesize department = _department;
-@synthesize email = _email;
-@synthesize realName = _realName;
-@synthesize userDomain = _userDomain;
-@synthesize tel = _tel;
-@synthesize status = _status;
-@synthesize departmentName = _departmentName;
+
 - (instancetype)initWithID:(NSString*)ID name:(NSString*)name avatar:(NSString*)avatar gender:(NSInteger)gender department:(NSInteger)department email:(NSString*)email realName:(NSString*)realName userDomain:(NSString *)userDomain tel:(NSString*)tel status:(NSInteger)status
 {
     self = [super init];
     if (self)
     {
-        _ID = [ID copy];
-        _name = [name copy];
-        _avatar = [avatar copy];
-        _gender = gender;
-        _department = department;
-        _email = [email copy];
-        _realName = [realName copy];
-        _userDomain = [userDomain copy];
-        _tel = [tel copy];
-        _status = status;
+        self.ID = ID;
+        self.name = name;
+        self.avatar = avatar;
+        self.gender = gender;
+        self.department = department;
+        self.email = email;
+        self.realName = realName;
+        self.userDomain = userDomain;
+        self.tel = tel;
+        self.status = status;
     }
     return self;
 }
@@ -77,16 +70,16 @@
     {
         avatar = [filePath copy];
     }
-    NSDictionary* dic = @{@"ID":_ID,
-                          @"Name":_name,
-                          @"Avatar":avatar,
-                          @"Gender":@(_gender),
-                          @"Department":_department ? @(_department) : @"",
-                          @"Email":_email ? _email : @"",
-                          @"RealName":_realName ? _realName : @"",
-                          @"UserDoamin":_userDomain ? _userDomain : @"",
-                          @"Tel":_tel ? _tel : @"",
-                          @"Status":@(_status)};
+    NSDictionary* dic = @{@"ID":self.ID,
+                          @"Name":self.name,
+                          @"Avatar":self.avatar,
+                          @"Gender":@(self.gender),
+                          @"Department":self.department ? @(self.department) : @"",
+                          @"Email":self.email ? self.email : @"",
+                          @"RealName":self.realName ? self.realName : @"",
+                          @"UserDoamin":self.userDomain ? self.userDomain : @"",
+                          @"Tel":self.tel ? self.tel : @"",
+                          @"Status":@(self.status)};
     NSError* error = nil;
     NSData *historyData = [NSJSONSerialization dataWithJSONObject:dic
                                                           options:NSJSONWritingPrettyPrinted
@@ -112,11 +105,11 @@
 
 - (NSString*)departmentName
 {
-    if ([_departmentName length] == 0)
+    if ([self.departmentName length] == 0)
     {
         MTDepartmentEntity* department = [[MTDepartmentManager shareInstance] getDepartmentForID:self.department];
-        _departmentName = [department.name copy];
+        self.departmentName = [NSString stringWithString:department.name];
     }
-    return _departmentName;
+    return self.departmentName;
 }
 @end

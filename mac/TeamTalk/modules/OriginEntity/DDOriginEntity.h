@@ -9,12 +9,8 @@
 #import <Foundation/Foundation.h>
 
 @interface DDOriginEntity : NSObject
-{
-    NSString* _ID;
-    NSString* _name;
-    NSString* _avatar;
-}
-@property(nonatomic,retain,readonly)NSString* ID;
-@property(nonatomic,retain,readonly)NSString* name;
-@property(nonatomic,retain)NSString* avatar;
+
+@property(nonatomic,strong)NSString* ID;
+@property(nonatomic,strong)NSString* name;
+@property(nonatomic,strong)NSString* avatar;
 @end

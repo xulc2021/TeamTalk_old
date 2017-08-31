@@ -105,7 +105,7 @@ loc_100111c58:
         if ([view isKindOfClass:[FMSearchTokenFieldCell class]]) {
             NSRect cellRect ;
             if ([self cell]) {
-                cellRect = [[self cell] bounds];
+                //cellRect = [[self cell] bounds];
             }
             NSRect imageRect ;
             NSRect textRect;

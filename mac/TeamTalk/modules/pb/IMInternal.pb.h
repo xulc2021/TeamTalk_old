@@ -2,8 +2,7 @@
 
 #import "ProtocolBuffers.h"
 
-#import "IMBaseDefine.pb.h"
-// @@protoc_insertion_point(imports)
+#import "ImBaseDefine.pb.h"
 
 @class AuthInfo;
 @class AuthInfoBuilder;
@@ -29,6 +28,8 @@
 @class OfflineFileInfoBuilder;
 @class PushResult;
 @class PushResultBuilder;
+@class PushShieldStatus;
+@class PushShieldStatusBuilder;
 @class ServerUserStat;
 @class ServerUserStatBuilder;
 @class ShieldStatus;
@@ -41,20 +42,8 @@
 @class UserStatBuilder;
 @class UserTokenInfo;
 @class UserTokenInfoBuilder;
-#ifndef __has_feature
-  #define __has_feature(x) 0 // Compatibility with non-clang compilers.
-#endif // __has_feature
 
-#ifndef NS_RETURNS_NOT_RETAINED
-  #if __has_feature(attribute_ns_returns_not_retained)
-    #define NS_RETURNS_NOT_RETAINED __attribute__((ns_returns_not_retained))
-  #else
-    #define NS_RETURNS_NOT_RETAINED
-  #endif
-#endif
-
-
-@interface IminternalRoot : NSObject {
+@interface ImInternalRoot : NSObject {
 }
 + (PBExtensionRegistry*) extensionRegistry;
 + (void) registerAllExtensions:(PBMutableExtensionRegistry*) registry;
@@ -65,26 +54,26 @@
   BOOL hasAttachData_:1;
   BOOL hasLatestTime_:1;
   NSData* attachData;
-  UInt32 latestTime;
+  int32_t latestTime;
 }
 - (BOOL) hasLatestTime;
 - (BOOL) hasAttachData;
-@property (readonly) UInt32 latestTime;
-@property (readonly, strong) NSData* attachData;
+@property (readonly) int32_t latestTime;
+@property (readonly, retain) NSData* attachData;
 
-+ (instancetype) defaultInstance;
-- (instancetype) defaultInstance;
++ (IMSyncAuthInfoReq*) defaultInstance;
+- (IMSyncAuthInfoReq*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (IMSyncAuthInfoReqBuilder*) builder;
 + (IMSyncAuthInfoReqBuilder*) builder;
 + (IMSyncAuthInfoReqBuilder*) builderWithPrototype:(IMSyncAuthInfoReq*) prototype;
-- (IMSyncAuthInfoReqBuilder*) toBuilder;
 
 + (IMSyncAuthInfoReq*) parseFromData:(NSData*) data;
 + (IMSyncAuthInfoReq*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (IMSyncAuthInfoReq*) parseFromInputStream:(NSInputStream*) input;
++ (IMSyncAuthInfoReq*) parseDelimitedFromInputStream:(NSInputStream*) input;
 + (IMSyncAuthInfoReq*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (IMSyncAuthInfoReq*) parseFromCodedInputStream:(PBCodedInputStream*) input;
 + (IMSyncAuthInfoReq*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -92,7 +81,7 @@
 
 @interface IMSyncAuthInfoReqBuilder : PBGeneratedMessageBuilder {
 @private
-  IMSyncAuthInfoReq* resultImsyncAuthInfoReq;
+  IMSyncAuthInfoReq* result;
 }
 
 - (IMSyncAuthInfoReq*) defaultInstance;
@@ -108,8 +97,8 @@
 - (IMSyncAuthInfoReqBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasLatestTime;
-- (UInt32) latestTime;
-- (IMSyncAuthInfoReqBuilder*) setLatestTime:(UInt32) value;
+- (int32_t) latestTime;
+- (IMSyncAuthInfoReqBuilder*) setLatestTime:(int32_t) value;
 - (IMSyncAuthInfoReqBuilder*) clearLatestTime;
 
 - (BOOL) hasAttachData;
@@ -123,29 +112,29 @@
   BOOL hasAttachData_:1;
   BOOL hasLatestTime_:1;
   NSData* attachData;
-  UInt32 latestTime;
-  NSMutableArray * authListArray;
+  int32_t latestTime;
+  NSMutableArray* mutableAuthListList;
 }
 - (BOOL) hasLatestTime;
 - (BOOL) hasAttachData;
-@property (readonly) UInt32 latestTime;
-@property (readonly, strong) NSArray * authList;
-@property (readonly, strong) NSData* attachData;
-- (AuthInfo*)authListAtIndex:(NSUInteger)index;
+@property (readonly) int32_t latestTime;
+@property (readonly, retain) NSData* attachData;
+- (NSArray*) authListList;
+- (AuthInfo*) authListAtIndex:(int32_t) index;
 
-+ (instancetype) defaultInstance;
-- (instancetype) defaultInstance;
++ (IMSyncAuthInfoRsp*) defaultInstance;
+- (IMSyncAuthInfoRsp*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (IMSyncAuthInfoRspBuilder*) builder;
 + (IMSyncAuthInfoRspBuilder*) builder;
 + (IMSyncAuthInfoRspBuilder*) builderWithPrototype:(IMSyncAuthInfoRsp*) prototype;
-- (IMSyncAuthInfoRspBuilder*) toBuilder;
 
 + (IMSyncAuthInfoRsp*) parseFromData:(NSData*) data;
 + (IMSyncAuthInfoRsp*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (IMSyncAuthInfoRsp*) parseFromInputStream:(NSInputStream*) input;
++ (IMSyncAuthInfoRsp*) parseDelimitedFromInputStream:(NSInputStream*) input;
 + (IMSyncAuthInfoRsp*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (IMSyncAuthInfoRsp*) parseFromCodedInputStream:(PBCodedInputStream*) input;
 + (IMSyncAuthInfoRsp*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -153,7 +142,7 @@
 
 @interface IMSyncAuthInfoRspBuilder : PBGeneratedMessageBuilder {
 @private
-  IMSyncAuthInfoRsp* resultImsyncAuthInfoRsp;
+  IMSyncAuthInfoRsp* result;
 }
 
 - (IMSyncAuthInfoRsp*) defaultInstance;
@@ -169,15 +158,16 @@
 - (IMSyncAuthInfoRspBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) hasLatestTime;
-- (UInt32) latestTime;
-- (IMSyncAuthInfoRspBuilder*) setLatestTime:(UInt32) value;
+- (int32_t) latestTime;
+- (IMSyncAuthInfoRspBuilder*) setLatestTime:(int32_t) value;
 - (IMSyncAuthInfoRspBuilder*) clearLatestTime;
 
-- (NSMutableArray *)authList;
-- (AuthInfo*)authListAtIndex:(NSUInteger)index;
-- (IMSyncAuthInfoRspBuilder *)addAuthList:(AuthInfo*)value;
-- (IMSyncAuthInfoRspBuilder *)setAuthListArray:(NSArray *)array;
-- (IMSyncAuthInfoRspBuilder *)clearAuthList;
+- (NSArray*) authListList;
+- (AuthInfo*) authListAtIndex:(int32_t) index;
+- (IMSyncAuthInfoRspBuilder*) replaceAuthListAtIndex:(int32_t) index with:(AuthInfo*) value;
+- (IMSyncAuthInfoRspBuilder*) addAuthList:(AuthInfo*) value;
+- (IMSyncAuthInfoRspBuilder*) addAllAuthList:(NSArray*) values;
+- (IMSyncAuthInfoRspBuilder*) clearAuthListList;
 
 - (BOOL) hasAttachData;
 - (NSData*) attachData;
@@ -189,26 +179,26 @@
 @private
   BOOL hasAttachData_:1;
   NSData* attachData;
-  NSMutableArray * nickNameListArray;
+  NSMutableArray* mutableNickNameListList;
 }
 - (BOOL) hasAttachData;
-@property (readonly, strong) NSArray * nickNameList;
-@property (readonly, strong) NSData* attachData;
-- (NSString*)nickNameListAtIndex:(NSUInteger)index;
+@property (readonly, retain) NSData* attachData;
+- (NSArray*) nickNameListList;
+- (NSString*) nickNameListAtIndex:(int32_t) index;
 
-+ (instancetype) defaultInstance;
-- (instancetype) defaultInstance;
++ (IMGetUserIdListByNickNameReq*) defaultInstance;
+- (IMGetUserIdListByNickNameReq*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (IMGetUserIdListByNickNameReqBuilder*) builder;
 + (IMGetUserIdListByNickNameReqBuilder*) builder;
 + (IMGetUserIdListByNickNameReqBuilder*) builderWithPrototype:(IMGetUserIdListByNickNameReq*) prototype;
-- (IMGetUserIdListByNickNameReqBuilder*) toBuilder;
 
 + (IMGetUserIdListByNickNameReq*) parseFromData:(NSData*) data;
 + (IMGetUserIdListByNickNameReq*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (IMGetUserIdListByNickNameReq*) parseFromInputStream:(NSInputStream*) input;
++ (IMGetUserIdListByNickNameReq*) parseDelimitedFromInputStream:(NSInputStream*) input;
 + (IMGetUserIdListByNickNameReq*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (IMGetUserIdListByNickNameReq*) parseFromCodedInputStream:(PBCodedInputStream*) input;
 + (IMGetUserIdListByNickNameReq*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -216,7 +206,7 @@
 
 @interface IMGetUserIdListByNickNameReqBuilder : PBGeneratedMessageBuilder {
 @private
-  IMGetUserIdListByNickNameReq* resultImgetUserIdListByNickNameReq;
+  IMGetUserIdListByNickNameReq* result;
 }
 
 - (IMGetUserIdListByNickNameReq*) defaultInstance;
@@ -231,11 +221,12 @@
 - (IMGetUserIdListByNickNameReqBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (IMGetUserIdListByNickNameReqBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSMutableArray *)nickNameList;
-- (NSString*)nickNameListAtIndex:(NSUInteger)index;
-- (IMGetUserIdListByNickNameReqBuilder *)addNickNameList:(NSString*)value;
-- (IMGetUserIdListByNickNameReqBuilder *)setNickNameListArray:(NSArray *)array;
-- (IMGetUserIdListByNickNameReqBuilder *)clearNickNameList;
+- (NSArray*) nickNameListList;
+- (NSString*) nickNameListAtIndex:(int32_t) index;
+- (IMGetUserIdListByNickNameReqBuilder*) replaceNickNameListAtIndex:(int32_t) index with:(NSString*) value;
+- (IMGetUserIdListByNickNameReqBuilder*) addNickNameList:(NSString*) value;
+- (IMGetUserIdListByNickNameReqBuilder*) addAllNickNameList:(NSArray*) values;
+- (IMGetUserIdListByNickNameReqBuilder*) clearNickNameListList;
 
 - (BOOL) hasAttachData;
 - (NSData*) attachData;
@@ -247,26 +238,26 @@
 @private
   BOOL hasAttachData_:1;
   NSData* attachData;
-  NSMutableArray * userInfoListArray;
+  NSMutableArray* mutableUserInfoListList;
 }
 - (BOOL) hasAttachData;
-@property (readonly, strong) NSArray * userInfoList;
-@property (readonly, strong) NSData* attachData;
-- (UserInfo*)userInfoListAtIndex:(NSUInteger)index;
+@property (readonly, retain) NSData* attachData;
+- (NSArray*) userInfoListList;
+- (UserInfo*) userInfoListAtIndex:(int32_t) index;
 
-+ (instancetype) defaultInstance;
-- (instancetype) defaultInstance;
++ (IMGetUserIdListByNickNameRsp*) defaultInstance;
+- (IMGetUserIdListByNickNameRsp*) defaultInstance;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (IMGetUserIdListByNickNameRspBuilder*) builder;
 + (IMGetUserIdListByNickNameRspBuilder*) builder;
 + (IMGetUserIdListByNickNameRspBuilder*) builderWithPrototype:(IMGetUserIdListByNickNameRsp*) prototype;
-- (IMGetUserIdListByNickNameRspBuilder*) toBuilder;
 
 + (IMGetUserIdListByNickNameRsp*) parseFromData:(NSData*) data;
 + (IMGetUserIdListByNickNameRsp*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (IMGetUserIdListByNickNameRsp*) parseFromInputStream:(NSInputStream*) input;
++ (IMGetUserIdListByNickNameRsp*) parseDelimitedFromInputStream:(NSInputStream*) input;
 + (IMGetUserIdListByNickNameRsp*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (IMGetUserIdListByNickNameRsp*) parseFromCodedInputStream:(PBCodedInputStream*) input;
 + (IMGetUserIdListByNickNameRsp*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -274,7 +265,7 @@
 
 @interface IMGetUserIdListByNickNameRspBuilder : PBGeneratedMessageBuilder {
 @private
-  IMGetUserIdListByNickNameRsp* resultImgetUserIdListByNickNameRsp;
+  IMGetUserIdListByNickNameRsp* result;
 }
 
 - (IMGetUserIdListByNickNameRsp*) defaultInstance;
@@ -289,11 +280,12 @@
 - (IMGetUserIdListByNickNameRspBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (IMGetUserIdListByNickNameRspBuilder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (NSMutableArray *)userInfoList;
-- (UserInfo*)userInfoListAtIndex:(NSUInteger)index;
-- (IMGetUserIdListByNickNameRspBuilder *)addUserInfoList:(UserInfo*)value;
-- (IMGetUserIdListByNickNameRspBuilder *)setUserInfoListArray:(NSArray *)array;
-- (IMGetUserIdListByNickNameRspBuilder *)clearUserInfoList;
+- (NSArray*) userInfoListList;
+- (UserInfo*) userInfoListAtIndex:(int32_t) index;
+- (IMGetUserIdListByNickNameRspBuilder*) replaceUserInfoListAtIndex:(int32_t) index with:(UserInfo*) value;
+- (IMGetUserIdListByNickNameRspBuilder*) addUserInfoList:(UserInfo*) value;
+- (IMGetUserIdListByNickNameRspBuilder*) addAllUserInfoList:(NSArray*) values;
+- (IMGetUserIdListByNickNameRspBuilder*) clearUserInfoListList;
 
 - (BOOL) hasAttachData;
 - (NSData*) attachData;
@@ -301,5 +293,3 @@
 - (IMGetUserIdListByNickNameRspBuilder*) clearAttachData;
 @end
 
-
-// @@protoc_insertion_point(global_scope)

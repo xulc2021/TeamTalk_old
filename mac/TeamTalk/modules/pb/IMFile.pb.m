@@ -32,22 +32,22 @@ static PBExtensionRegistry* extensionRegistry = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasTaskId {
   return !!hasTaskId_;
 }
-- (void) setHasTaskId:(BOOL) value_ {
-  hasTaskId_ = !!value_;
+- (void) setHasTaskId:(BOOL) _value_ {
+  hasTaskId_ = !!_value_;
 }
 @synthesize taskId;
 - (BOOL) hasFileRole {
   return !!hasFileRole_;
 }
-- (void) setHasFileRole:(BOOL) value_ {
-  hasFileRole_ = !!value_;
+- (void) setHasFileRole:(BOOL) _value_ {
+  hasFileRole_ = !!_value_;
 }
 @synthesize fileRole;
 - (instancetype) init {
@@ -152,9 +152,21 @@ static IMFileLoginReq* defaultIMFileLoginReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"taskId", self.taskId];
   }
   if (self.hasFileRole) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"fileRole", [NSNumber numberWithInteger:self.fileRole]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"fileRole", NSStringFromClientFileRole(self.fileRole)];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasTaskId) {
+    [dictionary setObject: self.taskId forKey: @"taskId"];
+  }
+  if (self.hasFileRole) {
+    [dictionary setObject: @(self.fileRole) forKey: @"fileRole"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -337,15 +349,15 @@ static IMFileLoginReq* defaultIMFileLoginReqInstance = nil;
 - (BOOL) hasResultCode {
   return !!hasResultCode_;
 }
-- (void) setHasResultCode:(BOOL) value_ {
-  hasResultCode_ = !!value_;
+- (void) setHasResultCode:(BOOL) _value_ {
+  hasResultCode_ = !!_value_;
 }
 @synthesize resultCode;
 - (BOOL) hasTaskId {
   return !!hasTaskId_;
 }
-- (void) setHasTaskId:(BOOL) value_ {
-  hasTaskId_ = !!value_;
+- (void) setHasTaskId:(BOOL) _value_ {
+  hasTaskId_ = !!_value_;
 }
 @synthesize taskId;
 - (instancetype) init {
@@ -440,6 +452,15 @@ static IMFileLoginRsp* defaultIMFileLoginRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"taskId", self.taskId];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasResultCode) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.resultCode] forKey: @"resultCode"];
+  }
+  if (self.hasTaskId) {
+    [dictionary setObject: self.taskId forKey: @"taskId"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -590,22 +611,22 @@ static IMFileLoginRsp* defaultIMFileLoginRspInstance = nil;
 - (BOOL) hasState {
   return !!hasState_;
 }
-- (void) setHasState:(BOOL) value_ {
-  hasState_ = !!value_;
+- (void) setHasState:(BOOL) _value_ {
+  hasState_ = !!_value_;
 }
 @synthesize state;
 - (BOOL) hasTaskId {
   return !!hasTaskId_;
 }
-- (void) setHasTaskId:(BOOL) value_ {
-  hasTaskId_ = !!value_;
+- (void) setHasTaskId:(BOOL) _value_ {
+  hasTaskId_ = !!_value_;
 }
 @synthesize taskId;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (instancetype) init {
@@ -704,7 +725,7 @@ static IMFileState* defaultIMFileStateInstance = nil;
 }
 - (void) writeDescriptionTo:(NSMutableString*) output withIndent:(NSString*) indent {
   if (self.hasState) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"state", [NSNumber numberWithInteger:self.state]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"state", NSStringFromClientFileState(self.state)];
   }
   if (self.hasTaskId) {
     [output appendFormat:@"%@%@: %@\n", indent, @"taskId", self.taskId];
@@ -713,6 +734,18 @@ static IMFileState* defaultIMFileStateInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasState) {
+    [dictionary setObject: @(self.state) forKey: @"state"];
+  }
+  if (self.hasTaskId) {
+    [dictionary setObject: self.taskId forKey: @"taskId"];
+  }
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -888,7 +921,7 @@ static IMFileState* defaultIMFileStateInstance = nil;
 @interface IMFilePullDataReq ()
 @property (strong) NSString* taskId;
 @property UInt32 userId;
-@property FileType transMode;
+@property TransferFileType transMode;
 @property UInt32 offset;
 @property UInt32 dataSize;
 @end
@@ -898,43 +931,43 @@ static IMFileState* defaultIMFileStateInstance = nil;
 - (BOOL) hasTaskId {
   return !!hasTaskId_;
 }
-- (void) setHasTaskId:(BOOL) value_ {
-  hasTaskId_ = !!value_;
+- (void) setHasTaskId:(BOOL) _value_ {
+  hasTaskId_ = !!_value_;
 }
 @synthesize taskId;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasTransMode {
   return !!hasTransMode_;
 }
-- (void) setHasTransMode:(BOOL) value_ {
-  hasTransMode_ = !!value_;
+- (void) setHasTransMode:(BOOL) _value_ {
+  hasTransMode_ = !!_value_;
 }
 @synthesize transMode;
 - (BOOL) hasOffset {
   return !!hasOffset_;
 }
-- (void) setHasOffset:(BOOL) value_ {
-  hasOffset_ = !!value_;
+- (void) setHasOffset:(BOOL) _value_ {
+  hasOffset_ = !!_value_;
 }
 @synthesize offset;
 - (BOOL) hasDataSize {
   return !!hasDataSize_;
 }
-- (void) setHasDataSize:(BOOL) value_ {
-  hasDataSize_ = !!value_;
+- (void) setHasDataSize:(BOOL) _value_ {
+  hasDataSize_ = !!_value_;
 }
 @synthesize dataSize;
 - (instancetype) init {
   if ((self = [super init])) {
     self.taskId = @"";
     self.userId = 0;
-    self.transMode = FileTypeFileTypeOnline;
+    self.transMode = TransferFileTypeFileTypeOnline;
     self.offset = 0;
     self.dataSize = 0;
   }
@@ -1052,7 +1085,7 @@ static IMFilePullDataReq* defaultIMFilePullDataReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"userId", [NSNumber numberWithInteger:self.userId]];
   }
   if (self.hasTransMode) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"transMode", [NSNumber numberWithInteger:self.transMode]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"transMode", NSStringFromTransferFileType(self.transMode)];
   }
   if (self.hasOffset) {
     [output appendFormat:@"%@%@: %@\n", indent, @"offset", [NSNumber numberWithInteger:self.offset]];
@@ -1061,6 +1094,24 @@ static IMFilePullDataReq* defaultIMFilePullDataReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"dataSize", [NSNumber numberWithInteger:self.dataSize]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasTaskId) {
+    [dictionary setObject: self.taskId forKey: @"taskId"];
+  }
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasTransMode) {
+    [dictionary setObject: @(self.transMode) forKey: @"transMode"];
+  }
+  if (self.hasOffset) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.offset] forKey: @"offset"];
+  }
+  if (self.hasDataSize) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.dataSize] forKey: @"dataSize"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -1188,8 +1239,8 @@ static IMFilePullDataReq* defaultIMFilePullDataReqInstance = nil;
         break;
       }
       case 24: {
-        FileType value = (FileType)[input readEnum];
-        if (FileTypeIsValidValue(value)) {
+        TransferFileType value = (TransferFileType)[input readEnum];
+        if (TransferFileTypeIsValidValue(value)) {
           [self setTransMode:value];
         } else {
           [unknownFields mergeVarintField:3 value:value];
@@ -1242,17 +1293,17 @@ static IMFilePullDataReq* defaultIMFilePullDataReqInstance = nil;
 - (BOOL) hasTransMode {
   return resultImfilePullDataReq.hasTransMode;
 }
-- (FileType) transMode {
+- (TransferFileType) transMode {
   return resultImfilePullDataReq.transMode;
 }
-- (IMFilePullDataReqBuilder*) setTransMode:(FileType) value {
+- (IMFilePullDataReqBuilder*) setTransMode:(TransferFileType) value {
   resultImfilePullDataReq.hasTransMode = YES;
   resultImfilePullDataReq.transMode = value;
   return self;
 }
 - (IMFilePullDataReqBuilder*) clearTransMode {
   resultImfilePullDataReq.hasTransMode = NO;
-  resultImfilePullDataReq.transMode = FileTypeFileTypeOnline;
+  resultImfilePullDataReq.transMode = TransferFileTypeFileTypeOnline;
   return self;
 }
 - (BOOL) hasOffset {
@@ -1294,7 +1345,7 @@ static IMFilePullDataReq* defaultIMFilePullDataReqInstance = nil;
 @property (strong) NSString* taskId;
 @property UInt32 userId;
 @property UInt32 offset;
-@property (strong) NSData* data;
+@property (strong) NSData* fileData;
 @end
 
 @implementation IMFilePullDataRsp
@@ -1302,45 +1353,45 @@ static IMFilePullDataReq* defaultIMFilePullDataReqInstance = nil;
 - (BOOL) hasResultCode {
   return !!hasResultCode_;
 }
-- (void) setHasResultCode:(BOOL) value_ {
-  hasResultCode_ = !!value_;
+- (void) setHasResultCode:(BOOL) _value_ {
+  hasResultCode_ = !!_value_;
 }
 @synthesize resultCode;
 - (BOOL) hasTaskId {
   return !!hasTaskId_;
 }
-- (void) setHasTaskId:(BOOL) value_ {
-  hasTaskId_ = !!value_;
+- (void) setHasTaskId:(BOOL) _value_ {
+  hasTaskId_ = !!_value_;
 }
 @synthesize taskId;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasOffset {
   return !!hasOffset_;
 }
-- (void) setHasOffset:(BOOL) value_ {
-  hasOffset_ = !!value_;
+- (void) setHasOffset:(BOOL) _value_ {
+  hasOffset_ = !!_value_;
 }
 @synthesize offset;
-- (BOOL) hasData {
-  return !!hasData_;
+- (BOOL) hasFileData {
+  return !!hasFileData_;
 }
-- (void) setHasData:(BOOL) value_ {
-  hasData_ = !!value_;
+- (void) setHasFileData:(BOOL) _value_ {
+  hasFileData_ = !!_value_;
 }
-@synthesize data;
+@synthesize fileData;
 - (instancetype) init {
   if ((self = [super init])) {
     self.resultCode = 0;
     self.taskId = @"";
     self.userId = 0;
     self.offset = 0;
-    self.data = [NSData data];
+    self.fileData = [NSData data];
   }
   return self;
 }
@@ -1369,7 +1420,7 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
   if (!self.hasOffset) {
     return NO;
   }
-  if (!self.hasData) {
+  if (!self.hasFileData) {
     return NO;
   }
   return YES;
@@ -1387,8 +1438,8 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
   if (self.hasOffset) {
     [output writeUInt32:4 value:self.offset];
   }
-  if (self.hasData) {
-    [output writeData:5 value:self.data];
+  if (self.hasFileData) {
+    [output writeData:5 value:self.fileData];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1411,8 +1462,8 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
   if (self.hasOffset) {
     size_ += computeUInt32Size(4, self.offset);
   }
-  if (self.hasData) {
-    size_ += computeDataSize(5, self.data);
+  if (self.hasFileData) {
+    size_ += computeDataSize(5, self.fileData);
   }
   size_ += self.unknownFields.serializedSize;
   memoizedSerializedSize = size_;
@@ -1461,10 +1512,28 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
   if (self.hasOffset) {
     [output appendFormat:@"%@%@: %@\n", indent, @"offset", [NSNumber numberWithInteger:self.offset]];
   }
-  if (self.hasData) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"data", self.data];
+  if (self.hasFileData) {
+    [output appendFormat:@"%@%@: %@\n", indent, @"fileData", self.fileData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasResultCode) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.resultCode] forKey: @"resultCode"];
+  }
+  if (self.hasTaskId) {
+    [dictionary setObject: self.taskId forKey: @"taskId"];
+  }
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasOffset) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.offset] forKey: @"offset"];
+  }
+  if (self.hasFileData) {
+    [dictionary setObject: self.fileData forKey: @"fileData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -1483,8 +1552,8 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
       (!self.hasUserId || self.userId == otherMessage.userId) &&
       self.hasOffset == otherMessage.hasOffset &&
       (!self.hasOffset || self.offset == otherMessage.offset) &&
-      self.hasData == otherMessage.hasData &&
-      (!self.hasData || [self.data isEqual:otherMessage.data]) &&
+      self.hasFileData == otherMessage.hasFileData &&
+      (!self.hasFileData || [self.fileData isEqual:otherMessage.fileData]) &&
       (self.unknownFields == otherMessage.unknownFields || (self.unknownFields != nil && [self.unknownFields isEqual:otherMessage.unknownFields]));
 }
 - (NSUInteger) hash {
@@ -1501,8 +1570,8 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
   if (self.hasOffset) {
     hashCode = hashCode * 31 + [[NSNumber numberWithInteger:self.offset] hash];
   }
-  if (self.hasData) {
-    hashCode = hashCode * 31 + [self.data hash];
+  if (self.hasFileData) {
+    hashCode = hashCode * 31 + [self.fileData hash];
   }
   hashCode = hashCode * 31 + [self.unknownFields hash];
   return hashCode;
@@ -1559,8 +1628,8 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
   if (other.hasOffset) {
     [self setOffset:other.offset];
   }
-  if (other.hasData) {
-    [self setData:other.data];
+  if (other.hasFileData) {
+    [self setFileData:other.fileData];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1600,7 +1669,7 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
         break;
       }
       case 42: {
-        [self setData:[input readData]];
+        [self setFileData:[input readData]];
         break;
       }
     }
@@ -1670,20 +1739,20 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
   resultImfilePullDataRsp.offset = 0;
   return self;
 }
-- (BOOL) hasData {
-  return resultImfilePullDataRsp.hasData;
+- (BOOL) hasFileData {
+  return resultImfilePullDataRsp.hasFileData;
 }
-- (NSData*) data {
-  return resultImfilePullDataRsp.data;
+- (NSData*) fileData {
+  return resultImfilePullDataRsp.fileData;
 }
-- (IMFilePullDataRspBuilder*) setData:(NSData*) value {
-  resultImfilePullDataRsp.hasData = YES;
-  resultImfilePullDataRsp.data = value;
+- (IMFilePullDataRspBuilder*) setFileData:(NSData*) value {
+  resultImfilePullDataRsp.hasFileData = YES;
+  resultImfilePullDataRsp.fileData = value;
   return self;
 }
-- (IMFilePullDataRspBuilder*) clearData {
-  resultImfilePullDataRsp.hasData = NO;
-  resultImfilePullDataRsp.data = [NSData data];
+- (IMFilePullDataRspBuilder*) clearFileData {
+  resultImfilePullDataRsp.hasFileData = NO;
+  resultImfilePullDataRsp.fileData = [NSData data];
   return self;
 }
 @end
@@ -1693,7 +1762,7 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
 @property UInt32 toUserId;
 @property (strong) NSString* fileName;
 @property UInt32 fileSize;
-@property FileType transMode;
+@property TransferFileType transMode;
 @end
 
 @implementation IMFileReq
@@ -1701,36 +1770,36 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
 - (BOOL) hasFromUserId {
   return !!hasFromUserId_;
 }
-- (void) setHasFromUserId:(BOOL) value_ {
-  hasFromUserId_ = !!value_;
+- (void) setHasFromUserId:(BOOL) _value_ {
+  hasFromUserId_ = !!_value_;
 }
 @synthesize fromUserId;
 - (BOOL) hasToUserId {
   return !!hasToUserId_;
 }
-- (void) setHasToUserId:(BOOL) value_ {
-  hasToUserId_ = !!value_;
+- (void) setHasToUserId:(BOOL) _value_ {
+  hasToUserId_ = !!_value_;
 }
 @synthesize toUserId;
 - (BOOL) hasFileName {
   return !!hasFileName_;
 }
-- (void) setHasFileName:(BOOL) value_ {
-  hasFileName_ = !!value_;
+- (void) setHasFileName:(BOOL) _value_ {
+  hasFileName_ = !!_value_;
 }
 @synthesize fileName;
 - (BOOL) hasFileSize {
   return !!hasFileSize_;
 }
-- (void) setHasFileSize:(BOOL) value_ {
-  hasFileSize_ = !!value_;
+- (void) setHasFileSize:(BOOL) _value_ {
+  hasFileSize_ = !!_value_;
 }
 @synthesize fileSize;
 - (BOOL) hasTransMode {
   return !!hasTransMode_;
 }
-- (void) setHasTransMode:(BOOL) value_ {
-  hasTransMode_ = !!value_;
+- (void) setHasTransMode:(BOOL) _value_ {
+  hasTransMode_ = !!_value_;
 }
 @synthesize transMode;
 - (instancetype) init {
@@ -1739,7 +1808,7 @@ static IMFilePullDataRsp* defaultIMFilePullDataRspInstance = nil;
     self.toUserId = 0;
     self.fileName = @"";
     self.fileSize = 0;
-    self.transMode = FileTypeFileTypeOnline;
+    self.transMode = TransferFileTypeFileTypeOnline;
   }
   return self;
 }
@@ -1861,9 +1930,27 @@ static IMFileReq* defaultIMFileReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"fileSize", [NSNumber numberWithInteger:self.fileSize]];
   }
   if (self.hasTransMode) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"transMode", [NSNumber numberWithInteger:self.transMode]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"transMode", NSStringFromTransferFileType(self.transMode)];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasFromUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fromUserId] forKey: @"fromUserId"];
+  }
+  if (self.hasToUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.toUserId] forKey: @"toUserId"];
+  }
+  if (self.hasFileName) {
+    [dictionary setObject: self.fileName forKey: @"fileName"];
+  }
+  if (self.hasFileSize) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fileSize] forKey: @"fileSize"];
+  }
+  if (self.hasTransMode) {
+    [dictionary setObject: @(self.transMode) forKey: @"transMode"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -1999,8 +2086,8 @@ static IMFileReq* defaultIMFileReqInstance = nil;
         break;
       }
       case 40: {
-        FileType value = (FileType)[input readEnum];
-        if (FileTypeIsValidValue(value)) {
+        TransferFileType value = (TransferFileType)[input readEnum];
+        if (TransferFileTypeIsValidValue(value)) {
           [self setTransMode:value];
         } else {
           [unknownFields mergeVarintField:5 value:value];
@@ -2077,17 +2164,17 @@ static IMFileReq* defaultIMFileReqInstance = nil;
 - (BOOL) hasTransMode {
   return resultImfileReq.hasTransMode;
 }
-- (FileType) transMode {
+- (TransferFileType) transMode {
   return resultImfileReq.transMode;
 }
-- (IMFileReqBuilder*) setTransMode:(FileType) value {
+- (IMFileReqBuilder*) setTransMode:(TransferFileType) value {
   resultImfileReq.hasTransMode = YES;
   resultImfileReq.transMode = value;
   return self;
 }
 - (IMFileReqBuilder*) clearTransMode {
   resultImfileReq.hasTransMode = NO;
-  resultImfileReq.transMode = FileTypeFileTypeOnline;
+  resultImfileReq.transMode = TransferFileTypeFileTypeOnline;
   return self;
 }
 @end
@@ -2099,7 +2186,7 @@ static IMFileReq* defaultIMFileReqInstance = nil;
 @property (strong) NSString* fileName;
 @property (strong) NSString* taskId;
 @property (strong) NSMutableArray * ipAddrListArray;
-@property FileType transMode;
+@property TransferFileType transMode;
 @end
 
 @implementation IMFileRsp
@@ -2107,36 +2194,36 @@ static IMFileReq* defaultIMFileReqInstance = nil;
 - (BOOL) hasResultCode {
   return !!hasResultCode_;
 }
-- (void) setHasResultCode:(BOOL) value_ {
-  hasResultCode_ = !!value_;
+- (void) setHasResultCode:(BOOL) _value_ {
+  hasResultCode_ = !!_value_;
 }
 @synthesize resultCode;
 - (BOOL) hasFromUserId {
   return !!hasFromUserId_;
 }
-- (void) setHasFromUserId:(BOOL) value_ {
-  hasFromUserId_ = !!value_;
+- (void) setHasFromUserId:(BOOL) _value_ {
+  hasFromUserId_ = !!_value_;
 }
 @synthesize fromUserId;
 - (BOOL) hasToUserId {
   return !!hasToUserId_;
 }
-- (void) setHasToUserId:(BOOL) value_ {
-  hasToUserId_ = !!value_;
+- (void) setHasToUserId:(BOOL) _value_ {
+  hasToUserId_ = !!_value_;
 }
 @synthesize toUserId;
 - (BOOL) hasFileName {
   return !!hasFileName_;
 }
-- (void) setHasFileName:(BOOL) value_ {
-  hasFileName_ = !!value_;
+- (void) setHasFileName:(BOOL) _value_ {
+  hasFileName_ = !!_value_;
 }
 @synthesize fileName;
 - (BOOL) hasTaskId {
   return !!hasTaskId_;
 }
-- (void) setHasTaskId:(BOOL) value_ {
-  hasTaskId_ = !!value_;
+- (void) setHasTaskId:(BOOL) _value_ {
+  hasTaskId_ = !!_value_;
 }
 @synthesize taskId;
 @synthesize ipAddrListArray;
@@ -2144,8 +2231,8 @@ static IMFileReq* defaultIMFileReqInstance = nil;
 - (BOOL) hasTransMode {
   return !!hasTransMode_;
 }
-- (void) setHasTransMode:(BOOL) value_ {
-  hasTransMode_ = !!value_;
+- (void) setHasTransMode:(BOOL) _value_ {
+  hasTransMode_ = !!_value_;
 }
 @synthesize transMode;
 - (instancetype) init {
@@ -2155,7 +2242,7 @@ static IMFileReq* defaultIMFileReqInstance = nil;
     self.toUserId = 0;
     self.fileName = @"";
     self.taskId = @"";
-    self.transMode = FileTypeFileTypeOnline;
+    self.transMode = TransferFileTypeFileTypeOnline;
   }
   return self;
 }
@@ -2315,9 +2402,35 @@ static IMFileRsp* defaultIMFileRspInstance = nil;
     [output appendFormat:@"%@}\n", indent];
   }];
   if (self.hasTransMode) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"transMode", [NSNumber numberWithInteger:self.transMode]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"transMode", NSStringFromTransferFileType(self.transMode)];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasResultCode) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.resultCode] forKey: @"resultCode"];
+  }
+  if (self.hasFromUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fromUserId] forKey: @"fromUserId"];
+  }
+  if (self.hasToUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.toUserId] forKey: @"toUserId"];
+  }
+  if (self.hasFileName) {
+    [dictionary setObject: self.fileName forKey: @"fileName"];
+  }
+  if (self.hasTaskId) {
+    [dictionary setObject: self.taskId forKey: @"taskId"];
+  }
+  for (IpAddr* element in self.ipAddrListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"ipAddrList"];
+  }
+  if (self.hasTransMode) {
+    [dictionary setObject: @(self.transMode) forKey: @"transMode"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -2482,8 +2595,8 @@ static IMFileRsp* defaultIMFileRspInstance = nil;
         break;
       }
       case 56: {
-        FileType value = (FileType)[input readEnum];
-        if (FileTypeIsValidValue(value)) {
+        TransferFileType value = (TransferFileType)[input readEnum];
+        if (TransferFileTypeIsValidValue(value)) {
           [self setTransMode:value];
         } else {
           [unknownFields mergeVarintField:7 value:value];
@@ -2597,17 +2710,17 @@ static IMFileRsp* defaultIMFileRspInstance = nil;
 - (BOOL) hasTransMode {
   return resultImfileRsp.hasTransMode;
 }
-- (FileType) transMode {
+- (TransferFileType) transMode {
   return resultImfileRsp.transMode;
 }
-- (IMFileRspBuilder*) setTransMode:(FileType) value {
+- (IMFileRspBuilder*) setTransMode:(TransferFileType) value {
   resultImfileRsp.hasTransMode = YES;
   resultImfileRsp.transMode = value;
   return self;
 }
 - (IMFileRspBuilder*) clearTransMode {
   resultImfileRsp.hasTransMode = NO;
-  resultImfileRsp.transMode = FileTypeFileTypeOnline;
+  resultImfileRsp.transMode = TransferFileTypeFileTypeOnline;
   return self;
 }
 @end
@@ -2619,7 +2732,7 @@ static IMFileRsp* defaultIMFileRspInstance = nil;
 @property UInt32 fileSize;
 @property (strong) NSString* taskId;
 @property (strong) NSMutableArray * ipAddrListArray;
-@property FileType transMode;
+@property TransferFileType transMode;
 @property UInt32 offlineReady;
 @end
 
@@ -2628,36 +2741,36 @@ static IMFileRsp* defaultIMFileRspInstance = nil;
 - (BOOL) hasFromUserId {
   return !!hasFromUserId_;
 }
-- (void) setHasFromUserId:(BOOL) value_ {
-  hasFromUserId_ = !!value_;
+- (void) setHasFromUserId:(BOOL) _value_ {
+  hasFromUserId_ = !!_value_;
 }
 @synthesize fromUserId;
 - (BOOL) hasToUserId {
   return !!hasToUserId_;
 }
-- (void) setHasToUserId:(BOOL) value_ {
-  hasToUserId_ = !!value_;
+- (void) setHasToUserId:(BOOL) _value_ {
+  hasToUserId_ = !!_value_;
 }
 @synthesize toUserId;
 - (BOOL) hasFileName {
   return !!hasFileName_;
 }
-- (void) setHasFileName:(BOOL) value_ {
-  hasFileName_ = !!value_;
+- (void) setHasFileName:(BOOL) _value_ {
+  hasFileName_ = !!_value_;
 }
 @synthesize fileName;
 - (BOOL) hasFileSize {
   return !!hasFileSize_;
 }
-- (void) setHasFileSize:(BOOL) value_ {
-  hasFileSize_ = !!value_;
+- (void) setHasFileSize:(BOOL) _value_ {
+  hasFileSize_ = !!_value_;
 }
 @synthesize fileSize;
 - (BOOL) hasTaskId {
   return !!hasTaskId_;
 }
-- (void) setHasTaskId:(BOOL) value_ {
-  hasTaskId_ = !!value_;
+- (void) setHasTaskId:(BOOL) _value_ {
+  hasTaskId_ = !!_value_;
 }
 @synthesize taskId;
 @synthesize ipAddrListArray;
@@ -2665,15 +2778,15 @@ static IMFileRsp* defaultIMFileRspInstance = nil;
 - (BOOL) hasTransMode {
   return !!hasTransMode_;
 }
-- (void) setHasTransMode:(BOOL) value_ {
-  hasTransMode_ = !!value_;
+- (void) setHasTransMode:(BOOL) _value_ {
+  hasTransMode_ = !!_value_;
 }
 @synthesize transMode;
 - (BOOL) hasOfflineReady {
   return !!hasOfflineReady_;
 }
-- (void) setHasOfflineReady:(BOOL) value_ {
-  hasOfflineReady_ = !!value_;
+- (void) setHasOfflineReady:(BOOL) _value_ {
+  hasOfflineReady_ = !!_value_;
 }
 @synthesize offlineReady;
 - (instancetype) init {
@@ -2683,7 +2796,7 @@ static IMFileRsp* defaultIMFileRspInstance = nil;
     self.fileName = @"";
     self.fileSize = 0;
     self.taskId = @"";
-    self.transMode = FileTypeFileTypeOnline;
+    self.transMode = TransferFileTypeFileTypeOnline;
     self.offlineReady = 0;
   }
   return self;
@@ -2853,12 +2966,41 @@ static IMFileNotify* defaultIMFileNotifyInstance = nil;
     [output appendFormat:@"%@}\n", indent];
   }];
   if (self.hasTransMode) {
-    [output appendFormat:@"%@%@: %@\n", indent, @"transMode", [NSNumber numberWithInteger:self.transMode]];
+    [output appendFormat:@"%@%@: %@\n", indent, @"transMode", NSStringFromTransferFileType(self.transMode)];
   }
   if (self.hasOfflineReady) {
     [output appendFormat:@"%@%@: %@\n", indent, @"offlineReady", [NSNumber numberWithInteger:self.offlineReady]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasFromUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fromUserId] forKey: @"fromUserId"];
+  }
+  if (self.hasToUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.toUserId] forKey: @"toUserId"];
+  }
+  if (self.hasFileName) {
+    [dictionary setObject: self.fileName forKey: @"fileName"];
+  }
+  if (self.hasFileSize) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fileSize] forKey: @"fileSize"];
+  }
+  if (self.hasTaskId) {
+    [dictionary setObject: self.taskId forKey: @"taskId"];
+  }
+  for (IpAddr* element in self.ipAddrListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"ipAddrList"];
+  }
+  if (self.hasTransMode) {
+    [dictionary setObject: @(self.transMode) forKey: @"transMode"];
+  }
+  if (self.hasOfflineReady) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.offlineReady] forKey: @"offlineReady"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -3031,8 +3173,8 @@ static IMFileNotify* defaultIMFileNotifyInstance = nil;
         break;
       }
       case 56: {
-        FileType value = (FileType)[input readEnum];
-        if (FileTypeIsValidValue(value)) {
+        TransferFileType value = (TransferFileType)[input readEnum];
+        if (TransferFileTypeIsValidValue(value)) {
           [self setTransMode:value];
         } else {
           [unknownFields mergeVarintField:7 value:value];
@@ -3150,17 +3292,17 @@ static IMFileNotify* defaultIMFileNotifyInstance = nil;
 - (BOOL) hasTransMode {
   return resultImfileNotify.hasTransMode;
 }
-- (FileType) transMode {
+- (TransferFileType) transMode {
   return resultImfileNotify.transMode;
 }
-- (IMFileNotifyBuilder*) setTransMode:(FileType) value {
+- (IMFileNotifyBuilder*) setTransMode:(TransferFileType) value {
   resultImfileNotify.hasTransMode = YES;
   resultImfileNotify.transMode = value;
   return self;
 }
 - (IMFileNotifyBuilder*) clearTransMode {
   resultImfileNotify.hasTransMode = NO;
-  resultImfileNotify.transMode = FileTypeFileTypeOnline;
+  resultImfileNotify.transMode = TransferFileTypeFileTypeOnline;
   return self;
 }
 - (BOOL) hasOfflineReady {
@@ -3191,15 +3333,15 @@ static IMFileNotify* defaultIMFileNotifyInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
 - (instancetype) init {
@@ -3291,6 +3433,15 @@ static IMFileHasOfflineReq* defaultIMFileHasOfflineReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -3442,8 +3593,8 @@ static IMFileHasOfflineReq* defaultIMFileHasOfflineReqInstance = nil;
 - (BOOL) hasUserId {
   return !!hasUserId_;
 }
-- (void) setHasUserId:(BOOL) value_ {
-  hasUserId_ = !!value_;
+- (void) setHasUserId:(BOOL) _value_ {
+  hasUserId_ = !!_value_;
 }
 @synthesize userId;
 @synthesize offlineFileListArray;
@@ -3453,8 +3604,8 @@ static IMFileHasOfflineReq* defaultIMFileHasOfflineReqInstance = nil;
 - (BOOL) hasAttachData {
   return !!hasAttachData_;
 }
-- (void) setHasAttachData:(BOOL) value_ {
-  hasAttachData_ = !!value_;
+- (void) setHasAttachData:(BOOL) _value_ {
+  hasAttachData_ = !!_value_;
 }
 @synthesize attachData;
 - (instancetype) init {
@@ -3598,6 +3749,25 @@ static IMFileHasOfflineRsp* defaultIMFileHasOfflineRspInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"attachData", self.attachData];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.userId] forKey: @"userId"];
+  }
+  for (OfflineFileInfo* element in self.offlineFileListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"offlineFileList"];
+  }
+  for (IpAddr* element in self.ipAddrListArray) {
+    NSMutableDictionary *elementDictionary = [NSMutableDictionary dictionary];
+    [element storeInDictionary:elementDictionary];
+    [dictionary setObject:[NSDictionary dictionaryWithDictionary:elementDictionary] forKey:@"ipAddrList"];
+  }
+  if (self.hasAttachData) {
+    [dictionary setObject: self.attachData forKey: @"attachData"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -3826,36 +3996,36 @@ static IMFileHasOfflineRsp* defaultIMFileHasOfflineRspInstance = nil;
 - (BOOL) hasFromUserId {
   return !!hasFromUserId_;
 }
-- (void) setHasFromUserId:(BOOL) value_ {
-  hasFromUserId_ = !!value_;
+- (void) setHasFromUserId:(BOOL) _value_ {
+  hasFromUserId_ = !!_value_;
 }
 @synthesize fromUserId;
 - (BOOL) hasToUserId {
   return !!hasToUserId_;
 }
-- (void) setHasToUserId:(BOOL) value_ {
-  hasToUserId_ = !!value_;
+- (void) setHasToUserId:(BOOL) _value_ {
+  hasToUserId_ = !!_value_;
 }
 @synthesize toUserId;
 - (BOOL) hasTaskId {
   return !!hasTaskId_;
 }
-- (void) setHasTaskId:(BOOL) value_ {
-  hasTaskId_ = !!value_;
+- (void) setHasTaskId:(BOOL) _value_ {
+  hasTaskId_ = !!_value_;
 }
 @synthesize taskId;
 - (BOOL) hasFileName {
   return !!hasFileName_;
 }
-- (void) setHasFileName:(BOOL) value_ {
-  hasFileName_ = !!value_;
+- (void) setHasFileName:(BOOL) _value_ {
+  hasFileName_ = !!_value_;
 }
 @synthesize fileName;
 - (BOOL) hasFileSize {
   return !!hasFileSize_;
 }
-- (void) setHasFileSize:(BOOL) value_ {
-  hasFileSize_ = !!value_;
+- (void) setHasFileSize:(BOOL) _value_ {
+  hasFileSize_ = !!_value_;
 }
 @synthesize fileSize;
 - (instancetype) init {
@@ -3989,6 +4159,24 @@ static IMFileAddOfflineReq* defaultIMFileAddOfflineReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"fileSize", [NSNumber numberWithInteger:self.fileSize]];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasFromUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fromUserId] forKey: @"fromUserId"];
+  }
+  if (self.hasToUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.toUserId] forKey: @"toUserId"];
+  }
+  if (self.hasTaskId) {
+    [dictionary setObject: self.taskId forKey: @"taskId"];
+  }
+  if (self.hasFileName) {
+    [dictionary setObject: self.fileName forKey: @"fileName"];
+  }
+  if (self.hasFileSize) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fileSize] forKey: @"fileSize"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
@@ -4223,22 +4411,22 @@ static IMFileAddOfflineReq* defaultIMFileAddOfflineReqInstance = nil;
 - (BOOL) hasFromUserId {
   return !!hasFromUserId_;
 }
-- (void) setHasFromUserId:(BOOL) value_ {
-  hasFromUserId_ = !!value_;
+- (void) setHasFromUserId:(BOOL) _value_ {
+  hasFromUserId_ = !!_value_;
 }
 @synthesize fromUserId;
 - (BOOL) hasToUserId {
   return !!hasToUserId_;
 }
-- (void) setHasToUserId:(BOOL) value_ {
-  hasToUserId_ = !!value_;
+- (void) setHasToUserId:(BOOL) _value_ {
+  hasToUserId_ = !!_value_;
 }
 @synthesize toUserId;
 - (BOOL) hasTaskId {
   return !!hasTaskId_;
 }
-- (void) setHasTaskId:(BOOL) value_ {
-  hasTaskId_ = !!value_;
+- (void) setHasTaskId:(BOOL) _value_ {
+  hasTaskId_ = !!_value_;
 }
 @synthesize taskId;
 - (instancetype) init {
@@ -4346,6 +4534,18 @@ static IMFileDelOfflineReq* defaultIMFileDelOfflineReqInstance = nil;
     [output appendFormat:@"%@%@: %@\n", indent, @"taskId", self.taskId];
   }
   [self.unknownFields writeDescriptionTo:output withIndent:indent];
+}
+- (void) storeInDictionary:(NSMutableDictionary *)dictionary {
+  if (self.hasFromUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.fromUserId] forKey: @"fromUserId"];
+  }
+  if (self.hasToUserId) {
+    [dictionary setObject: [NSNumber numberWithInteger:self.toUserId] forKey: @"toUserId"];
+  }
+  if (self.hasTaskId) {
+    [dictionary setObject: self.taskId forKey: @"taskId"];
+  }
+  [self.unknownFields storeInDictionary:dictionary];
 }
 - (BOOL) isEqual:(id)other {
   if (other == self) {
