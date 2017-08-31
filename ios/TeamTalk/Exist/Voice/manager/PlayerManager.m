@@ -154,21 +154,18 @@ static PlayerManager *mPlayerManager = nil;
         }
     }else if([filename rangeOfString:@".caf"].location != NSNotFound)
     {
-        //        if ( ! [[NSFileManager defaultManager] fileExistsAtPath:filename]) {
-        //            NSLog(@"要播放的文件不存在:%@", filename);
-        //            [self.delegate playingStoped];
-        //            [newDelegate playingStoped];
-        //            return;
-        //        }
         _playingFileName = nil;
         [self.delegate playingStoped];
         self.delegate = newDelegate;
         
         NSError *error;
-        NSArray *array  =[filename componentsSeparatedByString:@"."];
-        NSString *bundlePath=[[NSBundle mainBundle]pathForResource:@"Resource" ofType:@"bundle"];
-        NSBundle *bundle=[NSBundle bundleWithPath:bundlePath];
-        NSString *soundPath=[bundle pathForResource:array[0] ofType:@"caf"inDirectory:nil];
+        //NSArray *array  =[filename componentsSeparatedByString:@"."];
+        //NSString *bundlePath=[[NSBundle mainBundle]pathForResource:@"Resource" ofType:@"bundle"];
+       // NSString* leftPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:leftBubblePath];
+//        NSString *bundlePath=[[NSBundle mainBundle]pathForResource:@"Resource" ofType:@"voice"];
+//        NSBundle *bundle=[NSBundle bundleWithPath:bundlePath];
+//        NSString *soundPath=[bundle pathForResource:array[0] ofType:@"caf"inDirectory:nil];
+        NSString *soundPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:filename];
         if (soundPath ==nil) {
             NSLog(@"要播放的文件不存在:%@", filename);
             [self.delegate playingStoped];
@@ -212,14 +209,11 @@ static PlayerManager *mPlayerManager = nil;
 
     if (self.decapsulator) {
         [self.decapsulator stopPlaying];
-//        self.decapsulator.delegate = nil;   //此行如果放在上一行之前会导致回调问题
         self.decapsulator = nil;
     }
     if (self.avAudioPlayer) {
         [self.avAudioPlayer stop];
         self.avAudioPlayer = nil;
-        
-//        [self.delegate playingStoped];
     }
     
     [self.delegate playingStoped];
