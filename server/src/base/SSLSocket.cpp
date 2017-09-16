@@ -61,7 +61,7 @@ void CSSLSocket::_AcceptNewSocket()
             log("auth failed");
             continue;
         }
-        BIO *sbio = BIO_new_socket(socket,BIO_NOCLOSE);;
+        BIO *sbio = BIO_new_socket(fd,BIO_NOCLOSE);
         CSSLSocket* pSocket = new CSSLSocket();
         pSocket->setSSL(ssl);
         SSL_set_bio(ssl,sbio,sbio);
