@@ -61,9 +61,10 @@ void CSSLSocket::_AcceptNewSocket()
             log("auth failed");
             continue;
         }
-
+        BIO *sbio = BIO_new_socket(socket,BIO_NOCLOSE);;
         CSSLSocket* pSocket = new CSSLSocket();
         pSocket->setSSL(ssl);
+        SSL_set_bio(ssl,sbio,sbio);
         uint32_t ip = ntohl(peer_addr.sin_addr.s_addr);
         uint16_t port = ntohs(peer_addr.sin_port);
 
@@ -95,10 +96,6 @@ int CSSLSocket::Send(void* buf, int len)
 {
     if (GetState() != SOCKET_STATE_CONNECTED)
         return NETLIB_ERROR;
-
-    if(len > 8096) {
-        len = 8096;
-    }
 
     int ret = SSL_write(m_ssl, buf , len);
 
