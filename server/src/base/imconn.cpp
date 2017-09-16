@@ -91,6 +91,7 @@ int CImConn::Send(void* data, int len)
 	int offset = 0;
 	int remain = len;
 	int max_size = 2048;
+	log("need send:%d", remain);
 	while (remain > 0) {
 		int send_size = remain;
 		// if (send_size > NETLIB_MAX_SOCKET_BUF_SIZE) {
