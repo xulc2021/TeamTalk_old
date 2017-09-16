@@ -105,6 +105,7 @@ int CSSLSocket::Send(void* buf, int len)
 #if ((defined _WIN32) || (defined __APPLE__))
             CEventDispatch::Instance()->AddEvent(GetSocket(), SOCKET_WRITE);
 #endif
+            log("!!!send failed, ssl_error code: %d len:%d", err_code , len);
             ret = 0;     
         }else {
             log("!!!send failed, error code: %d len:%d", err_code , len);
