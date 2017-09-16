@@ -8,9 +8,10 @@ SSL_CTX* InitServerCTX(void)
 {   
     const SSL_METHOD *method;
     SSL_CTX *ctx;
+    SSL_library_init();
     OpenSSL_add_all_algorithms();       /* load & register all cryptos, etc. */
     SSL_load_error_strings();           /* load all error messages */
-    method = SSLv2_server_method();     /* create new server-method instance */
+    method = SSLv23_server_method();     /* create new server-method instance */
     ctx = SSL_CTX_new(method);          /* create new context from method */
     if ( ctx == NULL )
     {
@@ -23,6 +24,7 @@ SSL_CTX* InitServerCTX(void)
 void LoadCertificates(SSL_CTX* ctx, char* CertFile, char* KeyFile)
 {
     /* set the local certificate from CertFile */
+    SSL_CTX_set_ecdh_auto(ctx, 1);
     if ( SSL_CTX_use_certificate_file(ctx, CertFile, SSL_FILETYPE_PEM) <= 0 )
     {
         ERR_print_errors_fp(stderr);
@@ -50,12 +52,13 @@ void CSSLSocket::_AcceptNewSocket()
     char ip_str[64];
     while ( (fd = accept(GetSocket(), (sockaddr*)&peer_addr, &addr_len)) != INVALID_SOCKET )
     {
-
+        log("new client");
         SSL *ssl = SSL_new(m_ssl_context);
         SSL_set_fd(ssl, fd);
         if(SSL_accept(ssl)  == -1) {
             close(fd);
             SSL_free(ssl);
+            log("auth failed");
             continue;
         }
 
