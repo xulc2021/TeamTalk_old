@@ -97,24 +97,50 @@ int CSSLSocket::Send(void* buf, int len)
     if (GetState() != SOCKET_STATE_CONNECTED)
         return NETLIB_ERROR;
 
-    int ret = SSL_write(m_ssl, buf , len);
 
-    if(ret <= 0) {
-        int err_code = SSL_get_error(m_ssl, ret);
-        if(SSL_ERROR_SSL == err_code || SSL_ERROR_WANT_WRITE == err_code) {
+    int offset = 0;
+    int send_size = 4096;
+    int main = len;
+    while(main > 0) {
+        if(main < send_size) {
+            send_size = main;
+        }
+        int ret = SSL_write(m_ssl, buf+offset , send_size);
+        if(ret <=0) {
+            int err_code = SSL_get_error(m_ssl, ret); 
+            if(SSL_ERROR_WANT_WRITE == err_code) {
 #if ((defined _WIN32) || (defined __APPLE__))
             CEventDispatch::Instance()->AddEvent(GetSocket(), SOCKET_WRITE);
 #endif
-            log("!!!send failed, ssl_error code: %d len:%d", err_code , len);
-            ret = 0;     
-        }else {
-            log("!!!send failed, error code: %d len:%d", err_code , len);
-        }
-    }else {
-        log("send ok:%d for len:%d", ret, len);
+            }
+        }          
+        main -= ret;
+        offset += ret;
     }
 
-    return ret;
+    if(main < len) {
+        return len - main;
+    }
+    return 0;
+
+//     int ret = SSL_write(m_ssl, buf , len);
+
+//     if(ret <= 0) {
+//         int err_code = SSL_get_error(m_ssl, ret);
+//         if(SSL_ERROR_SSL == err_code || SSL_ERROR_WANT_WRITE == err_code) {
+// #if ((defined _WIN32) || (defined __APPLE__))
+//             CEventDispatch::Instance()->AddEvent(GetSocket(), SOCKET_WRITE);
+// #endif
+//             log("!!!send failed, ssl_error code: %d len:%d", err_code , len);
+//             ret = 0;     
+//         }else {
+//             log("!!!send failed, error code: %d len:%d", err_code , len);
+//         }
+//     }else {
+//         log("send ok:%d for len:%d", ret, len);
+//     }
+
+//     return ret;
 }
 
 void initSSLConfig(char* CertFile, char* KeyFile)
