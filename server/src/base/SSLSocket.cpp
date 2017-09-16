@@ -96,22 +96,21 @@ int CSSLSocket::Send(void* buf, int len)
     if (GetState() != SOCKET_STATE_CONNECTED)
         return NETLIB_ERROR;
 
-    int ret = SSL_write(m_ssl, (char*)buf , len);
-    //int ret = send(m_socket, (char*)buf, len, 0);
-    if (ret == SOCKET_ERROR)
-    {
-        int err_code = _GetErrorCode();
-        if (_IsBlock(err_code))
-        {
+    if(len > 8096) {
+        len = 8096;
+    }
+
+    int ret = SSL_write(m_ssl, buf , len);
+
+    if(ret <= 0) {
+        int err_code = SSL_get_error(m_ssl, ret);
+        if(SSL_ERROR_WANT_WRITE == err_code) {
 #if ((defined _WIN32) || (defined __APPLE__))
             CEventDispatch::Instance()->AddEvent(GetSocket(), SOCKET_WRITE);
 #endif
-            ret = 0;
-            //log("socket send block fd=%d", m_socket);
-        }
-        else
-        {
-            log("!!!send failed, error code: %d", err_code);
+            ret = 0;     
+        }else {
+            log("!!!send failed, error code: %d len:%d", err_code , len);
         }
     }
 
