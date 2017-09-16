@@ -28,6 +28,13 @@ int netlib_listen(
 		callback_t	callback,
 		void*		callback_data);
 
+int netlib_ssl_listen(  
+        const char* server_ip, 
+        uint16_t    port,
+        callback_t  callback,
+        void*       callback_data);
+
+
 net_handle_t netlib_connect(
 		const char*	server_ip,
 		uint16_t	port,

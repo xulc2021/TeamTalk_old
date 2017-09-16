@@ -1,5 +1,6 @@
 #include "netlib.h"
 #include "BaseSocket.h"
+#include "SSLSocket.h"
 #include "EventDispatch.h"
 
 int netlib_init()
@@ -37,6 +38,23 @@ int netlib_listen(
 		void*		callback_data)
 {
 	CBaseSocket* pSocket = new CBaseSocket();
+	if (!pSocket)
+		return NETLIB_ERROR;
+
+	int ret =  pSocket->Listen(server_ip, port, callback, callback_data);
+	if (ret == NETLIB_ERROR)
+		delete pSocket;
+	return ret;
+}
+
+
+int netlib_ssl_listen(
+		const char*	server_ip, 
+		uint16_t	port,
+		callback_t	callback,
+		void*		callback_data)
+{
+	CBaseSocket* pSocket = new CSSLSocket();
 	if (!pSocket)
 		return NETLIB_ERROR;
 

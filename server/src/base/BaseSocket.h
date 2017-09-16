@@ -27,6 +27,7 @@ public:
 	SOCKET GetSocket() { return m_socket; }
 	void SetSocket(SOCKET fd) { m_socket = fd; }
 	void SetState(uint8_t state) { m_state = state; }
+	int GetState(){return m_state;}
 
 	void SetCallback(callback_t callback) { m_callback = callback; }
 	void SetCallbackData(void* data) { m_callback_data = data; }
@@ -51,19 +52,19 @@ public:
 		uint16_t		port,
 		callback_t		callback,
 		void*			callback_data);
-
-	int Send(void* buf, int len);
-
-	int Recv(void* buf, int len);
-
 	int Close();
-
+	
+	virtual int Send(void* buf, int len);
+	virtual int Recv(void* buf, int len);
+	virtual void _AcceptNewSocket();
+	
+	
 public:	
 	void OnRead();
 	void OnWrite();
 	void OnClose();
 
-private:	
+public:	
 	int _GetErrorCode();
 	bool _IsBlock(int error_code);
 
@@ -72,7 +73,11 @@ private:
 	void _SetNoDelay(SOCKET fd);
 	void _SetAddr(const char* ip, const uint16_t port, sockaddr_in* pAddr);
 
-	void _AcceptNewSocket();
+	//void _AcceptNewSocket();
+
+public:
+	callback_t		m_callback;
+	void*			m_callback_data;
 
 private:
 	string			m_remote_ip;
@@ -80,13 +85,12 @@ private:
 	string			m_local_ip;
 	uint16_t		m_local_port;
 
-	callback_t		m_callback;
-	void*			m_callback_data;
+	
 
 	uint8_t			m_state;
 	SOCKET			m_socket;
 };
-
+void AddBaseSocket(CBaseSocket* pSocket);
 CBaseSocket* FindBaseSocket(net_handle_t fd);
 
 #endif
