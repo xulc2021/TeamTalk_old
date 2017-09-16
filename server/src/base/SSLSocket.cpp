@@ -101,15 +101,14 @@ int CSSLSocket::Send(void* buf, int len)
 
     if(ret <= 0) {
         int err_code = SSL_get_error(m_ssl, ret);
-        if(SSL_ERROR_WANT_WRITE != err_code) {
+        if(SSL_ERROR_SSL == err_code || SSL_ERROR_WANT_WRITE == err_code) {
 #if ((defined _WIN32) || (defined __APPLE__))
             CEventDispatch::Instance()->AddEvent(GetSocket(), SOCKET_WRITE);
 #endif
             log("!!!send failed, ssl_error code: %d len:%d", err_code , len);
             ret = 0;     
         }else {
-            return CSSLSocket::Send(buf, len);
-            //log("!!!send failed, error code: %d len:%d", err_code , len);
+            log("!!!send failed, error code: %d len:%d", err_code , len);
         }
     }else {
         log("send ok:%d for len:%d", ret, len);
