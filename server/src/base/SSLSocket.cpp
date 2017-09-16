@@ -110,7 +110,7 @@ int CSSLSocket::Send(void* buf, int len)
             log("!!!send failed, error code: %d len:%d", err_code , len);
         }
     }else {
-        log("send ok:%d for len:", ret, len);
+        log("send ok:%d for len:%d", ret, len);
     }
 
     return ret;
