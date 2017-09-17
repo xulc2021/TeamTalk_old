@@ -62,18 +62,13 @@ void CSSLSocket::_AcceptNewSocket()
             continue;
         }
         CSSLSocket* pSocket = new CSSLSocket();
-
-        pSocket->buf_io = BIO_new(BIO_f_buffer());  /* create a buffer BIO */
-        pSocket->ssl_bio = BIO_new(BIO_f_ssl());           /* create an ssl BIO */
-        BIO_set_ssl(pSocket->ssl_bio, ssl, BIO_CLOSE);       /* assign the ssl BIO to SSL */
-        BIO_push(pSocket->buf_io, pSocket->ssl_bio);          /* add ssl_bio to buf_io */ 
         
-        //BIO *sbio = BIO_new_socket(fd,BIO_NOCLOSE);
+        pSocket->buf_io = BIO_new_socket(fd,BIO_NOCLOSE);
 
         //BIO_new(BIO_s_mem());
         
         pSocket->setSSL(ssl);
-        //SSL_set_bio(ssl,sbio,sbio);
+        SSL_set_bio(ssl,sbio,sbio);
         //SSL_set_mode(ssl, SSL_MODE_ENABLE_PARTIAL_WRITE);
         uint32_t ip = ntohl(peer_addr.sin_addr.s_addr);
         uint16_t port = ntohs(peer_addr.sin_port);
