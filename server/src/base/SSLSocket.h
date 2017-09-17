@@ -14,6 +14,10 @@ public:
     virtual void _AcceptNewSocket();
     void setSSL(SSL *ssl){m_ssl = ssl;}
     SSL *getSSL(){return m_ssl;}
+
+public:
+    BIO  *buf_io;
+    BIO  *ssl_bio;
 private:
     SSL *m_ssl;
 
