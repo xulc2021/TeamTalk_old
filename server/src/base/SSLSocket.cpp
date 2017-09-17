@@ -112,6 +112,7 @@ int CSSLSocket::Send(void* buf, int len)
             CEventDispatch::Instance()->AddEvent(GetSocket(), SOCKET_WRITE);
 #endif
             }
+            log("write ok for:%d",len - main);
             break;
         }          
         main -= ret;
