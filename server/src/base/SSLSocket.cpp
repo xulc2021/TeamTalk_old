@@ -63,12 +63,12 @@ void CSSLSocket::_AcceptNewSocket()
         }
         CSSLSocket* pSocket = new CSSLSocket();
         
-        pSocket->buf_io = BIO_new_socket(fd,BIO_NOCLOSE);
+//        pSocket->buf_io = BIO_new_socket(fd,BIO_NOCLOSE);
 
         //BIO_new(BIO_s_mem());
         
         pSocket->setSSL(ssl);
-        SSL_set_bio(ssl,pSocket->buf_io,pSocket->buf_io);
+  //      SSL_set_bio(ssl,pSocket->buf_io,pSocket->buf_io);
         //SSL_set_mode(ssl, SSL_MODE_ENABLE_PARTIAL_WRITE);
         uint32_t ip = ntohl(peer_addr.sin_addr.s_addr);
         uint16_t port = ntohs(peer_addr.sin_port);
@@ -93,8 +93,8 @@ void CSSLSocket::_AcceptNewSocket()
 }
 int CSSLSocket::Recv(void* buf, int len)
 {
-    return BIO_read(buf_io, buf, len);
-    //return  SSL_read(m_ssl, buf, len);
+    //return BIO_read(buf_io, buf, len);
+    return  SSL_read(m_ssl, buf, len);
     //return recv(m_socket, (char*)buf, len, 0);
 }
 
@@ -109,8 +109,8 @@ int CSSLSocket::Send(void* buf, int len)
         if(main < send_size) {
             send_size = main;
         }
-        int ret = BIO_write(buf_io, buf+offset , send_size); 
-        //int ret = SSL_write(m_ssl, buf+offset , send_size);
+        //int ret = BIO_write(buf_io, buf+offset , send_size); 
+        int ret = SSL_write(m_ssl, buf+offset , send_size);
         if(ret <=0) {
             int err_code = SSL_get_error(m_ssl, ret); 
             if(SSL_ERROR_WANT_WRITE == err_code) {
