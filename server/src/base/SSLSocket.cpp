@@ -114,9 +114,14 @@ int CSSLSocket::Send(void* buf, int len)
         if(ret <=0) {
             int err_code = SSL_get_error(m_ssl, ret); 
             if(SSL_ERROR_WANT_WRITE == err_code) {
+// #if ((defined _WIN32) || (defined __APPLE__))
+//             CEventDispatch::Instance()->AddEvent(GetSocket(), SOCKET_WRITE);
+// #endif
+            continue;
+            }else {
 #if ((defined _WIN32) || (defined __APPLE__))
             CEventDispatch::Instance()->AddEvent(GetSocket(), SOCKET_WRITE);
-#endif
+#endif        
             }
             log("write ok for:%d",len - main);
             break;
