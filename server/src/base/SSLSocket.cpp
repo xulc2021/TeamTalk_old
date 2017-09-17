@@ -65,6 +65,7 @@ void CSSLSocket::_AcceptNewSocket()
         CSSLSocket* pSocket = new CSSLSocket();
         pSocket->setSSL(ssl);
         SSL_set_bio(ssl,sbio,sbio);
+        SSL_set_mode(ssl, SSL_MODE_AUTO_RETRY);
         uint32_t ip = ntohl(peer_addr.sin_addr.s_addr);
         uint16_t port = ntohs(peer_addr.sin_port);
 
