@@ -98,7 +98,8 @@ void CSSLSocket::_AcceptNewSocket()
 }
 int CSSLSocket::Recv(void* buf, int len)
 {
-    return  SSL_read(m_ssl, buf, len);
+    return BIO_read(buf_io, buf, len);
+    //return  SSL_read(m_ssl, buf, len);
     //return recv(m_socket, (char*)buf, len, 0);
 }
 
