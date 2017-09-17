@@ -96,8 +96,6 @@ int CSSLSocket::Send(void* buf, int len)
 {
     if (GetState() != SOCKET_STATE_CONNECTED)
         return NETLIB_ERROR;
-
-
     int offset = 0;
     int send_size = 4096;
     int main = len;
