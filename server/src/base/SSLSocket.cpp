@@ -111,6 +111,7 @@ int CSSLSocket::Send(void* buf, int len)
             CEventDispatch::Instance()->AddEvent(GetSocket(), SOCKET_WRITE);
 #endif
             }
+            break;
         }          
         main -= ret;
         offset += ret;
