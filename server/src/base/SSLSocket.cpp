@@ -110,7 +110,7 @@ int CSSLSocket::Send(void* buf, int len)
             send_size = main;
         }
         //int ret = BIO_write(buf_io, buf+offset , send_size); 
-        int ret = SSL_write(m_ssl, buf+offset , send_size);
+        int ret = SSL_write(m_ssl, (char*)buf+offset , send_size);
         if(ret <=0) {
             int err_code = SSL_get_error(m_ssl, ret); 
             if(SSL_ERROR_WANT_WRITE == err_code) {

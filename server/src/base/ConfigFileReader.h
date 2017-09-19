@@ -17,7 +17,8 @@ public:
 	~CConfigFileReader();
 
     char* GetConfigName(const char* name);
-    int SetConfigValue(const char* name, const char*  value);
+    char* GetConfigName(const char* name, char* defaultValue);
+	int SetConfigValue(const char* name, const char*  value);
 private:
     void _LoadFile(const char* filename);
     int _WriteFIle(const char*filename = NULL);

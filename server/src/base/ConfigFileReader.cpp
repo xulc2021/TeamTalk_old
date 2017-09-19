@@ -30,6 +30,15 @@ char* CConfigFileReader::GetConfigName(const char* name)
 	return value;
 }
 
+
+char* CConfigFileReader::GetConfigName(const char* name, char* defaultValue) {
+	char *value = GetConfigName(name);
+	if(value) {
+		return	value;
+	}
+	return defaultValue;
+}
+
 int CConfigFileReader::SetConfigValue(const char* name, const char* value)
 {
     if(!m_load_ok)
