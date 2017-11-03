@@ -17,5 +17,5 @@ LINK_DIRECTORIES(./ ../base ../base/slog/lib)
 #ADD_LIBRARY(${PROJECTNAME} SHARED/STATIC ${SRC_LIST})
 ADD_EXECUTABLE(msfs ${SRC_LIST})
 
-TARGET_LINK_LIBRARIES(msfs pthread base slog)
+TARGET_LINK_LIBRARIES(msfs pthread base slog ssl crypto)
  
