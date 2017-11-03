@@ -88,7 +88,7 @@ get_cur_dir() {
 }
 
 
-build_g++(){
+build_gpp(){
 	check_user
 	yum -y install gcc-c++
 	download $GCC.tar.gz $GCC_DOWNLOAD_PATH
@@ -151,6 +151,6 @@ build_gdb(){
 
 
 get_cur_dir
-build_g++
+build_gpp
 build_termcap
 build_gdb
