@@ -24,5 +24,5 @@ LINK_DIRECTORIES(./ ../base ${PB_LIB_DIR} ../base/slog/lib)
 #ADD_LIBRARY(${PROJECTNAME} SHARED/STATIC ${SRC_LIST})
 ADD_EXECUTABLE(file_server ${SRC_LIST1} ${SRC_LIST2})
 
-TARGET_LINK_LIBRARIES(file_server pthread base protobuf-lite uuid slog ssl crypto
+TARGET_LINK_LIBRARIES(file_server pthread base protobuf-lite uuid slog ssl crypto)
  
