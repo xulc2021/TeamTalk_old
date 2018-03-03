@@ -200,6 +200,35 @@ bool CPrepareStatement::ExecuteUpdate()
 	return true;
 }
 
+CResultSet* CPrepareStatement::ExcuteQuery() {
+
+    if(!m_stmt) {
+        log("no m_stmt");
+        return NULL;
+    }
+
+	if (mysql_stmt_bind_param(m_stmt, m_param_bind)) {
+		log("mysql_stmt_bind_param failed: %s", mysql_stmt_error(m_stmt));
+		return NULL;
+	}
+
+	if (mysql_stmt_execute(m_stmt)) {
+		log("mysql_stmt_execute failed: %s", mysql_stmt_error(m_stmt));
+		return NULL;
+	}
+
+    MYSQL_RES* res = mysql_stmt_result_metadata(m_stmt);
+	if (!res) {
+		log("mysql_stmt_result_metadata failed: %s", mysql_stmt_error(m_stmt));
+		return NULL;
+	}
+
+	CResultSet* result_set = new CResultSet(res);
+	return result_set;
+   
+}
+
+
 uint32_t CPrepareStatement::GetInsertId()
 {
 	return mysql_stmt_insert_id(m_stmt);
