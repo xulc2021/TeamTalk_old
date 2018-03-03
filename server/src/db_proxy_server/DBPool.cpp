@@ -200,7 +200,7 @@ bool CPrepareStatement::ExecuteUpdate()
 	return true;
 }
 
-CResultSet* CPrepareStatement::ExcuteQuery() {
+CResultSet* CPrepareStatement::ExecuteQuery() {
 
     if(!m_stmt) {
         log("no m_stmt");

@@ -52,7 +52,7 @@ public:
     void SetParam(uint32_t index, const string& value);
 
 	bool ExecuteUpdate();
-    CResultSet* ExcuteQuery();
+    CResultSet* ExecuteQuery();
 	uint32_t GetInsertId();
 private:
 	MYSQL_STMT*	m_stmt;
