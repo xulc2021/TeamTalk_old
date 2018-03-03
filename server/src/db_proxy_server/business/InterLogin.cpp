@@ -19,9 +19,9 @@ bool CInterLoginStrategy::doLogin(const std::string &strName, const std::string 
     CDBConn* pDBConn = pDBManger->GetDBConn("teamtalk_slave");
     if (pDBConn) {
 
-        //string strSql = "select * from IMUser where name='" + strName + "' and status=0";
-        string strSql = "select * from IMUser where name=? and status=?";
-        
+        string strSql = "select * from IMUser where name='" + strName + "' and status=0";
+        //string strSql = "select * from IMUser where name=? and status=?";
+        /*
         CPrepareStatement* stmt = new CPrepareStatement();
         if (stmt->Init(pDBConn->GetMysql(), strSql))
         {
@@ -30,6 +30,9 @@ bool CInterLoginStrategy::doLogin(const std::string &strName, const std::string 
             stmt->SetParam(index++, strName);
             stmt->SetParam(index++, nStatus);
             CResultSet* pResultSet = stmt->ExecuteQuery();
+            */
+            
+            CResultSet* pResultSet = pDBConn->ExecuteQuery(strSql.c_str());
             if(pResultSet)
             {
                 string strResult, strSalt;
@@ -76,8 +79,8 @@ bool CInterLoginStrategy::doLogin(const std::string &strName, const std::string 
                 delete  pResultSet;
 
             }
-        }
-        delete stmt;
+       // }
+       // delete stmt;
         pDBManger->RelDBConn(pDBConn);
     }
     return bRet;
