@@ -19,7 +19,9 @@ bool CInterLoginStrategy::doLogin(const std::string &strName, const std::string 
     CDBConn* pDBConn = pDBManger->GetDBConn("teamtalk_slave");
     if (pDBConn) {
 
-        string strSql = "select * from IMUser where name='" + strName + "' and status=0";
+        string tmpName(pDBConn->EscapeString(strName.c_str(),strName.size()));
+
+        string strSql = "select * from IMUser where name='" + tmpName + "' and status=0";
         //string strSql = "select * from IMUser where name=? and status=?";
         /*
         CPrepareStatement* stmt = new CPrepareStatement();
