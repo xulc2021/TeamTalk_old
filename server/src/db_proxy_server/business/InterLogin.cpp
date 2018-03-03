@@ -77,6 +77,7 @@ bool CInterLoginStrategy::doLogin(const std::string &strName, const std::string 
 
             }
         }
+        delete stmt;
         pDBManger->RelDBConn(pDBConn);
     }
     return bRet;
