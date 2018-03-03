@@ -29,7 +29,7 @@ bool CInterLoginStrategy::doLogin(const std::string &strName, const std::string 
             uint32_t index = 0;
             stmt->SetParam(index++, strName);
             stmt->SetParam(index++, nStatus);
-            CResultSet* pResultSet = stmt->ExecuteQuery(strSql.c_str());
+            CResultSet* pResultSet = stmt->ExecuteQuery();
             if(pResultSet)
             {
                 string strResult, strSalt;
