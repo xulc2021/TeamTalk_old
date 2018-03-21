@@ -11,6 +11,7 @@
 
 #include <vector>
 #include <iostream>
+#include <string>
 #include "ClientConn.h"
 #include "netlib.h"
 #include "TokenValidator.h"
@@ -20,13 +21,16 @@
 #include "playsound.h"
 #include "Common.h"
 #include "Client.h"
+#include "EncDec.h"
 using namespace std;
 
 #define MAX_LINE_LEN	1024
-string g_login_domain = "http://access.teamtalk.im:8080";
+string g_login_domain = "http://xiaominfc.com:8080";
 string g_cmd_string[10];
 int g_cmd_num;
 CClient* g_pClient = NULL;
+CAes* pAes;
+
 void split_cmd(char* buf)
 {
 	int len = strlen(buf);
@@ -64,11 +68,19 @@ void print_help()
 	printf("quit\n");
 }
 
+
+void sendTextMsg(const string& id, const string& msg)
+{
+    if(g_pClient){
+        g_pClient->sendMsg(atoi(id.c_str()),IM::BaseDefine::MSG_TYPE_SINGLE_TEXT,msg);
+    }
+}
+
 void doLogin(const string& strName, const string& strPass)
 {
     try
     {
-        g_pClient = new CClient(strName, strPass);
+        g_pClient = new CClient(strName, strPass, g_login_domain);
     }
     catch(...)
     {
@@ -94,6 +106,12 @@ void exec_cmd()
         {
             print_help();
         }
+    }else if(strcmp(g_cmd_string[0].c_str(), "send") == 0){
+        if(g_cmd_num == 3) {
+            sendTextMsg(g_cmd_string[1], g_cmd_string[2]);
+        }else {
+            print_help();
+        }
     }
     else if (strcmp(g_cmd_string[0].c_str(), "close") == 0) {
         g_pClient->close();
@@ -113,12 +131,12 @@ void exec_cmd()
         {
             uint32_t nLen = 21 - it->first.length();
             printf("|");
-            for(uint32_t i=0; i<nLen/2; ++it)
+            for(uint32_t i=0; i<nLen/2; ++i)
             {
                 printf(" ");
             }
-            printf("%s", it->first.c_str());
-            for(uint32_t i=0; i<nLen/2; ++it)
+            printf("%s:%d", it->first.c_str(),((IM::BaseDefine::UserInfo*)it->second)->user_id());
+            for(uint32_t i=0; i<nLen/2; ++i)
             {
                 printf(" ");
             }
@@ -163,10 +181,15 @@ CmdThread g_cmd_thread;
 int main(int argc, char* argv[])
 {
 //    play("message.wav");
+    pAes = new CAes("12345678901234567890123456789012");
+    
+    if(argc == 3){
+        doLogin(argv[1],argv[2]);
+        
+    }
+    
 	g_cmd_thread.StartThread();
-
 	signal(SIGPIPE, SIG_IGN);
-
 	int ret = netlib_init();
 
 	if (ret == NETLIB_ERROR)

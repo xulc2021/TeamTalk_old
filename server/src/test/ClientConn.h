@@ -22,17 +22,18 @@
 #include "IM.Group.pb.h"
 #include "IPacketCallback.h"
 #include "SeqAlloctor.h"
+#include "EncDec.h"
 
 class ClientConn : public CImConn
 {
 public:
 	ClientConn();
+    
 	virtual ~ClientConn();
 
 	bool IsOpen() { return m_bOpen; }
-
+    void setCallBack(IPacketCallback* callback){this->m_pCallback = callback;}
     net_handle_t connect(const string& strIp, uint16_t nPort, const string& strName, const string& strPass);
-    
     virtual void Close();
 public:
     uint32_t login(const string& strName, const string& strPass);

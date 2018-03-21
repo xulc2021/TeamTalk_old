@@ -14,6 +14,7 @@
 #include "json/json.h"
 #include "ClientConn.h"
 
+extern CAes *pAes;
 
 static ClientConn*  g_pConn = NULL;
 
@@ -54,7 +55,7 @@ void CClient::connect()
     CURLcode nRet = httpClient.Get(strUrl, strResp);
     if(nRet != CURLE_OK)
     {
-        printf("login falied. access url:%s error\n", strUrl.c_str());
+        printf("login falied. access url:%s error:%d\n", strUrl.c_str(), nRet);
         PROMPTION;
         return;
     }
@@ -79,7 +80,7 @@ void CClient::connect()
         }
         strPriorIp = value["priorIP"].asString();
         strBackupIp = value["backupIp"].asString();
-        nPort = value["port"].asUInt();
+        nPort = atoi(value["port"].asString().c_str());
         
     } catch (std::runtime_error msg) {
         printf("login falied. get json error:%s\n", strResp.c_str());
@@ -88,6 +89,7 @@ void CClient::connect()
     }
     
     g_pConn = new ClientConn();
+    g_pConn->setCallBack(this);
     m_nHandle = g_pConn->connect(strPriorIp.c_str(), nPort, m_strName, m_strPass);
     if(m_nHandle != INVALID_SOCKET)
     {
@@ -117,6 +119,7 @@ void CClient::onClose()
 
 uint32_t CClient::login(const string& strName, const string& strPass)
 {
+    printf("do login \n");
     return g_pConn->login(strName, strPass);
 }
 
@@ -129,8 +132,11 @@ void CClient::onLogin(uint32_t nSeqNo, uint32_t nResultCode, string& strMsg, IM:
     }
     if(pUser)
     {
+        printf("%s%s\n", "login ok for:",pUser->user_real_name().c_str());
+        PROMPTION;
         m_cSelfInfo = *pUser;
         g_bLogined = true;
+        CClient::getChangedUser();
     }
     else
     {
@@ -193,6 +199,7 @@ void CClient::onGetUserInfo(uint32_t nSeqNo, const list<IM::BaseDefine::UserInfo
 uint32_t CClient::sendMsg(uint32_t nToId, IM::BaseDefine::MsgType nType, const string &strMsg)
 {
     uint32_t nFromId = m_cSelfInfo.user_id();
+    printf("send msg:%s  to:%d\n",strMsg.c_str(), nToId);
     return g_pConn->sendMessage(nFromId, nToId, nType, strMsg);
 }
 
@@ -237,5 +244,13 @@ void CClient::onGetMsgList(uint32_t nSeqNo, uint32_t nUserId, uint32_t nPeerId, 
 
 void CClient::onRecvMsg(uint32_t nSeqNo, uint32_t nFromId, uint32_t nToId, uint32_t nMsgId, uint32_t nCreateTime, IM::BaseDefine::MsgType nMsgType, const string &strMsgData)
 {
-    
+    printf("onRecvMsg  from:%d\n",nFromId);
+    char* msg_out = NULL;
+    uint32_t msg_out_len = 0;
+    if (pAes->Decrypt(strMsgData.c_str(), strMsgData.length(), &msg_out, msg_out_len) == 0)
+    {
+        string msg_data = string(msg_out, msg_out_len);
+        printf("onRecvMsg  content:%s\n",msg_data.c_str());
+    }
+    pAes->Free(msg_out);
 }

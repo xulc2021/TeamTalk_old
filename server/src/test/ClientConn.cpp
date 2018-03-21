@@ -13,6 +13,10 @@
 #include "Common.h"
 
 
+extern CAes *pAes;
+
+static ConnMap_t client_conn_map;
+
 ClientConn::ClientConn():
 m_bOpen(false)
 {
@@ -26,7 +30,11 @@ ClientConn::~ClientConn()
 
 net_handle_t ClientConn::connect(const string& strIp, uint16_t nPort, const string& strName, const string& strPass)
 {
-	m_handle = netlib_connect(strIp.c_str(), nPort, imconn_callback, NULL);
+	m_handle = netlib_connect(strIp.c_str(), nPort, imconn_callback, (void*)&client_conn_map);
+    if(m_handle != INVALID_SOCKET)
+    {
+        client_conn_map.insert(make_pair(m_handle, this));
+    }
     return  m_handle;
 }
 
@@ -42,7 +50,6 @@ void ClientConn::OnConfirm()
 
 void ClientConn::OnClose()
 {
-    log("onclose from handle=%d\n", m_handle);
     Close();
 }
 
@@ -68,10 +75,15 @@ void ClientConn::OnTimer(uint64_t curr_tick)
 
 uint32_t ClientConn::login(const string &strName, const string &strPass)
 {
+    
+    
+    char szMd5[33];
+    CMd5::MD5_Calculate(strPass.c_str(), strPass.length(), szMd5);
+    string strOutPass(szMd5);
     CImPdu cPdu;
     IM::Login::IMLoginReq msg;
     msg.set_user_name(strName);
-    msg.set_password(strPass);
+    msg.set_password(strOutPass);
     msg.set_online_status(IM::BaseDefine::USER_STATUS_ONLINE);
     msg.set_client_type(IM::BaseDefine::CLIENT_TYPE_WINDOWS);
     msg.set_client_version("1.0");
@@ -80,7 +92,7 @@ uint32_t ClientConn::login(const string &strName, const string &strPass)
     cPdu.SetCommandId(IM::BaseDefine::CID_LOGIN_REQ_USERLOGIN);
     uint32_t nSeqNo = m_pSeqAlloctor->getSeq(ALLOCTOR_PACKET);
     cPdu.SetSeqNum(nSeqNo);
-    SendPdu(&cPdu);
+    int result = SendPdu(&cPdu);
     return nSeqNo;
 }
 
@@ -125,7 +137,20 @@ uint32_t ClientConn::sendMessage(uint32_t nFromId, uint32_t nToId, IM::BaseDefin
     msg.set_msg_id(0);
     msg.set_create_time(time(NULL));
     msg.set_msg_type(nType);
-    msg.set_msg_data(strMsgData);
+    
+    
+    string msgContent;
+    char* msg_out = NULL;
+    uint32_t msg_out_len = 0;
+    if(pAes->Encrypt(strMsgData.c_str(),strMsgData.length(),&msg_out,msg_out_len) == 0)
+    {
+        msgContent = string(msg_out, msg_out_len);
+    }else {
+        msgContent = strMsgData;
+    }
+    pAes->Free(msg_out);
+    
+    msg.set_msg_data(msgContent);
     cPdu.SetPBMsg(&msg);
     cPdu.SetServiceId(IM::BaseDefine::SID_MSG);
     cPdu.SetCommandId(IM::BaseDefine::CID_MSG_DATA);
@@ -200,6 +225,7 @@ uint32_t ClientConn::sendMsgAck(uint32_t nUserId, uint32_t nPeerId, IM::BaseDefi
     return nSeqNo;
 }
 
+
 void ClientConn::Close()
 {
 	if (m_handle != NETLIB_INVALID_HANDLE) {
@@ -210,7 +236,7 @@ void ClientConn::Close()
 
 void ClientConn::HandlePdu(CImPdu* pPdu)
 {
-    //printf("pdu type = %u\n", pPdu->GetPduType());
+    //printf("pdu commandId:%u\n", pPdu->GetCommandId());
 	switch (pPdu->GetCommandId()) {
         case IM::BaseDefine::CID_OTHER_HEARTBEAT:
 //		printf("Heartbeat\n");
@@ -276,7 +302,7 @@ void ClientConn::_HandleUser(CImPdu* pPdu)
     if(msgResp.ParseFromArray(pPdu->GetBodyData(), pPdu->GetBodyLength()))
     {
         uint32_t userCnt = msgResp.user_list_size();
-        printf("get %d users\n", userCnt);
+        //printf("get %d users\n", userCnt);
         list<IM::BaseDefine::UserInfo> lsUsers;
         for(uint32_t i=0; i<userCnt; ++i)
         {
@@ -403,7 +429,7 @@ void ClientConn::_HandleMsgData(CImPdu* pPdu)
     uint32_t nSeqNo = pPdu->GetSeqNum();
     if(msg.ParseFromArray(pPdu->GetBodyData(), pPdu->GetBodyLength()))
     {
-        play("message.wav");
+        //play("message.wav");
         
         uint32_t nFromId = msg.from_user_id();
         uint32_t nToId = msg.to_session_id();
