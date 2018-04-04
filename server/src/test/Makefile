@@ -23,9 +23,17 @@ BIN=test
 #源文件目录
 SrcDir= .
 #头文件目录
-IncDir= . ../base ../base/jsoncpp ../base/pb/protocol ../base/pb /usr/local/Cellar/openssl/1.0.2n/include
+IncDir= . ../base ../base/jsoncpp ../base/pb/protocol ../base/pb
+
 #连接库目录
-LibDir= ../base/ ../base/pb/lib/linux/ ./ ../base/slog/lib/ ../protobuf/lib /usr/local/Cellar/openssl/1.0.2n/lib
+LibDir= ../base/ ../base/pb/lib/linux/ ./ ../base/slog/lib/ ../protobuf/lib 
+
+ifeq ($(shell uname), Darwin)
+# 修改成你mac下对应的路径
+IncDir := $(IncDir) /usr/local/Cellar/openssl/1.0.2n/include
+LibDir := $(LibDir) /usr/local/Cellar/openssl/1.0.2n/lib
+endif
+
 
 SRCS=$(foreach dir,$(SrcDir),$(wildcard $(dir)/*.cpp))
 INCS=$(foreach dir,$(IncDir),$(addprefix -I,$(dir)))
@@ -40,7 +48,9 @@ all:$(BIN)
 #$(BIN):$(OBJS) playsound.o
 $(BIN):$(OBJS)
 	$(CC) -o $(BIN) $(OBJS) $(LDFLAGS) 
+ifeq ($(shell uname), Darwin)
 	install_name_tool -change @rpath/libslog.dylib @executable_path/libslog.dylib $(BIN)
+endif	
 	@echo " OK!\tComplie $@ "
 
 %.o:%.cpp
