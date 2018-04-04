@@ -96,6 +96,6 @@ build_log4cxx(){
     cp -f log4cxx/lib/liblog4cxx.so* slog/lib/
 }
 
-check_user
+#check_user
 get_cur_dir
 build_log4cxx
