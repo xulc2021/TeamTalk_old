@@ -56,6 +56,7 @@ void CClient::connect()
     if(nRet != CURLE_OK)
     {
         printf("login falied. access url:%s error:%d\n", strUrl.c_str(), nRet);
+        exit(0);
         PROMPTION;
         return;
     }
@@ -252,7 +253,14 @@ void CClient::onRecvMsg(uint32_t nSeqNo, uint32_t nFromId, uint32_t nToId, uint3
     {
         string msg_data = string(msg_out, msg_out_len);
         printf("onRecvMsg  content:%s\n",msg_data.c_str());
-        sendMsg(nFromId,nMsgType,msg_data);
+
+        uint32_t toId = nFromId;
+
+        if(nMsgType == IM::BaseDefine::MSG_TYPE_GROUP_TEXT || nMsgType == IM::BaseDefine::MSG_TYPE_GROUP_AUDIO ) {
+            toId = nToId;
+        }
+
+        sendMsg(toId,nMsgType,msg_data);
     }
     pAes->Free(msg_out);
 

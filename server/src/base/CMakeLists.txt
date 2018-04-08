@@ -18,8 +18,14 @@ ADD_DEFINITIONS( -g -W -Wall -D_REENTRANT -D_FILE_OFFSET_BITS=64 -DAC_HAS_INFO
 -DAC_HAS_WARNING -DAC_HAS_ERROR -DAC_HAS_CRITICAL -DTIXML_USE_STL
 -DAC_HAS_DEBUG -DLINUX_DAEMON)
 
+if(APPLE)
+#改成自己mac下openssl的路径
+INCLUDE_DIRECTORIES(./ ../ ./jsoncpp ./pb ./pb/protocol /usr/local/Cellar/openssl/1.0.2n/include)
+LINK_DIRECTORIES(./ ${PB_LIB_DIR} ./slog/lib /usr/local/Cellar/openssl/1.0.2n/lib)
+else()
 INCLUDE_DIRECTORIES(./ ../ ./jsoncpp ./pb ./pb/protocol)
 LINK_DIRECTORIES(./ ${PB_LIB_DIR} ./slog/lib)
+endif()
 
 ADD_LIBRARY(base STATIC ${SRC_LIST1} ${SRC_LIST2} ${SRC_LIST3})
 

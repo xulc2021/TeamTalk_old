@@ -1,11 +1,26 @@
+
+DISABLESLOG=no
 #基本
 CC = g++
 CFLAGS=-Wall -Wno-deprecated -g -std=c++11
-LDFLAGS= -lbase -lpthread -lprotobuf-lite -lslog -lcurl -lcrypto -lssl
+LDFLAGS= -lbase -lpthread -lprotobuf-lite  -lcurl -lcrypto -lssl 
+
+ifeq ($(DISABLESLOG), no)
+LDFLAGS := $(LDFLAGS) -lslog
+else
+CFLAGS := $(CFLAGS) -D DISABLESLOG
+endif
+
 ifeq ($(shell uname), Darwin)
 #CFLAGS := $(CFLAGS) -Os -framework Cocoa
-LDFLAGS := $(LDFLAGS) -Os -framework Cocoa
+
 endif
+
+
+
+LDFLAGS := $(LDFLAGS) -Os -framework Cocoa
+
+
 LN=/bin/ln -s 
 AR=ar
 CP=/bin/cp
@@ -49,7 +64,9 @@ all:$(BIN)
 $(BIN):$(OBJS)
 	$(CC) -o $(BIN) $(OBJS) $(LDFLAGS) 
 ifeq ($(shell uname), Darwin)
+ifeq ($(DISABLESLOG), no)
 	install_name_tool -change @rpath/libslog.dylib @executable_path/libslog.dylib $(BIN)
+endif	
 endif	
 	@echo " OK!\tComplie $@ "
 
