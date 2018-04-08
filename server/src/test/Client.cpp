@@ -76,6 +76,7 @@ void CClient::connect()
             string strMsg = value["msg"].asString();
             printf("login falied. errorMsg:%s\n", strMsg.c_str());
             PROMPTION;
+            exit(0);
             return;
         }
         strPriorIp = value["priorIP"].asString();
@@ -251,6 +252,10 @@ void CClient::onRecvMsg(uint32_t nSeqNo, uint32_t nFromId, uint32_t nToId, uint3
     {
         string msg_data = string(msg_out, msg_out_len);
         printf("onRecvMsg  content:%s\n",msg_data.c_str());
+        sendMsg(nFromId,nMsgType,msg_data);
     }
     pAes->Free(msg_out);
+
+
+
 }

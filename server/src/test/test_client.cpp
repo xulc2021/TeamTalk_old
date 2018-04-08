@@ -185,7 +185,6 @@ int main(int argc, char* argv[])
     
     if(argc == 3){
         doLogin(argv[1],argv[2]);
-        
     }
     
 	g_cmd_thread.StartThread();

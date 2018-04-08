@@ -27,7 +27,12 @@ class Group extends TT_Controller {
 		$data = array();
 		foreach ($groups as $key => $value) {
 			if($groups[$key]['avatar']){
-				$groups[$key]['avatar_value'] = $this->config->config['msfs_url'].$groups[$key]['avatar'];
+
+				if(substr($groups[$key]['avatar'], 0, 4) === "http") {
+					$groups[$key]['avatar_value'] = $groups[$key]['avatar'];
+				}else {
+					$groups[$key]['avatar_value'] = $this->config->config['msfs_url'].$groups[$key]['avatar'];	
+				}
 			}
 		}
 		$result = array(
