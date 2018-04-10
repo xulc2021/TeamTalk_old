@@ -41,7 +41,7 @@ SrcDir= .
 IncDir= . ../base ../base/jsoncpp ../base/pb/protocol ../base/pb
 
 #连接库目录
-LibDir= ../base/ ../base/pb/lib/linux/ ./ ../base/slog/lib/ ../protobuf/lib 
+LibDir=./ ../base/ ../base/pb/lib/linux/ ./ ../base/slog/lib/ ../protobuf/lib 
 
 ifeq ($(shell uname), Darwin)
 # 修改成你mac下对应的路径
