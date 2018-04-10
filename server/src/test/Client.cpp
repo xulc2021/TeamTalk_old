@@ -44,7 +44,7 @@ void CClient::TimerCallback(void* callback_data, uint8_t msg, uint32_t handle, v
 
 void CClient::onError(uint32_t nSeqNo, uint32_t nCmd,const string& strMsg)
 {
-    g_imlog.Error("get error:%d, msg:%s", nCmd, strMsg.c_str());
+    printf("get error:%d, msg:%s", nCmd, strMsg.c_str());
 }
 
 void CClient::connect()
