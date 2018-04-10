@@ -13,12 +13,12 @@ endif
 
 ifeq ($(shell uname), Darwin)
 #CFLAGS := $(CFLAGS) -Os -framework Cocoa
-
+LDFLAGS := $(LDFLAGS) -Os -framework Cocoa
 endif
 
 
 
-LDFLAGS := $(LDFLAGS) -Os -framework Cocoa
+
 
 
 LN=/bin/ln -s 
