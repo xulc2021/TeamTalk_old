@@ -161,6 +161,10 @@ public:
 
 			if (fgets(m_buf, MAX_LINE_LEN - 1, stdin) == NULL)
 			{
+                if(errno == 0)  {
+                    exit(0);
+                    break;
+                }
 				fprintf(stderr, "fgets failed: %d\n", errno);
 				continue;
 			}
