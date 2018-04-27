@@ -2,7 +2,8 @@
 # author: luoning
 # date: 03/25/2015
 
-PROTOBUF=protobuf-2.6.1
+#PROTOBUF=protobuf-2.6.1
+PROTOBUF=protobuf-3.5.1
 CUR_DIR=
 
 check_user() {
@@ -65,8 +66,8 @@ build_protobuf(){
     cd protobuf
     tar -xf $PROTOBUF.tar.gz
     cd $PROTOBUF
-    ./configure --prefix=$CUR_DIR/protobuf
-    make
+    ./configure --prefix=$CUR_DIR/protobuf --enable-shared=no
+    make -j4
     make install
     cd ..
     mkdir -p ../base/pb/lib/linux/

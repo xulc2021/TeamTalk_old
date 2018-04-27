@@ -5,11 +5,10 @@ AUX_SOURCE_DIRECTORY(./ SRC_LIST1)
 AUX_SOURCE_DIRECTORY(./pb/protocol SRC_LIST2)
 AUX_SOURCE_DIRECTORY(./jsoncpp SRC_LIST3)
 
-if(APPLE)
-    SET(PB_LIB_DIR ./pb/lib/mac)
-elseif(UNIX)
-    SET(PB_LIB_DIR ./pb/lib/linux)
-endif()
+
+SET(PB_INCLUDE_DIR ../protobuf/include)
+SET(PB_LIB_DIR ../protobuf/lib)
+
 
 SET(LIBRARY_OUTPUT_PATH ./)
 #SET(EXECUTABLE_OUTPUT_PATH  ./bin)
@@ -18,14 +17,15 @@ ADD_DEFINITIONS( -g -W -Wall -D_REENTRANT -D_FILE_OFFSET_BITS=64 -DAC_HAS_INFO
 -DAC_HAS_WARNING -DAC_HAS_ERROR -DAC_HAS_CRITICAL -DTIXML_USE_STL
 -DAC_HAS_DEBUG -DLINUX_DAEMON)
 
+
+#设置自己mac os的openssl的路径
 if(APPLE)
-#改成自己mac下openssl的路径
-INCLUDE_DIRECTORIES(./ ../ ./jsoncpp ./pb ./pb/protocol /usr/local/Cellar/openssl/1.0.2n/include)
-LINK_DIRECTORIES(./ ${PB_LIB_DIR} ./slog/lib /usr/local/Cellar/openssl/1.0.2n/lib)
-else()
-INCLUDE_DIRECTORIES(./ ../ ./jsoncpp ./pb ./pb/protocol)
-LINK_DIRECTORIES(./ ${PB_LIB_DIR} ./slog/lib)
+    SET(OPENSSL_INCLUDE_DIR /usr/local/Cellar/openssl/1.0.2n/include)
+    SET(OPENSSL_LIB_DIR /usr/local/Cellar/openssl/1.0.2n/lib)
 endif()
+
+INCLUDE_DIRECTORIES(./ ../ ./jsoncpp ${PB_INCLUDE_DIR} ./pb/protocol ${OPENSSL_INCLUDE_DIR})
+LINK_DIRECTORIES(./ ${PB_LIB_DIR} ./slog/lib ${OPENSSL_LIB_DIR})
 
 ADD_LIBRARY(base STATIC ${SRC_LIST1} ${SRC_LIST2} ${SRC_LIST3})
 

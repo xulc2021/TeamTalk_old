@@ -19,11 +19,6 @@ ifeq ($(shell uname), Darwin)
 LDFLAGS := $(LDFLAGS) -Os -framework Cocoa
 endif
 
-
-
-
-
-
 LN=/bin/ln -s 
 AR=ar
 CP=/bin/cp
@@ -41,10 +36,10 @@ BIN=test
 #源文件目录
 SrcDir= .
 #头文件目录
-IncDir= . ../base ../base/jsoncpp ../base/pb/protocol ../base/pb
+IncDir= . ../base ../base/jsoncpp ../base/pb/protocol ../protobuf/include
 
 #连接库目录
-LibDir= ../base/ ../base/pb/lib/linux/ ./ ../base/slog/lib/ ../protobuf/lib 
+LibDir= ../base/ ./ ../base/slog/lib/ ../protobuf/lib 
 
 ifeq ($(shell uname), Darwin)
 # 修改成你mac下对应的路径
