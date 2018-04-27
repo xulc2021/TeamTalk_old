@@ -13,8 +13,8 @@
 #import "DDMessageModule.h"
 #import "RuntimeStatus.h"
 #import "MTTSessionEntity.h"
-#import "IMMessage.pb.h"
-#import "IMBaseDefine.pb.h"
+#import "ImMessage.pbobjc.h"
+#import "ImBaseDefine.pbobjc.h"
 #import "MTTGroupEntity.h"
 @implementation GetUnreadMessagesAPI
 /**
@@ -76,23 +76,23 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMUnreadMsgCntRsp *unreadrsp = [IMUnreadMsgCntRsp parseFromData:data];
+        IMUnreadMsgCntRsp *unreadrsp = [IMUnreadMsgCntRsp parseFromData:data error:nil];
        
         NSMutableDictionary *dic = [NSMutableDictionary new];
         NSInteger m_total_cnt = unreadrsp.totalCnt;
         [dic setObject:@(m_total_cnt) forKey:@"m_total_cnt"];
          NSMutableArray *array = [NSMutableArray new];
-        for (UnreadInfo *unreadInfo in [unreadrsp unreadinfoList]) {
+        for (UnreadInfo *unreadInfo in [unreadrsp unreadinfoListArray]) {
             NSString *userID = @"";
-            NSInteger sessionType = unreadInfo.sessionType;
-            if (sessionType == SessionTypeSessionTypeSingle) {
+            enum SessionType sessionType = unreadInfo.sessionType;
+            if (sessionType == SessionType_SessionTypeSingle) {
                 userID = [MTTUserEntity pbUserIdToLocalID:unreadInfo.sessionId];
             }else{
                 userID = [MTTGroupEntity pbGroupIdToLocalID:unreadInfo.sessionId];
             }
             NSInteger unread_cnt = unreadInfo.unreadCnt;
             NSInteger latest_msg_id = unreadInfo.latestMsgId;
-            NSString *latest_msg_content = unreadInfo.latestMsgData;
+            NSString *latest_msg_content = [[NSString alloc] initWithData: unreadInfo.latestMsgData encoding:NSUTF8StringEncoding];
             MTTSessionEntity *session = [[MTTSessionEntity alloc] initWithSessionID:userID type:sessionType];
             session.unReadMsgCount=unread_cnt;
             session.lastMsg=latest_msg_content;
@@ -116,14 +116,14 @@
 {
     Package package = (id)^(id object,uint32_t seqNo)
     {
-        IMUnreadMsgCntReqBuilder *unreadreq = [IMUnreadMsgCntReq builder];
+        IMUnreadMsgCntReq *unreadreq = [IMUnreadMsgCntReq new];
         [unreadreq setUserId:0];
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_MSG
                                     cId:IM_UNREAD_MSG_CNT_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[unreadreq build].data];
+        [dataout directWriteBytes:[unreadreq data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

@@ -84,7 +84,7 @@
         resultCell = [[MTTSearchResultCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:resultCellIdentifier];
     }
     [resultCell setSelectionStyle:UITableViewCellSelectionStyleNone];
-    if(self.session.sessionType == MsgTypeMsgTypeSingleText){
+    if(self.session.sessionType == MsgType_MsgTypeSingleText){
         [[DDUserModule shareInstance] getUserForUserID:self.session.sessionID Block:^(MTTUserEntity *user) {
             MTTMessageEntity *msg = [self.searchResult objectAtIndex:indexPath.row];
             [resultCell setCellContent:[user getAvatarUrl] title:user.nick detail:msg.msgContent key:self.searchKey];

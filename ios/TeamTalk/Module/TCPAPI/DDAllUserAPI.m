@@ -8,7 +8,7 @@
 
 #import "DDAllUserAPI.h"
 #import "MTTUserEntity.h"
-#import "IMBuddy.pb.h"
+#import "ImBuddy.pbobjc.h"
 @implementation DDAllUserAPI
 /**
  *  请求超时时间
@@ -70,12 +70,13 @@
     
     Analysis analysis = (id)^(NSData* data)
     {
-        IMAllUserRsp *allUserRsp = [IMAllUserRsp parseFromData:data];
+        
+        IMAllUserRsp *allUserRsp = [IMAllUserRsp parseFromData:data error:nil];
         uint32_t alllastupdatetime = allUserRsp.latestUpdateTime;
         NSMutableDictionary *userAndVersion = [NSMutableDictionary new];
         [userAndVersion setObject:@(alllastupdatetime) forKey:@"alllastupdatetime"];
         NSMutableArray *userList = [[NSMutableArray alloc] init];
-        for (UserInfo *userInfo in [allUserRsp userList]) {
+        for (UserInfo *userInfo in [allUserRsp userListArray]) {
             MTTUserEntity *user = [[MTTUserEntity alloc] initWithPB:userInfo];
             [userList addObject:user];
         }
@@ -108,8 +109,8 @@
 {
     Package package = (id)^(id object,uint32_t seqNo)
     {
-        IMAllUserReqBuilder *reqBuilder = [IMAllUserReq builder];
-        NSInteger version = [object[0] integerValue];
+        IMAllUserReq *reqBuilder = [IMAllUserReq new];
+        NSInteger version = [object[0] intValue];
         [reqBuilder setUserId:0];
         [reqBuilder setLatestUpdateTime:version];
 
@@ -118,7 +119,7 @@
         [dataout writeTcpProtocolHeader:SID_BUDDY_LIST
                                     cId:IM_ALL_USER_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[reqBuilder build].data];
+        [dataout directWriteBytes:[reqBuilder data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

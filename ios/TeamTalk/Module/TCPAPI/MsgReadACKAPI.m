@@ -7,7 +7,7 @@
 //
 
 #import "MsgReadACKAPI.h"
-#import "IMMessage.pb.h"
+#import "ImMessage.pbobjc.h"
 @implementation MsgReadACKAPI
 /**
  *  请求超时时间
@@ -82,15 +82,18 @@
 {
     Package package = (id)^(id object,uint16_t seqNo)
     {
-        IMMsgDataReadAckBuilder *readAck = [IMMsgDataReadAck builder];
-        [readAck setUserId:0];
-        [readAck setSessionId:[MTTUtil changeIDToOriginal:object[0]]];
-        [readAck setMsgId:[object[1] integerValue]];
-        [readAck setSessionType:[object[2] integerValue]];
+        
+        IMMsgDataReadAck *req = [IMMsgDataReadAck new];
+        [req setUserId:0];
+        [req setSessionId:[MTTUtil changeIDToOriginal:object[0]]];
+        [req setMsgId:[object[1] integerValue]];
+        [req setSessionType:[object[2] integerValue]];
+    
+        
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_MSG cId:IM_MSG_DATA_READ_ACK seqNo:seqNo];
-        [dataout directWriteBytes:[readAck build].data];
+        [dataout directWriteBytes:[req data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

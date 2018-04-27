@@ -10,7 +10,8 @@
 #import "DDTcpProtocolHeader.h"
 #import "MTTGroupEntity.h"
 #import "MTTUserEntity.h"
-#import "IMGroup.pb.h"
+#import "ImBaseDefine.pbobjc.h"
+#import "ImGroup.pbobjc.h"
 
 @implementation DDCreateGroupAPI
 /**
@@ -72,7 +73,7 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMGroupCreateRsp *rsp = [IMGroupCreateRsp parseFromData:data];
+        IMGroupCreateRsp *rsp = [IMGroupCreateRsp parseFromData:data error:nil];
         uint32_t result = rsp.resultCode;
         MTTGroupEntity* group = nil;
         if (result != 0)
@@ -83,14 +84,14 @@
         {
             NSString *groupId = [MTTGroupEntity pbGroupIdToLocalID:rsp.groupId];
             NSString *groupName = rsp.groupName;
-            uint32_t userCnt =[[rsp userIdList] count];
+            uint32_t userCnt =[[rsp userIdListArray] count];
             group = [[MTTGroupEntity alloc] init];
             group.objID = groupId;
             group.name = groupName;
             group.groupUserIds = [[NSMutableArray alloc] init];
             
             for (uint32_t i = 0; i < userCnt; i++) {
-                NSString* userId = [MTTUserEntity pbUserIdToLocalID:[[rsp userIdList][i] integerValue]];
+                NSString* userId = [MTTUserEntity pbUserIdToLocalID:[[rsp userIdListArray] valueAtIndex:i]];
                 [group.groupUserIds addObject:userId];
                 [group addFixOrderGroupUserIDS:userId];
             }
@@ -115,22 +116,23 @@
         NSString* groupAvatar = array[1];
         NSArray* groupUserList = array[2];
         
-        IMGroupCreateReqBuilder *req = [IMGroupCreateReq builder];
+        IMGroupCreateReq *req = [IMGroupCreateReq new];
         [req setUserId:0];
         [req setGroupName:groupName];
         [req setGroupAvatar:groupAvatar];
-        [req setGroupType:GroupTypeGroupTypeTmp];
-        NSMutableArray *originalID = [NSMutableArray new];
+        [req setGroupType:GroupType_GroupTypeTmp];
+        GPBUInt32Array *originalIDs = [GPBUInt32Array new];
         for (NSString *localID in groupUserList) {
-            [originalID addObject:@([MTTUtil changeIDToOriginal:localID])];
+            [originalIDs addValue:[MTTUtil changeIDToOriginal:localID]];
+            
         }
-        [req setMemberIdListArray:originalID];
+        [req setMemberIdListArray:originalIDs];
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_GROUP
                                     cId:IM_GROUP_CREATE_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[req build].data];
+        [dataout directWriteBytes:[req data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

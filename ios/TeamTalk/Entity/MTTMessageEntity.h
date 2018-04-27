@@ -10,7 +10,7 @@
 @class ChattingModule;
 @class DDDataInputStream;
 @class IMMsgData;
-#import "IMBaseDefine.pb.h"
+#import "ImBaseDefine.pbobjc.h"
 typedef NS_ENUM(NSUInteger, DDMessageType)
 {
     MESSAGE_TYPE_SINGLE =1,                 //单个人会话消息

@@ -7,7 +7,7 @@
 //
 
 #import "HeartbeatAPI.h"
-#import "IMOther.pb.h"
+#import "ImOther.pbobjc.h"
 @implementation HeartbeatAPI
 /**
  *  请求超时时间
@@ -85,13 +85,13 @@
 {
     Package package = (id)^(id object,UInt32 seqNo)
     {
-        IMHeartBeatBuilder *builder = [IMHeartBeat builder];
+        IMHeartBeat *request = [IMHeartBeat new];
         
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
 
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_OTHER cId:IM_HEART_BEAT seqNo:seqNo];
-        [dataout directWriteBytes:[builder build].data];
+        [dataout directWriteBytes:[request data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

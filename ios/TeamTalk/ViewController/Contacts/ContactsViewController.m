@@ -102,7 +102,7 @@
     [getFixgroup requestWithObject:nil Completion:^(NSArray *response, NSError *error) {
         
         [response enumerateObjectsUsingBlock:^(NSDictionary *obj, NSUInteger idx, BOOL *stop){
-            NSString *groupID = [MTTUtil changeOriginalToLocalID:(UInt32)[obj[@"groupid"] integerValue] SessionType:SessionTypeSessionTypeGroup];
+            NSString *groupID = [MTTUtil changeOriginalToLocalID:(UInt32)[obj[@"groupid"] integerValue] SessionType:SessionType_SessionTypeGroup];
             NSInteger version = [obj[@"version"] integerValue];
             MTTGroupEntity *group = [[DDGroupModule instance] getGroupByGId:groupID];
             if (group) {
@@ -533,7 +533,7 @@
     if (user == nil) {
         return;
     }
-    MTTSessionEntity* session = [[MTTSessionEntity alloc] initWithSessionID:user.objID type:SessionTypeSessionTypeSingle];
+    MTTSessionEntity* session = [[MTTSessionEntity alloc] initWithSessionID:user.objID type:SessionType_SessionTypeSingle];
     [session setSessionName:user.nick];
     [[ChattingMainViewController shareInstance] showChattingContentForSession:session];
     [self pushViewController:[ChattingMainViewController shareInstance] animated:YES];
@@ -557,7 +557,7 @@
                 return;
             }
             MTTGroupEntity *group = [self.groups objectAtIndex:indexPath.row];
-            MTTSessionEntity *session = [[MTTSessionEntity alloc] initWithSessionID:group.objID type:SessionTypeSessionTypeGroup];
+            MTTSessionEntity *session = [[MTTSessionEntity alloc] initWithSessionID:group.objID type:SessionType_SessionTypeGroup];
             [session setSessionName:group.name];
             ChattingMainViewController *main = [ChattingMainViewController shareInstance];
             [main showChattingContentForSession:session];

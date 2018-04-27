@@ -7,7 +7,7 @@
 //
 
 #import "MTTKickPCClientAPI.h"
-#import "IMLogin.pb.h"
+#import "ImLogin.pbobjc.h"
 
 @implementation MTTKickPCClientAPI
 /**
@@ -69,7 +69,7 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMKickPCClientRsp *kickRsp = [IMKickPCClientRsp parseFromData:data];
+        IMKickPCClientRsp *kickRsp = [IMKickPCClientRsp parseFromData:data error:nil];
         NSMutableArray *array = [NSMutableArray new];
         [array addObject:@(kickRsp.resultCode)];
         return array;
@@ -86,7 +86,7 @@
 {
     Package package = (id)^(id object,uint16_t seqNo)
     {
-        IMKickPCClientReqBuilder *queryPush = [IMKickPCClientReq builder];
+        IMKickPCClientReq *queryPush = [IMKickPCClientReq new];
         [queryPush setUserId:0];
         
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
@@ -94,7 +94,7 @@
         [dataout writeTcpProtocolHeader:SID_LOGIN
                                     cId:IM_KICK_PC_CLIENT_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[queryPush build].data];
+        [dataout directWriteBytes:[queryPush data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

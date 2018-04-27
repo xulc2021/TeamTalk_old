@@ -7,7 +7,7 @@
 //
 
 #import "MTTNightModeAPI.h"
-#import "IMLogin.pb.h"
+#import "ImLogin.pbobjc.h"
 @implementation MTTNightModeAPI
 /**
  *  请求超时时间
@@ -68,7 +68,7 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMQueryPushShieldRsp *queryPush = [IMQueryPushShieldRsp parseFromData:data];
+        IMQueryPushShieldRsp *queryPush = [IMQueryPushShieldRsp parseFromData:data error:nil];
         NSMutableArray *array = [NSMutableArray new];
 //        [array addObject:@(queryPush.resultCode)];
         [array addObject:@(queryPush.shieldStatus)];
@@ -86,7 +86,7 @@
 {
     Package package = (id)^(id object,uint16_t seqNo)
     {
-        IMQueryPushShieldReqBuilder *queryPush = [IMQueryPushShieldReq builder];
+        IMQueryPushShieldReq *queryPush = [IMQueryPushShieldReq new];
         [queryPush setUserId:0];
         
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
@@ -94,7 +94,7 @@
         [dataout writeTcpProtocolHeader:SID_LOGIN
                                     cId:IM_QUERY_PUSH_SHIELD_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[queryPush build].data];
+        [dataout directWriteBytes:[queryPush data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

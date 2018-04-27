@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "IMBaseDefine.pb.h"
+#import "ImBaseDefine.pbobjc.h"
 @class MTTUserEntity,MTTGroupEntity;
 //typedef enum
 //{

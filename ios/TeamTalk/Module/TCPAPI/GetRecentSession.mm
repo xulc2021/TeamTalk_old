@@ -8,7 +8,7 @@
 
 #import "GetRecentSession.h"
 #import "MTTSessionEntity.h"
-#import "IMBuddy.pb.h"
+#import "ImBuddy.pbobjc.h"
 #import "RuntimeStatus.h"
 #import "MTTGroupEntity.h"
 #import "MTTUserEntity.h"
@@ -73,13 +73,13 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMRecentContactSessionRsp *rsp =[IMRecentContactSessionRsp parseFromData:data];
+        IMRecentContactSessionRsp *rsp =[IMRecentContactSessionRsp parseFromData:data error:nil];
         NSMutableArray *array = [NSMutableArray new];
         
-        for (ContactSessionInfo *sessionInfo in [rsp contactSessionList]) {
+        for (ContactSessionInfo *sessionInfo in [rsp contactSessionListArray]) {
             NSString *sessionId =@"";
             SessionType sessionType =sessionInfo.sessionType;
-            if (sessionType == SessionTypeSessionTypeSingle) {
+            if (sessionType == SessionType_SessionTypeSingle) {
                 sessionId = [MTTUserEntity pbUserIdToLocalID:sessionInfo.sessionId];
             }else{
                 sessionId = [MTTGroupEntity pbGroupIdToLocalID:sessionInfo.sessionId];
@@ -119,15 +119,15 @@
 {
     Package package = (id)^(id object,uint16_t seqNo)
     {
-        IMRecentContactSessionReqBuilder *req = [IMRecentContactSessionReq builder];
+        IMRecentContactSessionReq *req = [IMRecentContactSessionReq new];
         [req setUserId:0];
-        [req setLatestUpdateTime:[object[0] integerValue]];
+        [req setLatestUpdateTime:[object[0] intValue]];
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_BUDDY_LIST
                                     cId:IM_RECENT_CCONTACT_SESSION_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[req build].data];
+        [dataout directWriteBytes:[req data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

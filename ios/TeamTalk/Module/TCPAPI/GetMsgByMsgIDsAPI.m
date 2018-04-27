@@ -7,7 +7,7 @@
 //
 
 #import "GetMsgByMsgIDsAPI.h"
-#import "IMMessage.pb.h"
+#import "ImMessage.pbobjc.h"
 @implementation GetMsgByMsgIDsAPI
 - (int)requestTimeOutTimeInterval
 {
@@ -63,8 +63,8 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMGetMsgByIdRsp *lstMsgs = [IMGetMsgByIdRsp parseFromData:data];
-        return [lstMsgs msgList];
+        IMGetMsgByIdRsp *lstMsgs = [IMGetMsgByIdRsp parseFromData:data error:nil];
+        return [lstMsgs msgListArray];
     };
     return analysis;
 }
@@ -78,20 +78,27 @@
 {
     Package package = (id)^(id object,uint16_t seqNo)
     {
-        SessionType type = (SessionType)[object[0] integerValue];
-        NSInteger sessionID = [MTTUtil changeIDToOriginal:object[1]];
-        NSArray *ids = object[2];
-        IMGetMsgByIdReqBuilder *req = [IMGetMsgByIdReq builder];
+        enum SessionType type = [object[0] intValue];
+        int sessionID = [MTTUtil changeIDToOriginal:object[1]];
+        NSArray *array = object[2];
+        
+        GPBUInt32Array *ids = [GPBUInt32Array new];
+        
+        for(NSNumber *number in array) {
+            [ids addValue:[number unsignedIntValue]];
+        }
+        
+        IMGetMsgByIdReq *req = [IMGetMsgByIdReq new];
         [req setUserId:0];
         [req setSessionType:type];
         [req setSessionId:sessionID];
-        [req addMsgIdList:ids];
+        [req setMsgIdListArray:ids];
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_MSG
                                     cId:IM_GET_MSG_BY_ID_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[req build].data];
+        [dataout directWriteBytes:[req data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

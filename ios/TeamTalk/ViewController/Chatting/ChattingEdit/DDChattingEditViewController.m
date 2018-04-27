@@ -136,7 +136,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (self.session.sessionType == SessionTypeSessionTypeGroup){
+    if (self.session.sessionType == SessionType_SessionTypeGroup){
         return 3;
     }else{
         return 1;
@@ -173,7 +173,7 @@
         cell = [[MTTGroupInfoCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
-    if (self.session.sessionType == SessionTypeSessionTypeGroup){
+    if (self.session.sessionType == SessionType_SessionTypeGroup){
         if (indexPath.row == 0) {
             [cell showDesc:@"群聊名称"];
             [cell showDetail:self.session.name];
@@ -343,7 +343,7 @@
     {
         [self.items removeObjectsInRange:NSMakeRange(0, [self.items count]-2)];
     }
-    if (self.session.sessionType == SessionTypeSessionTypeGroup) {
+    if (self.session.sessionType == SessionType_SessionTypeGroup) {
         self.group = [[DDGroupModule instance] getGroupByGId:self.session.sessionID];
         self.groupName = self.group.name;
         if (!self.group)
@@ -370,7 +370,7 @@
 {
     NSMutableArray *tmpArray = [[NSMutableArray alloc]initWithArray:users];
     // 对users排序.群主第一个!
-    if (self.session.sessionType == SessionTypeSessionTypeGroup) {
+    if (self.session.sessionType == SessionType_SessionTypeGroup) {
         MTTGroupEntity *tmpGroup = [[DDGroupModule instance] getGroupByGId:self.session.sessionID];
         [tmpArray removeObject:tmpGroup.groupCreatorId];
         [tmpArray addObject:tmpGroup.groupCreatorId];

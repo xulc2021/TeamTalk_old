@@ -271,7 +271,7 @@
     [request requestWithObject:array Completion:^(NSArray *response, NSError *error) {
         if(response){
             NSMutableArray *narray = [NSMutableArray arrayWithArray:response];
-            if([narray[0][1] intValue]== UserStatTypeUserStatusOnline){
+            if([narray[0][1] intValue]== UserStatType_UserStatusOnline){
                 self.isMacOnline = 1;
             }
             [self.tableView reloadData];
@@ -586,7 +586,10 @@
 }
 -(void)pcLoginNotification:(NSNotification*)notification
 {
-    if([[[notification object]objectForKey: @"loginStat"] intValue]== UserStatTypeUserStatusOffline){
+    
+    enum UserStatType type = [((NSDictionary*)[notification object]) objectForKey:@"loginStat"];
+    
+    if(type == UserStatType_UserStatusOffline){
         self.isMacOnline = 0;
     }else{
         self.isMacOnline = 1;

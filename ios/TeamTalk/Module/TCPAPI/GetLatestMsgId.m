@@ -7,7 +7,8 @@
 //
 
 #import "GetLatestMsgId.h"
-#import "IMMessage.pb.h"
+#import "ImBaseDefine.pbobjc.h"
+#import "ImMessage.pbobjc.h"
 @implementation GetLatestMsgId
 - (int)requestTimeOutTimeInterval
 {
@@ -63,7 +64,7 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMGetLatestMsgIdRsp *lstMsg = [IMGetLatestMsgIdRsp parseFromData:data];
+        IMGetLatestMsgIdRsp *lstMsg = [IMGetLatestMsgIdRsp parseFromData:data error:nil];
         return lstMsg.latestMsgId;
     };
     return analysis;
@@ -78,9 +79,9 @@
 {
     Package package = (id)^(id object,uint16_t seqNo)
     {
-        SessionType type = (SessionType)[object[0] integerValue];
+        enum SessionType type = (SessionType)[object[0] intValue];
         NSInteger sessionID = [MTTUtil changeIDToOriginal:object[1]];
-        IMGetLatestMsgIdReqBuilder *req = [IMGetLatestMsgIdReq builder];
+        IMGetLatestMsgIdReq *req = [IMGetLatestMsgIdReq new];
         [req setUserId:0];
         [req setSessionType:type];
         [req setSessionId:sessionID];
@@ -90,7 +91,7 @@
         [dataout writeTcpProtocolHeader:SID_MSG
                                     cId:IM_GET_LASTEST_MSGID_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[req build].data];
+        [dataout directWriteBytes:[req data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

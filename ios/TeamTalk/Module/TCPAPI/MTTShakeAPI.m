@@ -7,7 +7,7 @@
 //
 
 #import "MTTShakeAPI.h"
-#import "IMSwitchService.pb.h"
+#import "ImSwitchService.pbobjc.h"
 
 @implementation MTTShakeAPI
 /**
@@ -85,7 +85,7 @@
     {
         NSArray* array = (NSArray*)object;
         NSInteger toUid = [array[0] integerValue];
-        IMP2PCmdMsgBuilder *shakePC = [IMP2PCmdMsg builder];
+        IMP2PCmdMsg *shakePC = [IMP2PCmdMsg new];
         NSString* theContent = [NSString stringWithFormat:@"{\"cmd_id\":%i,\"content\":\"%@\",\"service_id\":%i}",1<<16|1,@"shakewindow",1];
         [shakePC setFromUserId:0];
         [shakePC setToUserId:(UInt32)toUid];
@@ -96,7 +96,7 @@
         [dataout writeTcpProtocolHeader:SID_SWITCH_SERVICE
                                     cId:IM_P2P_CMD_MSG
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[shakePC build].data];
+        [dataout directWriteBytes:[shakePC data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

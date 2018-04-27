@@ -7,7 +7,7 @@
 //
 
 #import "LogoutAPI.h"
-#import "IMLogin.pb.h"
+#import "ImLogin.pbobjc.h"
 @implementation LogoutAPI
 - (int)requestTimeOutTimeInterval
 {
@@ -39,7 +39,7 @@
     Analysis analysis = (id)^(NSData* data)
     {
         
-        IMLogoutRsp *rsp =[IMLogoutRsp parseFromData:data];
+        IMLogoutRsp *rsp =[IMLogoutRsp parseFromData:data error:nil];
         int isok =rsp.resultCode;
         return isok;
     };
@@ -50,11 +50,11 @@
 {
     Package package = (id)^(id object,uint32_t seqNo)
     {
-        IMLogoutReqBuilder *logoutbuilder = [IMLogoutReq builder];
+        IMLogoutReq *logoutReq = [IMLogoutReq new];
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_LOGIN cId:IM_LOGOUT_REQ seqNo:seqNo];
-        [dataout directWriteBytes:[logoutbuilder build].data];
+        [dataout directWriteBytes:[logoutReq data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

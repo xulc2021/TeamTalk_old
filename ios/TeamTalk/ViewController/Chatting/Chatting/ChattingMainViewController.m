@@ -288,10 +288,10 @@ typedef NS_ENUM(NSUInteger, PanelStatus)
     [self scrollToBottomAnimated:YES];
     BOOL isGroup = [self.module.MTTSessionEntity isGroup];
     if (isGroup) {
-        message.msgType=MsgTypeMsgTypeGroupAudio;
+        message.msgType=MsgType_MsgTypeGroupAudio;
     }else
     {
-        message.msgType = MsgTypeMsgTypeSingleAudio;
+        message.msgType = MsgType_MsgTypeSingleAudio;
     }
     [message.info setObject:@(length) forKey:VOICE_LENGTH];
     [message.info setObject:@(1) forKey:DDVOICE_PLAYED];

@@ -8,7 +8,8 @@
 
 #import "GetGroupInfoAPI.h"
 #import "MTTGroupEntity.h"
-#import "IMGroup.pb.h"
+#import "ImBaseDefine.pbobjc.h"
+#import "ImGroup.pbobjc.h"
 @implementation GetGroupInfoAPI
 - (int)requestTimeOutTimeInterval
 {
@@ -39,10 +40,10 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMGroupInfoListRsp *rsp = [IMGroupInfoListRsp parseFromData:data];
+        IMGroupInfoListRsp *rsp = [IMGroupInfoListRsp parseFromData:data error:nil];
        // NSUInteger userid = rsp.userId;
         NSMutableArray *array = [NSMutableArray new];
-        for (GroupInfo *info in [rsp groupInfoList]) {
+        for (GroupInfo *info in [rsp groupInfoListArray]) {
             MTTGroupEntity *group = [MTTGroupEntity initMTTGroupEntityFromPBData:info];
             [array addObject:group];
         }
@@ -58,19 +59,20 @@
     Package package = (id)^(id object,uint32_t seqNo)
     {
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
-        IMGroupInfoListReqBuilder *info = [IMGroupInfoListReq builder];
-        GroupVersionInfoBuilder *groupInfo = [GroupVersionInfo builder];
+        IMGroupInfoListReq *info = [IMGroupInfoListReq new];
+        GroupVersionInfo *groupInfo = [GroupVersionInfo new];
         
-        
-        [groupInfo setGroupId:[object[0] integerValue]];
-        [groupInfo setVersion:[object[1] integerValue]];
+        NSMutableArray* gvinfos = [NSMutableArray new];
+        [gvinfos addObject:groupInfo];
+        [groupInfo setGroupId:[object[0] intValue]];
+        [groupInfo setVersion:[object[1] intValue]];
         [info setUserId:0];
-        [info addGroupVersionList:[groupInfo build]];
+        [info setGroupVersionListArray:gvinfos];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_GROUP
                                     cId:IM_GROUP_INFO_LIST_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[info build].data];
+        [dataout directWriteBytes:[info data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
 

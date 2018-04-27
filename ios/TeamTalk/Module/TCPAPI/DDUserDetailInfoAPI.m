@@ -7,7 +7,7 @@
 //
 
 #import "DDUserDetailInfoAPI.h"
-#import "IMBuddy.pb.h"
+#import "ImBuddy.pbobjc.h"
 #import "RuntimeStatus.h"
 #import "MTTUserEntity.h"
 @implementation DDUserDetailInfoAPI
@@ -71,9 +71,9 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMUsersInfoRsp *rsp = [IMUsersInfoRsp parseFromData:data];
+        IMUsersInfoRsp *rsp = [IMUsersInfoRsp parseFromData:data error:nil];
         NSMutableArray* userList = [[NSMutableArray alloc] init];
-        for (UserInfo *userInfo in [rsp userInfoList]) {
+        for (UserInfo *userInfo in [rsp userInfoListArray]) {
             MTTUserEntity *user = [[MTTUserEntity alloc] initWithPB:userInfo];
             [userList addObject:user];
         }
@@ -91,17 +91,23 @@
 {
     Package package = (id)^(id object,uint16_t seqNo)
     {        
-        NSArray* users = (NSArray*)object;
-        IMUsersInfoReqBuilder *userInfo = [IMUsersInfoReq builder];
+        NSArray* array = (NSArray*)object;
+        GPBUInt32Array *userIds = [GPBUInt32Array new];
+        for(NSNumber* number in array) {
+            [userIds addValue:[number unsignedIntValue]];
+        }
+        
+        
+        IMUsersInfoReq *userInfo = [IMUsersInfoReq new];
         [userInfo setUserId:0];
-        [userInfo setUserIdListArray:users];
+        [userInfo setUserIdListArray:userIds];
         
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_BUDDY_LIST
                                     cId:IM_USERS_INFO_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[userInfo build].data];
+        [dataout directWriteBytes:[userInfo data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
         

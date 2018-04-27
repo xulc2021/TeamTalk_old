@@ -155,8 +155,11 @@
 
 -(void)signChangeNotification:(NSNotification*)notification
 {
-    NSString *sign = [[notification object] objectForKey:@"sign"];
-    NSString* uid = [[notification object] objectForKey:@"uid"];
+    
+    NSDictionary *dict = (NSDictionary*)[notification object];
+    
+    NSString *sign = [dict objectForKey:@"sign"];
+    NSString* uid = [dict objectForKey:@"uid"];
     NSString* sessionId = [MTTUserEntity pbUserIdToLocalID:[uid integerValue]];
     [[DDUserModule shareInstance] getUserForUserID:sessionId Block:^(MTTUserEntity *user) {
         user.signature = sign;

@@ -8,7 +8,7 @@
 
 #import "MTTUtil.h"
 
-#import "IMBaseDefine.pb.h"
+#import "ImBaseDefine.pbobjc.h"
 #import "MTTUserEntity.h"
 #import "MTTGroupEntity.h"
 #import "DDTcpClientManager.h"
@@ -82,7 +82,7 @@
 
 +(NSString *)changeOriginalToLocalID:(UInt32)orignalID SessionType:(int)sessionType
 {
-    if(sessionType == SessionTypeSessionTypeSingle)
+    if(sessionType == SessionType_SessionTypeSingle)
     {
         return [MTTUserEntity pbUserIdToLocalID:orignalID];
     }

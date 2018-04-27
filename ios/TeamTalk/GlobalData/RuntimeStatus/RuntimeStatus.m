@@ -15,7 +15,7 @@
 #import "ReceiveKickoffAPI.h"
 #import "LogoutAPI.h"
 #import "DDClientState.h"
-#import "IMLogin.pb.h"
+#import "ImLogin.pbobjc.h"
 #import "AFHTTPRequestOperationManager.h"
 #import "MTTSignNotifyAPI.h"
 #import "MTTPCLoginStatusNotifyAPI.h"

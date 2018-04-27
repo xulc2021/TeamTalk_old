@@ -205,9 +205,9 @@
     SessionType sessionType;
     MTTSessionEntity *session;
     if ([message isGroupMessage]) {
-        sessionType = SessionTypeSessionTypeGroup;
+        sessionType = SessionType_SessionTypeGroup;
     } else{
-        sessionType = SessionTypeSessionTypeSingle;
+        sessionType = SessionType_SessionTypeSingle;
     }
    
     if ([[self.sessions allKeys] containsObject:message.sessionId]) {

@@ -204,7 +204,7 @@ NSInteger const MAX_LINE_LENGTH = 15;
             NSArray *data = [self.chatHistory objectAtIndex:indexPath.row];
             MTTMessageEntity *msg = (MTTMessageEntity*)data[1];
             NSInteger count= [data[0] integerValue];
-            if(msg.msgType == MsgTypeMsgTypeSingleText){
+            if(msg.msgType == MsgType_MsgTypeSingleText){
                 // 个人聊天
                 [[DDUserModule shareInstance] getUserForUserID:msg.sessionId Block:^(MTTUserEntity *user) {
                     if(count == 1){
@@ -363,7 +363,7 @@ NSInteger const MAX_LINE_LENGTH = 15;
         MTTGroupEntity *group = [self.groups objectAtIndex:indexPath.row];
         MTTSessionEntity *session;
         if (![[SessionModule instance] getSessionById:group.objID]) {
-            session = [[MTTSessionEntity alloc] initWithSessionID:group.objID SessionName:group.name type:SessionTypeSessionTypeGroup];
+            session = [[MTTSessionEntity alloc] initWithSessionID:group.objID SessionName:group.name type:SessionType_SessionTypeGroup];
         }else{
             session = [[SessionModule instance] getSessionById:group.objID];
         }

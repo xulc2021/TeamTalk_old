@@ -8,7 +8,7 @@
 
 #import "SendPushTokenAPI.h"
 #import "RuntimeStatus.h"
-#import "IMLogin.pb.h"
+#import "ImLogin.pbobjc.h"
 #import "MTTUserEntity.h"
 
 @implementation SendPushTokenAPI
@@ -82,7 +82,7 @@
     Package package = (id)^(id object,uint32_t seqNo)
     {
         NSString *token = (NSString *)object;
-        IMDeviceTokenReqBuilder *deviceToken = [IMDeviceTokenReq builder];
+        IMDeviceTokenReq *deviceToken = [IMDeviceTokenReq new];
         [deviceToken setUserId:[MTTUserEntity localIDTopb:TheRuntime.user.objID]];
         [deviceToken setDeviceToken:token];
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
@@ -91,7 +91,7 @@
                                     cId:IM_DEVICE_TOKEN_REQ
                                   seqNo:seqNo];
         [dataout writeDataCount];
-        [dataout directWriteBytes:[deviceToken build].data];
+        [dataout directWriteBytes:[deviceToken data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

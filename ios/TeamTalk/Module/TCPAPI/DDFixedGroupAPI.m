@@ -8,7 +8,8 @@
 
 #import "DDFixedGroupAPI.h"
 #import "MTTGroupEntity.h"
-#import "IMGroup.pb.h"
+#import "ImGroup.pbobjc.h"
+#import "ImBaseDefine.pbobjc.h"
 @implementation DDFixedGroupAPI
 /**
  *  请求超时时间
@@ -70,9 +71,11 @@
     Analysis analysis = (id)^(NSData* object)
     {
      
-        IMNormalGroupListRsp *imNormalRsp = [IMNormalGroupListRsp parseFromData:object];
+        IMNormalGroupListRsp *imNormalRsp = [IMNormalGroupListRsp parseFromData:object error:nil];
         NSMutableArray *array = [NSMutableArray new];
-        for (GroupVersionInfo *info in [imNormalRsp groupVersionList]) {
+        for (GroupVersionInfo *info in [imNormalRsp groupVersionListArray]) {
+            
+            
             NSDictionary *dic = @{@"groupid":@(info.groupId),@"version":@(info.version)};
             [array addObject:dic];
         }
@@ -122,13 +125,13 @@
     Package package = (id)^(id object,uint32_t seqNo)
     {
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
-        IMNormalGroupListReqBuilder *imnormal = [IMNormalGroupListReq builder];
+        IMNormalGroupListReq *imnormal = [IMNormalGroupListReq new];
         [imnormal setUserId:0];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_GROUP
                                     cId:IM_NORMAL_GROUP_LIST_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:imnormal.build.data];
+        [dataout directWriteBytes:[imnormal data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

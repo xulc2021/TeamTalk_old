@@ -369,8 +369,8 @@
                     [self.editControll refreshUsers:self.editArray];
                     self.editControll.group=response;
                     self.editControll.session.sessionID=response.objID;
-                    self.editControll.session.sessionType=SessionTypeSessionTypeGroup;
-                    MTTSessionEntity *session = [[MTTSessionEntity alloc] initWithSessionID:response.objID type:SessionTypeSessionTypeGroup];
+                    self.editControll.session.sessionType=SessionType_SessionTypeGroup;
+                    MTTSessionEntity *session = [[MTTSessionEntity alloc] initWithSessionID:response.objID type:SessionType_SessionTypeGroup];
                     session.lastMsg=@" ";
                     [[MTTDatabaseUtil instance] updateRecentSession:session completion:^(NSError *error) {
                         

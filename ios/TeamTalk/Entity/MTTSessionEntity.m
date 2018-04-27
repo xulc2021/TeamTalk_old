@@ -37,7 +37,7 @@
     {
         switch (self.sessionType)
         {
-            case SessionTypeSessionTypeSingle:
+            case SessionType_SessionTypeSingle:
             {
                 [[DDUserModule shareInstance] getUserForUserID:_sessionID Block:^(MTTUserEntity *user) {
                     if ([user.nick length] > 0)
@@ -52,7 +52,7 @@
                 }];
         }
                 break;
-            case SessionTypeSessionTypeGroup:
+            case SessionType_SessionTypeGroup:
             {
                 MTTGroupEntity* group = [[DDGroupModule instance] getGroupByGId:_sessionID];
                 if (!group) {
@@ -80,7 +80,7 @@
     {
         switch (_sessionType)
         {
-            case SessionTypeSessionTypeSingle:
+            case SessionType_SessionTypeSingle:
             {
                  [[DDUserModule shareInstance] getUserForUserID:_sessionID Block:^(MTTUserEntity *user) {
                       timeInterval = user.lastUpdateTime;
@@ -129,7 +129,7 @@
   }
 -(NSArray*)sessionUsers
 {
-    if(SessionTypeSessionTypeGroup == self.sessionType)
+    if(SessionType_SessionTypeGroup == self.sessionType)
     {
         MTTGroupEntity* group = [[DDGroupModule instance] getGroupByGId:_sessionID];
         return group.groupUserIds;
@@ -143,7 +143,7 @@
 }
 -(BOOL)isGroup
 {
-    if(SessionTypeSessionTypeGroup == self.sessionType)
+    if(SessionType_SessionTypeGroup == self.sessionType)
     {
         return YES;
     }
@@ -152,13 +152,13 @@
 
 - (id)initWithSessionIDByUser:(MTTUserEntity*)user
 {
-    MTTSessionEntity *session = [self initWithSessionID:user.objID type:SessionTypeSessionTypeSingle];
+    MTTSessionEntity *session = [self initWithSessionID:user.objID type:SessionType_SessionTypeSingle];
     [session setSessionName:user.name];
     return session;
 }
 - (id)initWithSessionIDByGroup:(MTTGroupEntity*)group
 {
-    SessionType sessionType =SessionTypeSessionTypeGroup;
+    SessionType sessionType =SessionType_SessionTypeGroup;
     MTTSessionEntity *session = [self initWithSessionID:group.objID type:sessionType];
     [session setSessionName:group.name];
     

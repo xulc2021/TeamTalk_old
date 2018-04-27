@@ -7,7 +7,7 @@
 //
 
 #import "SendMessageAPI.h"
-#import "IMMessage.pb.h"
+#import "ImMessage.pbobjc.h"
 @implementation SendMessageAPI
 /**
  *  请求超时时间
@@ -68,7 +68,7 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMMsgDataAck *msgDataAck = [IMMsgDataAck parseFromData:data];
+        IMMsgDataAck *msgDataAck = [IMMsgDataAck parseFromData:data error:nil];
         return @[@(msgDataAck.msgId),@(msgDataAck.sessionId)];
     };
     return analysis;
@@ -88,8 +88,8 @@
         NSString* fromId = array[0];
         NSString* toId = array[1];
         NSData* content = array[2];
-        MsgType type = [array[3] intValue];
-        IMMsgDataBuilder *msgdata = [IMMsgData builder];
+        enum MsgType type = [array[3] intValue];
+        IMMsgData *msgdata = [IMMsgData new];
         [msgdata setFromUserId:0];
         [msgdata setToSessionId:[MTTUtil changeIDToOriginal:toId]];
         [msgdata setMsgData:content];
@@ -99,7 +99,7 @@
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_MSG cId:IM_MSG_DATA seqNo:seqNo];
-        [dataout directWriteBytes:[msgdata build].data];
+        [dataout directWriteBytes:[msgdata data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
 

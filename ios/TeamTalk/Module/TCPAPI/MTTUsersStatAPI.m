@@ -7,7 +7,8 @@
 //
 
 #import "MTTUsersStatAPI.h"
-#import "IMBuddy.pb.h"
+#import "ImBuddy.pbobjc.h"
+#import "ImBaseDefine.pbobjc.h"
 
 @implementation MTTUsersStatAPI
 /**
@@ -69,12 +70,16 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMUsersStatRsp *allUsersStatRsp = [IMUsersStatRsp parseFromData:data];
+        IMUsersStatRsp *allUsersStatRsp = [IMUsersStatRsp parseFromData:data error:nil];
         NSMutableArray *array = [NSMutableArray new];
-        NSMutableArray *userList = [[NSMutableArray alloc] init];
-        for (UserStat *userStat in [allUsersStatRsp userStatList]) {
-            [userList addObject:@(userStat.userId)];
-            [userList addObject:@(userStat.status)];
+        NSMutableArray *userList = [NSMutableArray new];
+        
+        NSMutableArray *userStats = [allUsersStatRsp userStatListArray];
+        for (UserStat *stat in userStats) {
+            
+            [userList addObject:@([stat userId])];
+            [userList addObject:@([stat status])];
+            
         }
         [array addObject:userList];
         return array;
@@ -91,17 +96,21 @@
 {
     Package package = (id)^(id object,uint16_t seqNo)
     {
-        IMUsersStatReqBuilder *queryPush = [IMUsersStatReq builder];
+        IMUsersStatReq *queryPush = [IMUsersStatReq new];
         NSArray* array = (NSArray*)object;
+        //queryPush.userId = 0;
         [queryPush setUserId:0];
-        [queryPush setUserIdListArray:array];
-        
+        GPBUInt32Array *gpbarray = [GPBUInt32Array new];
+        for(NSNumber *number in array) {
+            [gpbarray addValue:[number unsignedIntValue]];
+        }
+        [queryPush setUserIdListArray:gpbarray];
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_BUDDY_LIST
                                     cId:IM_USERS_STAT_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[queryPush build].data];
+        [dataout directWriteBytes:[queryPush data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

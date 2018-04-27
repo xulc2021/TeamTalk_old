@@ -11,7 +11,7 @@
 #import "Encapsulator.h"
 #import "DDMessageModule.h"
 #import "RuntimeStatus.h"
-#import "IMMessage.pb.h"
+#import "ImMessage.pbobjc.h"
 @implementation DDReceiveMessageAPI
 - (int)responseServiceID
 {
@@ -27,7 +27,7 @@
 {
     UnrequestAPIAnalysis analysis = (id)^(NSData *data)
     {
-        IMMsgData *msgdata = [IMMsgData parseFromData:data];
+        IMMsgData *msgdata = [IMMsgData parseFromData:data error:nil];
         MTTMessageEntity *msg = [MTTMessageEntity makeMessageFromPBData:msgdata];
         msg.state=DDmessageSendSuccess;
         return msg;

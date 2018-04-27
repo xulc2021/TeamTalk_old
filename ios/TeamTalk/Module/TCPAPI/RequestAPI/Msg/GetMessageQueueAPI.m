@@ -9,7 +9,7 @@
 #import "GetMessageQueueAPI.h"
 #import "MTTMessageEntity.h"
 #import "Encapsulator.h"
-#import "IMMessage.pb.h"
+#import "ImMessage.pbobjc.h"
 @implementation GetMessageQueueAPI
 /**
  *  请求超时时间
@@ -71,12 +71,12 @@
    
     Analysis analysis = (id)^(NSData* data)
     {
-        IMGetMsgListRsp *rsp =[IMGetMsgListRsp parseFromData:data];
+        IMGetMsgListRsp *rsp =[IMGetMsgListRsp parseFromData:data error:nil];
         SessionType sessionType = rsp.sessionType;
         NSString *sessionID = [MTTUtil changeOriginalToLocalID:rsp.sessionId SessionType:sessionType];
         NSUInteger begin = rsp.msgIdBegin;
          NSMutableArray *msgArray = [NSMutableArray new];
-        for (MsgInfo *msgInfo in [rsp msgList]) {
+        for (MsgInfo *msgInfo in [rsp msgListArray]) {
             MTTMessageEntity *msg = [MTTMessageEntity makeMessageFromPB:msgInfo SessionType:sessionType];
             msg.sessionId=sessionID;
             msg.state=DDmessageSendSuccess;
@@ -99,16 +99,16 @@
     Package package = (id)^(id object,uint16_t seqNo)
     {
         NSArray* array = (NSArray*)object;
-        IMGetMsgListReqBuilder *getMsgListReq = [IMGetMsgListReq builder];
-        [getMsgListReq setMsgIdBegin:[array[0] integerValue]];
+        IMGetMsgListReq *getMsgListReq = [IMGetMsgListReq new];
+        [getMsgListReq setMsgIdBegin:[array[0] intValue]];
         [getMsgListReq setUserId:0];
-        [getMsgListReq setMsgCnt:[array[1] integerValue]];
-        [getMsgListReq setSessionType: [array[2] integerValue]];
+        [getMsgListReq setMsgCnt:[array[1] intValue]];
+        [getMsgListReq setSessionType: [array[2] intValue]];
         [getMsgListReq setSessionId:[MTTUtil changeIDToOriginal:array[3]]];
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_MSG cId:IM_GET_MSG_LIST_REQ seqNo:seqNo];
-        [dataout directWriteBytes:[getMsgListReq build].data];
+        [dataout directWriteBytes:[getMsgListReq data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

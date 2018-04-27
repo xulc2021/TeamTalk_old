@@ -14,7 +14,8 @@
 #import "DDMessageModule.h"
 #import "DDDataInputStream.h"
 #import "RuntimeStatus.h"
-#import "IMMessage.pb.h"
+#import "ImBaseDefine.pbobjc.h"
+#import "ImMessage.pbobjc.h"
 #import "EmotionsModule.h"
 #import "security.h"
 
@@ -96,11 +97,11 @@
     double msgTime = [[NSDate date] timeIntervalSince1970];
     NSString* senderID = [RuntimeStatus instance].user.objID;
     MsgType msgType;
-    if (module.MTTSessionEntity.sessionType == SessionTypeSessionTypeSingle ) {
-        msgType =MsgTypeMsgTypeSingleText;
+    if (module.MTTSessionEntity.sessionType == SessionType_SessionTypeSingle ) {
+        msgType =MsgType_MsgTypeSingleText;
     }else
     {
-        msgType =MsgTypeMsgTypeGroupText;
+        msgType =MsgType_MsgTypeGroupText;
     }
     MTTMessageEntity* message = [[MTTMessageEntity alloc] initWithMsgID:[DDMessageModule getMessageID] msgType:msgType msgTime:msgTime sessionID:module.MTTSessionEntity.sessionID senderID:senderID msgContent:content toUserID:module.MTTSessionEntity.sessionID];
     message.state = DDMessageSending;
@@ -111,7 +112,7 @@
 }
 -(BOOL)isGroupMessage
 {
-    if (self.msgType == MsgTypeMsgTypeGroupAudio || self.msgType == MsgTypeMsgTypeGroupText) {
+    if (self.msgType == MsgType_MsgTypeGroupAudio || self.msgType == MsgType_MsgTypeGroupText) {
         return YES;
     }
     return NO;
@@ -119,19 +120,19 @@
 
 -(SessionType)getMessageSessionType
 {
-    return (![self isGroupMessage]?SessionTypeSessionTypeSingle:SessionTypeSessionTypeGroup);
+    return (![self isGroupMessage]?SessionType_SessionTypeSingle:SessionType_SessionTypeGroup);
 }
 
 -(BOOL)isGroupVoiceMessage
 {
-    if (self.msgType == MsgTypeMsgTypeGroupAudio) {
+    if (self.msgType == MsgType_MsgTypeGroupAudio) {
         return YES;
     }
     return NO;
 }
 -(BOOL)isVoiceMessage
 {
-    if (self.msgType == MsgTypeMsgTypeGroupAudio || self.msgType == MsgTypeMsgTypeSingleAudio) {
+    if (self.msgType == MsgType_MsgTypeGroupAudio || self.msgType == MsgType_MsgTypeSingleAudio) {
         return YES;
     }
     return NO;
@@ -227,7 +228,7 @@
     msg.sessionId=[MTTUtil changeOriginalToLocalID:info.fromSessionId SessionType:sessionType];
     msg.msgID=info.msgId;
     msg.toUserID =TheRuntime.user.objID;
-    msg.senderId=[MTTUtil changeOriginalToLocalID:info.fromSessionId SessionType:SessionTypeSessionTypeSingle];
+    msg.senderId=[MTTUtil changeOriginalToLocalID:info.fromSessionId SessionType:SessionType_SessionTypeSingle];
     msg.msgTime=info.createTime;
     msg.info=msgInfo;
     return msg;
@@ -252,7 +253,7 @@
 {
     MTTMessageEntity *msg = [MTTMessageEntity new];
     msg.msgType=data.msgType;
-    SessionType type = [msg isGroupMessage]?SessionTypeSessionTypeGroup:SessionTypeSessionTypeSingle;
+    SessionType type = [msg isGroupMessage]?SessionType_SessionTypeGroup:SessionType_SessionTypeSingle;
     msg.sessionType=type;
     NSMutableDictionary* msgInfo = [[NSMutableDictionary alloc] init];
     if ([msg isVoiceMessage]) {
@@ -308,7 +309,7 @@
 //        }
         Free(pOut);
     }
-    if (msg.sessionType == SessionTypeSessionTypeSingle) {
+    if (msg.sessionType == SessionType_SessionTypeSingle) {
           msg.sessionId=[MTTUtil changeOriginalToLocalID:data.fromUserId SessionType:type];
     }else{
         msg.sessionId=[MTTUtil changeOriginalToLocalID:data.toSessionId SessionType:type];
@@ -318,7 +319,7 @@
     }
     msg.msgID=data.msgId;
     msg.toUserID =msg.sessionId;
-    msg.senderId=[MTTUtil changeOriginalToLocalID:data.fromUserId SessionType:SessionTypeSessionTypeSingle];
+    msg.senderId=[MTTUtil changeOriginalToLocalID:data.fromUserId SessionType:SessionType_SessionTypeSingle];
     if ([msg.senderId isEqual:TheRuntime.user.objID]) {
         msg.sessionId=[MTTUtil changeOriginalToLocalID:data.toSessionId SessionType:type];
     }

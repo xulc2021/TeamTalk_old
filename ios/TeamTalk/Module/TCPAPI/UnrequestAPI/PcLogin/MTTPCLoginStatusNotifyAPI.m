@@ -7,7 +7,7 @@
 //
 
 #import "MTTPCLoginStatusNotifyAPI.h"
-#import "IMBuddy.pb.h"
+#import "ImBuddy.pbobjc.h"
 
 @implementation MTTPCLoginStatusNotifyAPI
 - (int)responseServiceID
@@ -34,7 +34,7 @@
 {
     UnrequestAPIAnalysis analysis = (id)^(NSData* data)
     {
-        IMPCLoginStatusNotify *res = [IMPCLoginStatusNotify parseFromData:data];
+        IMPCLoginStatusNotify *res = [IMPCLoginStatusNotify parseFromData:data error:nil];
         NSMutableDictionary *dic = [NSMutableDictionary new];
         [dic setObject:@(res.userId) forKey:@"uid"];
         [dic setObject:@(res.loginStat) forKey:@"loginStat"];

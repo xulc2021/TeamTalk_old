@@ -7,7 +7,8 @@
 //
 
 #import "MTTSignatureAPI.h"
-#import "IMBuddy.pb.h"
+//#import "IMBuddy.pb.h"
+#import "ImBuddy.pbobjc.h"
 #import "MTTUserEntity.h"
 @implementation MTTSignatureAPI
 /**
@@ -69,7 +70,8 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMChangeSignInfoRsp *changeSignRsp = [IMChangeSignInfoRsp parseFromData:data];
+        
+        IMChangeSignInfoRsp *changeSignRsp = [IMChangeSignInfoRsp parseFromData:data error:nil];
         return changeSignRsp.resultCode;
     };
     return analysis;
@@ -86,16 +88,17 @@
     {
         NSArray* array = (NSArray*)object;
         NSString* signInfo= array[0];
-        IMChangeSignInfoReqBuilder *changeSign = [IMChangeSignInfoReq builder];
-        [changeSign setUserId:[MTTUserEntity localIDTopb:TheRuntime.user.objID]];
-        [changeSign setSignInfo:signInfo];
         
+        IMChangeSignInfoReq *request = [[IMChangeSignInfoReq alloc] init];
+        [request setUserId: [MTTUserEntity localIDTopb:TheRuntime.user.objID]];
+        [request setSignInfo:signInfo];
+    
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_BUDDY_LIST
                                     cId:IM_CHANGE_SIGN_INFO_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[changeSign build].data];
+        [dataout directWriteBytes:[request data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

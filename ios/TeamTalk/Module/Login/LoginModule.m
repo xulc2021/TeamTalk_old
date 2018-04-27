@@ -167,75 +167,83 @@
 {
     __block NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    __block NSInteger version = [[defaults objectForKey:@"alllastupdatetime"] integerValue];
+    __block NSInteger lastUpdateTime = [[defaults objectForKey:@"alllastupdatetime"] integerValue];
     [[MTTDatabaseUtil instance] getAllUsers:^(NSArray *contacts, NSError *error) {
-        if ([contacts count] !=0) {
+        
+        int contactsCount = [contacts count];
+        
+        if (contactsCount != 0) {
             [contacts enumerateObjectsUsingBlock:^(MTTUserEntity *obj, NSUInteger idx, BOOL *stop) {
                 [[DDUserModule shareInstance] addMaintanceUser:obj];
             }];
-            if (completion !=nil) {
+            if (completion != nil) {
                 completion();
             }
-        }else{
-            version=0;
-            DDAllUserAPI* api = [[DDAllUserAPI alloc] init];
-            [api requestWithObject:@[@(version)] Completion:^(id response, NSError *error) {
-                if (!error)
-                {
-                    NSUInteger responseVersion = [[response objectForKey:@"alllastupdatetime"] integerValue];
-                    if (responseVersion == version && responseVersion !=0) {
-                        
-                        return ;
-                        
-                    }
-                    [defaults setObject:@(responseVersion) forKey:@"alllastupdatetime"];
-                    NSMutableArray *array = [response objectForKey:@"userlist"];
-                    [[MTTDatabaseUtil instance] insertAllUser:array completion:^(NSError *error) {
-                        
+        }
+        
+        
+        if(contactsCount == 0) {
+            lastUpdateTime = 0;
+        }
+        
+        //在做一次请求 获取自上次以来 发生了变化的好友信息
+        DDAllUserAPI* api = [[DDAllUserAPI alloc] init];
+        [api requestWithObject:@[@(lastUpdateTime)] Completion:^(id response, NSError *error) {
+            if (!error)
+            {
+                NSUInteger responseUpdateTime = [[response objectForKey:@"alllastupdatetime"] integerValue];
+                if (responseUpdateTime == lastUpdateTime && responseUpdateTime !=0) {
+                    
+                    return ;
+                    
+                }
+                [defaults setObject:@(responseUpdateTime) forKey:@"alllastupdatetime"];
+                NSMutableArray *array = [response objectForKey:@"userlist"];
+                [[MTTDatabaseUtil instance] insertAllUser:array completion:^(NSError *error) {
+                    
+                }];
+                dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+                    [array enumerateObjectsUsingBlock:^(MTTUserEntity *obj, NSUInteger idx, BOOL *stop) {
+                        [[DDUserModule shareInstance] addMaintanceUser:obj];
                     }];
-                    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                        [array enumerateObjectsUsingBlock:^(MTTUserEntity *obj, NSUInteger idx, BOOL *stop) {
-                            [[DDUserModule shareInstance] addMaintanceUser:obj];
-                        }];
-                        
+                    if(contactsCount == 0) {
                         dispatch_async(dispatch_get_main_queue(),^{
                             if (completion !=nil) {
                                 completion();
                             }
                         });
-     
-                    });
-                    
-                    
-                }
-            }];
-        }
+                    }
+                });
+                
+                
+            }
+        }];
     }];
     
-    DDAllUserAPI* api = [[DDAllUserAPI alloc] init];
-    [api requestWithObject:@[@(version)] Completion:^(id response, NSError *error) {
-        if (!error)
-        {
-            NSUInteger responseVersion = [[response objectForKey:@"alllastupdatetime"] integerValue];
-            if (responseVersion == version && responseVersion !=0) {
-                
-                return ;
-
-            }
-            [defaults setObject:@(responseVersion) forKey:@"alllastupdatetime"];
-            NSMutableArray *array = [response objectForKey:@"userlist"];
-            [[MTTDatabaseUtil instance] insertAllUser:array completion:^(NSError *error) {
-                
-            }];
-            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-                [array enumerateObjectsUsingBlock:^(MTTUserEntity *obj, NSUInteger idx, BOOL *stop) {
-                    [[DDUserModule shareInstance] addMaintanceUser:obj];
-                }];
-            });
-            
-            
-        }
-    }];
+//    DDAllUserAPI* api = [[DDAllUserAPI alloc] init];
+//    [api requestWithObject:@[@(lastUpdateTime)] Completion:^(id response, NSError *error) {
+//        if (!error)
+//        {
+//            NSUInteger responseVersion = [[response objectForKey:@"alllastupdatetime"] integerValue];
+//            if (responseVersion == lastUpdateTime && responseVersion !=0) {
+//
+//                return ;
+//
+//            }
+//            [defaults setObject:@(responseVersion) forKey:@"alllastupdatetime"];
+//            NSMutableArray *array = [response objectForKey:@"userlist"];
+//            [[MTTDatabaseUtil instance] insertAllUser:array completion:^(NSError *error) {
+//
+//            }];
+//            dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+//                [array enumerateObjectsUsingBlock:^(MTTUserEntity *obj, NSUInteger idx, BOOL *stop) {
+//                    [[DDUserModule shareInstance] addMaintanceUser:obj];
+//                }];
+//            });
+//
+//
+//        }
+//    }];
     
 }
 

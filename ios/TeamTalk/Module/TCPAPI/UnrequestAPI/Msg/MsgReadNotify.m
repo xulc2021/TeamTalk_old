@@ -7,7 +7,7 @@
 //
 
 #import "MsgReadNotify.h"
-#import "IMMessage.pb.h"
+#import "ImMessage.pbobjc.h"
 @implementation MsgReadNotify
 - (int)responseServiceID
 {
@@ -23,7 +23,7 @@
 {
     UnrequestAPIAnalysis analysis = (id)^(NSData *data)
     {
-        IMMsgDataReadNotify *notify = [IMMsgDataReadNotify parseFromData:data];
+        IMMsgDataReadNotify *notify = [IMMsgDataReadNotify parseFromData:data error:nil];
         NSMutableDictionary *dic = [NSMutableDictionary new];
         UInt32   sessionType =notify.sessionType;
         NSString *from_id = [MTTUtil changeOriginalToLocalID:notify.sessionId SessionType:sessionType];

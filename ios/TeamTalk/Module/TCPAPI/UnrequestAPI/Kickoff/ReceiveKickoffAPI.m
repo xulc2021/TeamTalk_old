@@ -7,7 +7,7 @@
 //
 
 #import "ReceiveKickoffAPI.h"
-#import "IMLogin.pb.h"
+#import "ImLogin.pbobjc.h"
 @implementation ReceiveKickoffAPI
 - (int)responseServiceID
 {
@@ -33,7 +33,7 @@
 {
     UnrequestAPIAnalysis analysis = (id)^(NSData* data)
     {
-        IMKickUser *res = [IMKickUser parseFromData:data];
+        IMKickUser *res = [IMKickUser parseFromData:data error:nil];
         return @(res.kickReason);
     };
     return analysis;

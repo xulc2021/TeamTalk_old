@@ -2,7 +2,7 @@
 #import "MTTUserEntity.h"
 #import "NSDictionary+Safe.h"
 #import "MTTDatabaseUtil.h"
-#import "IMBaseDefine.pb.h"
+#import "ImBaseDefine.pbobjc.h"
 
 @implementation MTTGroupEntity
 
@@ -52,7 +52,7 @@
     if (![groupID hasPrefix:GROUP_PRE]) {
         return 0;
     }
-    return [[groupID substringFromIndex:[GROUP_PRE length]] integerValue];
+    return [[groupID substringFromIndex:[GROUP_PRE length]] intValue];
 }
 +(MTTGroupEntity *)initMTTGroupEntityFromPBData:(GroupInfo *)groupInfo
 {
@@ -61,12 +61,12 @@
     group.objectVersion=groupInfo.version;
     group.name=groupInfo.groupName;
     group.avatar = groupInfo.groupAvatar;
-    group.groupCreatorId = [MTTUtil changeOriginalToLocalID:groupInfo.groupCreatorId SessionType:SessionTypeSessionTypeSingle];
+    group.groupCreatorId = [MTTUtil changeOriginalToLocalID:groupInfo.groupCreatorId SessionType:SessionType_SessionTypeSingle];
     group.groupType = groupInfo.groupType;
     group.isShield=groupInfo.shieldStatus;
     NSMutableArray *ids  = [NSMutableArray new];
-    for (int i = 0; i<[[groupInfo groupMemberList] count]; i++) {
-        [ids addObject:[MTTUtil changeOriginalToLocalID:[[groupInfo groupMemberList][i] integerValue] SessionType:SessionTypeSessionTypeSingle]];
+    for (int i = 0; i<[[groupInfo groupMemberListArray] count]; i++) {
+        [ids addObject:[MTTUtil changeOriginalToLocalID:[[groupInfo groupMemberListArray] valueAtIndex:i] SessionType:SessionType_SessionTypeSingle]];
     }
     group.groupUserIds = ids;
     group.lastMsg=@"";
@@ -87,14 +87,14 @@
     group.groupCreatorId=[dic safeObjectForKey:@"creatID"];
     group.objID = [dic safeObjectForKey:@"groupId"];
     group.avatar = [dic safeObjectForKey:@"avatar"];
-    group.GroupType = [[dic safeObjectForKey:@"groupType"] integerValue];
+    group.groupType = [[dic safeObjectForKey:@"groupType"] intValue];
     group.name = [dic safeObjectForKey:@"name"];
     group.avatar = [dic safeObjectForKey:@"avatar"];
     group.isShield = [[dic safeObjectForKey:@"isshield"] boolValue];
     NSString *string =[dic safeObjectForKey:@"Users"];
     NSMutableArray *array =[NSMutableArray arrayWithArray:[string componentsSeparatedByString:@"-"]] ;
     if ([array count] >0) {
-        group.groupUserIds=[array copy];
+        group.groupUserIds= [array copy];
     }
     group.lastMsg =[dic safeObjectForKey:@"lastMessage"];
     group.objectVersion = [[dic safeObjectForKey:@"version"] integerValue];

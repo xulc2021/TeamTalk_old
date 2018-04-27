@@ -7,7 +7,7 @@
 //
 
 #import "MTTSignNotifyAPI.h"
-#import "IMBuddy.pb.h"
+#import "ImBuddy.pbobjc.h"
 @implementation MTTSignNotifyAPI
 - (int)responseServiceID
 {
@@ -33,7 +33,7 @@
 {
     UnrequestAPIAnalysis analysis = (id)^(NSData* data)
     {
-        IMSignInfoChangedNotify *res = [IMSignInfoChangedNotify parseFromData:data];
+        IMSignInfoChangedNotify *res = [IMSignInfoChangedNotify parseFromData:data error:nil];
         NSMutableDictionary *dic = [NSMutableDictionary new];
         [dic setObject:[NSString stringWithFormat:@"%d",res.changedUserId] forKey:@"uid"];
         [dic setObject:res.signInfo forKey:@"sign"];

@@ -7,7 +7,7 @@
 //
 
 #import "DDReceiveMessageACKAPI.h"
-#import "IMMessage.pb.h"
+#import "ImMessage.pbobjc.h"
 @implementation DDReceiveMessageACKAPI
 
 - (int)requestTimeOutTimeInterval
@@ -55,7 +55,7 @@
     {
         
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
-        IMMsgDataAckBuilder *dataAck = [IMMsgDataAck builder];
+        IMMsgDataAck *dataAck = [IMMsgDataAck new];
         [dataAck setUserId:0];
         [dataAck setMsgId:[object[1] intValue]];
         [dataAck setSessionId:[MTTUtil changeIDToOriginal:object[2]]];
@@ -63,7 +63,7 @@
 
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_MSG cId:IM_MSG_DATA_ACK seqNo:seqNo];
-        [dataout directWriteBytes:[dataAck build].data];
+        [dataout directWriteBytes:[dataAck data]];
         [dataout writeDataCount];
         return   [dataout toByteArray];
     };

@@ -7,7 +7,7 @@
 //
 
 #import "ShieldGroupMessageAPI.h"
-#import "IMGroup.pb.h"
+#import "ImGroup.pbobjc.h"
 @implementation ShieldGroupMessageAPI
 /**
  *  请求超时时间
@@ -68,7 +68,7 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMGroupShieldRsp *groupShieldRsp = [IMGroupShieldRsp parseFromData:data];
+        IMGroupShieldRsp *groupShieldRsp = [IMGroupShieldRsp parseFromData:data error:nil];
         return groupShieldRsp.resultCode;
     };
     return analysis;
@@ -86,17 +86,19 @@
         NSArray* array = (NSArray*)object;
         UInt32 groupID =[MTTUtil changeIDToOriginal:array[0]];
         uint32_t isShield = [array[1] intValue];
-        IMGroupShieldReqBuilder *groupShield = [IMGroupShieldReq builder];
-        [groupShield setUserId:0];
-        [groupShield setGroupId:groupID];
-        [groupShield setShieldStatus:isShield];
+        
+        IMGroupShieldReq *request = [[IMGroupShieldReq alloc] init];
+        [request setUserId:0];
+        [request setGroupId:groupID];
+        [request setShieldStatus:isShield];
+        
         
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_GROUP
                                     cId:IM_GROU_SHIELD_REQ
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[groupShield build].data];
+        [dataout directWriteBytes:[request data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

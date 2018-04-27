@@ -302,7 +302,7 @@
 
 -(void)startChat
 {
-    MTTSessionEntity* session = [[MTTSessionEntity alloc] initWithSessionID:self.user.objID type:SessionTypeSessionTypeSingle];
+    MTTSessionEntity* session = [[MTTSessionEntity alloc] initWithSessionID:self.user.objID type:SessionType_SessionTypeSingle];
     [[ChattingMainViewController shareInstance] showChattingContentForSession:session];
     
     if ([[self.navigationController viewControllers] containsObject:[ChattingMainViewController shareInstance]]) {

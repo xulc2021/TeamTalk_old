@@ -10,7 +10,8 @@
 #import "DDGroupModule.h"
 #import "MTTGroupEntity.h"
 #import "RuntimeStatus.h"
-#import "IMGroup.pb.h"
+#import "ImGroup.pbobjc.h"
+#import "ImBaseDefine.pbobjc.h"
 @implementation DDAddMemberToGroupAPI
 /**
  *  请求超时时间
@@ -72,7 +73,7 @@
     Analysis analysis = (id)^(NSData* data)
     {
         
-        IMGroupChangeMemberRsp *rsp = [IMGroupChangeMemberRsp parseFromData:data];
+        IMGroupChangeMemberRsp *rsp = [IMGroupChangeMemberRsp parseFromData:data error:nil];
 
         uint32_t result =rsp.resultCode;
     NSMutableArray *array = [NSMutableArray new];
@@ -82,10 +83,10 @@
         }
     
 
-        NSUInteger userCnt = [[rsp curUserIdList] count];
+        NSUInteger userCnt = [[rsp curUserIdListArray] count];
 
         for (NSUInteger i = 0; i < userCnt; i++) {
-                NSString* userId = [MTTUtil changeOriginalToLocalID:[[rsp curUserIdList][i] integerValue] SessionType:SessionTypeSessionTypeSingle];
+                NSString* userId = [MTTUtil changeOriginalToLocalID:[[rsp curUserIdListArray]valueAtIndex:i] SessionType:SessionType_SessionTypeSingle];
                 [array addObject:userId];
             }
         return array;
@@ -106,19 +107,19 @@
         NSArray* array = (NSArray*)object;
         NSString* groupId = array[0];
         NSArray* userList = array[1];
-        NSMutableArray *users = [NSMutableArray new];
+        GPBUInt32Array *users = [GPBUInt32Array new];
         for (NSString *user in userList) {
-            [users addObject:@([MTTUtil changeIDToOriginal:user])];
+            [users addValue:[MTTUtil changeIDToOriginal:user]];
         }
-        IMGroupChangeMemberReqBuilder *memberChange = [IMGroupChangeMemberReq builder];
+        IMGroupChangeMemberReq *memberChange = [IMGroupChangeMemberReq new];
         [memberChange setUserId:0];
-        [memberChange setChangeType:GroupModifyTypeGroupModifyTypeAdd];
+        [memberChange setChangeType:GroupModifyType_GroupModifyTypeAdd];
         [memberChange setGroupId:[MTTUtil changeIDToOriginal:groupId]];
         [memberChange setMemberIdListArray:users];
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_GROUP cId:IM_GROUP_CHANGE_MEMBER_REQ seqNo:seqNo];
-        [dataout directWriteBytes:[memberChange build].data];
+        [dataout directWriteBytes:[memberChange data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

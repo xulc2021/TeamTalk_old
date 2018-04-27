@@ -7,7 +7,7 @@
 //
 
 #import "RemoveSessionAPI.h"
-#import "IMBuddy.pb.h"
+#import "ImBuddy.pbobjc.h"
 @implementation RemoveSessionAPI
 /**
  *  请求超时时间
@@ -84,17 +84,19 @@
     {
         NSArray* array = (NSArray*)object;
         NSString* sessionid= array[0];
-        SessionType sessionType = [array[1] intValue];
-        IMRemoveSessionReqBuilder *removeSession = [IMRemoveSessionReq builder];
-        [removeSession setUserId:0];
-        [removeSession setSessionId:[MTTUtil changeIDToOriginal:sessionid]];
-        [removeSession setSessionType:sessionType];
+        enum SessionType sessionType = [array[1] intValue];
+        IMRemoveSessionReq *req = [IMRemoveSessionReq new];
+        [req setUserId:0];
+        [req setSessionId:[MTTUtil changeIDToOriginal:sessionid]];
+        [req setSessionType:sessionType];
+        
+      
         DDDataOutputStream *dataout = [[DDDataOutputStream alloc] init];
         [dataout writeInt:0];
         [dataout writeTcpProtocolHeader:SID_BUDDY_LIST
                                     cId:IM_REMOVE_SESSION_RES
                                   seqNo:seqNo];
-        [dataout directWriteBytes:[removeSession build].data];
+        [dataout directWriteBytes:[req data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };

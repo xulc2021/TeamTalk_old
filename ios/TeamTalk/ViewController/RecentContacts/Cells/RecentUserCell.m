@@ -268,7 +268,7 @@
     }
     
     
-    if (session.sessionType == SessionTypeSessionTypeSingle) {
+    if (session.sessionType == SessionType_SessionTypeSingle) {
         [_avatarImageView setBackgroundColor:[UIColor clearColor]];
         [[DDUserModule shareInstance] getUserForUserID:session.sessionID Block:^(MTTUserEntity *user) {
             [[_avatarImageView subviews] enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {

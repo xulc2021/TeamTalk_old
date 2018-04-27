@@ -144,7 +144,7 @@ CGFloat const dd_bubbleUpDown = 20;                //气泡到上下边缘的距
     }];
     
     //设置昵称是否隐藏
-    if (self.session.sessionType == SessionTypeSessionTypeSingle || self.location == DDBubbleRight) {
+    if (self.session.sessionType == SessionType_SessionTypeSingle || self.location == DDBubbleRight) {
         [self.userName mas_updateConstraints:^(MASConstraintMaker *make) {
             make.height.mas_equalTo(0);
         }];

@@ -8,8 +8,8 @@
 
 #import "LoginAPI.h"
 #import "MTTUserEntity.h"
-#import "IMLogin.pb.h"
-#import "IMBaseDefine.pb.h"
+#import "ImLogin.pbobjc.h"
+#import "ImBaseDefine.pbobjc.h"
 #import "MTTUserEntity.h"
 #import "security.h"
 #import "NSString+Additions.h"
@@ -73,7 +73,7 @@
 {
     Analysis analysis = (id)^(NSData* data)
     {
-        IMLoginRes *res = [IMLoginRes parseFromData:data];
+        IMLoginRes *res = [IMLoginRes parseFromData:data error:nil];
         NSInteger serverTime = res.serverTime;
         NSInteger loginResult = res.resultCode;
         NSString *resultString=nil;
@@ -112,13 +112,13 @@
                                     cId:IM_LOGIN_REQ
                                   seqNo:seqNo];
         
-        IMLoginReqBuilder *login = [IMLoginReq builder];
+        IMLoginReq *login = [IMLoginReq new];
         [login setUserName:object[0]];
         [login setPassword:[strMsg MD5]];
-        [login setClientType:ClientTypeClientTypeIos];
+        [login setClientType:ClientType_ClientTypeIos];
         [login setClientVersion:clientVersion];
-        [login setOnlineStatus:UserStatTypeUserStatusOnline];
-        [dataout directWriteBytes:[login build].data];
+        [login setOnlineStatus:UserStatType_UserStatusOnline];
+        [dataout directWriteBytes:[login data]];
         [dataout writeDataCount];
         return [dataout toByteArray];
     };
