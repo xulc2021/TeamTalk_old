@@ -9,92 +9,92 @@ public final class IMBaseDefine {
       com.google.protobuf.ExtensionRegistryLite registry) {
   }
   /**
-   * Protobuf enum {@code IM.BaseDefine.ServiceID}
-   *
    * <pre>
    * service id
    * </pre>
+   *
+   * Protobuf enum {@code IM.BaseDefine.ServiceID}
    */
   public enum ServiceID
       implements com.google.protobuf.Internal.EnumLite {
     /**
-     * <code>SID_LOGIN = 1;</code>
-     *
      * <pre>
      * for login
      * </pre>
-     */
-    SID_LOGIN(0, 1),
-    /**
-     * <code>SID_BUDDY_LIST = 2;</code>
      *
+     * <code>SID_LOGIN = 1;</code>
+     */
+    SID_LOGIN(1),
+    /**
      * <pre>
      * for friend list
      * </pre>
-     */
-    SID_BUDDY_LIST(1, 2),
-    /**
-     * <code>SID_MSG = 3;</code>
      *
+     * <code>SID_BUDDY_LIST = 2;</code>
+     */
+    SID_BUDDY_LIST(2),
+    /**
      * <pre>
      * </pre>
-     */
-    SID_MSG(2, 3),
-    /**
-     * <code>SID_GROUP = 4;</code>
      *
+     * <code>SID_MSG = 3;</code>
+     */
+    SID_MSG(3),
+    /**
      * <pre>
      * for group message
      * </pre>
+     *
+     * <code>SID_GROUP = 4;</code>
      */
-    SID_GROUP(3, 4),
+    SID_GROUP(4),
     /**
      * <code>SID_FILE = 5;</code>
      */
-    SID_FILE(4, 5),
+    SID_FILE(5),
     /**
      * <code>SID_SWITCH_SERVICE = 6;</code>
      */
-    SID_SWITCH_SERVICE(5, 6),
+    SID_SWITCH_SERVICE(6),
     /**
      * <code>SID_OTHER = 7;</code>
      */
-    SID_OTHER(6, 7),
+    SID_OTHER(7),
     /**
      * <code>SID_INTERNAL = 8;</code>
      */
-    SID_INTERNAL(7, 8),
+    SID_INTERNAL(8),
     ;
 
     /**
-     * <code>SID_LOGIN = 1;</code>
-     *
      * <pre>
      * for login
      * </pre>
+     *
+     * <code>SID_LOGIN = 1;</code>
      */
     public static final int SID_LOGIN_VALUE = 1;
     /**
-     * <code>SID_BUDDY_LIST = 2;</code>
-     *
      * <pre>
      * for friend list
      * </pre>
+     *
+     * <code>SID_BUDDY_LIST = 2;</code>
      */
     public static final int SID_BUDDY_LIST_VALUE = 2;
     /**
-     * <code>SID_MSG = 3;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>SID_MSG = 3;</code>
      */
     public static final int SID_MSG_VALUE = 3;
     /**
-     * <code>SID_GROUP = 4;</code>
-     *
      * <pre>
      * for group message
      * </pre>
+     *
+     * <code>SID_GROUP = 4;</code>
      */
     public static final int SID_GROUP_VALUE = 4;
     /**
@@ -115,9 +115,19 @@ public final class IMBaseDefine {
     public static final int SID_INTERNAL_VALUE = 8;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static ServiceID valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ServiceID forNumber(int value) {
       switch (value) {
         case 1: return SID_LOGIN;
         case 2: return SID_BUDDY_LIST;
@@ -135,17 +145,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<ServiceID>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ServiceID> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<ServiceID>() {
             public ServiceID findValueByNumber(int number) {
-              return ServiceID.valueOf(number);
+              return ServiceID.forNumber(number);
             }
           };
 
     private final int value;
 
-    private ServiceID(int index, int value) {
+    private ServiceID(int value) {
       this.value = value;
     }
 
@@ -153,148 +163,174 @@ public final class IMBaseDefine {
   }
 
   /**
-   * Protobuf enum {@code IM.BaseDefine.LoginCmdID}
-   *
    * <pre>
    * command id for login
    * </pre>
+   *
+   * Protobuf enum {@code IM.BaseDefine.LoginCmdID}
    */
   public enum LoginCmdID
       implements com.google.protobuf.Internal.EnumLite {
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>CID_LOGIN_REQ_MSGSERVER = 257;</code>
-     *
+     */
+    CID_LOGIN_REQ_MSGSERVER(257),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_LOGIN_REQ_MSGSERVER(0, 257),
-    /**
+     *
      * <code>CID_LOGIN_RES_MSGSERVER = 258;</code>
-     *
+     */
+    CID_LOGIN_RES_MSGSERVER(258),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_LOGIN_RES_MSGSERVER(1, 258),
-    /**
+     *
      * <code>CID_LOGIN_REQ_USERLOGIN = 259;</code>
-     *
+     */
+    CID_LOGIN_REQ_USERLOGIN(259),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_LOGIN_REQ_USERLOGIN(2, 259),
-    /**
+     *
      * <code>CID_LOGIN_RES_USERLOGIN = 260;</code>
-     *
+     */
+    CID_LOGIN_RES_USERLOGIN(260),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_LOGIN_RES_USERLOGIN(3, 260),
-    /**
+     *
      * <code>CID_LOGIN_REQ_LOGINOUT = 261;</code>
-     *
+     */
+    CID_LOGIN_REQ_LOGINOUT(261),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_LOGIN_REQ_LOGINOUT(4, 261),
-    /**
+     *
      * <code>CID_LOGIN_RES_LOGINOUT = 262;</code>
-     *
+     */
+    CID_LOGIN_RES_LOGINOUT(262),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_LOGIN_RES_LOGINOUT(5, 262),
-    /**
+     *
      * <code>CID_LOGIN_KICK_USER = 263;</code>
-     *
+     */
+    CID_LOGIN_KICK_USER(263),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_LOGIN_KICK_USER(6, 263),
-    /**
+     *
      * <code>CID_LOGIN_REQ_DEVICETOKEN = 264;</code>
-     *
-     * <pre>
-     * </pre>
      */
-    CID_LOGIN_REQ_DEVICETOKEN(7, 264),
+    CID_LOGIN_REQ_DEVICETOKEN(264),
     /**
-     * <code>CID_LOGIN_RES_DEVICETOKEN = 265;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_LOGIN_RES_DEVICETOKEN = 265;</code>
      */
-    CID_LOGIN_RES_DEVICETOKEN(8, 265),
+    CID_LOGIN_RES_DEVICETOKEN(265),
     /**
      * <code>CID_LOGIN_REQ_KICKPCCLIENT = 266;</code>
      */
-    CID_LOGIN_REQ_KICKPCCLIENT(9, 266),
+    CID_LOGIN_REQ_KICKPCCLIENT(266),
     /**
      * <code>CID_LOGIN_RES_KICKPCCLIENT = 267;</code>
      */
-    CID_LOGIN_RES_KICKPCCLIENT(10, 267),
+    CID_LOGIN_RES_KICKPCCLIENT(267),
+    /**
+     * <pre>
+     *勿扰
+     * </pre>
+     *
+     * <code>CID_LOGIN_REQ_PUSH_SHIELD = 268;</code>
+     */
+    CID_LOGIN_REQ_PUSH_SHIELD(268),
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>CID_LOGIN_RES_PUSH_SHIELD = 269;</code>
+     */
+    CID_LOGIN_RES_PUSH_SHIELD(269),
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>CID_LOGIN_REQ_QUERY_PUSH_SHIELD = 270;</code>
+     */
+    CID_LOGIN_REQ_QUERY_PUSH_SHIELD(270),
+    /**
+     * <code>CID_LOGIN_RES_QUERY_PUSH_SHIELD = 271;</code>
+     */
+    CID_LOGIN_RES_QUERY_PUSH_SHIELD(271),
     ;
 
     /**
-     * <code>CID_LOGIN_REQ_MSGSERVER = 257;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_LOGIN_REQ_MSGSERVER = 257;</code>
      */
     public static final int CID_LOGIN_REQ_MSGSERVER_VALUE = 257;
     /**
-     * <code>CID_LOGIN_RES_MSGSERVER = 258;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_LOGIN_RES_MSGSERVER = 258;</code>
      */
     public static final int CID_LOGIN_RES_MSGSERVER_VALUE = 258;
     /**
-     * <code>CID_LOGIN_REQ_USERLOGIN = 259;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_LOGIN_REQ_USERLOGIN = 259;</code>
      */
     public static final int CID_LOGIN_REQ_USERLOGIN_VALUE = 259;
     /**
-     * <code>CID_LOGIN_RES_USERLOGIN = 260;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_LOGIN_RES_USERLOGIN = 260;</code>
      */
     public static final int CID_LOGIN_RES_USERLOGIN_VALUE = 260;
     /**
-     * <code>CID_LOGIN_REQ_LOGINOUT = 261;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_LOGIN_REQ_LOGINOUT = 261;</code>
      */
     public static final int CID_LOGIN_REQ_LOGINOUT_VALUE = 261;
     /**
-     * <code>CID_LOGIN_RES_LOGINOUT = 262;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_LOGIN_RES_LOGINOUT = 262;</code>
      */
     public static final int CID_LOGIN_RES_LOGINOUT_VALUE = 262;
     /**
-     * <code>CID_LOGIN_KICK_USER = 263;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_LOGIN_KICK_USER = 263;</code>
      */
     public static final int CID_LOGIN_KICK_USER_VALUE = 263;
     /**
-     * <code>CID_LOGIN_REQ_DEVICETOKEN = 264;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_LOGIN_REQ_DEVICETOKEN = 264;</code>
      */
     public static final int CID_LOGIN_REQ_DEVICETOKEN_VALUE = 264;
     /**
-     * <code>CID_LOGIN_RES_DEVICETOKEN = 265;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_LOGIN_RES_DEVICETOKEN = 265;</code>
      */
     public static final int CID_LOGIN_RES_DEVICETOKEN_VALUE = 265;
     /**
@@ -305,11 +341,47 @@ public final class IMBaseDefine {
      * <code>CID_LOGIN_RES_KICKPCCLIENT = 267;</code>
      */
     public static final int CID_LOGIN_RES_KICKPCCLIENT_VALUE = 267;
+    /**
+     * <pre>
+     *勿扰
+     * </pre>
+     *
+     * <code>CID_LOGIN_REQ_PUSH_SHIELD = 268;</code>
+     */
+    public static final int CID_LOGIN_REQ_PUSH_SHIELD_VALUE = 268;
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>CID_LOGIN_RES_PUSH_SHIELD = 269;</code>
+     */
+    public static final int CID_LOGIN_RES_PUSH_SHIELD_VALUE = 269;
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>CID_LOGIN_REQ_QUERY_PUSH_SHIELD = 270;</code>
+     */
+    public static final int CID_LOGIN_REQ_QUERY_PUSH_SHIELD_VALUE = 270;
+    /**
+     * <code>CID_LOGIN_RES_QUERY_PUSH_SHIELD = 271;</code>
+     */
+    public static final int CID_LOGIN_RES_QUERY_PUSH_SHIELD_VALUE = 271;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static LoginCmdID valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static LoginCmdID forNumber(int value) {
       switch (value) {
         case 257: return CID_LOGIN_REQ_MSGSERVER;
         case 258: return CID_LOGIN_RES_MSGSERVER;
@@ -322,6 +394,10 @@ public final class IMBaseDefine {
         case 265: return CID_LOGIN_RES_DEVICETOKEN;
         case 266: return CID_LOGIN_REQ_KICKPCCLIENT;
         case 267: return CID_LOGIN_RES_KICKPCCLIENT;
+        case 268: return CID_LOGIN_REQ_PUSH_SHIELD;
+        case 269: return CID_LOGIN_RES_PUSH_SHIELD;
+        case 270: return CID_LOGIN_REQ_QUERY_PUSH_SHIELD;
+        case 271: return CID_LOGIN_RES_QUERY_PUSH_SHIELD;
         default: return null;
       }
     }
@@ -330,17 +406,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<LoginCmdID>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        LoginCmdID> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<LoginCmdID>() {
             public LoginCmdID findValueByNumber(int number) {
-              return LoginCmdID.valueOf(number);
+              return LoginCmdID.forNumber(number);
             }
           };
 
     private final int value;
 
-    private LoginCmdID(int index, int value) {
+    private LoginCmdID(int value) {
       this.value = value;
     }
 
@@ -348,88 +424,119 @@ public final class IMBaseDefine {
   }
 
   /**
-   * Protobuf enum {@code IM.BaseDefine.BuddyListCmdID}
-   *
    * <pre>
    * command id for buddy list
    * </pre>
+   *
+   * Protobuf enum {@code IM.BaseDefine.BuddyListCmdID}
    */
   public enum BuddyListCmdID
       implements com.google.protobuf.Internal.EnumLite {
     /**
      * <code>CID_BUDDY_LIST_RECENT_CONTACT_SESSION_REQUEST = 513;</code>
      */
-    CID_BUDDY_LIST_RECENT_CONTACT_SESSION_REQUEST(0, 513),
+    CID_BUDDY_LIST_RECENT_CONTACT_SESSION_REQUEST(513),
     /**
      * <code>CID_BUDDY_LIST_RECENT_CONTACT_SESSION_RESPONSE = 514;</code>
      */
-    CID_BUDDY_LIST_RECENT_CONTACT_SESSION_RESPONSE(1, 514),
+    CID_BUDDY_LIST_RECENT_CONTACT_SESSION_RESPONSE(514),
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>CID_BUDDY_LIST_STATUS_NOTIFY = 515;</code>
-     *
-     * <pre>
-     * </pre>
      */
-    CID_BUDDY_LIST_STATUS_NOTIFY(2, 515),
+    CID_BUDDY_LIST_STATUS_NOTIFY(515),
     /**
-     * <code>CID_BUDDY_LIST_USER_INFO_REQUEST = 516;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_BUDDY_LIST_USER_INFO_REQUEST = 516;</code>
      */
-    CID_BUDDY_LIST_USER_INFO_REQUEST(3, 516),
+    CID_BUDDY_LIST_USER_INFO_REQUEST(516),
     /**
      * <code>CID_BUDDY_LIST_USER_INFO_RESPONSE = 517;</code>
      */
-    CID_BUDDY_LIST_USER_INFO_RESPONSE(4, 517),
+    CID_BUDDY_LIST_USER_INFO_RESPONSE(517),
     /**
      * <code>CID_BUDDY_LIST_REMOVE_SESSION_REQ = 518;</code>
      */
-    CID_BUDDY_LIST_REMOVE_SESSION_REQ(5, 518),
+    CID_BUDDY_LIST_REMOVE_SESSION_REQ(518),
     /**
      * <code>CID_BUDDY_LIST_REMOVE_SESSION_RES = 519;</code>
      */
-    CID_BUDDY_LIST_REMOVE_SESSION_RES(6, 519),
+    CID_BUDDY_LIST_REMOVE_SESSION_RES(519),
     /**
      * <code>CID_BUDDY_LIST_ALL_USER_REQUEST = 520;</code>
      */
-    CID_BUDDY_LIST_ALL_USER_REQUEST(7, 520),
+    CID_BUDDY_LIST_ALL_USER_REQUEST(520),
     /**
      * <code>CID_BUDDY_LIST_ALL_USER_RESPONSE = 521;</code>
      */
-    CID_BUDDY_LIST_ALL_USER_RESPONSE(8, 521),
+    CID_BUDDY_LIST_ALL_USER_RESPONSE(521),
     /**
      * <code>CID_BUDDY_LIST_USERS_STATUS_REQUEST = 522;</code>
      */
-    CID_BUDDY_LIST_USERS_STATUS_REQUEST(9, 522),
+    CID_BUDDY_LIST_USERS_STATUS_REQUEST(522),
     /**
      * <code>CID_BUDDY_LIST_USERS_STATUS_RESPONSE = 523;</code>
      */
-    CID_BUDDY_LIST_USERS_STATUS_RESPONSE(10, 523),
+    CID_BUDDY_LIST_USERS_STATUS_RESPONSE(523),
     /**
      * <code>CID_BUDDY_LIST_CHANGE_AVATAR_REQUEST = 524;</code>
      */
-    CID_BUDDY_LIST_CHANGE_AVATAR_REQUEST(11, 524),
+    CID_BUDDY_LIST_CHANGE_AVATAR_REQUEST(524),
     /**
      * <code>CID_BUDDY_LIST_CHANGE_AVATAR_RESPONSE = 525;</code>
      */
-    CID_BUDDY_LIST_CHANGE_AVATAR_RESPONSE(12, 525),
+    CID_BUDDY_LIST_CHANGE_AVATAR_RESPONSE(525),
     /**
      * <code>CID_BUDDY_LIST_PC_LOGIN_STATUS_NOTIFY = 526;</code>
      */
-    CID_BUDDY_LIST_PC_LOGIN_STATUS_NOTIFY(13, 526),
+    CID_BUDDY_LIST_PC_LOGIN_STATUS_NOTIFY(526),
     /**
      * <code>CID_BUDDY_LIST_REMOVE_SESSION_NOTIFY = 527;</code>
      */
-    CID_BUDDY_LIST_REMOVE_SESSION_NOTIFY(14, 527),
+    CID_BUDDY_LIST_REMOVE_SESSION_NOTIFY(527),
     /**
      * <code>CID_BUDDY_LIST_DEPARTMENT_REQUEST = 528;</code>
      */
-    CID_BUDDY_LIST_DEPARTMENT_REQUEST(15, 528),
+    CID_BUDDY_LIST_DEPARTMENT_REQUEST(528),
     /**
      * <code>CID_BUDDY_LIST_DEPARTMENT_RESPONSE = 529;</code>
      */
-    CID_BUDDY_LIST_DEPARTMENT_RESPONSE(16, 529),
+    CID_BUDDY_LIST_DEPARTMENT_RESPONSE(529),
+    /**
+     * <pre>
+     *头像更改通知
+     * </pre>
+     *
+     * <code>CID_BUDDY_LIST_AVATAR_CHANGED_NOTIFY = 530;</code>
+     */
+    CID_BUDDY_LIST_AVATAR_CHANGED_NOTIFY(530),
+    /**
+     * <pre>
+     *修改个性签名请求
+     * </pre>
+     *
+     * <code>CID_BUDDY_LIST_CHANGE_SIGN_INFO_REQUEST = 531;</code>
+     */
+    CID_BUDDY_LIST_CHANGE_SIGN_INFO_REQUEST(531),
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>CID_BUDDY_LIST_CHANGE_SIGN_INFO_RESPONSE = 532;</code>
+     */
+    CID_BUDDY_LIST_CHANGE_SIGN_INFO_RESPONSE(532),
+    /**
+     * <pre>
+     *签名修改通知
+     * </pre>
+     *
+     * <code>CID_BUDDY_LIST_SIGN_INFO_CHANGED_NOTIFY = 533;</code>
+     */
+    CID_BUDDY_LIST_SIGN_INFO_CHANGED_NOTIFY(533),
     ;
 
     /**
@@ -441,17 +548,17 @@ public final class IMBaseDefine {
      */
     public static final int CID_BUDDY_LIST_RECENT_CONTACT_SESSION_RESPONSE_VALUE = 514;
     /**
-     * <code>CID_BUDDY_LIST_STATUS_NOTIFY = 515;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_BUDDY_LIST_STATUS_NOTIFY = 515;</code>
      */
     public static final int CID_BUDDY_LIST_STATUS_NOTIFY_VALUE = 515;
     /**
-     * <code>CID_BUDDY_LIST_USER_INFO_REQUEST = 516;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_BUDDY_LIST_USER_INFO_REQUEST = 516;</code>
      */
     public static final int CID_BUDDY_LIST_USER_INFO_REQUEST_VALUE = 516;
     /**
@@ -506,11 +613,52 @@ public final class IMBaseDefine {
      * <code>CID_BUDDY_LIST_DEPARTMENT_RESPONSE = 529;</code>
      */
     public static final int CID_BUDDY_LIST_DEPARTMENT_RESPONSE_VALUE = 529;
+    /**
+     * <pre>
+     *头像更改通知
+     * </pre>
+     *
+     * <code>CID_BUDDY_LIST_AVATAR_CHANGED_NOTIFY = 530;</code>
+     */
+    public static final int CID_BUDDY_LIST_AVATAR_CHANGED_NOTIFY_VALUE = 530;
+    /**
+     * <pre>
+     *修改个性签名请求
+     * </pre>
+     *
+     * <code>CID_BUDDY_LIST_CHANGE_SIGN_INFO_REQUEST = 531;</code>
+     */
+    public static final int CID_BUDDY_LIST_CHANGE_SIGN_INFO_REQUEST_VALUE = 531;
+    /**
+     * <pre>
+     * </pre>
+     *
+     * <code>CID_BUDDY_LIST_CHANGE_SIGN_INFO_RESPONSE = 532;</code>
+     */
+    public static final int CID_BUDDY_LIST_CHANGE_SIGN_INFO_RESPONSE_VALUE = 532;
+    /**
+     * <pre>
+     *签名修改通知
+     * </pre>
+     *
+     * <code>CID_BUDDY_LIST_SIGN_INFO_CHANGED_NOTIFY = 533;</code>
+     */
+    public static final int CID_BUDDY_LIST_SIGN_INFO_CHANGED_NOTIFY_VALUE = 533;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static BuddyListCmdID valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static BuddyListCmdID forNumber(int value) {
       switch (value) {
         case 513: return CID_BUDDY_LIST_RECENT_CONTACT_SESSION_REQUEST;
         case 514: return CID_BUDDY_LIST_RECENT_CONTACT_SESSION_RESPONSE;
@@ -529,6 +677,10 @@ public final class IMBaseDefine {
         case 527: return CID_BUDDY_LIST_REMOVE_SESSION_NOTIFY;
         case 528: return CID_BUDDY_LIST_DEPARTMENT_REQUEST;
         case 529: return CID_BUDDY_LIST_DEPARTMENT_RESPONSE;
+        case 530: return CID_BUDDY_LIST_AVATAR_CHANGED_NOTIFY;
+        case 531: return CID_BUDDY_LIST_CHANGE_SIGN_INFO_REQUEST;
+        case 532: return CID_BUDDY_LIST_CHANGE_SIGN_INFO_RESPONSE;
+        case 533: return CID_BUDDY_LIST_SIGN_INFO_CHANGED_NOTIFY;
         default: return null;
       }
     }
@@ -537,17 +689,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<BuddyListCmdID>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        BuddyListCmdID> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<BuddyListCmdID>() {
             public BuddyListCmdID findValueByNumber(int number) {
-              return BuddyListCmdID.valueOf(number);
+              return BuddyListCmdID.forNumber(number);
             }
           };
 
     private final int value;
 
-    private BuddyListCmdID(int index, int value) {
+    private BuddyListCmdID(int value) {
       this.value = value;
     }
 
@@ -555,164 +707,164 @@ public final class IMBaseDefine {
   }
 
   /**
-   * Protobuf enum {@code IM.BaseDefine.MessageCmdID}
-   *
    * <pre>
    * command id for msg
    * </pre>
+   *
+   * Protobuf enum {@code IM.BaseDefine.MessageCmdID}
    */
   public enum MessageCmdID
       implements com.google.protobuf.Internal.EnumLite {
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>CID_MSG_DATA = 769;</code>
-     *
+     */
+    CID_MSG_DATA(769),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_MSG_DATA(0, 769),
-    /**
+     *
      * <code>CID_MSG_DATA_ACK = 770;</code>
-     *
+     */
+    CID_MSG_DATA_ACK(770),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_MSG_DATA_ACK(1, 770),
-    /**
+     *
      * <code>CID_MSG_READ_ACK = 771;</code>
-     *
-     * <pre>
-     * </pre>
      */
-    CID_MSG_READ_ACK(2, 771),
+    CID_MSG_READ_ACK(771),
     /**
-     * <code>CID_MSG_READ_NOTIFY = 772;</code>
-     *
      * <pre>
      *  已读消息通知
      * </pre>
+     *
+     * <code>CID_MSG_READ_NOTIFY = 772;</code>
      */
-    CID_MSG_READ_NOTIFY(3, 772),
+    CID_MSG_READ_NOTIFY(772),
     /**
+     * <pre>
+     * </pre>
+     *
      * <code>CID_MSG_TIME_REQUEST = 773;</code>
-     *
+     */
+    CID_MSG_TIME_REQUEST(773),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_MSG_TIME_REQUEST(4, 773),
-    /**
+     *
      * <code>CID_MSG_TIME_RESPONSE = 774;</code>
-     *
+     */
+    CID_MSG_TIME_RESPONSE(774),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_MSG_TIME_RESPONSE(5, 774),
-    /**
+     *
      * <code>CID_MSG_UNREAD_CNT_REQUEST = 775;</code>
-     *
+     */
+    CID_MSG_UNREAD_CNT_REQUEST(775),
+    /**
      * <pre>
      * </pre>
-     */
-    CID_MSG_UNREAD_CNT_REQUEST(6, 775),
-    /**
+     *
      * <code>CID_MSG_UNREAD_CNT_RESPONSE = 776;</code>
-     *
-     * <pre>
-     * </pre>
      */
-    CID_MSG_UNREAD_CNT_RESPONSE(7, 776),
+    CID_MSG_UNREAD_CNT_RESPONSE(776),
     /**
-     * <code>CID_MSG_LIST_REQUEST = 777;</code>
-     *
      * <pre>
      *获取指定队列消息
      * </pre>
+     *
+     * <code>CID_MSG_LIST_REQUEST = 777;</code>
      */
-    CID_MSG_LIST_REQUEST(8, 777),
+    CID_MSG_LIST_REQUEST(777),
     /**
      * <code>CID_MSG_LIST_RESPONSE = 778;</code>
      */
-    CID_MSG_LIST_RESPONSE(9, 778),
+    CID_MSG_LIST_RESPONSE(778),
     /**
      * <code>CID_MSG_GET_LATEST_MSG_ID_REQ = 779;</code>
      */
-    CID_MSG_GET_LATEST_MSG_ID_REQ(10, 779),
+    CID_MSG_GET_LATEST_MSG_ID_REQ(779),
     /**
      * <code>CID_MSG_GET_LATEST_MSG_ID_RSP = 780;</code>
      */
-    CID_MSG_GET_LATEST_MSG_ID_RSP(11, 780),
+    CID_MSG_GET_LATEST_MSG_ID_RSP(780),
     /**
      * <code>CID_MSG_GET_BY_MSG_ID_REQ = 781;</code>
      */
-    CID_MSG_GET_BY_MSG_ID_REQ(12, 781),
+    CID_MSG_GET_BY_MSG_ID_REQ(781),
     /**
      * <code>CID_MSG_GET_BY_MSG_ID_RES = 782;</code>
      */
-    CID_MSG_GET_BY_MSG_ID_RES(13, 782),
+    CID_MSG_GET_BY_MSG_ID_RES(782),
     ;
 
     /**
-     * <code>CID_MSG_DATA = 769;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_MSG_DATA = 769;</code>
      */
     public static final int CID_MSG_DATA_VALUE = 769;
     /**
-     * <code>CID_MSG_DATA_ACK = 770;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_MSG_DATA_ACK = 770;</code>
      */
     public static final int CID_MSG_DATA_ACK_VALUE = 770;
     /**
-     * <code>CID_MSG_READ_ACK = 771;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_MSG_READ_ACK = 771;</code>
      */
     public static final int CID_MSG_READ_ACK_VALUE = 771;
     /**
-     * <code>CID_MSG_READ_NOTIFY = 772;</code>
-     *
      * <pre>
      *  已读消息通知
      * </pre>
+     *
+     * <code>CID_MSG_READ_NOTIFY = 772;</code>
      */
     public static final int CID_MSG_READ_NOTIFY_VALUE = 772;
     /**
-     * <code>CID_MSG_TIME_REQUEST = 773;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_MSG_TIME_REQUEST = 773;</code>
      */
     public static final int CID_MSG_TIME_REQUEST_VALUE = 773;
     /**
-     * <code>CID_MSG_TIME_RESPONSE = 774;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_MSG_TIME_RESPONSE = 774;</code>
      */
     public static final int CID_MSG_TIME_RESPONSE_VALUE = 774;
     /**
-     * <code>CID_MSG_UNREAD_CNT_REQUEST = 775;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_MSG_UNREAD_CNT_REQUEST = 775;</code>
      */
     public static final int CID_MSG_UNREAD_CNT_REQUEST_VALUE = 775;
     /**
-     * <code>CID_MSG_UNREAD_CNT_RESPONSE = 776;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_MSG_UNREAD_CNT_RESPONSE = 776;</code>
      */
     public static final int CID_MSG_UNREAD_CNT_RESPONSE_VALUE = 776;
     /**
-     * <code>CID_MSG_LIST_REQUEST = 777;</code>
-     *
      * <pre>
      *获取指定队列消息
      * </pre>
+     *
+     * <code>CID_MSG_LIST_REQUEST = 777;</code>
      */
     public static final int CID_MSG_LIST_REQUEST_VALUE = 777;
     /**
@@ -737,9 +889,19 @@ public final class IMBaseDefine {
     public static final int CID_MSG_GET_BY_MSG_ID_RES_VALUE = 782;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static MessageCmdID valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static MessageCmdID forNumber(int value) {
       switch (value) {
         case 769: return CID_MSG_DATA;
         case 770: return CID_MSG_DATA_ACK;
@@ -763,17 +925,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<MessageCmdID>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        MessageCmdID> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<MessageCmdID>() {
             public MessageCmdID findValueByNumber(int number) {
-              return MessageCmdID.valueOf(number);
+              return MessageCmdID.forNumber(number);
             }
           };
 
     private final int value;
 
-    private MessageCmdID(int index, int value) {
+    private MessageCmdID(int value) {
       this.value = value;
     }
 
@@ -781,58 +943,58 @@ public final class IMBaseDefine {
   }
 
   /**
-   * Protobuf enum {@code IM.BaseDefine.GroupCmdID}
-   *
    * <pre>
    * command id for group message
    * </pre>
+   *
+   * Protobuf enum {@code IM.BaseDefine.GroupCmdID}
    */
   public enum GroupCmdID
       implements com.google.protobuf.Internal.EnumLite {
     /**
      * <code>CID_GROUP_NORMAL_LIST_REQUEST = 1025;</code>
      */
-    CID_GROUP_NORMAL_LIST_REQUEST(0, 1025),
+    CID_GROUP_NORMAL_LIST_REQUEST(1025),
     /**
      * <code>CID_GROUP_NORMAL_LIST_RESPONSE = 1026;</code>
      */
-    CID_GROUP_NORMAL_LIST_RESPONSE(1, 1026),
+    CID_GROUP_NORMAL_LIST_RESPONSE(1026),
     /**
      * <code>CID_GROUP_INFO_REQUEST = 1027;</code>
      */
-    CID_GROUP_INFO_REQUEST(2, 1027),
+    CID_GROUP_INFO_REQUEST(1027),
     /**
      * <code>CID_GROUP_INFO_RESPONSE = 1028;</code>
      */
-    CID_GROUP_INFO_RESPONSE(3, 1028),
+    CID_GROUP_INFO_RESPONSE(1028),
     /**
      * <code>CID_GROUP_CREATE_REQUEST = 1029;</code>
      */
-    CID_GROUP_CREATE_REQUEST(4, 1029),
+    CID_GROUP_CREATE_REQUEST(1029),
     /**
      * <code>CID_GROUP_CREATE_RESPONSE = 1030;</code>
      */
-    CID_GROUP_CREATE_RESPONSE(5, 1030),
+    CID_GROUP_CREATE_RESPONSE(1030),
     /**
      * <code>CID_GROUP_CHANGE_MEMBER_REQUEST = 1031;</code>
      */
-    CID_GROUP_CHANGE_MEMBER_REQUEST(6, 1031),
+    CID_GROUP_CHANGE_MEMBER_REQUEST(1031),
     /**
      * <code>CID_GROUP_CHANGE_MEMBER_RESPONSE = 1032;</code>
      */
-    CID_GROUP_CHANGE_MEMBER_RESPONSE(7, 1032),
+    CID_GROUP_CHANGE_MEMBER_RESPONSE(1032),
     /**
      * <code>CID_GROUP_SHIELD_GROUP_REQUEST = 1033;</code>
      */
-    CID_GROUP_SHIELD_GROUP_REQUEST(8, 1033),
+    CID_GROUP_SHIELD_GROUP_REQUEST(1033),
     /**
      * <code>CID_GROUP_SHIELD_GROUP_RESPONSE = 1034;</code>
      */
-    CID_GROUP_SHIELD_GROUP_RESPONSE(9, 1034),
+    CID_GROUP_SHIELD_GROUP_RESPONSE(1034),
     /**
      * <code>CID_GROUP_CHANGE_MEMBER_NOTIFY = 1035;</code>
      */
-    CID_GROUP_CHANGE_MEMBER_NOTIFY(10, 1035),
+    CID_GROUP_CHANGE_MEMBER_NOTIFY(1035),
     ;
 
     /**
@@ -881,9 +1043,19 @@ public final class IMBaseDefine {
     public static final int CID_GROUP_CHANGE_MEMBER_NOTIFY_VALUE = 1035;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static GroupCmdID valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static GroupCmdID forNumber(int value) {
       switch (value) {
         case 1025: return CID_GROUP_NORMAL_LIST_REQUEST;
         case 1026: return CID_GROUP_NORMAL_LIST_RESPONSE;
@@ -904,17 +1076,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<GroupCmdID>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        GroupCmdID> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<GroupCmdID>() {
             public GroupCmdID findValueByNumber(int number) {
-              return GroupCmdID.valueOf(number);
+              return GroupCmdID.forNumber(number);
             }
           };
 
     private final int value;
 
-    private GroupCmdID(int index, int value) {
+    private GroupCmdID(int value) {
       this.value = value;
     }
 
@@ -927,85 +1099,85 @@ public final class IMBaseDefine {
   public enum FileCmdID
       implements com.google.protobuf.Internal.EnumLite {
     /**
-     * <code>CID_FILE_LOGIN_REQ = 1281;</code>
-     *
      * <pre>
      * sender/receiver need to login to
      * </pre>
-     */
-    CID_FILE_LOGIN_REQ(0, 1281),
-    /**
-     * <code>CID_FILE_LOGIN_RES = 1282;</code>
      *
+     * <code>CID_FILE_LOGIN_REQ = 1281;</code>
+     */
+    CID_FILE_LOGIN_REQ(1281),
+    /**
      * <pre>
      * login success or failure
      * </pre>
+     *
+     * <code>CID_FILE_LOGIN_RES = 1282;</code>
      */
-    CID_FILE_LOGIN_RES(1, 1282),
+    CID_FILE_LOGIN_RES(1282),
     /**
      * <code>CID_FILE_STATE = 1283;</code>
      */
-    CID_FILE_STATE(2, 1283),
+    CID_FILE_STATE(1283),
     /**
      * <code>CID_FILE_PULL_DATA_REQ = 1284;</code>
      */
-    CID_FILE_PULL_DATA_REQ(3, 1284),
+    CID_FILE_PULL_DATA_REQ(1284),
     /**
      * <code>CID_FILE_PULL_DATA_RSP = 1285;</code>
      */
-    CID_FILE_PULL_DATA_RSP(4, 1285),
+    CID_FILE_PULL_DATA_RSP(1285),
     /**
-     * <code>CID_FILE_REQUEST = 1286;</code>
-     *
      * <pre>
      * To MsgServer
      * </pre>
-     */
-    CID_FILE_REQUEST(5, 1286),
-    /**
-     * <code>CID_FILE_RESPONSE = 1287;</code>
      *
+     * <code>CID_FILE_REQUEST = 1286;</code>
+     */
+    CID_FILE_REQUEST(1286),
+    /**
      * <pre>
      * receiver -&gt; sender
      * </pre>
+     *
+     * <code>CID_FILE_RESPONSE = 1287;</code>
      */
-    CID_FILE_RESPONSE(6, 1287),
+    CID_FILE_RESPONSE(1287),
     /**
      * <code>CID_FILE_NOTIFY = 1288;</code>
      */
-    CID_FILE_NOTIFY(7, 1288),
+    CID_FILE_NOTIFY(1288),
     /**
      * <code>CID_FILE_HAS_OFFLINE_REQ = 1289;</code>
      */
-    CID_FILE_HAS_OFFLINE_REQ(8, 1289),
+    CID_FILE_HAS_OFFLINE_REQ(1289),
     /**
      * <code>CID_FILE_HAS_OFFLINE_RES = 1290;</code>
      */
-    CID_FILE_HAS_OFFLINE_RES(9, 1290),
+    CID_FILE_HAS_OFFLINE_RES(1290),
     /**
      * <code>CID_FILE_ADD_OFFLINE_REQ = 1291;</code>
      */
-    CID_FILE_ADD_OFFLINE_REQ(10, 1291),
+    CID_FILE_ADD_OFFLINE_REQ(1291),
     /**
      * <code>CID_FILE_DEL_OFFLINE_REQ = 1292;</code>
      */
-    CID_FILE_DEL_OFFLINE_REQ(11, 1292),
+    CID_FILE_DEL_OFFLINE_REQ(1292),
     ;
 
     /**
-     * <code>CID_FILE_LOGIN_REQ = 1281;</code>
-     *
      * <pre>
      * sender/receiver need to login to
      * </pre>
+     *
+     * <code>CID_FILE_LOGIN_REQ = 1281;</code>
      */
     public static final int CID_FILE_LOGIN_REQ_VALUE = 1281;
     /**
-     * <code>CID_FILE_LOGIN_RES = 1282;</code>
-     *
      * <pre>
      * login success or failure
      * </pre>
+     *
+     * <code>CID_FILE_LOGIN_RES = 1282;</code>
      */
     public static final int CID_FILE_LOGIN_RES_VALUE = 1282;
     /**
@@ -1021,19 +1193,19 @@ public final class IMBaseDefine {
      */
     public static final int CID_FILE_PULL_DATA_RSP_VALUE = 1285;
     /**
-     * <code>CID_FILE_REQUEST = 1286;</code>
-     *
      * <pre>
      * To MsgServer
      * </pre>
+     *
+     * <code>CID_FILE_REQUEST = 1286;</code>
      */
     public static final int CID_FILE_REQUEST_VALUE = 1286;
     /**
-     * <code>CID_FILE_RESPONSE = 1287;</code>
-     *
      * <pre>
      * receiver -&gt; sender
      * </pre>
+     *
+     * <code>CID_FILE_RESPONSE = 1287;</code>
      */
     public static final int CID_FILE_RESPONSE_VALUE = 1287;
     /**
@@ -1058,9 +1230,19 @@ public final class IMBaseDefine {
     public static final int CID_FILE_DEL_OFFLINE_REQ_VALUE = 1292;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static FileCmdID valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static FileCmdID forNumber(int value) {
       switch (value) {
         case 1281: return CID_FILE_LOGIN_REQ;
         case 1282: return CID_FILE_LOGIN_RES;
@@ -1082,17 +1264,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<FileCmdID>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        FileCmdID> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<FileCmdID>() {
             public FileCmdID findValueByNumber(int number) {
-              return FileCmdID.valueOf(number);
+              return FileCmdID.forNumber(number);
             }
           };
 
     private final int value;
 
-    private FileCmdID(int index, int value) {
+    private FileCmdID(int value) {
       this.value = value;
     }
 
@@ -1100,35 +1282,45 @@ public final class IMBaseDefine {
   }
 
   /**
-   * Protobuf enum {@code IM.BaseDefine.SwitchServiceCmdID}
-   *
    * <pre>
    * command id for switch service
    * </pre>
+   *
+   * Protobuf enum {@code IM.BaseDefine.SwitchServiceCmdID}
    */
   public enum SwitchServiceCmdID
       implements com.google.protobuf.Internal.EnumLite {
     /**
-     * <code>CID_SWITCH_P2P_CMD = 1537;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_SWITCH_P2P_CMD = 1537;</code>
      */
-    CID_SWITCH_P2P_CMD(0, 1537),
+    CID_SWITCH_P2P_CMD(1537),
     ;
 
     /**
-     * <code>CID_SWITCH_P2P_CMD = 1537;</code>
-     *
      * <pre>
      * </pre>
+     *
+     * <code>CID_SWITCH_P2P_CMD = 1537;</code>
      */
     public static final int CID_SWITCH_P2P_CMD_VALUE = 1537;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static SwitchServiceCmdID valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static SwitchServiceCmdID forNumber(int value) {
       switch (value) {
         case 1537: return CID_SWITCH_P2P_CMD;
         default: return null;
@@ -1139,17 +1331,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<SwitchServiceCmdID>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SwitchServiceCmdID> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<SwitchServiceCmdID>() {
             public SwitchServiceCmdID findValueByNumber(int number) {
-              return SwitchServiceCmdID.valueOf(number);
+              return SwitchServiceCmdID.forNumber(number);
             }
           };
 
     private final int value;
 
-    private SwitchServiceCmdID(int index, int value) {
+    private SwitchServiceCmdID(int value) {
       this.value = value;
     }
 
@@ -1164,87 +1356,87 @@ public final class IMBaseDefine {
     /**
      * <code>CID_OTHER_HEARTBEAT = 1793;</code>
      */
-    CID_OTHER_HEARTBEAT(0, 1793),
+    CID_OTHER_HEARTBEAT(1793),
     /**
      * <code>CID_OTHER_STOP_RECV_PACKET = 1794;</code>
      */
-    CID_OTHER_STOP_RECV_PACKET(1, 1794),
+    CID_OTHER_STOP_RECV_PACKET(1794),
     /**
      * <code>CID_OTHER_VALIDATE_REQ = 1795;</code>
      */
-    CID_OTHER_VALIDATE_REQ(2, 1795),
+    CID_OTHER_VALIDATE_REQ(1795),
     /**
      * <code>CID_OTHER_VALIDATE_RSP = 1796;</code>
      */
-    CID_OTHER_VALIDATE_RSP(3, 1796),
+    CID_OTHER_VALIDATE_RSP(1796),
     /**
      * <code>CID_OTHER_GET_DEVICE_TOKEN_REQ = 1797;</code>
      */
-    CID_OTHER_GET_DEVICE_TOKEN_REQ(4, 1797),
+    CID_OTHER_GET_DEVICE_TOKEN_REQ(1797),
     /**
      * <code>CID_OTHER_GET_DEVICE_TOKEN_RSP = 1798;</code>
      */
-    CID_OTHER_GET_DEVICE_TOKEN_RSP(5, 1798),
+    CID_OTHER_GET_DEVICE_TOKEN_RSP(1798),
     /**
      * <code>CID_OTHER_ROLE_SET = 1799;</code>
      */
-    CID_OTHER_ROLE_SET(6, 1799),
+    CID_OTHER_ROLE_SET(1799),
     /**
      * <code>CID_OTHER_ONLINE_USER_INFO = 1800;</code>
      */
-    CID_OTHER_ONLINE_USER_INFO(7, 1800),
+    CID_OTHER_ONLINE_USER_INFO(1800),
     /**
      * <code>CID_OTHER_MSG_SERV_INFO = 1801;</code>
      */
-    CID_OTHER_MSG_SERV_INFO(8, 1801),
+    CID_OTHER_MSG_SERV_INFO(1801),
     /**
      * <code>CID_OTHER_USER_STATUS_UPDATE = 1802;</code>
      */
-    CID_OTHER_USER_STATUS_UPDATE(9, 1802),
+    CID_OTHER_USER_STATUS_UPDATE(1802),
     /**
      * <code>CID_OTHER_USER_CNT_UPDATE = 1803;</code>
      */
-    CID_OTHER_USER_CNT_UPDATE(10, 1803),
+    CID_OTHER_USER_CNT_UPDATE(1803),
     /**
      * <code>CID_OTHER_SERVER_KICK_USER = 1805;</code>
      */
-    CID_OTHER_SERVER_KICK_USER(11, 1805),
+    CID_OTHER_SERVER_KICK_USER(1805),
     /**
      * <code>CID_OTHER_LOGIN_STATUS_NOTIFY = 1806;</code>
      */
-    CID_OTHER_LOGIN_STATUS_NOTIFY(12, 1806),
+    CID_OTHER_LOGIN_STATUS_NOTIFY(1806),
     /**
      * <code>CID_OTHER_PUSH_TO_USER_REQ = 1807;</code>
      */
-    CID_OTHER_PUSH_TO_USER_REQ(13, 1807),
+    CID_OTHER_PUSH_TO_USER_REQ(1807),
     /**
      * <code>CID_OTHER_PUSH_TO_USER_RSP = 1808;</code>
      */
-    CID_OTHER_PUSH_TO_USER_RSP(14, 1808),
+    CID_OTHER_PUSH_TO_USER_RSP(1808),
     /**
      * <code>CID_OTHER_GET_SHIELD_REQ = 1809;</code>
      */
-    CID_OTHER_GET_SHIELD_REQ(15, 1809),
+    CID_OTHER_GET_SHIELD_REQ(1809),
     /**
      * <code>CID_OTHER_GET_SHIELD_RSP = 1810;</code>
      */
-    CID_OTHER_GET_SHIELD_RSP(16, 1810),
+    CID_OTHER_GET_SHIELD_RSP(1810),
     /**
      * <code>CID_OTHER_FILE_TRANSFER_REQ = 1841;</code>
      */
-    CID_OTHER_FILE_TRANSFER_REQ(17, 1841),
+    CID_OTHER_FILE_TRANSFER_REQ(1841),
     /**
      * <code>CID_OTHER_FILE_TRANSFER_RSP = 1842;</code>
      */
-    CID_OTHER_FILE_TRANSFER_RSP(18, 1842),
+    CID_OTHER_FILE_TRANSFER_RSP(1842),
     /**
      * <code>CID_OTHER_FILE_SERVER_IP_REQ = 1843;</code>
      */
-    CID_OTHER_FILE_SERVER_IP_REQ(19, 1843),
+    CID_OTHER_FILE_SERVER_IP_REQ(1843),
     /**
      * <code>CID_OTHER_FILE_SERVER_IP_RSP = 1844;</code>
      */
-    CID_OTHER_FILE_SERVER_IP_RSP(20, 1844),
+    CID_OTHER_FILE_SERVER_IP_RSP(1844),
     ;
 
     /**
@@ -1333,9 +1525,19 @@ public final class IMBaseDefine {
     public static final int CID_OTHER_FILE_SERVER_IP_RSP_VALUE = 1844;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static OtherCmdID valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static OtherCmdID forNumber(int value) {
       switch (value) {
         case 1793: return CID_OTHER_HEARTBEAT;
         case 1794: return CID_OTHER_STOP_RECV_PACKET;
@@ -1366,95 +1568,21 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<OtherCmdID>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        OtherCmdID> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<OtherCmdID>() {
             public OtherCmdID findValueByNumber(int number) {
-              return OtherCmdID.valueOf(number);
+              return OtherCmdID.forNumber(number);
             }
           };
 
     private final int value;
 
-    private OtherCmdID(int index, int value) {
+    private OtherCmdID(int value) {
       this.value = value;
     }
 
     // @@protoc_insertion_point(enum_scope:IM.BaseDefine.OtherCmdID)
-  }
-
-  /**
-   * Protobuf enum {@code IM.BaseDefine.InternalCmdID}
-   */
-  public enum InternalCmdID
-      implements com.google.protobuf.Internal.EnumLite {
-    /**
-     * <code>CID_INTERNAL_SYNC_AUTH_INFO_REQ = 2049;</code>
-     */
-    CID_INTERNAL_SYNC_AUTH_INFO_REQ(0, 2049),
-    /**
-     * <code>CID_INTERNAL_SYNC_AUTH_INFO_RSP = 2050;</code>
-     */
-    CID_INTERNAL_SYNC_AUTH_INFO_RSP(1, 2050),
-    /**
-     * <code>CID_INTERNAL_USER_ID_BY_NICK_NAME_REQ = 2051;</code>
-     */
-    CID_INTERNAL_USER_ID_BY_NICK_NAME_REQ(2, 2051),
-    /**
-     * <code>CID_INTERNAL_USER_ID_BY_NICK_NAME_RSP = 2052;</code>
-     */
-    CID_INTERNAL_USER_ID_BY_NICK_NAME_RSP(3, 2052),
-    ;
-
-    /**
-     * <code>CID_INTERNAL_SYNC_AUTH_INFO_REQ = 2049;</code>
-     */
-    public static final int CID_INTERNAL_SYNC_AUTH_INFO_REQ_VALUE = 2049;
-    /**
-     * <code>CID_INTERNAL_SYNC_AUTH_INFO_RSP = 2050;</code>
-     */
-    public static final int CID_INTERNAL_SYNC_AUTH_INFO_RSP_VALUE = 2050;
-    /**
-     * <code>CID_INTERNAL_USER_ID_BY_NICK_NAME_REQ = 2051;</code>
-     */
-    public static final int CID_INTERNAL_USER_ID_BY_NICK_NAME_REQ_VALUE = 2051;
-    /**
-     * <code>CID_INTERNAL_USER_ID_BY_NICK_NAME_RSP = 2052;</code>
-     */
-    public static final int CID_INTERNAL_USER_ID_BY_NICK_NAME_RSP_VALUE = 2052;
-
-
-    public final int getNumber() { return value; }
-
-    public static InternalCmdID valueOf(int value) {
-      switch (value) {
-        case 2049: return CID_INTERNAL_SYNC_AUTH_INFO_REQ;
-        case 2050: return CID_INTERNAL_SYNC_AUTH_INFO_RSP;
-        case 2051: return CID_INTERNAL_USER_ID_BY_NICK_NAME_REQ;
-        case 2052: return CID_INTERNAL_USER_ID_BY_NICK_NAME_RSP;
-        default: return null;
-      }
-    }
-
-    public static com.google.protobuf.Internal.EnumLiteMap<InternalCmdID>
-        internalGetValueMap() {
-      return internalValueMap;
-    }
-    private static com.google.protobuf.Internal.EnumLiteMap<InternalCmdID>
-        internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<InternalCmdID>() {
-            public InternalCmdID findValueByNumber(int number) {
-              return InternalCmdID.valueOf(number);
-            }
-          };
-
-    private final int value;
-
-    private InternalCmdID(int index, int value) {
-      this.value = value;
-    }
-
-    // @@protoc_insertion_point(enum_scope:IM.BaseDefine.InternalCmdID)
   }
 
   /**
@@ -1465,35 +1593,35 @@ public final class IMBaseDefine {
     /**
      * <code>REFUSE_REASON_NONE = 0;</code>
      */
-    REFUSE_REASON_NONE(0, 0),
+    REFUSE_REASON_NONE(0),
     /**
      * <code>REFUSE_REASON_NO_MSG_SERVER = 1;</code>
      */
-    REFUSE_REASON_NO_MSG_SERVER(1, 1),
+    REFUSE_REASON_NO_MSG_SERVER(1),
     /**
      * <code>REFUSE_REASON_MSG_SERVER_FULL = 2;</code>
      */
-    REFUSE_REASON_MSG_SERVER_FULL(2, 2),
+    REFUSE_REASON_MSG_SERVER_FULL(2),
     /**
      * <code>REFUSE_REASON_NO_DB_SERVER = 3;</code>
      */
-    REFUSE_REASON_NO_DB_SERVER(3, 3),
+    REFUSE_REASON_NO_DB_SERVER(3),
     /**
      * <code>REFUSE_REASON_NO_LOGIN_SERVER = 4;</code>
      */
-    REFUSE_REASON_NO_LOGIN_SERVER(4, 4),
+    REFUSE_REASON_NO_LOGIN_SERVER(4),
     /**
      * <code>REFUSE_REASON_NO_ROUTE_SERVER = 5;</code>
      */
-    REFUSE_REASON_NO_ROUTE_SERVER(5, 5),
+    REFUSE_REASON_NO_ROUTE_SERVER(5),
     /**
      * <code>REFUSE_REASON_DB_VALIDATE_FAILED = 6;</code>
      */
-    REFUSE_REASON_DB_VALIDATE_FAILED(6, 6),
+    REFUSE_REASON_DB_VALIDATE_FAILED(6),
     /**
      * <code>REFUSE_REASON_VERSION_TOO_OLD = 7;</code>
      */
-    REFUSE_REASON_VERSION_TOO_OLD(7, 7),
+    REFUSE_REASON_VERSION_TOO_OLD(7),
     ;
 
     /**
@@ -1530,9 +1658,19 @@ public final class IMBaseDefine {
     public static final int REFUSE_REASON_VERSION_TOO_OLD_VALUE = 7;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static ResultType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ResultType forNumber(int value) {
       switch (value) {
         case 0: return REFUSE_REASON_NONE;
         case 1: return REFUSE_REASON_NO_MSG_SERVER;
@@ -1550,17 +1688,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<ResultType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ResultType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<ResultType>() {
             public ResultType findValueByNumber(int number) {
-              return ResultType.valueOf(number);
+              return ResultType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private ResultType(int index, int value) {
+    private ResultType(int value) {
       this.value = value;
     }
 
@@ -1575,11 +1713,11 @@ public final class IMBaseDefine {
     /**
      * <code>KICK_REASON_DUPLICATE_USER = 1;</code>
      */
-    KICK_REASON_DUPLICATE_USER(0, 1),
+    KICK_REASON_DUPLICATE_USER(1),
     /**
      * <code>KICK_REASON_MOBILE_KICK = 2;</code>
      */
-    KICK_REASON_MOBILE_KICK(1, 2),
+    KICK_REASON_MOBILE_KICK(2),
     ;
 
     /**
@@ -1592,9 +1730,19 @@ public final class IMBaseDefine {
     public static final int KICK_REASON_MOBILE_KICK_VALUE = 2;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static KickReasonType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static KickReasonType forNumber(int value) {
       switch (value) {
         case 1: return KICK_REASON_DUPLICATE_USER;
         case 2: return KICK_REASON_MOBILE_KICK;
@@ -1606,17 +1754,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<KickReasonType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        KickReasonType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<KickReasonType>() {
             public KickReasonType findValueByNumber(int number) {
-              return KickReasonType.valueOf(number);
+              return KickReasonType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private KickReasonType(int index, int value) {
+    private KickReasonType(int value) {
       this.value = value;
     }
 
@@ -1631,7 +1779,7 @@ public final class IMBaseDefine {
     /**
      * <code>ONLINE_LIST_TYPE_FRIEND_LIST = 1;</code>
      */
-    ONLINE_LIST_TYPE_FRIEND_LIST(0, 1),
+    ONLINE_LIST_TYPE_FRIEND_LIST(1),
     ;
 
     /**
@@ -1640,9 +1788,19 @@ public final class IMBaseDefine {
     public static final int ONLINE_LIST_TYPE_FRIEND_LIST_VALUE = 1;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static OnlineListType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static OnlineListType forNumber(int value) {
       switch (value) {
         case 1: return ONLINE_LIST_TYPE_FRIEND_LIST;
         default: return null;
@@ -1653,17 +1811,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<OnlineListType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        OnlineListType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<OnlineListType>() {
             public OnlineListType findValueByNumber(int number) {
-              return OnlineListType.valueOf(number);
+              return OnlineListType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private OnlineListType(int index, int value) {
+    private OnlineListType(int value) {
       this.value = value;
     }
 
@@ -1678,15 +1836,15 @@ public final class IMBaseDefine {
     /**
      * <code>USER_STATUS_ONLINE = 1;</code>
      */
-    USER_STATUS_ONLINE(0, 1),
+    USER_STATUS_ONLINE(1),
     /**
      * <code>USER_STATUS_OFFLINE = 2;</code>
      */
-    USER_STATUS_OFFLINE(1, 2),
+    USER_STATUS_OFFLINE(2),
     /**
      * <code>USER_STATUS_LEAVE = 3;</code>
      */
-    USER_STATUS_LEAVE(2, 3),
+    USER_STATUS_LEAVE(3),
     ;
 
     /**
@@ -1703,9 +1861,19 @@ public final class IMBaseDefine {
     public static final int USER_STATUS_LEAVE_VALUE = 3;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static UserStatType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static UserStatType forNumber(int value) {
       switch (value) {
         case 1: return USER_STATUS_ONLINE;
         case 2: return USER_STATUS_OFFLINE;
@@ -1718,17 +1886,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<UserStatType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        UserStatType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<UserStatType>() {
             public UserStatType findValueByNumber(int number) {
-              return UserStatType.valueOf(number);
+              return UserStatType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private UserStatType(int index, int value) {
+    private UserStatType(int value) {
       this.value = value;
     }
 
@@ -1741,44 +1909,54 @@ public final class IMBaseDefine {
   public enum SessionType
       implements com.google.protobuf.Internal.EnumLite {
     /**
-     * <code>SESSION_TYPE_SINGLE = 1;</code>
-     *
      * <pre>
      *单个用户会话
      * </pre>
-     */
-    SESSION_TYPE_SINGLE(0, 1),
-    /**
-     * <code>SESSION_TYPE_GROUP = 2;</code>
      *
+     * <code>SESSION_TYPE_SINGLE = 1;</code>
+     */
+    SESSION_TYPE_SINGLE(1),
+    /**
      * <pre>
      *群会话
      * </pre>
+     *
+     * <code>SESSION_TYPE_GROUP = 2;</code>
      */
-    SESSION_TYPE_GROUP(1, 2),
+    SESSION_TYPE_GROUP(2),
     ;
 
     /**
-     * <code>SESSION_TYPE_SINGLE = 1;</code>
-     *
      * <pre>
      *单个用户会话
      * </pre>
+     *
+     * <code>SESSION_TYPE_SINGLE = 1;</code>
      */
     public static final int SESSION_TYPE_SINGLE_VALUE = 1;
     /**
-     * <code>SESSION_TYPE_GROUP = 2;</code>
-     *
      * <pre>
      *群会话
      * </pre>
+     *
+     * <code>SESSION_TYPE_GROUP = 2;</code>
      */
     public static final int SESSION_TYPE_GROUP_VALUE = 2;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static SessionType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static SessionType forNumber(int value) {
       switch (value) {
         case 1: return SESSION_TYPE_SINGLE;
         case 2: return SESSION_TYPE_GROUP;
@@ -1790,17 +1968,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<SessionType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SessionType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<SessionType>() {
             public SessionType findValueByNumber(int number) {
-              return SessionType.valueOf(number);
+              return SessionType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private SessionType(int index, int value) {
+    private SessionType(int value) {
       this.value = value;
     }
 
@@ -1815,19 +1993,19 @@ public final class IMBaseDefine {
     /**
      * <code>MSG_TYPE_SINGLE_TEXT = 1;</code>
      */
-    MSG_TYPE_SINGLE_TEXT(0, 1),
+    MSG_TYPE_SINGLE_TEXT(1),
     /**
      * <code>MSG_TYPE_SINGLE_AUDIO = 2;</code>
      */
-    MSG_TYPE_SINGLE_AUDIO(1, 2),
+    MSG_TYPE_SINGLE_AUDIO(2),
     /**
      * <code>MSG_TYPE_GROUP_TEXT = 17;</code>
      */
-    MSG_TYPE_GROUP_TEXT(2, 17),
+    MSG_TYPE_GROUP_TEXT(17),
     /**
      * <code>MSG_TYPE_GROUP_AUDIO = 18;</code>
      */
-    MSG_TYPE_GROUP_AUDIO(3, 18),
+    MSG_TYPE_GROUP_AUDIO(18),
     ;
 
     /**
@@ -1848,9 +2026,19 @@ public final class IMBaseDefine {
     public static final int MSG_TYPE_GROUP_AUDIO_VALUE = 18;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static MsgType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static MsgType forNumber(int value) {
       switch (value) {
         case 1: return MSG_TYPE_SINGLE_TEXT;
         case 2: return MSG_TYPE_SINGLE_AUDIO;
@@ -1864,17 +2052,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<MsgType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        MsgType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<MsgType>() {
             public MsgType findValueByNumber(int number) {
-              return MsgType.valueOf(number);
+              return MsgType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private MsgType(int index, int value) {
+    private MsgType(int value) {
       this.value = value;
     }
 
@@ -1889,19 +2077,19 @@ public final class IMBaseDefine {
     /**
      * <code>CLIENT_TYPE_WINDOWS = 1;</code>
      */
-    CLIENT_TYPE_WINDOWS(0, 1),
+    CLIENT_TYPE_WINDOWS(1),
     /**
      * <code>CLIENT_TYPE_MAC = 2;</code>
      */
-    CLIENT_TYPE_MAC(1, 2),
+    CLIENT_TYPE_MAC(2),
     /**
      * <code>CLIENT_TYPE_IOS = 17;</code>
      */
-    CLIENT_TYPE_IOS(2, 17),
+    CLIENT_TYPE_IOS(17),
     /**
      * <code>CLIENT_TYPE_ANDROID = 18;</code>
      */
-    CLIENT_TYPE_ANDROID(3, 18),
+    CLIENT_TYPE_ANDROID(18),
     ;
 
     /**
@@ -1922,9 +2110,19 @@ public final class IMBaseDefine {
     public static final int CLIENT_TYPE_ANDROID_VALUE = 18;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static ClientType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ClientType forNumber(int value) {
       switch (value) {
         case 1: return CLIENT_TYPE_WINDOWS;
         case 2: return CLIENT_TYPE_MAC;
@@ -1938,17 +2136,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<ClientType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ClientType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<ClientType>() {
             public ClientType findValueByNumber(int number) {
-              return ClientType.valueOf(number);
+              return ClientType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private ClientType(int index, int value) {
+    private ClientType(int value) {
       this.value = value;
     }
 
@@ -1963,11 +2161,11 @@ public final class IMBaseDefine {
     /**
      * <code>GROUP_TYPE_NORMAL = 1;</code>
      */
-    GROUP_TYPE_NORMAL(0, 1),
+    GROUP_TYPE_NORMAL(1),
     /**
      * <code>GROUP_TYPE_TMP = 2;</code>
      */
-    GROUP_TYPE_TMP(1, 2),
+    GROUP_TYPE_TMP(2),
     ;
 
     /**
@@ -1980,9 +2178,19 @@ public final class IMBaseDefine {
     public static final int GROUP_TYPE_TMP_VALUE = 2;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static GroupType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static GroupType forNumber(int value) {
       switch (value) {
         case 1: return GROUP_TYPE_NORMAL;
         case 2: return GROUP_TYPE_TMP;
@@ -1994,17 +2202,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<GroupType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        GroupType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<GroupType>() {
             public GroupType findValueByNumber(int number) {
-              return GroupType.valueOf(number);
+              return GroupType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private GroupType(int index, int value) {
+    private GroupType(int value) {
       this.value = value;
     }
 
@@ -2019,11 +2227,11 @@ public final class IMBaseDefine {
     /**
      * <code>GROUP_MODIFY_TYPE_ADD = 1;</code>
      */
-    GROUP_MODIFY_TYPE_ADD(0, 1),
+    GROUP_MODIFY_TYPE_ADD(1),
     /**
      * <code>GROUP_MODIFY_TYPE_DEL = 2;</code>
      */
-    GROUP_MODIFY_TYPE_DEL(1, 2),
+    GROUP_MODIFY_TYPE_DEL(2),
     ;
 
     /**
@@ -2036,9 +2244,19 @@ public final class IMBaseDefine {
     public static final int GROUP_MODIFY_TYPE_DEL_VALUE = 2;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static GroupModifyType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static GroupModifyType forNumber(int value) {
       switch (value) {
         case 1: return GROUP_MODIFY_TYPE_ADD;
         case 2: return GROUP_MODIFY_TYPE_DEL;
@@ -2050,17 +2268,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<GroupModifyType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        GroupModifyType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<GroupModifyType>() {
             public GroupModifyType findValueByNumber(int number) {
-              return GroupModifyType.valueOf(number);
+              return GroupModifyType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private GroupModifyType(int index, int value) {
+    private GroupModifyType(int value) {
       this.value = value;
     }
 
@@ -2068,18 +2286,18 @@ public final class IMBaseDefine {
   }
 
   /**
-   * Protobuf enum {@code IM.BaseDefine.FileType}
+   * Protobuf enum {@code IM.BaseDefine.TransferFileType}
    */
-  public enum FileType
+  public enum TransferFileType
       implements com.google.protobuf.Internal.EnumLite {
     /**
      * <code>FILE_TYPE_ONLINE = 1;</code>
      */
-    FILE_TYPE_ONLINE(0, 1),
+    FILE_TYPE_ONLINE(1),
     /**
      * <code>FILE_TYPE_OFFLINE = 2;</code>
      */
-    FILE_TYPE_OFFLINE(1, 2),
+    FILE_TYPE_OFFLINE(2),
     ;
 
     /**
@@ -2092,9 +2310,19 @@ public final class IMBaseDefine {
     public static final int FILE_TYPE_OFFLINE_VALUE = 2;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
-    public static FileType valueOf(int value) {
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
+    public static TransferFileType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static TransferFileType forNumber(int value) {
       switch (value) {
         case 1: return FILE_TYPE_ONLINE;
         case 2: return FILE_TYPE_OFFLINE;
@@ -2102,25 +2330,25 @@ public final class IMBaseDefine {
       }
     }
 
-    public static com.google.protobuf.Internal.EnumLiteMap<FileType>
+    public static com.google.protobuf.Internal.EnumLiteMap<TransferFileType>
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<FileType>
-        internalValueMap =
-          new com.google.protobuf.Internal.EnumLiteMap<FileType>() {
-            public FileType findValueByNumber(int number) {
-              return FileType.valueOf(number);
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        TransferFileType> internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<TransferFileType>() {
+            public TransferFileType findValueByNumber(int number) {
+              return TransferFileType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private FileType(int index, int value) {
+    private TransferFileType(int value) {
       this.value = value;
     }
 
-    // @@protoc_insertion_point(enum_scope:IM.BaseDefine.FileType)
+    // @@protoc_insertion_point(enum_scope:IM.BaseDefine.TransferFileType)
   }
 
   /**
@@ -2131,19 +2359,19 @@ public final class IMBaseDefine {
     /**
      * <code>CLIENT_FILE_PEER_READY = 0;</code>
      */
-    CLIENT_FILE_PEER_READY(0, 0),
+    CLIENT_FILE_PEER_READY(0),
     /**
      * <code>CLIENT_FILE_CANCEL = 1;</code>
      */
-    CLIENT_FILE_CANCEL(1, 1),
+    CLIENT_FILE_CANCEL(1),
     /**
      * <code>CLIENT_FILE_REFUSE = 2;</code>
      */
-    CLIENT_FILE_REFUSE(2, 2),
+    CLIENT_FILE_REFUSE(2),
     /**
      * <code>CLIENT_FILE_DONE = 3;</code>
      */
-    CLIENT_FILE_DONE(3, 3),
+    CLIENT_FILE_DONE(3),
     ;
 
     /**
@@ -2164,9 +2392,19 @@ public final class IMBaseDefine {
     public static final int CLIENT_FILE_DONE_VALUE = 3;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static ClientFileState valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ClientFileState forNumber(int value) {
       switch (value) {
         case 0: return CLIENT_FILE_PEER_READY;
         case 1: return CLIENT_FILE_CANCEL;
@@ -2180,17 +2418,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<ClientFileState>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ClientFileState> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<ClientFileState>() {
             public ClientFileState findValueByNumber(int number) {
-              return ClientFileState.valueOf(number);
+              return ClientFileState.forNumber(number);
             }
           };
 
     private final int value;
 
-    private ClientFileState(int index, int value) {
+    private ClientFileState(int value) {
       this.value = value;
     }
 
@@ -2205,19 +2443,19 @@ public final class IMBaseDefine {
     /**
      * <code>CLIENT_REALTIME_SENDER = 1;</code>
      */
-    CLIENT_REALTIME_SENDER(0, 1),
+    CLIENT_REALTIME_SENDER(1),
     /**
      * <code>CLIENT_REALTIME_RECVER = 2;</code>
      */
-    CLIENT_REALTIME_RECVER(1, 2),
+    CLIENT_REALTIME_RECVER(2),
     /**
      * <code>CLIENT_OFFLINE_UPLOAD = 3;</code>
      */
-    CLIENT_OFFLINE_UPLOAD(2, 3),
+    CLIENT_OFFLINE_UPLOAD(3),
     /**
      * <code>CLIENT_OFFLINE_DOWNLOAD = 4;</code>
      */
-    CLIENT_OFFLINE_DOWNLOAD(3, 4),
+    CLIENT_OFFLINE_DOWNLOAD(4),
     ;
 
     /**
@@ -2238,9 +2476,19 @@ public final class IMBaseDefine {
     public static final int CLIENT_OFFLINE_DOWNLOAD_VALUE = 4;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static ClientFileRole valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static ClientFileRole forNumber(int value) {
       switch (value) {
         case 1: return CLIENT_REALTIME_SENDER;
         case 2: return CLIENT_REALTIME_RECVER;
@@ -2254,17 +2502,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<ClientFileRole>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        ClientFileRole> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<ClientFileRole>() {
             public ClientFileRole findValueByNumber(int number) {
-              return ClientFileRole.valueOf(number);
+              return ClientFileRole.forNumber(number);
             }
           };
 
     private final int value;
 
-    private ClientFileRole(int index, int value) {
+    private ClientFileRole(int value) {
       this.value = value;
     }
 
@@ -2279,55 +2527,55 @@ public final class IMBaseDefine {
     /**
      * <code>FILE_SERVER_ERRNO_OK = 0;</code>
      */
-    FILE_SERVER_ERRNO_OK(0, 0),
+    FILE_SERVER_ERRNO_OK(0),
     /**
      * <code>FILE_SERVER_ERRNO_CREATE_TASK_ID_ERROR = 1;</code>
      */
-    FILE_SERVER_ERRNO_CREATE_TASK_ID_ERROR(1, 1),
+    FILE_SERVER_ERRNO_CREATE_TASK_ID_ERROR(1),
     /**
      * <code>FILE_SERVER_ERRNO_CREATE_TASK_ERROR = 2;</code>
      */
-    FILE_SERVER_ERRNO_CREATE_TASK_ERROR(2, 2),
+    FILE_SERVER_ERRNO_CREATE_TASK_ERROR(2),
     /**
      * <code>FILE_SERVER_ERRNO_LOGIN_INVALID_TOKEN = 3;</code>
      */
-    FILE_SERVER_ERRNO_LOGIN_INVALID_TOKEN(3, 3),
+    FILE_SERVER_ERRNO_LOGIN_INVALID_TOKEN(3),
     /**
      * <code>FILE_SERVER_ERRNO_INVALID_USER_FOR_TASK = 4;</code>
      */
-    FILE_SERVER_ERRNO_INVALID_USER_FOR_TASK(4, 4),
+    FILE_SERVER_ERRNO_INVALID_USER_FOR_TASK(4),
     /**
      * <code>FILE_SERVER_ERRNO_PULL_DATA_WITH_INVALID_TASK_ID = 5;</code>
      */
-    FILE_SERVER_ERRNO_PULL_DATA_WITH_INVALID_TASK_ID(5, 5),
+    FILE_SERVER_ERRNO_PULL_DATA_WITH_INVALID_TASK_ID(5),
     /**
      * <code>FILE_SERVER_ERRNO_PULL_DATA_ILLIEAGE_USER = 6;</code>
      */
-    FILE_SERVER_ERRNO_PULL_DATA_ILLIEAGE_USER(6, 6),
+    FILE_SERVER_ERRNO_PULL_DATA_ILLIEAGE_USER(6),
     /**
      * <code>FILE_SERVER_ERRNO_PULL_DATA_MKDIR_ERROR = 7;</code>
      */
-    FILE_SERVER_ERRNO_PULL_DATA_MKDIR_ERROR(7, 7),
+    FILE_SERVER_ERRNO_PULL_DATA_MKDIR_ERROR(7),
     /**
      * <code>FILE_SERVER_ERRNO_PULL_DATA_OPEN_FILE_ERROR = 8;</code>
      */
-    FILE_SERVER_ERRNO_PULL_DATA_OPEN_FILE_ERROR(8, 8),
+    FILE_SERVER_ERRNO_PULL_DATA_OPEN_FILE_ERROR(8),
     /**
      * <code>FILE_SERVER_ERRNO_PULL_DATA_READ_FILE_HEADER_ERROR = 9;</code>
      */
-    FILE_SERVER_ERRNO_PULL_DATA_READ_FILE_HEADER_ERROR(9, 9),
+    FILE_SERVER_ERRNO_PULL_DATA_READ_FILE_HEADER_ERROR(9),
     /**
      * <code>FILE_SERVER_ERRNO_PULL_DATA_ALLOC_MEM_ERROR = 10;</code>
      */
-    FILE_SERVER_ERRNO_PULL_DATA_ALLOC_MEM_ERROR(10, 10),
+    FILE_SERVER_ERRNO_PULL_DATA_ALLOC_MEM_ERROR(10),
     /**
      * <code>FILE_SERVER_ERRNO_PULL_DATA_SEEK_OFFSET_ERROR = 11;</code>
      */
-    FILE_SERVER_ERRNO_PULL_DATA_SEEK_OFFSET_ERROR(11, 11),
+    FILE_SERVER_ERRNO_PULL_DATA_SEEK_OFFSET_ERROR(11),
     /**
      * <code>FILE_SERVER_ERRNO_PULL_DATA_FINISHED = 12;</code>
      */
-    FILE_SERVER_ERRNO_PULL_DATA_FINISHED(12, 12),
+    FILE_SERVER_ERRNO_PULL_DATA_FINISHED(12),
     ;
 
     /**
@@ -2384,9 +2632,19 @@ public final class IMBaseDefine {
     public static final int FILE_SERVER_ERRNO_PULL_DATA_FINISHED_VALUE = 12;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static FileServerError valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static FileServerError forNumber(int value) {
       switch (value) {
         case 0: return FILE_SERVER_ERRNO_OK;
         case 1: return FILE_SERVER_ERRNO_CREATE_TASK_ID_ERROR;
@@ -2409,17 +2667,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<FileServerError>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        FileServerError> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<FileServerError>() {
             public FileServerError findValueByNumber(int number) {
-              return FileServerError.valueOf(number);
+              return FileServerError.forNumber(number);
             }
           };
 
     private final int value;
 
-    private FileServerError(int index, int value) {
+    private FileServerError(int value) {
       this.value = value;
     }
 
@@ -2434,11 +2692,11 @@ public final class IMBaseDefine {
     /**
      * <code>SESSION_STATUS_OK = 0;</code>
      */
-    SESSION_STATUS_OK(0, 0),
+    SESSION_STATUS_OK(0),
     /**
      * <code>SESSION_STATUS_DELETE = 1;</code>
      */
-    SESSION_STATUS_DELETE(1, 1),
+    SESSION_STATUS_DELETE(1),
     ;
 
     /**
@@ -2451,9 +2709,19 @@ public final class IMBaseDefine {
     public static final int SESSION_STATUS_DELETE_VALUE = 1;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static SessionStatusType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static SessionStatusType forNumber(int value) {
       switch (value) {
         case 0: return SESSION_STATUS_OK;
         case 1: return SESSION_STATUS_DELETE;
@@ -2465,17 +2733,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<SessionStatusType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        SessionStatusType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<SessionStatusType>() {
             public SessionStatusType findValueByNumber(int number) {
-              return SessionStatusType.valueOf(number);
+              return SessionStatusType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private SessionStatusType(int index, int value) {
+    private SessionStatusType(int value) {
       this.value = value;
     }
 
@@ -2490,11 +2758,11 @@ public final class IMBaseDefine {
     /**
      * <code>DEPT_STATUS_OK = 0;</code>
      */
-    DEPT_STATUS_OK(0, 0),
+    DEPT_STATUS_OK(0),
     /**
      * <code>DEPT_STATUS_DELETE = 1;</code>
      */
-    DEPT_STATUS_DELETE(1, 1),
+    DEPT_STATUS_DELETE(1),
     ;
 
     /**
@@ -2507,9 +2775,19 @@ public final class IMBaseDefine {
     public static final int DEPT_STATUS_DELETE_VALUE = 1;
 
 
-    public final int getNumber() { return value; }
+    public final int getNumber() {
+      return value;
+    }
 
+    /**
+     * @deprecated Use {@link #forNumber(int)} instead.
+     */
+    @java.lang.Deprecated
     public static DepartmentStatusType valueOf(int value) {
+      return forNumber(value);
+    }
+
+    public static DepartmentStatusType forNumber(int value) {
       switch (value) {
         case 0: return DEPT_STATUS_OK;
         case 1: return DEPT_STATUS_DELETE;
@@ -2521,17 +2799,17 @@ public final class IMBaseDefine {
         internalGetValueMap() {
       return internalValueMap;
     }
-    private static com.google.protobuf.Internal.EnumLiteMap<DepartmentStatusType>
-        internalValueMap =
+    private static final com.google.protobuf.Internal.EnumLiteMap<
+        DepartmentStatusType> internalValueMap =
           new com.google.protobuf.Internal.EnumLiteMap<DepartmentStatusType>() {
             public DepartmentStatusType findValueByNumber(int number) {
-              return DepartmentStatusType.valueOf(number);
+              return DepartmentStatusType.forNumber(number);
             }
           };
 
     private final int value;
 
-    private DepartmentStatusType(int index, int value) {
+    private DepartmentStatusType(int value) {
       this.value = value;
     }
 
@@ -2568,100 +2846,17 @@ public final class IMBaseDefine {
   /**
    * Protobuf type {@code IM.BaseDefine.IpAddr}
    */
-  public static final class IpAddr extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class IpAddr extends
+      com.google.protobuf.GeneratedMessageLite<
+          IpAddr, IpAddr.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.IpAddr)
       IpAddrOrBuilder {
-    // Use IpAddr.newBuilder() to construct.
-    private IpAddr(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private IpAddr() {
+      ip_ = "";
     }
-    private IpAddr(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final IpAddr defaultInstance;
-    public static IpAddr getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public IpAddr getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private IpAddr(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              ip_ = bs;
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              port_ = input.readUInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<IpAddr> PARSER =
-        new com.google.protobuf.AbstractParser<IpAddr>() {
-      public IpAddr parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new IpAddr(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<IpAddr> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int IP_FIELD_NUMBER = 1;
-    private java.lang.Object ip_;
+    private java.lang.String ip_;
     /**
      * <code>required string ip = 1;</code>
      */
@@ -2672,34 +2867,43 @@ public final class IMBaseDefine {
      * <code>required string ip = 1;</code>
      */
     public java.lang.String getIp() {
-      java.lang.Object ref = ip_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          ip_ = s;
-        }
-        return s;
-      }
+      return ip_;
     }
     /**
      * <code>required string ip = 1;</code>
      */
     public com.google.protobuf.ByteString
         getIpBytes() {
-      java.lang.Object ref = ip_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        ip_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(ip_);
+    }
+    /**
+     * <code>required string ip = 1;</code>
+     */
+    private void setIp(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+      ip_ = value;
+    }
+    /**
+     * <code>required string ip = 1;</code>
+     */
+    private void clearIp() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      ip_ = getDefaultInstance().getIp();
+    }
+    /**
+     * <code>required string ip = 1;</code>
+     */
+    private void setIpBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+      ip_ = value.toStringUtf8();
     }
 
     public static final int PORT_FIELD_NUMBER = 2;
@@ -2716,42 +2920,32 @@ public final class IMBaseDefine {
     public int getPort() {
       return port_;
     }
-
-    private void initFields() {
-      ip_ = "";
-      port_ = 0;
+    /**
+     * <code>required uint32 port = 2;</code>
+     */
+    private void setPort(int value) {
+      bitField0_ |= 0x00000002;
+      port_ = value;
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasIp()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPort()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <code>required uint32 port = 2;</code>
+     */
+    private void clearPort() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      port_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getIpBytes());
+        output.writeString(1, getIp());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeUInt32(2, port_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -2759,251 +2953,146 @@ public final class IMBaseDefine {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getIpBytes());
+          .computeStringSize(1, getIp());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, port_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.IpAddr prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.IpAddr prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.IpAddr}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.IpAddr, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.IpAddr, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.IpAddr)
         com.mogujie.tt.protobuf.IMBaseDefine.IpAddrOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.IpAddr.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        ip_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        port_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.IpAddr getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.IpAddr.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.IpAddr build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.IpAddr result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.IpAddr buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.IpAddr result = new com.mogujie.tt.protobuf.IMBaseDefine.IpAddr(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.ip_ = ip_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.port_ = port_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.IpAddr other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.IpAddr.getDefaultInstance()) return this;
-        if (other.hasIp()) {
-          bitField0_ |= 0x00000001;
-          ip_ = other.ip_;
-          
-        }
-        if (other.hasPort()) {
-          setPort(other.getPort());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasIp()) {
-          
-          return false;
-        }
-        if (!hasPort()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.IpAddr parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.IpAddr) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.lang.Object ip_ = "";
       /**
        * <code>required string ip = 1;</code>
        */
       public boolean hasIp() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasIp();
       }
       /**
        * <code>required string ip = 1;</code>
        */
       public java.lang.String getIp() {
-        java.lang.Object ref = ip_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            ip_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getIp();
       }
       /**
        * <code>required string ip = 1;</code>
        */
       public com.google.protobuf.ByteString
           getIpBytes() {
-        java.lang.Object ref = ip_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          ip_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getIpBytes();
       }
       /**
        * <code>required string ip = 1;</code>
        */
       public Builder setIp(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        ip_ = value;
-        
+        copyOnWrite();
+        instance.setIp(value);
         return this;
       }
       /**
        * <code>required string ip = 1;</code>
        */
       public Builder clearIp() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        ip_ = getDefaultInstance().getIp();
-        
+        copyOnWrite();
+        instance.clearIp();
         return this;
       }
       /**
@@ -3011,56 +3100,172 @@ public final class IMBaseDefine {
        */
       public Builder setIpBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        ip_ = value;
-        
+        copyOnWrite();
+        instance.setIpBytes(value);
         return this;
       }
 
-      private int port_ ;
       /**
        * <code>required uint32 port = 2;</code>
        */
       public boolean hasPort() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasPort();
       }
       /**
        * <code>required uint32 port = 2;</code>
        */
       public int getPort() {
-        return port_;
+        return instance.getPort();
       }
       /**
        * <code>required uint32 port = 2;</code>
        */
       public Builder setPort(int value) {
-        bitField0_ |= 0x00000002;
-        port_ = value;
-        
+        copyOnWrite();
+        instance.setPort(value);
         return this;
       }
       /**
        * <code>required uint32 port = 2;</code>
        */
       public Builder clearPort() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        port_ = 0;
-        
+        copyOnWrite();
+        instance.clearPort();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.IpAddr)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.IpAddr();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new IpAddr(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasIp()) {
+            return null;
+          }
+          if (!hasPort()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.IpAddr other = (com.mogujie.tt.protobuf.IMBaseDefine.IpAddr) arg1;
+          ip_ = visitor.visitString(
+              hasIp(), ip_,
+              other.hasIp(), other.ip_);
+          port_ = visitor.visitInt(
+              hasPort(), port_,
+              other.hasPort(), other.port_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000001;
+                  ip_ = s;
+                  break;
+                }
+                case 16: {
+                  bitField0_ |= 0x00000002;
+                  port_ = input.readUInt32();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.IpAddr.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.IpAddr)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.IpAddr DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new IpAddr();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.IpAddr getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<IpAddr> PARSER;
+
+    public static com.google.protobuf.Parser<IpAddr> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface UserInfoOrBuilder extends
@@ -3077,44 +3282,44 @@ public final class IMBaseDefine {
     int getUserId();
 
     /**
-     * <code>required uint32 user_gender = 2;</code>
-     *
      * <pre>
      *&#47;/ 用户性别,男：1 女：2 人妖/外星人：0
      * </pre>
+     *
+     * <code>required uint32 user_gender = 2;</code>
      */
     boolean hasUserGender();
     /**
-     * <code>required uint32 user_gender = 2;</code>
-     *
      * <pre>
      *&#47;/ 用户性别,男：1 女：2 人妖/外星人：0
      * </pre>
+     *
+     * <code>required uint32 user_gender = 2;</code>
      */
     int getUserGender();
 
     /**
-     * <code>required string user_nick_name = 3;</code>
-     *
      * <pre>
      *绰号
      * </pre>
+     *
+     * <code>required string user_nick_name = 3;</code>
      */
     boolean hasUserNickName();
     /**
-     * <code>required string user_nick_name = 3;</code>
-     *
      * <pre>
      *绰号
      * </pre>
+     *
+     * <code>required string user_nick_name = 3;</code>
      */
     java.lang.String getUserNickName();
     /**
-     * <code>required string user_nick_name = 3;</code>
-     *
      * <pre>
      *绰号
      * </pre>
+     *
+     * <code>required string user_nick_name = 3;</code>
      */
     com.google.protobuf.ByteString
         getUserNickNameBytes();
@@ -3157,27 +3362,27 @@ public final class IMBaseDefine {
         getEmailBytes();
 
     /**
-     * <code>required string user_real_name = 7;</code>
-     *
      * <pre>
      *真名
      * </pre>
+     *
+     * <code>required string user_real_name = 7;</code>
      */
     boolean hasUserRealName();
     /**
-     * <code>required string user_real_name = 7;</code>
-     *
      * <pre>
      *真名
      * </pre>
+     *
+     * <code>required string user_real_name = 7;</code>
      */
     java.lang.String getUserRealName();
     /**
-     * <code>required string user_real_name = 7;</code>
-     *
      * <pre>
      *真名
      * </pre>
+     *
+     * <code>required string user_real_name = 7;</code>
      */
     com.google.protobuf.ByteString
         getUserRealNameBytes();
@@ -3197,187 +3402,79 @@ public final class IMBaseDefine {
         getUserTelBytes();
 
     /**
-     * <code>required string user_domain = 9;</code>
-     *
      * <pre>
      *用户名拼音
      * </pre>
+     *
+     * <code>required string user_domain = 9;</code>
      */
     boolean hasUserDomain();
     /**
-     * <code>required string user_domain = 9;</code>
-     *
      * <pre>
      *用户名拼音
      * </pre>
+     *
+     * <code>required string user_domain = 9;</code>
      */
     java.lang.String getUserDomain();
     /**
-     * <code>required string user_domain = 9;</code>
-     *
      * <pre>
      *用户名拼音
      * </pre>
+     *
+     * <code>required string user_domain = 9;</code>
      */
     com.google.protobuf.ByteString
         getUserDomainBytes();
 
     /**
-     * <code>required uint32 status = 10;</code>
-     *
      * <pre>
      *0:在职  1. 试用期 2. 正式 3. 离职 4.实习,  client端需要对“离职”进行不展示
      * </pre>
+     *
+     * <code>required uint32 status = 10;</code>
      */
     boolean hasStatus();
     /**
-     * <code>required uint32 status = 10;</code>
-     *
      * <pre>
      *0:在职  1. 试用期 2. 正式 3. 离职 4.实习,  client端需要对“离职”进行不展示
      * </pre>
+     *
+     * <code>required uint32 status = 10;</code>
      */
     int getStatus();
+
+    /**
+     * <code>optional string sign_info = 11;</code>
+     */
+    boolean hasSignInfo();
+    /**
+     * <code>optional string sign_info = 11;</code>
+     */
+    java.lang.String getSignInfo();
+    /**
+     * <code>optional string sign_info = 11;</code>
+     */
+    com.google.protobuf.ByteString
+        getSignInfoBytes();
   }
   /**
    * Protobuf type {@code IM.BaseDefine.UserInfo}
    */
-  public static final class UserInfo extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class UserInfo extends
+      com.google.protobuf.GeneratedMessageLite<
+          UserInfo, UserInfo.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.UserInfo)
       UserInfoOrBuilder {
-    // Use UserInfo.newBuilder() to construct.
-    private UserInfo(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private UserInfo() {
+      userNickName_ = "";
+      avatarUrl_ = "";
+      email_ = "";
+      userRealName_ = "";
+      userTel_ = "";
+      userDomain_ = "";
+      signInfo_ = "";
     }
-    private UserInfo(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final UserInfo defaultInstance;
-    public static UserInfo getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public UserInfo getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private UserInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              userId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              userGender_ = input.readUInt32();
-              break;
-            }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              userNickName_ = bs;
-              break;
-            }
-            case 34: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000008;
-              avatarUrl_ = bs;
-              break;
-            }
-            case 40: {
-              bitField0_ |= 0x00000010;
-              departmentId_ = input.readUInt32();
-              break;
-            }
-            case 50: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000020;
-              email_ = bs;
-              break;
-            }
-            case 58: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000040;
-              userRealName_ = bs;
-              break;
-            }
-            case 66: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000080;
-              userTel_ = bs;
-              break;
-            }
-            case 74: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000100;
-              userDomain_ = bs;
-              break;
-            }
-            case 80: {
-              bitField0_ |= 0x00000200;
-              status_ = input.readUInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<UserInfo> PARSER =
-        new com.google.protobuf.AbstractParser<UserInfo>() {
-      public UserInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UserInfo(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UserInfo> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int USER_ID_FIELD_NUMBER = 1;
     private int userId_;
@@ -3393,86 +3490,143 @@ public final class IMBaseDefine {
     public int getUserId() {
       return userId_;
     }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void setUserId(int value) {
+      bitField0_ |= 0x00000001;
+      userId_ = value;
+    }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void clearUserId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      userId_ = 0;
+    }
 
     public static final int USER_GENDER_FIELD_NUMBER = 2;
     private int userGender_;
     /**
-     * <code>required uint32 user_gender = 2;</code>
-     *
      * <pre>
      *&#47;/ 用户性别,男：1 女：2 人妖/外星人：0
      * </pre>
+     *
+     * <code>required uint32 user_gender = 2;</code>
      */
     public boolean hasUserGender() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required uint32 user_gender = 2;</code>
-     *
      * <pre>
      *&#47;/ 用户性别,男：1 女：2 人妖/外星人：0
      * </pre>
+     *
+     * <code>required uint32 user_gender = 2;</code>
      */
     public int getUserGender() {
       return userGender_;
     }
+    /**
+     * <pre>
+     *&#47;/ 用户性别,男：1 女：2 人妖/外星人：0
+     * </pre>
+     *
+     * <code>required uint32 user_gender = 2;</code>
+     */
+    private void setUserGender(int value) {
+      bitField0_ |= 0x00000002;
+      userGender_ = value;
+    }
+    /**
+     * <pre>
+     *&#47;/ 用户性别,男：1 女：2 人妖/外星人：0
+     * </pre>
+     *
+     * <code>required uint32 user_gender = 2;</code>
+     */
+    private void clearUserGender() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      userGender_ = 0;
+    }
 
     public static final int USER_NICK_NAME_FIELD_NUMBER = 3;
-    private java.lang.Object userNickName_;
+    private java.lang.String userNickName_;
     /**
-     * <code>required string user_nick_name = 3;</code>
-     *
      * <pre>
      *绰号
      * </pre>
+     *
+     * <code>required string user_nick_name = 3;</code>
      */
     public boolean hasUserNickName() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required string user_nick_name = 3;</code>
-     *
      * <pre>
      *绰号
      * </pre>
+     *
+     * <code>required string user_nick_name = 3;</code>
      */
     public java.lang.String getUserNickName() {
-      java.lang.Object ref = userNickName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          userNickName_ = s;
-        }
-        return s;
-      }
+      return userNickName_;
     }
     /**
-     * <code>required string user_nick_name = 3;</code>
-     *
      * <pre>
      *绰号
      * </pre>
+     *
+     * <code>required string user_nick_name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getUserNickNameBytes() {
-      java.lang.Object ref = userNickName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        userNickName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(userNickName_);
+    }
+    /**
+     * <pre>
+     *绰号
+     * </pre>
+     *
+     * <code>required string user_nick_name = 3;</code>
+     */
+    private void setUserNickName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+      userNickName_ = value;
+    }
+    /**
+     * <pre>
+     *绰号
+     * </pre>
+     *
+     * <code>required string user_nick_name = 3;</code>
+     */
+    private void clearUserNickName() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      userNickName_ = getDefaultInstance().getUserNickName();
+    }
+    /**
+     * <pre>
+     *绰号
+     * </pre>
+     *
+     * <code>required string user_nick_name = 3;</code>
+     */
+    private void setUserNickNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+      userNickName_ = value.toStringUtf8();
     }
 
     public static final int AVATAR_URL_FIELD_NUMBER = 4;
-    private java.lang.Object avatarUrl_;
+    private java.lang.String avatarUrl_;
     /**
      * <code>required string avatar_url = 4;</code>
      */
@@ -3483,34 +3637,43 @@ public final class IMBaseDefine {
      * <code>required string avatar_url = 4;</code>
      */
     public java.lang.String getAvatarUrl() {
-      java.lang.Object ref = avatarUrl_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          avatarUrl_ = s;
-        }
-        return s;
-      }
+      return avatarUrl_;
     }
     /**
      * <code>required string avatar_url = 4;</code>
      */
     public com.google.protobuf.ByteString
         getAvatarUrlBytes() {
-      java.lang.Object ref = avatarUrl_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        avatarUrl_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(avatarUrl_);
+    }
+    /**
+     * <code>required string avatar_url = 4;</code>
+     */
+    private void setAvatarUrl(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+      avatarUrl_ = value;
+    }
+    /**
+     * <code>required string avatar_url = 4;</code>
+     */
+    private void clearAvatarUrl() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      avatarUrl_ = getDefaultInstance().getAvatarUrl();
+    }
+    /**
+     * <code>required string avatar_url = 4;</code>
+     */
+    private void setAvatarUrlBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+      avatarUrl_ = value.toStringUtf8();
     }
 
     public static final int DEPARTMENT_ID_FIELD_NUMBER = 5;
@@ -3527,9 +3690,23 @@ public final class IMBaseDefine {
     public int getDepartmentId() {
       return departmentId_;
     }
+    /**
+     * <code>required uint32 department_id = 5;</code>
+     */
+    private void setDepartmentId(int value) {
+      bitField0_ |= 0x00000010;
+      departmentId_ = value;
+    }
+    /**
+     * <code>required uint32 department_id = 5;</code>
+     */
+    private void clearDepartmentId() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      departmentId_ = 0;
+    }
 
     public static final int EMAIL_FIELD_NUMBER = 6;
-    private java.lang.Object email_;
+    private java.lang.String email_;
     /**
      * <code>required string email = 6;</code>
      */
@@ -3540,92 +3717,122 @@ public final class IMBaseDefine {
      * <code>required string email = 6;</code>
      */
     public java.lang.String getEmail() {
-      java.lang.Object ref = email_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          email_ = s;
-        }
-        return s;
-      }
+      return email_;
     }
     /**
      * <code>required string email = 6;</code>
      */
     public com.google.protobuf.ByteString
         getEmailBytes() {
-      java.lang.Object ref = email_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        email_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(email_);
+    }
+    /**
+     * <code>required string email = 6;</code>
+     */
+    private void setEmail(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+      email_ = value;
+    }
+    /**
+     * <code>required string email = 6;</code>
+     */
+    private void clearEmail() {
+      bitField0_ = (bitField0_ & ~0x00000020);
+      email_ = getDefaultInstance().getEmail();
+    }
+    /**
+     * <code>required string email = 6;</code>
+     */
+    private void setEmailBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+      email_ = value.toStringUtf8();
     }
 
     public static final int USER_REAL_NAME_FIELD_NUMBER = 7;
-    private java.lang.Object userRealName_;
+    private java.lang.String userRealName_;
     /**
-     * <code>required string user_real_name = 7;</code>
-     *
      * <pre>
      *真名
      * </pre>
+     *
+     * <code>required string user_real_name = 7;</code>
      */
     public boolean hasUserRealName() {
       return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>required string user_real_name = 7;</code>
-     *
      * <pre>
      *真名
      * </pre>
+     *
+     * <code>required string user_real_name = 7;</code>
      */
     public java.lang.String getUserRealName() {
-      java.lang.Object ref = userRealName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          userRealName_ = s;
-        }
-        return s;
-      }
+      return userRealName_;
     }
     /**
-     * <code>required string user_real_name = 7;</code>
-     *
      * <pre>
      *真名
      * </pre>
+     *
+     * <code>required string user_real_name = 7;</code>
      */
     public com.google.protobuf.ByteString
         getUserRealNameBytes() {
-      java.lang.Object ref = userRealName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        userRealName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(userRealName_);
+    }
+    /**
+     * <pre>
+     *真名
+     * </pre>
+     *
+     * <code>required string user_real_name = 7;</code>
+     */
+    private void setUserRealName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000040;
+      userRealName_ = value;
+    }
+    /**
+     * <pre>
+     *真名
+     * </pre>
+     *
+     * <code>required string user_real_name = 7;</code>
+     */
+    private void clearUserRealName() {
+      bitField0_ = (bitField0_ & ~0x00000040);
+      userRealName_ = getDefaultInstance().getUserRealName();
+    }
+    /**
+     * <pre>
+     *真名
+     * </pre>
+     *
+     * <code>required string user_real_name = 7;</code>
+     */
+    private void setUserRealNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000040;
+      userRealName_ = value.toStringUtf8();
     }
 
     public static final int USER_TEL_FIELD_NUMBER = 8;
-    private java.lang.Object userTel_;
+    private java.lang.String userTel_;
     /**
      * <code>required string user_tel = 8;</code>
      */
@@ -3636,178 +3843,218 @@ public final class IMBaseDefine {
      * <code>required string user_tel = 8;</code>
      */
     public java.lang.String getUserTel() {
-      java.lang.Object ref = userTel_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          userTel_ = s;
-        }
-        return s;
-      }
+      return userTel_;
     }
     /**
      * <code>required string user_tel = 8;</code>
      */
     public com.google.protobuf.ByteString
         getUserTelBytes() {
-      java.lang.Object ref = userTel_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        userTel_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(userTel_);
+    }
+    /**
+     * <code>required string user_tel = 8;</code>
+     */
+    private void setUserTel(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+      userTel_ = value;
+    }
+    /**
+     * <code>required string user_tel = 8;</code>
+     */
+    private void clearUserTel() {
+      bitField0_ = (bitField0_ & ~0x00000080);
+      userTel_ = getDefaultInstance().getUserTel();
+    }
+    /**
+     * <code>required string user_tel = 8;</code>
+     */
+    private void setUserTelBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000080;
+      userTel_ = value.toStringUtf8();
     }
 
     public static final int USER_DOMAIN_FIELD_NUMBER = 9;
-    private java.lang.Object userDomain_;
+    private java.lang.String userDomain_;
     /**
-     * <code>required string user_domain = 9;</code>
-     *
      * <pre>
      *用户名拼音
      * </pre>
+     *
+     * <code>required string user_domain = 9;</code>
      */
     public boolean hasUserDomain() {
       return ((bitField0_ & 0x00000100) == 0x00000100);
     }
     /**
-     * <code>required string user_domain = 9;</code>
-     *
      * <pre>
      *用户名拼音
      * </pre>
+     *
+     * <code>required string user_domain = 9;</code>
      */
     public java.lang.String getUserDomain() {
-      java.lang.Object ref = userDomain_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          userDomain_ = s;
-        }
-        return s;
-      }
+      return userDomain_;
     }
     /**
-     * <code>required string user_domain = 9;</code>
-     *
      * <pre>
      *用户名拼音
      * </pre>
+     *
+     * <code>required string user_domain = 9;</code>
      */
     public com.google.protobuf.ByteString
         getUserDomainBytes() {
-      java.lang.Object ref = userDomain_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        userDomain_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(userDomain_);
+    }
+    /**
+     * <pre>
+     *用户名拼音
+     * </pre>
+     *
+     * <code>required string user_domain = 9;</code>
+     */
+    private void setUserDomain(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000100;
+      userDomain_ = value;
+    }
+    /**
+     * <pre>
+     *用户名拼音
+     * </pre>
+     *
+     * <code>required string user_domain = 9;</code>
+     */
+    private void clearUserDomain() {
+      bitField0_ = (bitField0_ & ~0x00000100);
+      userDomain_ = getDefaultInstance().getUserDomain();
+    }
+    /**
+     * <pre>
+     *用户名拼音
+     * </pre>
+     *
+     * <code>required string user_domain = 9;</code>
+     */
+    private void setUserDomainBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000100;
+      userDomain_ = value.toStringUtf8();
     }
 
     public static final int STATUS_FIELD_NUMBER = 10;
     private int status_;
     /**
-     * <code>required uint32 status = 10;</code>
-     *
      * <pre>
      *0:在职  1. 试用期 2. 正式 3. 离职 4.实习,  client端需要对“离职”进行不展示
      * </pre>
+     *
+     * <code>required uint32 status = 10;</code>
      */
     public boolean hasStatus() {
       return ((bitField0_ & 0x00000200) == 0x00000200);
     }
     /**
-     * <code>required uint32 status = 10;</code>
-     *
      * <pre>
      *0:在职  1. 试用期 2. 正式 3. 离职 4.实习,  client端需要对“离职”进行不展示
      * </pre>
+     *
+     * <code>required uint32 status = 10;</code>
      */
     public int getStatus() {
       return status_;
     }
-
-    private void initFields() {
-      userId_ = 0;
-      userGender_ = 0;
-      userNickName_ = "";
-      avatarUrl_ = "";
-      departmentId_ = 0;
-      email_ = "";
-      userRealName_ = "";
-      userTel_ = "";
-      userDomain_ = "";
+    /**
+     * <pre>
+     *0:在职  1. 试用期 2. 正式 3. 离职 4.实习,  client端需要对“离职”进行不展示
+     * </pre>
+     *
+     * <code>required uint32 status = 10;</code>
+     */
+    private void setStatus(int value) {
+      bitField0_ |= 0x00000200;
+      status_ = value;
+    }
+    /**
+     * <pre>
+     *0:在职  1. 试用期 2. 正式 3. 离职 4.实习,  client端需要对“离职”进行不展示
+     * </pre>
+     *
+     * <code>required uint32 status = 10;</code>
+     */
+    private void clearStatus() {
+      bitField0_ = (bitField0_ & ~0x00000200);
       status_ = 0;
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
 
-      if (!hasUserId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasUserGender()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasUserNickName()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasAvatarUrl()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasDepartmentId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasEmail()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasUserRealName()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasUserTel()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasUserDomain()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasStatus()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    public static final int SIGN_INFO_FIELD_NUMBER = 11;
+    private java.lang.String signInfo_;
+    /**
+     * <code>optional string sign_info = 11;</code>
+     */
+    public boolean hasSignInfo() {
+      return ((bitField0_ & 0x00000400) == 0x00000400);
+    }
+    /**
+     * <code>optional string sign_info = 11;</code>
+     */
+    public java.lang.String getSignInfo() {
+      return signInfo_;
+    }
+    /**
+     * <code>optional string sign_info = 11;</code>
+     */
+    public com.google.protobuf.ByteString
+        getSignInfoBytes() {
+      return com.google.protobuf.ByteString.copyFromUtf8(signInfo_);
+    }
+    /**
+     * <code>optional string sign_info = 11;</code>
+     */
+    private void setSignInfo(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000400;
+      signInfo_ = value;
+    }
+    /**
+     * <code>optional string sign_info = 11;</code>
+     */
+    private void clearSignInfo() {
+      bitField0_ = (bitField0_ & ~0x00000400);
+      signInfo_ = getDefaultInstance().getSignInfo();
+    }
+    /**
+     * <code>optional string sign_info = 11;</code>
+     */
+    private void setSignInfoBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000400;
+      signInfo_ = value.toStringUtf8();
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, userId_);
       }
@@ -3815,33 +4062,35 @@ public final class IMBaseDefine {
         output.writeUInt32(2, userGender_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getUserNickNameBytes());
+        output.writeString(3, getUserNickName());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getAvatarUrlBytes());
+        output.writeString(4, getAvatarUrl());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeUInt32(5, departmentId_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBytes(6, getEmailBytes());
+        output.writeString(6, getEmail());
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeBytes(7, getUserRealNameBytes());
+        output.writeString(7, getUserRealName());
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
-        output.writeBytes(8, getUserTelBytes());
+        output.writeString(8, getUserTel());
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
-        output.writeBytes(9, getUserDomainBytes());
+        output.writeString(9, getUserDomain());
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         output.writeUInt32(10, status_);
       }
-      output.writeRawBytes(unknownFields);
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        output.writeString(11, getSignInfo());
+      }
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -3857,11 +4106,11 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getUserNickNameBytes());
+          .computeStringSize(3, getUserNickName());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getAvatarUrlBytes());
+          .computeStringSize(4, getAvatarUrl());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
@@ -3869,557 +4118,306 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, getEmailBytes());
+          .computeStringSize(6, getEmail());
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(7, getUserRealNameBytes());
+          .computeStringSize(7, getUserRealName());
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(8, getUserTelBytes());
+          .computeStringSize(8, getUserTel());
       }
       if (((bitField0_ & 0x00000100) == 0x00000100)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(9, getUserDomainBytes());
+          .computeStringSize(9, getUserDomain());
       }
       if (((bitField0_ & 0x00000200) == 0x00000200)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(10, status_);
       }
-      size += unknownFields.size();
+      if (((bitField0_ & 0x00000400) == 0x00000400)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeStringSize(11, getSignInfo());
+      }
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.UserInfo prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.UserInfo prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.UserInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.UserInfo, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.UserInfo, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.UserInfo)
         com.mogujie.tt.protobuf.IMBaseDefine.UserInfoOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.UserInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        userId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        userGender_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        userNickName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        avatarUrl_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
-        departmentId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        email_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
-        userRealName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000040);
-        userTel_ = "";
-        bitField0_ = (bitField0_ & ~0x00000080);
-        userDomain_ = "";
-        bitField0_ = (bitField0_ & ~0x00000100);
-        status_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000200);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UserInfo getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.UserInfo.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UserInfo build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.UserInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UserInfo buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.UserInfo result = new com.mogujie.tt.protobuf.IMBaseDefine.UserInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.userId_ = userId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.userGender_ = userGender_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.userNickName_ = userNickName_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.avatarUrl_ = avatarUrl_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.departmentId_ = departmentId_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.email_ = email_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.userRealName_ = userRealName_;
-        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
-          to_bitField0_ |= 0x00000080;
-        }
-        result.userTel_ = userTel_;
-        if (((from_bitField0_ & 0x00000100) == 0x00000100)) {
-          to_bitField0_ |= 0x00000100;
-        }
-        result.userDomain_ = userDomain_;
-        if (((from_bitField0_ & 0x00000200) == 0x00000200)) {
-          to_bitField0_ |= 0x00000200;
-        }
-        result.status_ = status_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.UserInfo other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.UserInfo.getDefaultInstance()) return this;
-        if (other.hasUserId()) {
-          setUserId(other.getUserId());
-        }
-        if (other.hasUserGender()) {
-          setUserGender(other.getUserGender());
-        }
-        if (other.hasUserNickName()) {
-          bitField0_ |= 0x00000004;
-          userNickName_ = other.userNickName_;
-          
-        }
-        if (other.hasAvatarUrl()) {
-          bitField0_ |= 0x00000008;
-          avatarUrl_ = other.avatarUrl_;
-          
-        }
-        if (other.hasDepartmentId()) {
-          setDepartmentId(other.getDepartmentId());
-        }
-        if (other.hasEmail()) {
-          bitField0_ |= 0x00000020;
-          email_ = other.email_;
-          
-        }
-        if (other.hasUserRealName()) {
-          bitField0_ |= 0x00000040;
-          userRealName_ = other.userRealName_;
-          
-        }
-        if (other.hasUserTel()) {
-          bitField0_ |= 0x00000080;
-          userTel_ = other.userTel_;
-          
-        }
-        if (other.hasUserDomain()) {
-          bitField0_ |= 0x00000100;
-          userDomain_ = other.userDomain_;
-          
-        }
-        if (other.hasStatus()) {
-          setStatus(other.getStatus());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasUserId()) {
-          
-          return false;
-        }
-        if (!hasUserGender()) {
-          
-          return false;
-        }
-        if (!hasUserNickName()) {
-          
-          return false;
-        }
-        if (!hasAvatarUrl()) {
-          
-          return false;
-        }
-        if (!hasDepartmentId()) {
-          
-          return false;
-        }
-        if (!hasEmail()) {
-          
-          return false;
-        }
-        if (!hasUserRealName()) {
-          
-          return false;
-        }
-        if (!hasUserTel()) {
-          
-          return false;
-        }
-        if (!hasUserDomain()) {
-          
-          return false;
-        }
-        if (!hasStatus()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.UserInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.UserInfo) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int userId_ ;
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public boolean hasUserId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasUserId();
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public int getUserId() {
-        return userId_;
+        return instance.getUserId();
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public Builder setUserId(int value) {
-        bitField0_ |= 0x00000001;
-        userId_ = value;
-        
+        copyOnWrite();
+        instance.setUserId(value);
         return this;
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public Builder clearUserId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        userId_ = 0;
-        
+        copyOnWrite();
+        instance.clearUserId();
         return this;
       }
 
-      private int userGender_ ;
       /**
-       * <code>required uint32 user_gender = 2;</code>
-       *
        * <pre>
        *&#47;/ 用户性别,男：1 女：2 人妖/外星人：0
        * </pre>
+       *
+       * <code>required uint32 user_gender = 2;</code>
        */
       public boolean hasUserGender() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasUserGender();
       }
       /**
-       * <code>required uint32 user_gender = 2;</code>
-       *
        * <pre>
        *&#47;/ 用户性别,男：1 女：2 人妖/外星人：0
        * </pre>
+       *
+       * <code>required uint32 user_gender = 2;</code>
        */
       public int getUserGender() {
-        return userGender_;
+        return instance.getUserGender();
       }
       /**
-       * <code>required uint32 user_gender = 2;</code>
-       *
        * <pre>
        *&#47;/ 用户性别,男：1 女：2 人妖/外星人：0
        * </pre>
+       *
+       * <code>required uint32 user_gender = 2;</code>
        */
       public Builder setUserGender(int value) {
-        bitField0_ |= 0x00000002;
-        userGender_ = value;
-        
+        copyOnWrite();
+        instance.setUserGender(value);
         return this;
       }
       /**
-       * <code>required uint32 user_gender = 2;</code>
-       *
        * <pre>
        *&#47;/ 用户性别,男：1 女：2 人妖/外星人：0
        * </pre>
+       *
+       * <code>required uint32 user_gender = 2;</code>
        */
       public Builder clearUserGender() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        userGender_ = 0;
-        
+        copyOnWrite();
+        instance.clearUserGender();
         return this;
       }
 
-      private java.lang.Object userNickName_ = "";
       /**
-       * <code>required string user_nick_name = 3;</code>
-       *
        * <pre>
        *绰号
        * </pre>
+       *
+       * <code>required string user_nick_name = 3;</code>
        */
       public boolean hasUserNickName() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return instance.hasUserNickName();
       }
       /**
-       * <code>required string user_nick_name = 3;</code>
-       *
        * <pre>
        *绰号
        * </pre>
+       *
+       * <code>required string user_nick_name = 3;</code>
        */
       public java.lang.String getUserNickName() {
-        java.lang.Object ref = userNickName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            userNickName_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getUserNickName();
       }
       /**
-       * <code>required string user_nick_name = 3;</code>
-       *
        * <pre>
        *绰号
        * </pre>
+       *
+       * <code>required string user_nick_name = 3;</code>
        */
       public com.google.protobuf.ByteString
           getUserNickNameBytes() {
-        java.lang.Object ref = userNickName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          userNickName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getUserNickNameBytes();
       }
       /**
-       * <code>required string user_nick_name = 3;</code>
-       *
        * <pre>
        *绰号
        * </pre>
+       *
+       * <code>required string user_nick_name = 3;</code>
        */
       public Builder setUserNickName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        userNickName_ = value;
-        
+        copyOnWrite();
+        instance.setUserNickName(value);
         return this;
       }
       /**
-       * <code>required string user_nick_name = 3;</code>
-       *
        * <pre>
        *绰号
        * </pre>
+       *
+       * <code>required string user_nick_name = 3;</code>
        */
       public Builder clearUserNickName() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        userNickName_ = getDefaultInstance().getUserNickName();
-        
+        copyOnWrite();
+        instance.clearUserNickName();
         return this;
       }
       /**
-       * <code>required string user_nick_name = 3;</code>
-       *
        * <pre>
        *绰号
        * </pre>
+       *
+       * <code>required string user_nick_name = 3;</code>
        */
       public Builder setUserNickNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        userNickName_ = value;
-        
+        copyOnWrite();
+        instance.setUserNickNameBytes(value);
         return this;
       }
 
-      private java.lang.Object avatarUrl_ = "";
       /**
        * <code>required string avatar_url = 4;</code>
        */
       public boolean hasAvatarUrl() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return instance.hasAvatarUrl();
       }
       /**
        * <code>required string avatar_url = 4;</code>
        */
       public java.lang.String getAvatarUrl() {
-        java.lang.Object ref = avatarUrl_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            avatarUrl_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getAvatarUrl();
       }
       /**
        * <code>required string avatar_url = 4;</code>
        */
       public com.google.protobuf.ByteString
           getAvatarUrlBytes() {
-        java.lang.Object ref = avatarUrl_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          avatarUrl_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getAvatarUrlBytes();
       }
       /**
        * <code>required string avatar_url = 4;</code>
        */
       public Builder setAvatarUrl(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        avatarUrl_ = value;
-        
+        copyOnWrite();
+        instance.setAvatarUrl(value);
         return this;
       }
       /**
        * <code>required string avatar_url = 4;</code>
        */
       public Builder clearAvatarUrl() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        avatarUrl_ = getDefaultInstance().getAvatarUrl();
-        
+        copyOnWrite();
+        instance.clearAvatarUrl();
         return this;
       }
       /**
@@ -4427,107 +4425,74 @@ public final class IMBaseDefine {
        */
       public Builder setAvatarUrlBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        avatarUrl_ = value;
-        
+        copyOnWrite();
+        instance.setAvatarUrlBytes(value);
         return this;
       }
 
-      private int departmentId_ ;
       /**
        * <code>required uint32 department_id = 5;</code>
        */
       public boolean hasDepartmentId() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return instance.hasDepartmentId();
       }
       /**
        * <code>required uint32 department_id = 5;</code>
        */
       public int getDepartmentId() {
-        return departmentId_;
+        return instance.getDepartmentId();
       }
       /**
        * <code>required uint32 department_id = 5;</code>
        */
       public Builder setDepartmentId(int value) {
-        bitField0_ |= 0x00000010;
-        departmentId_ = value;
-        
+        copyOnWrite();
+        instance.setDepartmentId(value);
         return this;
       }
       /**
        * <code>required uint32 department_id = 5;</code>
        */
       public Builder clearDepartmentId() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        departmentId_ = 0;
-        
+        copyOnWrite();
+        instance.clearDepartmentId();
         return this;
       }
 
-      private java.lang.Object email_ = "";
       /**
        * <code>required string email = 6;</code>
        */
       public boolean hasEmail() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return instance.hasEmail();
       }
       /**
        * <code>required string email = 6;</code>
        */
       public java.lang.String getEmail() {
-        java.lang.Object ref = email_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            email_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getEmail();
       }
       /**
        * <code>required string email = 6;</code>
        */
       public com.google.protobuf.ByteString
           getEmailBytes() {
-        java.lang.Object ref = email_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          email_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getEmailBytes();
       }
       /**
        * <code>required string email = 6;</code>
        */
       public Builder setEmail(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
-        email_ = value;
-        
+        copyOnWrite();
+        instance.setEmail(value);
         return this;
       }
       /**
        * <code>required string email = 6;</code>
        */
       public Builder clearEmail() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        email_ = getDefaultInstance().getEmail();
-        
+        copyOnWrite();
+        instance.clearEmail();
         return this;
       }
       /**
@@ -4535,175 +4500,115 @@ public final class IMBaseDefine {
        */
       public Builder setEmailBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
-        email_ = value;
-        
+        copyOnWrite();
+        instance.setEmailBytes(value);
         return this;
       }
 
-      private java.lang.Object userRealName_ = "";
       /**
-       * <code>required string user_real_name = 7;</code>
-       *
        * <pre>
        *真名
        * </pre>
+       *
+       * <code>required string user_real_name = 7;</code>
        */
       public boolean hasUserRealName() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return instance.hasUserRealName();
       }
       /**
-       * <code>required string user_real_name = 7;</code>
-       *
        * <pre>
        *真名
        * </pre>
+       *
+       * <code>required string user_real_name = 7;</code>
        */
       public java.lang.String getUserRealName() {
-        java.lang.Object ref = userRealName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            userRealName_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getUserRealName();
       }
       /**
-       * <code>required string user_real_name = 7;</code>
-       *
        * <pre>
        *真名
        * </pre>
+       *
+       * <code>required string user_real_name = 7;</code>
        */
       public com.google.protobuf.ByteString
           getUserRealNameBytes() {
-        java.lang.Object ref = userRealName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          userRealName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getUserRealNameBytes();
       }
       /**
-       * <code>required string user_real_name = 7;</code>
-       *
        * <pre>
        *真名
        * </pre>
+       *
+       * <code>required string user_real_name = 7;</code>
        */
       public Builder setUserRealName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000040;
-        userRealName_ = value;
-        
+        copyOnWrite();
+        instance.setUserRealName(value);
         return this;
       }
       /**
-       * <code>required string user_real_name = 7;</code>
-       *
        * <pre>
        *真名
        * </pre>
+       *
+       * <code>required string user_real_name = 7;</code>
        */
       public Builder clearUserRealName() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        userRealName_ = getDefaultInstance().getUserRealName();
-        
+        copyOnWrite();
+        instance.clearUserRealName();
         return this;
       }
       /**
-       * <code>required string user_real_name = 7;</code>
-       *
        * <pre>
        *真名
        * </pre>
+       *
+       * <code>required string user_real_name = 7;</code>
        */
       public Builder setUserRealNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000040;
-        userRealName_ = value;
-        
+        copyOnWrite();
+        instance.setUserRealNameBytes(value);
         return this;
       }
 
-      private java.lang.Object userTel_ = "";
       /**
        * <code>required string user_tel = 8;</code>
        */
       public boolean hasUserTel() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return instance.hasUserTel();
       }
       /**
        * <code>required string user_tel = 8;</code>
        */
       public java.lang.String getUserTel() {
-        java.lang.Object ref = userTel_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            userTel_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getUserTel();
       }
       /**
        * <code>required string user_tel = 8;</code>
        */
       public com.google.protobuf.ByteString
           getUserTelBytes() {
-        java.lang.Object ref = userTel_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          userTel_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getUserTelBytes();
       }
       /**
        * <code>required string user_tel = 8;</code>
        */
       public Builder setUserTel(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000080;
-        userTel_ = value;
-        
+        copyOnWrite();
+        instance.setUserTel(value);
         return this;
       }
       /**
        * <code>required string user_tel = 8;</code>
        */
       public Builder clearUserTel() {
-        bitField0_ = (bitField0_ & ~0x00000080);
-        userTel_ = getDefaultInstance().getUserTel();
-        
+        copyOnWrite();
+        instance.clearUserTel();
         return this;
       }
       /**
@@ -4711,172 +4616,406 @@ public final class IMBaseDefine {
        */
       public Builder setUserTelBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000080;
-        userTel_ = value;
-        
+        copyOnWrite();
+        instance.setUserTelBytes(value);
         return this;
       }
 
-      private java.lang.Object userDomain_ = "";
       /**
-       * <code>required string user_domain = 9;</code>
-       *
        * <pre>
        *用户名拼音
        * </pre>
+       *
+       * <code>required string user_domain = 9;</code>
        */
       public boolean hasUserDomain() {
-        return ((bitField0_ & 0x00000100) == 0x00000100);
+        return instance.hasUserDomain();
       }
       /**
-       * <code>required string user_domain = 9;</code>
-       *
        * <pre>
        *用户名拼音
        * </pre>
+       *
+       * <code>required string user_domain = 9;</code>
        */
       public java.lang.String getUserDomain() {
-        java.lang.Object ref = userDomain_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            userDomain_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getUserDomain();
       }
       /**
-       * <code>required string user_domain = 9;</code>
-       *
        * <pre>
        *用户名拼音
        * </pre>
+       *
+       * <code>required string user_domain = 9;</code>
        */
       public com.google.protobuf.ByteString
           getUserDomainBytes() {
-        java.lang.Object ref = userDomain_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          userDomain_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getUserDomainBytes();
       }
       /**
-       * <code>required string user_domain = 9;</code>
-       *
        * <pre>
        *用户名拼音
        * </pre>
+       *
+       * <code>required string user_domain = 9;</code>
        */
       public Builder setUserDomain(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000100;
-        userDomain_ = value;
-        
+        copyOnWrite();
+        instance.setUserDomain(value);
         return this;
       }
       /**
-       * <code>required string user_domain = 9;</code>
-       *
        * <pre>
        *用户名拼音
        * </pre>
+       *
+       * <code>required string user_domain = 9;</code>
        */
       public Builder clearUserDomain() {
-        bitField0_ = (bitField0_ & ~0x00000100);
-        userDomain_ = getDefaultInstance().getUserDomain();
-        
+        copyOnWrite();
+        instance.clearUserDomain();
         return this;
       }
       /**
-       * <code>required string user_domain = 9;</code>
-       *
        * <pre>
        *用户名拼音
        * </pre>
+       *
+       * <code>required string user_domain = 9;</code>
        */
       public Builder setUserDomainBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000100;
-        userDomain_ = value;
-        
+        copyOnWrite();
+        instance.setUserDomainBytes(value);
         return this;
       }
 
-      private int status_ ;
       /**
-       * <code>required uint32 status = 10;</code>
-       *
        * <pre>
        *0:在职  1. 试用期 2. 正式 3. 离职 4.实习,  client端需要对“离职”进行不展示
        * </pre>
+       *
+       * <code>required uint32 status = 10;</code>
        */
       public boolean hasStatus() {
-        return ((bitField0_ & 0x00000200) == 0x00000200);
+        return instance.hasStatus();
       }
       /**
-       * <code>required uint32 status = 10;</code>
-       *
        * <pre>
        *0:在职  1. 试用期 2. 正式 3. 离职 4.实习,  client端需要对“离职”进行不展示
        * </pre>
+       *
+       * <code>required uint32 status = 10;</code>
        */
       public int getStatus() {
-        return status_;
+        return instance.getStatus();
       }
       /**
-       * <code>required uint32 status = 10;</code>
-       *
        * <pre>
        *0:在职  1. 试用期 2. 正式 3. 离职 4.实习,  client端需要对“离职”进行不展示
        * </pre>
+       *
+       * <code>required uint32 status = 10;</code>
        */
       public Builder setStatus(int value) {
-        bitField0_ |= 0x00000200;
-        status_ = value;
-        
+        copyOnWrite();
+        instance.setStatus(value);
         return this;
       }
       /**
-       * <code>required uint32 status = 10;</code>
-       *
        * <pre>
        *0:在职  1. 试用期 2. 正式 3. 离职 4.实习,  client端需要对“离职”进行不展示
        * </pre>
+       *
+       * <code>required uint32 status = 10;</code>
        */
       public Builder clearStatus() {
-        bitField0_ = (bitField0_ & ~0x00000200);
-        status_ = 0;
-        
+        copyOnWrite();
+        instance.clearStatus();
+        return this;
+      }
+
+      /**
+       * <code>optional string sign_info = 11;</code>
+       */
+      public boolean hasSignInfo() {
+        return instance.hasSignInfo();
+      }
+      /**
+       * <code>optional string sign_info = 11;</code>
+       */
+      public java.lang.String getSignInfo() {
+        return instance.getSignInfo();
+      }
+      /**
+       * <code>optional string sign_info = 11;</code>
+       */
+      public com.google.protobuf.ByteString
+          getSignInfoBytes() {
+        return instance.getSignInfoBytes();
+      }
+      /**
+       * <code>optional string sign_info = 11;</code>
+       */
+      public Builder setSignInfo(
+          java.lang.String value) {
+        copyOnWrite();
+        instance.setSignInfo(value);
+        return this;
+      }
+      /**
+       * <code>optional string sign_info = 11;</code>
+       */
+      public Builder clearSignInfo() {
+        copyOnWrite();
+        instance.clearSignInfo();
+        return this;
+      }
+      /**
+       * <code>optional string sign_info = 11;</code>
+       */
+      public Builder setSignInfoBytes(
+          com.google.protobuf.ByteString value) {
+        copyOnWrite();
+        instance.setSignInfoBytes(value);
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.UserInfo)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.UserInfo();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new UserInfo(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasUserId()) {
+            return null;
+          }
+          if (!hasUserGender()) {
+            return null;
+          }
+          if (!hasUserNickName()) {
+            return null;
+          }
+          if (!hasAvatarUrl()) {
+            return null;
+          }
+          if (!hasDepartmentId()) {
+            return null;
+          }
+          if (!hasEmail()) {
+            return null;
+          }
+          if (!hasUserRealName()) {
+            return null;
+          }
+          if (!hasUserTel()) {
+            return null;
+          }
+          if (!hasUserDomain()) {
+            return null;
+          }
+          if (!hasStatus()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.UserInfo other = (com.mogujie.tt.protobuf.IMBaseDefine.UserInfo) arg1;
+          userId_ = visitor.visitInt(
+              hasUserId(), userId_,
+              other.hasUserId(), other.userId_);
+          userGender_ = visitor.visitInt(
+              hasUserGender(), userGender_,
+              other.hasUserGender(), other.userGender_);
+          userNickName_ = visitor.visitString(
+              hasUserNickName(), userNickName_,
+              other.hasUserNickName(), other.userNickName_);
+          avatarUrl_ = visitor.visitString(
+              hasAvatarUrl(), avatarUrl_,
+              other.hasAvatarUrl(), other.avatarUrl_);
+          departmentId_ = visitor.visitInt(
+              hasDepartmentId(), departmentId_,
+              other.hasDepartmentId(), other.departmentId_);
+          email_ = visitor.visitString(
+              hasEmail(), email_,
+              other.hasEmail(), other.email_);
+          userRealName_ = visitor.visitString(
+              hasUserRealName(), userRealName_,
+              other.hasUserRealName(), other.userRealName_);
+          userTel_ = visitor.visitString(
+              hasUserTel(), userTel_,
+              other.hasUserTel(), other.userTel_);
+          userDomain_ = visitor.visitString(
+              hasUserDomain(), userDomain_,
+              other.hasUserDomain(), other.userDomain_);
+          status_ = visitor.visitInt(
+              hasStatus(), status_,
+              other.hasStatus(), other.status_);
+          signInfo_ = visitor.visitString(
+              hasSignInfo(), signInfo_,
+              other.hasSignInfo(), other.signInfo_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  userId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  bitField0_ |= 0x00000002;
+                  userGender_ = input.readUInt32();
+                  break;
+                }
+                case 26: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000004;
+                  userNickName_ = s;
+                  break;
+                }
+                case 34: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000008;
+                  avatarUrl_ = s;
+                  break;
+                }
+                case 40: {
+                  bitField0_ |= 0x00000010;
+                  departmentId_ = input.readUInt32();
+                  break;
+                }
+                case 50: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000020;
+                  email_ = s;
+                  break;
+                }
+                case 58: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000040;
+                  userRealName_ = s;
+                  break;
+                }
+                case 66: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000080;
+                  userTel_ = s;
+                  break;
+                }
+                case 74: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000100;
+                  userDomain_ = s;
+                  break;
+                }
+                case 80: {
+                  bitField0_ |= 0x00000200;
+                  status_ = input.readUInt32();
+                  break;
+                }
+                case 90: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000400;
+                  signInfo_ = s;
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.UserInfo.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.UserInfo)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.UserInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new UserInfo();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UserInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<UserInfo> PARSER;
+
+    public static com.google.protobuf.Parser<UserInfo> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface ContactSessionInfoOrBuilder extends
@@ -4958,147 +5097,16 @@ public final class IMBaseDefine {
   /**
    * Protobuf type {@code IM.BaseDefine.ContactSessionInfo}
    */
-  public static final class ContactSessionInfo extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class ContactSessionInfo extends
+      com.google.protobuf.GeneratedMessageLite<
+          ContactSessionInfo, ContactSessionInfo.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.ContactSessionInfo)
       ContactSessionInfoOrBuilder {
-    // Use ContactSessionInfo.newBuilder() to construct.
-    private ContactSessionInfo(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private ContactSessionInfo() {
+      sessionType_ = 1;
+      latestMsgData_ = com.google.protobuf.ByteString.EMPTY;
+      latestMsgType_ = 1;
     }
-    private ContactSessionInfo(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final ContactSessionInfo defaultInstance;
-    public static ContactSessionInfo getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public ContactSessionInfo getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private ContactSessionInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              sessionId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.SessionType value = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000002;
-                sessionType_ = value;
-              }
-              break;
-            }
-            case 24: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType value = com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000004;
-                sessionStatus_ = value;
-              }
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              updatedTime_ = input.readUInt32();
-              break;
-            }
-            case 40: {
-              bitField0_ |= 0x00000010;
-              latestMsgId_ = input.readUInt32();
-              break;
-            }
-            case 50: {
-              bitField0_ |= 0x00000020;
-              latestMsgData_ = input.readBytes();
-              break;
-            }
-            case 56: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.MsgType value = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000040;
-                latestMsgType_ = value;
-              }
-              break;
-            }
-            case 64: {
-              bitField0_ |= 0x00000080;
-              latestMsgFromUserId_ = input.readUInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<ContactSessionInfo> PARSER =
-        new com.google.protobuf.AbstractParser<ContactSessionInfo>() {
-      public ContactSessionInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ContactSessionInfo(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ContactSessionInfo> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int SESSION_ID_FIELD_NUMBER = 1;
     private int sessionId_;
@@ -5114,9 +5122,23 @@ public final class IMBaseDefine {
     public int getSessionId() {
       return sessionId_;
     }
+    /**
+     * <code>required uint32 session_id = 1;</code>
+     */
+    private void setSessionId(int value) {
+      bitField0_ |= 0x00000001;
+      sessionId_ = value;
+    }
+    /**
+     * <code>required uint32 session_id = 1;</code>
+     */
+    private void clearSessionId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      sessionId_ = 0;
+    }
 
     public static final int SESSION_TYPE_FIELD_NUMBER = 2;
-    private com.mogujie.tt.protobuf.IMBaseDefine.SessionType sessionType_;
+    private int sessionType_;
     /**
      * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
      */
@@ -5127,11 +5149,29 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.SessionType getSessionType() {
-      return sessionType_;
+      com.mogujie.tt.protobuf.IMBaseDefine.SessionType result = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.forNumber(sessionType_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.SessionType.SESSION_TYPE_SINGLE : result;
+    }
+    /**
+     * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
+     */
+    private void setSessionType(com.mogujie.tt.protobuf.IMBaseDefine.SessionType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000002;
+      sessionType_ = value.getNumber();
+    }
+    /**
+     * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
+     */
+    private void clearSessionType() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      sessionType_ = 1;
     }
 
     public static final int SESSION_STATUS_FIELD_NUMBER = 3;
-    private com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType sessionStatus_;
+    private int sessionStatus_;
     /**
      * <code>required .IM.BaseDefine.SessionStatusType session_status = 3;</code>
      */
@@ -5142,7 +5182,25 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.SessionStatusType session_status = 3;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType getSessionStatus() {
-      return sessionStatus_;
+      com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType result = com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType.forNumber(sessionStatus_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType.SESSION_STATUS_OK : result;
+    }
+    /**
+     * <code>required .IM.BaseDefine.SessionStatusType session_status = 3;</code>
+     */
+    private void setSessionStatus(com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000004;
+      sessionStatus_ = value.getNumber();
+    }
+    /**
+     * <code>required .IM.BaseDefine.SessionStatusType session_status = 3;</code>
+     */
+    private void clearSessionStatus() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      sessionStatus_ = 0;
     }
 
     public static final int UPDATED_TIME_FIELD_NUMBER = 4;
@@ -5159,6 +5217,20 @@ public final class IMBaseDefine {
     public int getUpdatedTime() {
       return updatedTime_;
     }
+    /**
+     * <code>required uint32 updated_time = 4;</code>
+     */
+    private void setUpdatedTime(int value) {
+      bitField0_ |= 0x00000008;
+      updatedTime_ = value;
+    }
+    /**
+     * <code>required uint32 updated_time = 4;</code>
+     */
+    private void clearUpdatedTime() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      updatedTime_ = 0;
+    }
 
     public static final int LATEST_MSG_ID_FIELD_NUMBER = 5;
     private int latestMsgId_;
@@ -5173,6 +5245,20 @@ public final class IMBaseDefine {
      */
     public int getLatestMsgId() {
       return latestMsgId_;
+    }
+    /**
+     * <code>required uint32 latest_msg_id = 5;</code>
+     */
+    private void setLatestMsgId(int value) {
+      bitField0_ |= 0x00000010;
+      latestMsgId_ = value;
+    }
+    /**
+     * <code>required uint32 latest_msg_id = 5;</code>
+     */
+    private void clearLatestMsgId() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      latestMsgId_ = 0;
     }
 
     public static final int LATEST_MSG_DATA_FIELD_NUMBER = 6;
@@ -5189,9 +5275,26 @@ public final class IMBaseDefine {
     public com.google.protobuf.ByteString getLatestMsgData() {
       return latestMsgData_;
     }
+    /**
+     * <code>required bytes latest_msg_data = 6;</code>
+     */
+    private void setLatestMsgData(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000020;
+      latestMsgData_ = value;
+    }
+    /**
+     * <code>required bytes latest_msg_data = 6;</code>
+     */
+    private void clearLatestMsgData() {
+      bitField0_ = (bitField0_ & ~0x00000020);
+      latestMsgData_ = getDefaultInstance().getLatestMsgData();
+    }
 
     public static final int LATEST_MSG_TYPE_FIELD_NUMBER = 7;
-    private com.mogujie.tt.protobuf.IMBaseDefine.MsgType latestMsgType_;
+    private int latestMsgType_;
     /**
      * <code>required .IM.BaseDefine.MsgType latest_msg_type = 7;</code>
      */
@@ -5202,7 +5305,25 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.MsgType latest_msg_type = 7;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.MsgType getLatestMsgType() {
-      return latestMsgType_;
+      com.mogujie.tt.protobuf.IMBaseDefine.MsgType result = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.forNumber(latestMsgType_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT : result;
+    }
+    /**
+     * <code>required .IM.BaseDefine.MsgType latest_msg_type = 7;</code>
+     */
+    private void setLatestMsgType(com.mogujie.tt.protobuf.IMBaseDefine.MsgType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000040;
+      latestMsgType_ = value.getNumber();
+    }
+    /**
+     * <code>required .IM.BaseDefine.MsgType latest_msg_type = 7;</code>
+     */
+    private void clearLatestMsgType() {
+      bitField0_ = (bitField0_ & ~0x00000040);
+      latestMsgType_ = 1;
     }
 
     public static final int LATEST_MSG_FROM_USER_ID_FIELD_NUMBER = 8;
@@ -5219,70 +5340,31 @@ public final class IMBaseDefine {
     public int getLatestMsgFromUserId() {
       return latestMsgFromUserId_;
     }
-
-    private void initFields() {
-      sessionId_ = 0;
-      sessionType_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.SESSION_TYPE_SINGLE;
-      sessionStatus_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType.SESSION_STATUS_OK;
-      updatedTime_ = 0;
-      latestMsgId_ = 0;
-      latestMsgData_ = com.google.protobuf.ByteString.EMPTY;
-      latestMsgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
-      latestMsgFromUserId_ = 0;
+    /**
+     * <code>required uint32 latest_msg_from_user_id = 8;</code>
+     */
+    private void setLatestMsgFromUserId(int value) {
+      bitField0_ |= 0x00000080;
+      latestMsgFromUserId_ = value;
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasSessionId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSessionType()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSessionStatus()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasUpdatedTime()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasLatestMsgId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasLatestMsgData()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasLatestMsgType()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasLatestMsgFromUserId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <code>required uint32 latest_msg_from_user_id = 8;</code>
+     */
+    private void clearLatestMsgFromUserId() {
+      bitField0_ = (bitField0_ & ~0x00000080);
+      latestMsgFromUserId_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, sessionId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, sessionType_.getNumber());
+        output.writeEnum(2, sessionType_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeEnum(3, sessionStatus_.getNumber());
+        output.writeEnum(3, sessionStatus_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeUInt32(4, updatedTime_);
@@ -5294,15 +5376,14 @@ public final class IMBaseDefine {
         output.writeBytes(6, latestMsgData_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeEnum(7, latestMsgType_.getNumber());
+        output.writeEnum(7, latestMsgType_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         output.writeUInt32(8, latestMsgFromUserId_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -5314,11 +5395,11 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, sessionType_.getNumber());
+          .computeEnumSize(2, sessionType_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, sessionStatus_.getNumber());
+          .computeEnumSize(3, sessionStatus_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -5334,544 +5415,556 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(7, latestMsgType_.getNumber());
+          .computeEnumSize(7, latestMsgType_);
       }
       if (((bitField0_ & 0x00000080) == 0x00000080)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(8, latestMsgFromUserId_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.ContactSessionInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.ContactSessionInfo)
         com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfoOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        sessionId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        sessionType_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.SESSION_TYPE_SINGLE;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        sessionStatus_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType.SESSION_STATUS_OK;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        updatedTime_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        latestMsgId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        latestMsgData_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        latestMsgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        latestMsgFromUserId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000080);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo result = new com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.sessionId_ = sessionId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.sessionType_ = sessionType_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.sessionStatus_ = sessionStatus_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.updatedTime_ = updatedTime_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.latestMsgId_ = latestMsgId_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.latestMsgData_ = latestMsgData_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.latestMsgType_ = latestMsgType_;
-        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
-          to_bitField0_ |= 0x00000080;
-        }
-        result.latestMsgFromUserId_ = latestMsgFromUserId_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo.getDefaultInstance()) return this;
-        if (other.hasSessionId()) {
-          setSessionId(other.getSessionId());
-        }
-        if (other.hasSessionType()) {
-          setSessionType(other.getSessionType());
-        }
-        if (other.hasSessionStatus()) {
-          setSessionStatus(other.getSessionStatus());
-        }
-        if (other.hasUpdatedTime()) {
-          setUpdatedTime(other.getUpdatedTime());
-        }
-        if (other.hasLatestMsgId()) {
-          setLatestMsgId(other.getLatestMsgId());
-        }
-        if (other.hasLatestMsgData()) {
-          setLatestMsgData(other.getLatestMsgData());
-        }
-        if (other.hasLatestMsgType()) {
-          setLatestMsgType(other.getLatestMsgType());
-        }
-        if (other.hasLatestMsgFromUserId()) {
-          setLatestMsgFromUserId(other.getLatestMsgFromUserId());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasSessionId()) {
-          
-          return false;
-        }
-        if (!hasSessionType()) {
-          
-          return false;
-        }
-        if (!hasSessionStatus()) {
-          
-          return false;
-        }
-        if (!hasUpdatedTime()) {
-          
-          return false;
-        }
-        if (!hasLatestMsgId()) {
-          
-          return false;
-        }
-        if (!hasLatestMsgData()) {
-          
-          return false;
-        }
-        if (!hasLatestMsgType()) {
-          
-          return false;
-        }
-        if (!hasLatestMsgFromUserId()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int sessionId_ ;
       /**
        * <code>required uint32 session_id = 1;</code>
        */
       public boolean hasSessionId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasSessionId();
       }
       /**
        * <code>required uint32 session_id = 1;</code>
        */
       public int getSessionId() {
-        return sessionId_;
+        return instance.getSessionId();
       }
       /**
        * <code>required uint32 session_id = 1;</code>
        */
       public Builder setSessionId(int value) {
-        bitField0_ |= 0x00000001;
-        sessionId_ = value;
-        
+        copyOnWrite();
+        instance.setSessionId(value);
         return this;
       }
       /**
        * <code>required uint32 session_id = 1;</code>
        */
       public Builder clearSessionId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        sessionId_ = 0;
-        
+        copyOnWrite();
+        instance.clearSessionId();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.SessionType sessionType_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.SESSION_TYPE_SINGLE;
       /**
        * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
        */
       public boolean hasSessionType() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasSessionType();
       }
       /**
        * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.SessionType getSessionType() {
-        return sessionType_;
+        return instance.getSessionType();
       }
       /**
        * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
        */
       public Builder setSessionType(com.mogujie.tt.protobuf.IMBaseDefine.SessionType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000002;
-        sessionType_ = value;
-        
+        copyOnWrite();
+        instance.setSessionType(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
        */
       public Builder clearSessionType() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        sessionType_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.SESSION_TYPE_SINGLE;
-        
+        copyOnWrite();
+        instance.clearSessionType();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType sessionStatus_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType.SESSION_STATUS_OK;
       /**
        * <code>required .IM.BaseDefine.SessionStatusType session_status = 3;</code>
        */
       public boolean hasSessionStatus() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return instance.hasSessionStatus();
       }
       /**
        * <code>required .IM.BaseDefine.SessionStatusType session_status = 3;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType getSessionStatus() {
-        return sessionStatus_;
+        return instance.getSessionStatus();
       }
       /**
        * <code>required .IM.BaseDefine.SessionStatusType session_status = 3;</code>
        */
       public Builder setSessionStatus(com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000004;
-        sessionStatus_ = value;
-        
+        copyOnWrite();
+        instance.setSessionStatus(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.SessionStatusType session_status = 3;</code>
        */
       public Builder clearSessionStatus() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        sessionStatus_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType.SESSION_STATUS_OK;
-        
+        copyOnWrite();
+        instance.clearSessionStatus();
         return this;
       }
 
-      private int updatedTime_ ;
       /**
        * <code>required uint32 updated_time = 4;</code>
        */
       public boolean hasUpdatedTime() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return instance.hasUpdatedTime();
       }
       /**
        * <code>required uint32 updated_time = 4;</code>
        */
       public int getUpdatedTime() {
-        return updatedTime_;
+        return instance.getUpdatedTime();
       }
       /**
        * <code>required uint32 updated_time = 4;</code>
        */
       public Builder setUpdatedTime(int value) {
-        bitField0_ |= 0x00000008;
-        updatedTime_ = value;
-        
+        copyOnWrite();
+        instance.setUpdatedTime(value);
         return this;
       }
       /**
        * <code>required uint32 updated_time = 4;</code>
        */
       public Builder clearUpdatedTime() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        updatedTime_ = 0;
-        
+        copyOnWrite();
+        instance.clearUpdatedTime();
         return this;
       }
 
-      private int latestMsgId_ ;
       /**
        * <code>required uint32 latest_msg_id = 5;</code>
        */
       public boolean hasLatestMsgId() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return instance.hasLatestMsgId();
       }
       /**
        * <code>required uint32 latest_msg_id = 5;</code>
        */
       public int getLatestMsgId() {
-        return latestMsgId_;
+        return instance.getLatestMsgId();
       }
       /**
        * <code>required uint32 latest_msg_id = 5;</code>
        */
       public Builder setLatestMsgId(int value) {
-        bitField0_ |= 0x00000010;
-        latestMsgId_ = value;
-        
+        copyOnWrite();
+        instance.setLatestMsgId(value);
         return this;
       }
       /**
        * <code>required uint32 latest_msg_id = 5;</code>
        */
       public Builder clearLatestMsgId() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        latestMsgId_ = 0;
-        
+        copyOnWrite();
+        instance.clearLatestMsgId();
         return this;
       }
 
-      private com.google.protobuf.ByteString latestMsgData_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <code>required bytes latest_msg_data = 6;</code>
        */
       public boolean hasLatestMsgData() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return instance.hasLatestMsgData();
       }
       /**
        * <code>required bytes latest_msg_data = 6;</code>
        */
       public com.google.protobuf.ByteString getLatestMsgData() {
-        return latestMsgData_;
+        return instance.getLatestMsgData();
       }
       /**
        * <code>required bytes latest_msg_data = 6;</code>
        */
       public Builder setLatestMsgData(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
-        latestMsgData_ = value;
-        
+        copyOnWrite();
+        instance.setLatestMsgData(value);
         return this;
       }
       /**
        * <code>required bytes latest_msg_data = 6;</code>
        */
       public Builder clearLatestMsgData() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        latestMsgData_ = getDefaultInstance().getLatestMsgData();
-        
+        copyOnWrite();
+        instance.clearLatestMsgData();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.MsgType latestMsgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
       /**
        * <code>required .IM.BaseDefine.MsgType latest_msg_type = 7;</code>
        */
       public boolean hasLatestMsgType() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return instance.hasLatestMsgType();
       }
       /**
        * <code>required .IM.BaseDefine.MsgType latest_msg_type = 7;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.MsgType getLatestMsgType() {
-        return latestMsgType_;
+        return instance.getLatestMsgType();
       }
       /**
        * <code>required .IM.BaseDefine.MsgType latest_msg_type = 7;</code>
        */
       public Builder setLatestMsgType(com.mogujie.tt.protobuf.IMBaseDefine.MsgType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000040;
-        latestMsgType_ = value;
-        
+        copyOnWrite();
+        instance.setLatestMsgType(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.MsgType latest_msg_type = 7;</code>
        */
       public Builder clearLatestMsgType() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        latestMsgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
-        
+        copyOnWrite();
+        instance.clearLatestMsgType();
         return this;
       }
 
-      private int latestMsgFromUserId_ ;
       /**
        * <code>required uint32 latest_msg_from_user_id = 8;</code>
        */
       public boolean hasLatestMsgFromUserId() {
-        return ((bitField0_ & 0x00000080) == 0x00000080);
+        return instance.hasLatestMsgFromUserId();
       }
       /**
        * <code>required uint32 latest_msg_from_user_id = 8;</code>
        */
       public int getLatestMsgFromUserId() {
-        return latestMsgFromUserId_;
+        return instance.getLatestMsgFromUserId();
       }
       /**
        * <code>required uint32 latest_msg_from_user_id = 8;</code>
        */
       public Builder setLatestMsgFromUserId(int value) {
-        bitField0_ |= 0x00000080;
-        latestMsgFromUserId_ = value;
-        
+        copyOnWrite();
+        instance.setLatestMsgFromUserId(value);
         return this;
       }
       /**
        * <code>required uint32 latest_msg_from_user_id = 8;</code>
        */
       public Builder clearLatestMsgFromUserId() {
-        bitField0_ = (bitField0_ & ~0x00000080);
-        latestMsgFromUserId_ = 0;
-        
+        copyOnWrite();
+        instance.clearLatestMsgFromUserId();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.ContactSessionInfo)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new ContactSessionInfo(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasSessionId()) {
+            return null;
+          }
+          if (!hasSessionType()) {
+            return null;
+          }
+          if (!hasSessionStatus()) {
+            return null;
+          }
+          if (!hasUpdatedTime()) {
+            return null;
+          }
+          if (!hasLatestMsgId()) {
+            return null;
+          }
+          if (!hasLatestMsgData()) {
+            return null;
+          }
+          if (!hasLatestMsgType()) {
+            return null;
+          }
+          if (!hasLatestMsgFromUserId()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo other = (com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo) arg1;
+          sessionId_ = visitor.visitInt(
+              hasSessionId(), sessionId_,
+              other.hasSessionId(), other.sessionId_);
+          sessionType_ = visitor.visitInt(hasSessionType(), sessionType_,
+              other.hasSessionType(), other.sessionType_);
+          sessionStatus_ = visitor.visitInt(hasSessionStatus(), sessionStatus_,
+              other.hasSessionStatus(), other.sessionStatus_);
+          updatedTime_ = visitor.visitInt(
+              hasUpdatedTime(), updatedTime_,
+              other.hasUpdatedTime(), other.updatedTime_);
+          latestMsgId_ = visitor.visitInt(
+              hasLatestMsgId(), latestMsgId_,
+              other.hasLatestMsgId(), other.latestMsgId_);
+          latestMsgData_ = visitor.visitByteString(
+              hasLatestMsgData(), latestMsgData_,
+              other.hasLatestMsgData(), other.latestMsgData_);
+          latestMsgType_ = visitor.visitInt(hasLatestMsgType(), latestMsgType_,
+              other.hasLatestMsgType(), other.latestMsgType_);
+          latestMsgFromUserId_ = visitor.visitInt(
+              hasLatestMsgFromUserId(), latestMsgFromUserId_,
+              other.hasLatestMsgFromUserId(), other.latestMsgFromUserId_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  sessionId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.SessionType value = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(2, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000002;
+                    sessionType_ = rawValue;
+                  }
+                  break;
+                }
+                case 24: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType value = com.mogujie.tt.protobuf.IMBaseDefine.SessionStatusType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(3, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000004;
+                    sessionStatus_ = rawValue;
+                  }
+                  break;
+                }
+                case 32: {
+                  bitField0_ |= 0x00000008;
+                  updatedTime_ = input.readUInt32();
+                  break;
+                }
+                case 40: {
+                  bitField0_ |= 0x00000010;
+                  latestMsgId_ = input.readUInt32();
+                  break;
+                }
+                case 50: {
+                  bitField0_ |= 0x00000020;
+                  latestMsgData_ = input.readBytes();
+                  break;
+                }
+                case 56: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.MsgType value = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(7, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000040;
+                    latestMsgType_ = rawValue;
+                  }
+                  break;
+                }
+                case 64: {
+                  bitField0_ |= 0x00000080;
+                  latestMsgFromUserId_ = input.readUInt32();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.ContactSessionInfo)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ContactSessionInfo();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.ContactSessionInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ContactSessionInfo> PARSER;
+
+    public static com.google.protobuf.Parser<ContactSessionInfo> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface UserStatOrBuilder extends
@@ -5899,103 +5992,14 @@ public final class IMBaseDefine {
   /**
    * Protobuf type {@code IM.BaseDefine.UserStat}
    */
-  public static final class UserStat extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class UserStat extends
+      com.google.protobuf.GeneratedMessageLite<
+          UserStat, UserStat.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.UserStat)
       UserStatOrBuilder {
-    // Use UserStat.newBuilder() to construct.
-    private UserStat(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private UserStat() {
+      status_ = 1;
     }
-    private UserStat(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final UserStat defaultInstance;
-    public static UserStat getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public UserStat getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private UserStat(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              userId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.UserStatType value = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000002;
-                status_ = value;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<UserStat> PARSER =
-        new com.google.protobuf.AbstractParser<UserStat>() {
-      public UserStat parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UserStat(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UserStat> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int USER_ID_FIELD_NUMBER = 1;
     private int userId_;
@@ -6011,9 +6015,23 @@ public final class IMBaseDefine {
     public int getUserId() {
       return userId_;
     }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void setUserId(int value) {
+      bitField0_ |= 0x00000001;
+      userId_ = value;
+    }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void clearUserId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      userId_ = 0;
+    }
 
     public static final int STATUS_FIELD_NUMBER = 2;
-    private com.mogujie.tt.protobuf.IMBaseDefine.UserStatType status_;
+    private int status_;
     /**
      * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
      */
@@ -6024,44 +6042,38 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.UserStatType getStatus() {
-      return status_;
+      com.mogujie.tt.protobuf.IMBaseDefine.UserStatType result = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.forNumber(status_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.USER_STATUS_ONLINE : result;
     }
-
-    private void initFields() {
-      userId_ = 0;
-      status_ = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.USER_STATUS_ONLINE;
+    /**
+     * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
+     */
+    private void setStatus(com.mogujie.tt.protobuf.IMBaseDefine.UserStatType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000002;
+      status_ = value.getNumber();
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasUserId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasStatus()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
+     */
+    private void clearStatus() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      status_ = 1;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, userId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, status_.getNumber());
+        output.writeEnum(2, status_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -6073,261 +6085,302 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, status_.getNumber());
+          .computeEnumSize(2, status_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.UserStat prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.UserStat prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.UserStat}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.UserStat, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.UserStat, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.UserStat)
         com.mogujie.tt.protobuf.IMBaseDefine.UserStatOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.UserStat.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        userId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        status_ = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.USER_STATUS_ONLINE;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UserStat getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.UserStat.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UserStat build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.UserStat result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UserStat buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.UserStat result = new com.mogujie.tt.protobuf.IMBaseDefine.UserStat(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.userId_ = userId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.status_ = status_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.UserStat other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.UserStat.getDefaultInstance()) return this;
-        if (other.hasUserId()) {
-          setUserId(other.getUserId());
-        }
-        if (other.hasStatus()) {
-          setStatus(other.getStatus());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasUserId()) {
-          
-          return false;
-        }
-        if (!hasStatus()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.UserStat parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.UserStat) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int userId_ ;
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public boolean hasUserId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasUserId();
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public int getUserId() {
-        return userId_;
+        return instance.getUserId();
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public Builder setUserId(int value) {
-        bitField0_ |= 0x00000001;
-        userId_ = value;
-        
+        copyOnWrite();
+        instance.setUserId(value);
         return this;
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public Builder clearUserId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        userId_ = 0;
-        
+        copyOnWrite();
+        instance.clearUserId();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.UserStatType status_ = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.USER_STATUS_ONLINE;
       /**
        * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
        */
       public boolean hasStatus() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasStatus();
       }
       /**
        * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.UserStatType getStatus() {
-        return status_;
+        return instance.getStatus();
       }
       /**
        * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
        */
       public Builder setStatus(com.mogujie.tt.protobuf.IMBaseDefine.UserStatType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000002;
-        status_ = value;
-        
+        copyOnWrite();
+        instance.setStatus(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
        */
       public Builder clearStatus() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        status_ = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.USER_STATUS_ONLINE;
-        
+        copyOnWrite();
+        instance.clearStatus();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.UserStat)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.UserStat();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new UserStat(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasUserId()) {
+            return null;
+          }
+          if (!hasStatus()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.UserStat other = (com.mogujie.tt.protobuf.IMBaseDefine.UserStat) arg1;
+          userId_ = visitor.visitInt(
+              hasUserId(), userId_,
+              other.hasUserId(), other.userId_);
+          status_ = visitor.visitInt(hasStatus(), status_,
+              other.hasStatus(), other.status_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  userId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.UserStatType value = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(2, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000002;
+                    status_ = rawValue;
+                  }
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.UserStat.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.UserStat)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.UserStat DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new UserStat();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UserStat getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<UserStat> PARSER;
+
+    public static com.google.protobuf.Parser<UserStat> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface ServerUserStatOrBuilder extends
@@ -6364,115 +6417,15 @@ public final class IMBaseDefine {
   /**
    * Protobuf type {@code IM.BaseDefine.ServerUserStat}
    */
-  public static final class ServerUserStat extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class ServerUserStat extends
+      com.google.protobuf.GeneratedMessageLite<
+          ServerUserStat, ServerUserStat.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.ServerUserStat)
       ServerUserStatOrBuilder {
-    // Use ServerUserStat.newBuilder() to construct.
-    private ServerUserStat(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private ServerUserStat() {
+      status_ = 1;
+      clientType_ = 1;
     }
-    private ServerUserStat(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final ServerUserStat defaultInstance;
-    public static ServerUserStat getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public ServerUserStat getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private ServerUserStat(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              userId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.UserStatType value = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000002;
-                status_ = value;
-              }
-              break;
-            }
-            case 24: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.ClientType value = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000004;
-                clientType_ = value;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<ServerUserStat> PARSER =
-        new com.google.protobuf.AbstractParser<ServerUserStat>() {
-      public ServerUserStat parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ServerUserStat(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ServerUserStat> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int USER_ID_FIELD_NUMBER = 1;
     private int userId_;
@@ -6488,9 +6441,23 @@ public final class IMBaseDefine {
     public int getUserId() {
       return userId_;
     }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void setUserId(int value) {
+      bitField0_ |= 0x00000001;
+      userId_ = value;
+    }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void clearUserId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      userId_ = 0;
+    }
 
     public static final int STATUS_FIELD_NUMBER = 2;
-    private com.mogujie.tt.protobuf.IMBaseDefine.UserStatType status_;
+    private int status_;
     /**
      * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
      */
@@ -6501,11 +6468,29 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.UserStatType getStatus() {
-      return status_;
+      com.mogujie.tt.protobuf.IMBaseDefine.UserStatType result = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.forNumber(status_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.USER_STATUS_ONLINE : result;
+    }
+    /**
+     * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
+     */
+    private void setStatus(com.mogujie.tt.protobuf.IMBaseDefine.UserStatType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000002;
+      status_ = value.getNumber();
+    }
+    /**
+     * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
+     */
+    private void clearStatus() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      status_ = 1;
     }
 
     public static final int CLIENT_TYPE_FIELD_NUMBER = 3;
-    private com.mogujie.tt.protobuf.IMBaseDefine.ClientType clientType_;
+    private int clientType_;
     /**
      * <code>required .IM.BaseDefine.ClientType client_type = 3;</code>
      */
@@ -6516,52 +6501,41 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.ClientType client_type = 3;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.ClientType getClientType() {
-      return clientType_;
+      com.mogujie.tt.protobuf.IMBaseDefine.ClientType result = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.forNumber(clientType_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.ClientType.CLIENT_TYPE_WINDOWS : result;
     }
-
-    private void initFields() {
-      userId_ = 0;
-      status_ = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.USER_STATUS_ONLINE;
-      clientType_ = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.CLIENT_TYPE_WINDOWS;
+    /**
+     * <code>required .IM.BaseDefine.ClientType client_type = 3;</code>
+     */
+    private void setClientType(com.mogujie.tt.protobuf.IMBaseDefine.ClientType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000004;
+      clientType_ = value.getNumber();
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasUserId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasStatus()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasClientType()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <code>required .IM.BaseDefine.ClientType client_type = 3;</code>
+     */
+    private void clearClientType() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      clientType_ = 1;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, userId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, status_.getNumber());
+        output.writeEnum(2, status_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeEnum(3, clientType_.getNumber());
+        output.writeEnum(3, clientType_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -6573,313 +6547,351 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, status_.getNumber());
+          .computeEnumSize(2, status_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(3, clientType_.getNumber());
+          .computeEnumSize(3, clientType_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.ServerUserStat}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.ServerUserStat)
         com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStatOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        userId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        status_ = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.USER_STATUS_ONLINE;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        clientType_ = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.CLIENT_TYPE_WINDOWS;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat result = new com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.userId_ = userId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.status_ = status_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.clientType_ = clientType_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat.getDefaultInstance()) return this;
-        if (other.hasUserId()) {
-          setUserId(other.getUserId());
-        }
-        if (other.hasStatus()) {
-          setStatus(other.getStatus());
-        }
-        if (other.hasClientType()) {
-          setClientType(other.getClientType());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasUserId()) {
-          
-          return false;
-        }
-        if (!hasStatus()) {
-          
-          return false;
-        }
-        if (!hasClientType()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int userId_ ;
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public boolean hasUserId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasUserId();
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public int getUserId() {
-        return userId_;
+        return instance.getUserId();
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public Builder setUserId(int value) {
-        bitField0_ |= 0x00000001;
-        userId_ = value;
-        
+        copyOnWrite();
+        instance.setUserId(value);
         return this;
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public Builder clearUserId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        userId_ = 0;
-        
+        copyOnWrite();
+        instance.clearUserId();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.UserStatType status_ = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.USER_STATUS_ONLINE;
       /**
        * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
        */
       public boolean hasStatus() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasStatus();
       }
       /**
        * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.UserStatType getStatus() {
-        return status_;
+        return instance.getStatus();
       }
       /**
        * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
        */
       public Builder setStatus(com.mogujie.tt.protobuf.IMBaseDefine.UserStatType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000002;
-        status_ = value;
-        
+        copyOnWrite();
+        instance.setStatus(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.UserStatType status = 2;</code>
        */
       public Builder clearStatus() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        status_ = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.USER_STATUS_ONLINE;
-        
+        copyOnWrite();
+        instance.clearStatus();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.ClientType clientType_ = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.CLIENT_TYPE_WINDOWS;
       /**
        * <code>required .IM.BaseDefine.ClientType client_type = 3;</code>
        */
       public boolean hasClientType() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return instance.hasClientType();
       }
       /**
        * <code>required .IM.BaseDefine.ClientType client_type = 3;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.ClientType getClientType() {
-        return clientType_;
+        return instance.getClientType();
       }
       /**
        * <code>required .IM.BaseDefine.ClientType client_type = 3;</code>
        */
       public Builder setClientType(com.mogujie.tt.protobuf.IMBaseDefine.ClientType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000004;
-        clientType_ = value;
-        
+        copyOnWrite();
+        instance.setClientType(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.ClientType client_type = 3;</code>
        */
       public Builder clearClientType() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        clientType_ = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.CLIENT_TYPE_WINDOWS;
-        
+        copyOnWrite();
+        instance.clearClientType();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.ServerUserStat)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new ServerUserStat(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasUserId()) {
+            return null;
+          }
+          if (!hasStatus()) {
+            return null;
+          }
+          if (!hasClientType()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat other = (com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat) arg1;
+          userId_ = visitor.visitInt(
+              hasUserId(), userId_,
+              other.hasUserId(), other.userId_);
+          status_ = visitor.visitInt(hasStatus(), status_,
+              other.hasStatus(), other.status_);
+          clientType_ = visitor.visitInt(hasClientType(), clientType_,
+              other.hasClientType(), other.clientType_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  userId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.UserStatType value = com.mogujie.tt.protobuf.IMBaseDefine.UserStatType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(2, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000002;
+                    status_ = rawValue;
+                  }
+                  break;
+                }
+                case 24: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.ClientType value = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(3, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000004;
+                    clientType_ = rawValue;
+                  }
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.ServerUserStat)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ServerUserStat();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.ServerUserStat getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ServerUserStat> PARSER;
+
+    public static com.google.protobuf.Parser<ServerUserStat> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface UnreadInfoOrBuilder extends
@@ -6941,154 +6953,35 @@ public final class IMBaseDefine {
     com.mogujie.tt.protobuf.IMBaseDefine.MsgType getLatestMsgType();
 
     /**
-     * <code>required uint32 latest_msg_from_user_id = 7;</code>
-     *
      * <pre>
      *发送得用户id
      * </pre>
+     *
+     * <code>required uint32 latest_msg_from_user_id = 7;</code>
      */
     boolean hasLatestMsgFromUserId();
     /**
-     * <code>required uint32 latest_msg_from_user_id = 7;</code>
-     *
      * <pre>
      *发送得用户id
      * </pre>
+     *
+     * <code>required uint32 latest_msg_from_user_id = 7;</code>
      */
     int getLatestMsgFromUserId();
   }
   /**
    * Protobuf type {@code IM.BaseDefine.UnreadInfo}
    */
-  public static final class UnreadInfo extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class UnreadInfo extends
+      com.google.protobuf.GeneratedMessageLite<
+          UnreadInfo, UnreadInfo.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.UnreadInfo)
       UnreadInfoOrBuilder {
-    // Use UnreadInfo.newBuilder() to construct.
-    private UnreadInfo(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private UnreadInfo() {
+      sessionType_ = 1;
+      latestMsgData_ = com.google.protobuf.ByteString.EMPTY;
+      latestMsgType_ = 1;
     }
-    private UnreadInfo(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final UnreadInfo defaultInstance;
-    public static UnreadInfo getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public UnreadInfo getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private UnreadInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              sessionId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.SessionType value = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000002;
-                sessionType_ = value;
-              }
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              unreadCnt_ = input.readUInt32();
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              latestMsgId_ = input.readUInt32();
-              break;
-            }
-            case 42: {
-              bitField0_ |= 0x00000010;
-              latestMsgData_ = input.readBytes();
-              break;
-            }
-            case 48: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.MsgType value = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000020;
-                latestMsgType_ = value;
-              }
-              break;
-            }
-            case 56: {
-              bitField0_ |= 0x00000040;
-              latestMsgFromUserId_ = input.readUInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<UnreadInfo> PARSER =
-        new com.google.protobuf.AbstractParser<UnreadInfo>() {
-      public UnreadInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UnreadInfo(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UnreadInfo> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int SESSION_ID_FIELD_NUMBER = 1;
     private int sessionId_;
@@ -7104,9 +6997,23 @@ public final class IMBaseDefine {
     public int getSessionId() {
       return sessionId_;
     }
+    /**
+     * <code>required uint32 session_id = 1;</code>
+     */
+    private void setSessionId(int value) {
+      bitField0_ |= 0x00000001;
+      sessionId_ = value;
+    }
+    /**
+     * <code>required uint32 session_id = 1;</code>
+     */
+    private void clearSessionId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      sessionId_ = 0;
+    }
 
     public static final int SESSION_TYPE_FIELD_NUMBER = 2;
-    private com.mogujie.tt.protobuf.IMBaseDefine.SessionType sessionType_;
+    private int sessionType_;
     /**
      * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
      */
@@ -7117,7 +7024,25 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.SessionType getSessionType() {
-      return sessionType_;
+      com.mogujie.tt.protobuf.IMBaseDefine.SessionType result = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.forNumber(sessionType_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.SessionType.SESSION_TYPE_SINGLE : result;
+    }
+    /**
+     * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
+     */
+    private void setSessionType(com.mogujie.tt.protobuf.IMBaseDefine.SessionType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000002;
+      sessionType_ = value.getNumber();
+    }
+    /**
+     * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
+     */
+    private void clearSessionType() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      sessionType_ = 1;
     }
 
     public static final int UNREAD_CNT_FIELD_NUMBER = 3;
@@ -7134,6 +7059,20 @@ public final class IMBaseDefine {
     public int getUnreadCnt() {
       return unreadCnt_;
     }
+    /**
+     * <code>required uint32 unread_cnt = 3;</code>
+     */
+    private void setUnreadCnt(int value) {
+      bitField0_ |= 0x00000004;
+      unreadCnt_ = value;
+    }
+    /**
+     * <code>required uint32 unread_cnt = 3;</code>
+     */
+    private void clearUnreadCnt() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      unreadCnt_ = 0;
+    }
 
     public static final int LATEST_MSG_ID_FIELD_NUMBER = 4;
     private int latestMsgId_;
@@ -7148,6 +7087,20 @@ public final class IMBaseDefine {
      */
     public int getLatestMsgId() {
       return latestMsgId_;
+    }
+    /**
+     * <code>required uint32 latest_msg_id = 4;</code>
+     */
+    private void setLatestMsgId(int value) {
+      bitField0_ |= 0x00000008;
+      latestMsgId_ = value;
+    }
+    /**
+     * <code>required uint32 latest_msg_id = 4;</code>
+     */
+    private void clearLatestMsgId() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      latestMsgId_ = 0;
     }
 
     public static final int LATEST_MSG_DATA_FIELD_NUMBER = 5;
@@ -7164,9 +7117,26 @@ public final class IMBaseDefine {
     public com.google.protobuf.ByteString getLatestMsgData() {
       return latestMsgData_;
     }
+    /**
+     * <code>required bytes latest_msg_data = 5;</code>
+     */
+    private void setLatestMsgData(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+      latestMsgData_ = value;
+    }
+    /**
+     * <code>required bytes latest_msg_data = 5;</code>
+     */
+    private void clearLatestMsgData() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      latestMsgData_ = getDefaultInstance().getLatestMsgData();
+    }
 
     public static final int LATEST_MSG_TYPE_FIELD_NUMBER = 6;
-    private com.mogujie.tt.protobuf.IMBaseDefine.MsgType latestMsgType_;
+    private int latestMsgType_;
     /**
      * <code>required .IM.BaseDefine.MsgType latest_msg_type = 6;</code>
      */
@@ -7177,87 +7147,79 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.MsgType latest_msg_type = 6;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.MsgType getLatestMsgType() {
-      return latestMsgType_;
+      com.mogujie.tt.protobuf.IMBaseDefine.MsgType result = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.forNumber(latestMsgType_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT : result;
+    }
+    /**
+     * <code>required .IM.BaseDefine.MsgType latest_msg_type = 6;</code>
+     */
+    private void setLatestMsgType(com.mogujie.tt.protobuf.IMBaseDefine.MsgType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000020;
+      latestMsgType_ = value.getNumber();
+    }
+    /**
+     * <code>required .IM.BaseDefine.MsgType latest_msg_type = 6;</code>
+     */
+    private void clearLatestMsgType() {
+      bitField0_ = (bitField0_ & ~0x00000020);
+      latestMsgType_ = 1;
     }
 
     public static final int LATEST_MSG_FROM_USER_ID_FIELD_NUMBER = 7;
     private int latestMsgFromUserId_;
     /**
-     * <code>required uint32 latest_msg_from_user_id = 7;</code>
-     *
      * <pre>
      *发送得用户id
      * </pre>
+     *
+     * <code>required uint32 latest_msg_from_user_id = 7;</code>
      */
     public boolean hasLatestMsgFromUserId() {
       return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>required uint32 latest_msg_from_user_id = 7;</code>
-     *
      * <pre>
      *发送得用户id
      * </pre>
+     *
+     * <code>required uint32 latest_msg_from_user_id = 7;</code>
      */
     public int getLatestMsgFromUserId() {
       return latestMsgFromUserId_;
     }
-
-    private void initFields() {
-      sessionId_ = 0;
-      sessionType_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.SESSION_TYPE_SINGLE;
-      unreadCnt_ = 0;
-      latestMsgId_ = 0;
-      latestMsgData_ = com.google.protobuf.ByteString.EMPTY;
-      latestMsgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
-      latestMsgFromUserId_ = 0;
+    /**
+     * <pre>
+     *发送得用户id
+     * </pre>
+     *
+     * <code>required uint32 latest_msg_from_user_id = 7;</code>
+     */
+    private void setLatestMsgFromUserId(int value) {
+      bitField0_ |= 0x00000040;
+      latestMsgFromUserId_ = value;
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasSessionId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasSessionType()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasUnreadCnt()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasLatestMsgId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasLatestMsgData()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasLatestMsgType()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasLatestMsgFromUserId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <pre>
+     *发送得用户id
+     * </pre>
+     *
+     * <code>required uint32 latest_msg_from_user_id = 7;</code>
+     */
+    private void clearLatestMsgFromUserId() {
+      bitField0_ = (bitField0_ & ~0x00000040);
+      latestMsgFromUserId_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, sessionId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, sessionType_.getNumber());
+        output.writeEnum(2, sessionType_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeUInt32(3, unreadCnt_);
@@ -7269,15 +7231,14 @@ public final class IMBaseDefine {
         output.writeBytes(5, latestMsgData_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeEnum(6, latestMsgType_.getNumber());
+        output.writeEnum(6, latestMsgType_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeUInt32(7, latestMsgFromUserId_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -7289,7 +7250,7 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, sessionType_.getNumber());
+          .computeEnumSize(2, sessionType_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
@@ -7305,512 +7266,527 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(6, latestMsgType_.getNumber());
+          .computeEnumSize(6, latestMsgType_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(7, latestMsgFromUserId_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.UnreadInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.UnreadInfo)
         com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfoOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        sessionId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        sessionType_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.SESSION_TYPE_SINGLE;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        unreadCnt_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        latestMsgId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        latestMsgData_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        latestMsgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        latestMsgFromUserId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo result = new com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.sessionId_ = sessionId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.sessionType_ = sessionType_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.unreadCnt_ = unreadCnt_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.latestMsgId_ = latestMsgId_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.latestMsgData_ = latestMsgData_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.latestMsgType_ = latestMsgType_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.latestMsgFromUserId_ = latestMsgFromUserId_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo.getDefaultInstance()) return this;
-        if (other.hasSessionId()) {
-          setSessionId(other.getSessionId());
-        }
-        if (other.hasSessionType()) {
-          setSessionType(other.getSessionType());
-        }
-        if (other.hasUnreadCnt()) {
-          setUnreadCnt(other.getUnreadCnt());
-        }
-        if (other.hasLatestMsgId()) {
-          setLatestMsgId(other.getLatestMsgId());
-        }
-        if (other.hasLatestMsgData()) {
-          setLatestMsgData(other.getLatestMsgData());
-        }
-        if (other.hasLatestMsgType()) {
-          setLatestMsgType(other.getLatestMsgType());
-        }
-        if (other.hasLatestMsgFromUserId()) {
-          setLatestMsgFromUserId(other.getLatestMsgFromUserId());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasSessionId()) {
-          
-          return false;
-        }
-        if (!hasSessionType()) {
-          
-          return false;
-        }
-        if (!hasUnreadCnt()) {
-          
-          return false;
-        }
-        if (!hasLatestMsgId()) {
-          
-          return false;
-        }
-        if (!hasLatestMsgData()) {
-          
-          return false;
-        }
-        if (!hasLatestMsgType()) {
-          
-          return false;
-        }
-        if (!hasLatestMsgFromUserId()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int sessionId_ ;
       /**
        * <code>required uint32 session_id = 1;</code>
        */
       public boolean hasSessionId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasSessionId();
       }
       /**
        * <code>required uint32 session_id = 1;</code>
        */
       public int getSessionId() {
-        return sessionId_;
+        return instance.getSessionId();
       }
       /**
        * <code>required uint32 session_id = 1;</code>
        */
       public Builder setSessionId(int value) {
-        bitField0_ |= 0x00000001;
-        sessionId_ = value;
-        
+        copyOnWrite();
+        instance.setSessionId(value);
         return this;
       }
       /**
        * <code>required uint32 session_id = 1;</code>
        */
       public Builder clearSessionId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        sessionId_ = 0;
-        
+        copyOnWrite();
+        instance.clearSessionId();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.SessionType sessionType_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.SESSION_TYPE_SINGLE;
       /**
        * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
        */
       public boolean hasSessionType() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasSessionType();
       }
       /**
        * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.SessionType getSessionType() {
-        return sessionType_;
+        return instance.getSessionType();
       }
       /**
        * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
        */
       public Builder setSessionType(com.mogujie.tt.protobuf.IMBaseDefine.SessionType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000002;
-        sessionType_ = value;
-        
+        copyOnWrite();
+        instance.setSessionType(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.SessionType session_type = 2;</code>
        */
       public Builder clearSessionType() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        sessionType_ = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.SESSION_TYPE_SINGLE;
-        
+        copyOnWrite();
+        instance.clearSessionType();
         return this;
       }
 
-      private int unreadCnt_ ;
       /**
        * <code>required uint32 unread_cnt = 3;</code>
        */
       public boolean hasUnreadCnt() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return instance.hasUnreadCnt();
       }
       /**
        * <code>required uint32 unread_cnt = 3;</code>
        */
       public int getUnreadCnt() {
-        return unreadCnt_;
+        return instance.getUnreadCnt();
       }
       /**
        * <code>required uint32 unread_cnt = 3;</code>
        */
       public Builder setUnreadCnt(int value) {
-        bitField0_ |= 0x00000004;
-        unreadCnt_ = value;
-        
+        copyOnWrite();
+        instance.setUnreadCnt(value);
         return this;
       }
       /**
        * <code>required uint32 unread_cnt = 3;</code>
        */
       public Builder clearUnreadCnt() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        unreadCnt_ = 0;
-        
+        copyOnWrite();
+        instance.clearUnreadCnt();
         return this;
       }
 
-      private int latestMsgId_ ;
       /**
        * <code>required uint32 latest_msg_id = 4;</code>
        */
       public boolean hasLatestMsgId() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return instance.hasLatestMsgId();
       }
       /**
        * <code>required uint32 latest_msg_id = 4;</code>
        */
       public int getLatestMsgId() {
-        return latestMsgId_;
+        return instance.getLatestMsgId();
       }
       /**
        * <code>required uint32 latest_msg_id = 4;</code>
        */
       public Builder setLatestMsgId(int value) {
-        bitField0_ |= 0x00000008;
-        latestMsgId_ = value;
-        
+        copyOnWrite();
+        instance.setLatestMsgId(value);
         return this;
       }
       /**
        * <code>required uint32 latest_msg_id = 4;</code>
        */
       public Builder clearLatestMsgId() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        latestMsgId_ = 0;
-        
+        copyOnWrite();
+        instance.clearLatestMsgId();
         return this;
       }
 
-      private com.google.protobuf.ByteString latestMsgData_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <code>required bytes latest_msg_data = 5;</code>
        */
       public boolean hasLatestMsgData() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return instance.hasLatestMsgData();
       }
       /**
        * <code>required bytes latest_msg_data = 5;</code>
        */
       public com.google.protobuf.ByteString getLatestMsgData() {
-        return latestMsgData_;
+        return instance.getLatestMsgData();
       }
       /**
        * <code>required bytes latest_msg_data = 5;</code>
        */
       public Builder setLatestMsgData(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
-        latestMsgData_ = value;
-        
+        copyOnWrite();
+        instance.setLatestMsgData(value);
         return this;
       }
       /**
        * <code>required bytes latest_msg_data = 5;</code>
        */
       public Builder clearLatestMsgData() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        latestMsgData_ = getDefaultInstance().getLatestMsgData();
-        
+        copyOnWrite();
+        instance.clearLatestMsgData();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.MsgType latestMsgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
       /**
        * <code>required .IM.BaseDefine.MsgType latest_msg_type = 6;</code>
        */
       public boolean hasLatestMsgType() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return instance.hasLatestMsgType();
       }
       /**
        * <code>required .IM.BaseDefine.MsgType latest_msg_type = 6;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.MsgType getLatestMsgType() {
-        return latestMsgType_;
+        return instance.getLatestMsgType();
       }
       /**
        * <code>required .IM.BaseDefine.MsgType latest_msg_type = 6;</code>
        */
       public Builder setLatestMsgType(com.mogujie.tt.protobuf.IMBaseDefine.MsgType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000020;
-        latestMsgType_ = value;
-        
+        copyOnWrite();
+        instance.setLatestMsgType(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.MsgType latest_msg_type = 6;</code>
        */
       public Builder clearLatestMsgType() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        latestMsgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
-        
+        copyOnWrite();
+        instance.clearLatestMsgType();
         return this;
       }
 
-      private int latestMsgFromUserId_ ;
       /**
-       * <code>required uint32 latest_msg_from_user_id = 7;</code>
-       *
        * <pre>
        *发送得用户id
        * </pre>
+       *
+       * <code>required uint32 latest_msg_from_user_id = 7;</code>
        */
       public boolean hasLatestMsgFromUserId() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return instance.hasLatestMsgFromUserId();
       }
       /**
-       * <code>required uint32 latest_msg_from_user_id = 7;</code>
-       *
        * <pre>
        *发送得用户id
        * </pre>
+       *
+       * <code>required uint32 latest_msg_from_user_id = 7;</code>
        */
       public int getLatestMsgFromUserId() {
-        return latestMsgFromUserId_;
+        return instance.getLatestMsgFromUserId();
       }
       /**
-       * <code>required uint32 latest_msg_from_user_id = 7;</code>
-       *
        * <pre>
        *发送得用户id
        * </pre>
+       *
+       * <code>required uint32 latest_msg_from_user_id = 7;</code>
        */
       public Builder setLatestMsgFromUserId(int value) {
-        bitField0_ |= 0x00000040;
-        latestMsgFromUserId_ = value;
-        
+        copyOnWrite();
+        instance.setLatestMsgFromUserId(value);
         return this;
       }
       /**
-       * <code>required uint32 latest_msg_from_user_id = 7;</code>
-       *
        * <pre>
        *发送得用户id
        * </pre>
+       *
+       * <code>required uint32 latest_msg_from_user_id = 7;</code>
        */
       public Builder clearLatestMsgFromUserId() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        latestMsgFromUserId_ = 0;
-        
+        copyOnWrite();
+        instance.clearLatestMsgFromUserId();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.UnreadInfo)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new UnreadInfo(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasSessionId()) {
+            return null;
+          }
+          if (!hasSessionType()) {
+            return null;
+          }
+          if (!hasUnreadCnt()) {
+            return null;
+          }
+          if (!hasLatestMsgId()) {
+            return null;
+          }
+          if (!hasLatestMsgData()) {
+            return null;
+          }
+          if (!hasLatestMsgType()) {
+            return null;
+          }
+          if (!hasLatestMsgFromUserId()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo other = (com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo) arg1;
+          sessionId_ = visitor.visitInt(
+              hasSessionId(), sessionId_,
+              other.hasSessionId(), other.sessionId_);
+          sessionType_ = visitor.visitInt(hasSessionType(), sessionType_,
+              other.hasSessionType(), other.sessionType_);
+          unreadCnt_ = visitor.visitInt(
+              hasUnreadCnt(), unreadCnt_,
+              other.hasUnreadCnt(), other.unreadCnt_);
+          latestMsgId_ = visitor.visitInt(
+              hasLatestMsgId(), latestMsgId_,
+              other.hasLatestMsgId(), other.latestMsgId_);
+          latestMsgData_ = visitor.visitByteString(
+              hasLatestMsgData(), latestMsgData_,
+              other.hasLatestMsgData(), other.latestMsgData_);
+          latestMsgType_ = visitor.visitInt(hasLatestMsgType(), latestMsgType_,
+              other.hasLatestMsgType(), other.latestMsgType_);
+          latestMsgFromUserId_ = visitor.visitInt(
+              hasLatestMsgFromUserId(), latestMsgFromUserId_,
+              other.hasLatestMsgFromUserId(), other.latestMsgFromUserId_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  sessionId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.SessionType value = com.mogujie.tt.protobuf.IMBaseDefine.SessionType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(2, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000002;
+                    sessionType_ = rawValue;
+                  }
+                  break;
+                }
+                case 24: {
+                  bitField0_ |= 0x00000004;
+                  unreadCnt_ = input.readUInt32();
+                  break;
+                }
+                case 32: {
+                  bitField0_ |= 0x00000008;
+                  latestMsgId_ = input.readUInt32();
+                  break;
+                }
+                case 42: {
+                  bitField0_ |= 0x00000010;
+                  latestMsgData_ = input.readBytes();
+                  break;
+                }
+                case 48: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.MsgType value = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(6, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000020;
+                    latestMsgType_ = rawValue;
+                  }
+                  break;
+                }
+                case 56: {
+                  bitField0_ |= 0x00000040;
+                  latestMsgFromUserId_ = input.readUInt32();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.UnreadInfo)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new UnreadInfo();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UnreadInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<UnreadInfo> PARSER;
+
+    public static com.google.protobuf.Parser<UnreadInfo> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface MsgInfoOrBuilder extends
@@ -7827,19 +7803,19 @@ public final class IMBaseDefine {
     int getMsgId();
 
     /**
-     * <code>required uint32 from_session_id = 2;</code>
-     *
      * <pre>
      *发送的用户id
      * </pre>
+     *
+     * <code>required uint32 from_session_id = 2;</code>
      */
     boolean hasFromSessionId();
     /**
-     * <code>required uint32 from_session_id = 2;</code>
-     *
      * <pre>
      *发送的用户id
      * </pre>
+     *
+     * <code>required uint32 from_session_id = 2;</code>
      */
     int getFromSessionId();
 
@@ -7873,118 +7849,15 @@ public final class IMBaseDefine {
   /**
    * Protobuf type {@code IM.BaseDefine.MsgInfo}
    */
-  public static final class MsgInfo extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class MsgInfo extends
+      com.google.protobuf.GeneratedMessageLite<
+          MsgInfo, MsgInfo.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.MsgInfo)
       MsgInfoOrBuilder {
-    // Use MsgInfo.newBuilder() to construct.
-    private MsgInfo(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private MsgInfo() {
+      msgType_ = 1;
+      msgData_ = com.google.protobuf.ByteString.EMPTY;
     }
-    private MsgInfo(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final MsgInfo defaultInstance;
-    public static MsgInfo getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public MsgInfo getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private MsgInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              msgId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              fromSessionId_ = input.readUInt32();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              createTime_ = input.readUInt32();
-              break;
-            }
-            case 32: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.MsgType value = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000008;
-                msgType_ = value;
-              }
-              break;
-            }
-            case 42: {
-              bitField0_ |= 0x00000010;
-              msgData_ = input.readBytes();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<MsgInfo> PARSER =
-        new com.google.protobuf.AbstractParser<MsgInfo>() {
-      public MsgInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new MsgInfo(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<MsgInfo> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int MSG_ID_FIELD_NUMBER = 1;
     private int msgId_;
@@ -8000,28 +7873,64 @@ public final class IMBaseDefine {
     public int getMsgId() {
       return msgId_;
     }
+    /**
+     * <code>required uint32 msg_id = 1;</code>
+     */
+    private void setMsgId(int value) {
+      bitField0_ |= 0x00000001;
+      msgId_ = value;
+    }
+    /**
+     * <code>required uint32 msg_id = 1;</code>
+     */
+    private void clearMsgId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      msgId_ = 0;
+    }
 
     public static final int FROM_SESSION_ID_FIELD_NUMBER = 2;
     private int fromSessionId_;
     /**
-     * <code>required uint32 from_session_id = 2;</code>
-     *
      * <pre>
      *发送的用户id
      * </pre>
+     *
+     * <code>required uint32 from_session_id = 2;</code>
      */
     public boolean hasFromSessionId() {
       return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     /**
-     * <code>required uint32 from_session_id = 2;</code>
-     *
      * <pre>
      *发送的用户id
      * </pre>
+     *
+     * <code>required uint32 from_session_id = 2;</code>
      */
     public int getFromSessionId() {
       return fromSessionId_;
+    }
+    /**
+     * <pre>
+     *发送的用户id
+     * </pre>
+     *
+     * <code>required uint32 from_session_id = 2;</code>
+     */
+    private void setFromSessionId(int value) {
+      bitField0_ |= 0x00000002;
+      fromSessionId_ = value;
+    }
+    /**
+     * <pre>
+     *发送的用户id
+     * </pre>
+     *
+     * <code>required uint32 from_session_id = 2;</code>
+     */
+    private void clearFromSessionId() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      fromSessionId_ = 0;
     }
 
     public static final int CREATE_TIME_FIELD_NUMBER = 3;
@@ -8038,9 +7947,23 @@ public final class IMBaseDefine {
     public int getCreateTime() {
       return createTime_;
     }
+    /**
+     * <code>required uint32 create_time = 3;</code>
+     */
+    private void setCreateTime(int value) {
+      bitField0_ |= 0x00000004;
+      createTime_ = value;
+    }
+    /**
+     * <code>required uint32 create_time = 3;</code>
+     */
+    private void clearCreateTime() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      createTime_ = 0;
+    }
 
     public static final int MSG_TYPE_FIELD_NUMBER = 4;
-    private com.mogujie.tt.protobuf.IMBaseDefine.MsgType msgType_;
+    private int msgType_;
     /**
      * <code>required .IM.BaseDefine.MsgType msg_type = 4;</code>
      */
@@ -8051,7 +7974,25 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.MsgType msg_type = 4;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.MsgType getMsgType() {
-      return msgType_;
+      com.mogujie.tt.protobuf.IMBaseDefine.MsgType result = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.forNumber(msgType_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT : result;
+    }
+    /**
+     * <code>required .IM.BaseDefine.MsgType msg_type = 4;</code>
+     */
+    private void setMsgType(com.mogujie.tt.protobuf.IMBaseDefine.MsgType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000008;
+      msgType_ = value.getNumber();
+    }
+    /**
+     * <code>required .IM.BaseDefine.MsgType msg_type = 4;</code>
+     */
+    private void clearMsgType() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      msgType_ = 1;
     }
 
     public static final int MSG_DATA_FIELD_NUMBER = 5;
@@ -8068,47 +8009,26 @@ public final class IMBaseDefine {
     public com.google.protobuf.ByteString getMsgData() {
       return msgData_;
     }
-
-    private void initFields() {
-      msgId_ = 0;
-      fromSessionId_ = 0;
-      createTime_ = 0;
-      msgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
-      msgData_ = com.google.protobuf.ByteString.EMPTY;
+    /**
+     * <code>required bytes msg_data = 5;</code>
+     */
+    private void setMsgData(com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000010;
+      msgData_ = value;
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasMsgId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasFromSessionId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasCreateTime()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMsgType()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasMsgData()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <code>required bytes msg_data = 5;</code>
+     */
+    private void clearMsgData() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      msgData_ = getDefaultInstance().getMsgData();
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, msgId_);
       }
@@ -8119,15 +8039,14 @@ public final class IMBaseDefine {
         output.writeUInt32(3, createTime_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeEnum(4, msgType_.getNumber());
+        output.writeEnum(4, msgType_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeBytes(5, msgData_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -8147,419 +8066,442 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(4, msgType_.getNumber());
+          .computeEnumSize(4, msgType_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(5, msgData_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.MsgInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.MsgInfo)
         com.mogujie.tt.protobuf.IMBaseDefine.MsgInfoOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        msgId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        fromSessionId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        createTime_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        msgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        msgData_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo result = new com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.msgId_ = msgId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.fromSessionId_ = fromSessionId_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.createTime_ = createTime_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.msgType_ = msgType_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.msgData_ = msgData_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo.getDefaultInstance()) return this;
-        if (other.hasMsgId()) {
-          setMsgId(other.getMsgId());
-        }
-        if (other.hasFromSessionId()) {
-          setFromSessionId(other.getFromSessionId());
-        }
-        if (other.hasCreateTime()) {
-          setCreateTime(other.getCreateTime());
-        }
-        if (other.hasMsgType()) {
-          setMsgType(other.getMsgType());
-        }
-        if (other.hasMsgData()) {
-          setMsgData(other.getMsgData());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasMsgId()) {
-          
-          return false;
-        }
-        if (!hasFromSessionId()) {
-          
-          return false;
-        }
-        if (!hasCreateTime()) {
-          
-          return false;
-        }
-        if (!hasMsgType()) {
-          
-          return false;
-        }
-        if (!hasMsgData()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int msgId_ ;
       /**
        * <code>required uint32 msg_id = 1;</code>
        */
       public boolean hasMsgId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasMsgId();
       }
       /**
        * <code>required uint32 msg_id = 1;</code>
        */
       public int getMsgId() {
-        return msgId_;
+        return instance.getMsgId();
       }
       /**
        * <code>required uint32 msg_id = 1;</code>
        */
       public Builder setMsgId(int value) {
-        bitField0_ |= 0x00000001;
-        msgId_ = value;
-        
+        copyOnWrite();
+        instance.setMsgId(value);
         return this;
       }
       /**
        * <code>required uint32 msg_id = 1;</code>
        */
       public Builder clearMsgId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        msgId_ = 0;
-        
+        copyOnWrite();
+        instance.clearMsgId();
         return this;
       }
 
-      private int fromSessionId_ ;
       /**
-       * <code>required uint32 from_session_id = 2;</code>
-       *
        * <pre>
        *发送的用户id
        * </pre>
+       *
+       * <code>required uint32 from_session_id = 2;</code>
        */
       public boolean hasFromSessionId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasFromSessionId();
       }
       /**
-       * <code>required uint32 from_session_id = 2;</code>
-       *
        * <pre>
        *发送的用户id
        * </pre>
+       *
+       * <code>required uint32 from_session_id = 2;</code>
        */
       public int getFromSessionId() {
-        return fromSessionId_;
+        return instance.getFromSessionId();
       }
       /**
-       * <code>required uint32 from_session_id = 2;</code>
-       *
        * <pre>
        *发送的用户id
        * </pre>
+       *
+       * <code>required uint32 from_session_id = 2;</code>
        */
       public Builder setFromSessionId(int value) {
-        bitField0_ |= 0x00000002;
-        fromSessionId_ = value;
-        
+        copyOnWrite();
+        instance.setFromSessionId(value);
         return this;
       }
       /**
-       * <code>required uint32 from_session_id = 2;</code>
-       *
        * <pre>
        *发送的用户id
        * </pre>
+       *
+       * <code>required uint32 from_session_id = 2;</code>
        */
       public Builder clearFromSessionId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        fromSessionId_ = 0;
-        
+        copyOnWrite();
+        instance.clearFromSessionId();
         return this;
       }
 
-      private int createTime_ ;
       /**
        * <code>required uint32 create_time = 3;</code>
        */
       public boolean hasCreateTime() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return instance.hasCreateTime();
       }
       /**
        * <code>required uint32 create_time = 3;</code>
        */
       public int getCreateTime() {
-        return createTime_;
+        return instance.getCreateTime();
       }
       /**
        * <code>required uint32 create_time = 3;</code>
        */
       public Builder setCreateTime(int value) {
-        bitField0_ |= 0x00000004;
-        createTime_ = value;
-        
+        copyOnWrite();
+        instance.setCreateTime(value);
         return this;
       }
       /**
        * <code>required uint32 create_time = 3;</code>
        */
       public Builder clearCreateTime() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        createTime_ = 0;
-        
+        copyOnWrite();
+        instance.clearCreateTime();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.MsgType msgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
       /**
        * <code>required .IM.BaseDefine.MsgType msg_type = 4;</code>
        */
       public boolean hasMsgType() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return instance.hasMsgType();
       }
       /**
        * <code>required .IM.BaseDefine.MsgType msg_type = 4;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.MsgType getMsgType() {
-        return msgType_;
+        return instance.getMsgType();
       }
       /**
        * <code>required .IM.BaseDefine.MsgType msg_type = 4;</code>
        */
       public Builder setMsgType(com.mogujie.tt.protobuf.IMBaseDefine.MsgType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000008;
-        msgType_ = value;
-        
+        copyOnWrite();
+        instance.setMsgType(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.MsgType msg_type = 4;</code>
        */
       public Builder clearMsgType() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        msgType_ = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.MSG_TYPE_SINGLE_TEXT;
-        
+        copyOnWrite();
+        instance.clearMsgType();
         return this;
       }
 
-      private com.google.protobuf.ByteString msgData_ = com.google.protobuf.ByteString.EMPTY;
       /**
        * <code>required bytes msg_data = 5;</code>
        */
       public boolean hasMsgData() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return instance.hasMsgData();
       }
       /**
        * <code>required bytes msg_data = 5;</code>
        */
       public com.google.protobuf.ByteString getMsgData() {
-        return msgData_;
+        return instance.getMsgData();
       }
       /**
        * <code>required bytes msg_data = 5;</code>
        */
       public Builder setMsgData(com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
-        msgData_ = value;
-        
+        copyOnWrite();
+        instance.setMsgData(value);
         return this;
       }
       /**
        * <code>required bytes msg_data = 5;</code>
        */
       public Builder clearMsgData() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        msgData_ = getDefaultInstance().getMsgData();
-        
+        copyOnWrite();
+        instance.clearMsgData();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.MsgInfo)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new MsgInfo(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasMsgId()) {
+            return null;
+          }
+          if (!hasFromSessionId()) {
+            return null;
+          }
+          if (!hasCreateTime()) {
+            return null;
+          }
+          if (!hasMsgType()) {
+            return null;
+          }
+          if (!hasMsgData()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo other = (com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo) arg1;
+          msgId_ = visitor.visitInt(
+              hasMsgId(), msgId_,
+              other.hasMsgId(), other.msgId_);
+          fromSessionId_ = visitor.visitInt(
+              hasFromSessionId(), fromSessionId_,
+              other.hasFromSessionId(), other.fromSessionId_);
+          createTime_ = visitor.visitInt(
+              hasCreateTime(), createTime_,
+              other.hasCreateTime(), other.createTime_);
+          msgType_ = visitor.visitInt(hasMsgType(), msgType_,
+              other.hasMsgType(), other.msgType_);
+          msgData_ = visitor.visitByteString(
+              hasMsgData(), msgData_,
+              other.hasMsgData(), other.msgData_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  msgId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  bitField0_ |= 0x00000002;
+                  fromSessionId_ = input.readUInt32();
+                  break;
+                }
+                case 24: {
+                  bitField0_ |= 0x00000004;
+                  createTime_ = input.readUInt32();
+                  break;
+                }
+                case 32: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.MsgType value = com.mogujie.tt.protobuf.IMBaseDefine.MsgType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(4, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000008;
+                    msgType_ = rawValue;
+                  }
+                  break;
+                }
+                case 42: {
+                  bitField0_ |= 0x00000010;
+                  msgData_ = input.readBytes();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.MsgInfo)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new MsgInfo();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.MsgInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<MsgInfo> PARSER;
+
+    public static com.google.protobuf.Parser<MsgInfo> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface GroupVersionInfoOrBuilder extends
@@ -8587,96 +8529,13 @@ public final class IMBaseDefine {
   /**
    * Protobuf type {@code IM.BaseDefine.GroupVersionInfo}
    */
-  public static final class GroupVersionInfo extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class GroupVersionInfo extends
+      com.google.protobuf.GeneratedMessageLite<
+          GroupVersionInfo, GroupVersionInfo.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.GroupVersionInfo)
       GroupVersionInfoOrBuilder {
-    // Use GroupVersionInfo.newBuilder() to construct.
-    private GroupVersionInfo(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private GroupVersionInfo() {
     }
-    private GroupVersionInfo(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final GroupVersionInfo defaultInstance;
-    public static GroupVersionInfo getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public GroupVersionInfo getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private GroupVersionInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              groupId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              version_ = input.readUInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<GroupVersionInfo> PARSER =
-        new com.google.protobuf.AbstractParser<GroupVersionInfo>() {
-      public GroupVersionInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GroupVersionInfo(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<GroupVersionInfo> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int GROUP_ID_FIELD_NUMBER = 1;
     private int groupId_;
@@ -8691,6 +8550,20 @@ public final class IMBaseDefine {
      */
     public int getGroupId() {
       return groupId_;
+    }
+    /**
+     * <code>required uint32 group_id = 1;</code>
+     */
+    private void setGroupId(int value) {
+      bitField0_ |= 0x00000001;
+      groupId_ = value;
+    }
+    /**
+     * <code>required uint32 group_id = 1;</code>
+     */
+    private void clearGroupId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      groupId_ = 0;
     }
 
     public static final int VERSION_FIELD_NUMBER = 2;
@@ -8707,42 +8580,32 @@ public final class IMBaseDefine {
     public int getVersion() {
       return version_;
     }
-
-    private void initFields() {
-      groupId_ = 0;
-      version_ = 0;
+    /**
+     * <code>required uint32 version = 2;</code>
+     */
+    private void setVersion(int value) {
+      bitField0_ |= 0x00000002;
+      version_ = value;
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasGroupId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasVersion()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <code>required uint32 version = 2;</code>
+     */
+    private void clearVersion() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      version_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, groupId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeUInt32(2, version_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -8756,256 +8619,295 @@ public final class IMBaseDefine {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, version_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.GroupVersionInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.GroupVersionInfo)
         com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfoOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        groupId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        version_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo result = new com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.groupId_ = groupId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.version_ = version_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo.getDefaultInstance()) return this;
-        if (other.hasGroupId()) {
-          setGroupId(other.getGroupId());
-        }
-        if (other.hasVersion()) {
-          setVersion(other.getVersion());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasGroupId()) {
-          
-          return false;
-        }
-        if (!hasVersion()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int groupId_ ;
       /**
        * <code>required uint32 group_id = 1;</code>
        */
       public boolean hasGroupId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasGroupId();
       }
       /**
        * <code>required uint32 group_id = 1;</code>
        */
       public int getGroupId() {
-        return groupId_;
+        return instance.getGroupId();
       }
       /**
        * <code>required uint32 group_id = 1;</code>
        */
       public Builder setGroupId(int value) {
-        bitField0_ |= 0x00000001;
-        groupId_ = value;
-        
+        copyOnWrite();
+        instance.setGroupId(value);
         return this;
       }
       /**
        * <code>required uint32 group_id = 1;</code>
        */
       public Builder clearGroupId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        groupId_ = 0;
-        
+        copyOnWrite();
+        instance.clearGroupId();
         return this;
       }
 
-      private int version_ ;
       /**
        * <code>required uint32 version = 2;</code>
        */
       public boolean hasVersion() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasVersion();
       }
       /**
        * <code>required uint32 version = 2;</code>
        */
       public int getVersion() {
-        return version_;
+        return instance.getVersion();
       }
       /**
        * <code>required uint32 version = 2;</code>
        */
       public Builder setVersion(int value) {
-        bitField0_ |= 0x00000002;
-        version_ = value;
-        
+        copyOnWrite();
+        instance.setVersion(value);
         return this;
       }
       /**
        * <code>required uint32 version = 2;</code>
        */
       public Builder clearVersion() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        version_ = 0;
-        
+        copyOnWrite();
+        instance.clearVersion();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.GroupVersionInfo)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new GroupVersionInfo(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasGroupId()) {
+            return null;
+          }
+          if (!hasVersion()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo other = (com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo) arg1;
+          groupId_ = visitor.visitInt(
+              hasGroupId(), groupId_,
+              other.hasGroupId(), other.groupId_);
+          version_ = visitor.visitInt(
+              hasVersion(), version_,
+              other.hasVersion(), other.version_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  groupId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  bitField0_ |= 0x00000002;
+                  version_ = input.readUInt32();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.GroupVersionInfo)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new GroupVersionInfo();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.GroupVersionInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<GroupVersionInfo> PARSER;
+
+    public static com.google.protobuf.Parser<GroupVersionInfo> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface GroupInfoOrBuilder extends
@@ -9077,19 +8979,19 @@ public final class IMBaseDefine {
     com.mogujie.tt.protobuf.IMBaseDefine.GroupType getGroupType();
 
     /**
-     * <code>required uint32 shield_status = 7;</code>
-     *
      * <pre>
      *1: shield  0: not shield 
      * </pre>
+     *
+     * <code>required uint32 shield_status = 7;</code>
      */
     boolean hasShieldStatus();
     /**
-     * <code>required uint32 shield_status = 7;</code>
-     *
      * <pre>
      *1: shield  0: not shield 
      * </pre>
+     *
+     * <code>required uint32 shield_status = 7;</code>
      */
     int getShieldStatus();
 
@@ -9109,154 +9011,17 @@ public final class IMBaseDefine {
   /**
    * Protobuf type {@code IM.BaseDefine.GroupInfo}
    */
-  public static final class GroupInfo extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class GroupInfo extends
+      com.google.protobuf.GeneratedMessageLite<
+          GroupInfo, GroupInfo.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.GroupInfo)
       GroupInfoOrBuilder {
-    // Use GroupInfo.newBuilder() to construct.
-    private GroupInfo(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private GroupInfo() {
+      groupName_ = "";
+      groupAvatar_ = "";
+      groupType_ = 1;
+      groupMemberList_ = emptyIntList();
     }
-    private GroupInfo(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final GroupInfo defaultInstance;
-    public static GroupInfo getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public GroupInfo getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private GroupInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              groupId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              version_ = input.readUInt32();
-              break;
-            }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              groupName_ = bs;
-              break;
-            }
-            case 34: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000008;
-              groupAvatar_ = bs;
-              break;
-            }
-            case 40: {
-              bitField0_ |= 0x00000010;
-              groupCreatorId_ = input.readUInt32();
-              break;
-            }
-            case 48: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.GroupType value = com.mogujie.tt.protobuf.IMBaseDefine.GroupType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000020;
-                groupType_ = value;
-              }
-              break;
-            }
-            case 56: {
-              bitField0_ |= 0x00000040;
-              shieldStatus_ = input.readUInt32();
-              break;
-            }
-            case 64: {
-              if (!((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
-                groupMemberList_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField0_ |= 0x00000080;
-              }
-              groupMemberList_.add(input.readUInt32());
-              break;
-            }
-            case 66: {
-              int length = input.readRawVarint32();
-              int limit = input.pushLimit(length);
-              if (!((mutable_bitField0_ & 0x00000080) == 0x00000080) && input.getBytesUntilLimit() > 0) {
-                groupMemberList_ = new java.util.ArrayList<java.lang.Integer>();
-                mutable_bitField0_ |= 0x00000080;
-              }
-              while (input.getBytesUntilLimit() > 0) {
-                groupMemberList_.add(input.readUInt32());
-              }
-              input.popLimit(limit);
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        if (((mutable_bitField0_ & 0x00000080) == 0x00000080)) {
-          groupMemberList_ = java.util.Collections.unmodifiableList(groupMemberList_);
-        }
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<GroupInfo> PARSER =
-        new com.google.protobuf.AbstractParser<GroupInfo>() {
-      public GroupInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new GroupInfo(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<GroupInfo> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int GROUP_ID_FIELD_NUMBER = 1;
     private int groupId_;
@@ -9271,6 +9036,20 @@ public final class IMBaseDefine {
      */
     public int getGroupId() {
       return groupId_;
+    }
+    /**
+     * <code>required uint32 group_id = 1;</code>
+     */
+    private void setGroupId(int value) {
+      bitField0_ |= 0x00000001;
+      groupId_ = value;
+    }
+    /**
+     * <code>required uint32 group_id = 1;</code>
+     */
+    private void clearGroupId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      groupId_ = 0;
     }
 
     public static final int VERSION_FIELD_NUMBER = 2;
@@ -9287,9 +9066,23 @@ public final class IMBaseDefine {
     public int getVersion() {
       return version_;
     }
+    /**
+     * <code>required uint32 version = 2;</code>
+     */
+    private void setVersion(int value) {
+      bitField0_ |= 0x00000002;
+      version_ = value;
+    }
+    /**
+     * <code>required uint32 version = 2;</code>
+     */
+    private void clearVersion() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      version_ = 0;
+    }
 
     public static final int GROUP_NAME_FIELD_NUMBER = 3;
-    private java.lang.Object groupName_;
+    private java.lang.String groupName_;
     /**
      * <code>required string group_name = 3;</code>
      */
@@ -9300,38 +9093,47 @@ public final class IMBaseDefine {
      * <code>required string group_name = 3;</code>
      */
     public java.lang.String getGroupName() {
-      java.lang.Object ref = groupName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          groupName_ = s;
-        }
-        return s;
-      }
+      return groupName_;
     }
     /**
      * <code>required string group_name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getGroupNameBytes() {
-      java.lang.Object ref = groupName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        groupName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(groupName_);
+    }
+    /**
+     * <code>required string group_name = 3;</code>
+     */
+    private void setGroupName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+      groupName_ = value;
+    }
+    /**
+     * <code>required string group_name = 3;</code>
+     */
+    private void clearGroupName() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      groupName_ = getDefaultInstance().getGroupName();
+    }
+    /**
+     * <code>required string group_name = 3;</code>
+     */
+    private void setGroupNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+      groupName_ = value.toStringUtf8();
     }
 
     public static final int GROUP_AVATAR_FIELD_NUMBER = 4;
-    private java.lang.Object groupAvatar_;
+    private java.lang.String groupAvatar_;
     /**
      * <code>required string group_avatar = 4;</code>
      */
@@ -9342,34 +9144,43 @@ public final class IMBaseDefine {
      * <code>required string group_avatar = 4;</code>
      */
     public java.lang.String getGroupAvatar() {
-      java.lang.Object ref = groupAvatar_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          groupAvatar_ = s;
-        }
-        return s;
-      }
+      return groupAvatar_;
     }
     /**
      * <code>required string group_avatar = 4;</code>
      */
     public com.google.protobuf.ByteString
         getGroupAvatarBytes() {
-      java.lang.Object ref = groupAvatar_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        groupAvatar_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(groupAvatar_);
+    }
+    /**
+     * <code>required string group_avatar = 4;</code>
+     */
+    private void setGroupAvatar(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+      groupAvatar_ = value;
+    }
+    /**
+     * <code>required string group_avatar = 4;</code>
+     */
+    private void clearGroupAvatar() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      groupAvatar_ = getDefaultInstance().getGroupAvatar();
+    }
+    /**
+     * <code>required string group_avatar = 4;</code>
+     */
+    private void setGroupAvatarBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+      groupAvatar_ = value.toStringUtf8();
     }
 
     public static final int GROUP_CREATOR_ID_FIELD_NUMBER = 5;
@@ -9386,9 +9197,23 @@ public final class IMBaseDefine {
     public int getGroupCreatorId() {
       return groupCreatorId_;
     }
+    /**
+     * <code>required uint32 group_creator_id = 5;</code>
+     */
+    private void setGroupCreatorId(int value) {
+      bitField0_ |= 0x00000010;
+      groupCreatorId_ = value;
+    }
+    /**
+     * <code>required uint32 group_creator_id = 5;</code>
+     */
+    private void clearGroupCreatorId() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      groupCreatorId_ = 0;
+    }
 
     public static final int GROUP_TYPE_FIELD_NUMBER = 6;
-    private com.mogujie.tt.protobuf.IMBaseDefine.GroupType groupType_;
+    private int groupType_;
     /**
      * <code>required .IM.BaseDefine.GroupType group_type = 6;</code>
      */
@@ -9399,34 +9224,74 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.GroupType group_type = 6;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.GroupType getGroupType() {
-      return groupType_;
+      com.mogujie.tt.protobuf.IMBaseDefine.GroupType result = com.mogujie.tt.protobuf.IMBaseDefine.GroupType.forNumber(groupType_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.GroupType.GROUP_TYPE_NORMAL : result;
+    }
+    /**
+     * <code>required .IM.BaseDefine.GroupType group_type = 6;</code>
+     */
+    private void setGroupType(com.mogujie.tt.protobuf.IMBaseDefine.GroupType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000020;
+      groupType_ = value.getNumber();
+    }
+    /**
+     * <code>required .IM.BaseDefine.GroupType group_type = 6;</code>
+     */
+    private void clearGroupType() {
+      bitField0_ = (bitField0_ & ~0x00000020);
+      groupType_ = 1;
     }
 
     public static final int SHIELD_STATUS_FIELD_NUMBER = 7;
     private int shieldStatus_;
     /**
-     * <code>required uint32 shield_status = 7;</code>
-     *
      * <pre>
      *1: shield  0: not shield 
      * </pre>
+     *
+     * <code>required uint32 shield_status = 7;</code>
      */
     public boolean hasShieldStatus() {
       return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     /**
-     * <code>required uint32 shield_status = 7;</code>
-     *
      * <pre>
      *1: shield  0: not shield 
      * </pre>
+     *
+     * <code>required uint32 shield_status = 7;</code>
      */
     public int getShieldStatus() {
       return shieldStatus_;
     }
+    /**
+     * <pre>
+     *1: shield  0: not shield 
+     * </pre>
+     *
+     * <code>required uint32 shield_status = 7;</code>
+     */
+    private void setShieldStatus(int value) {
+      bitField0_ |= 0x00000040;
+      shieldStatus_ = value;
+    }
+    /**
+     * <pre>
+     *1: shield  0: not shield 
+     * </pre>
+     *
+     * <code>required uint32 shield_status = 7;</code>
+     */
+    private void clearShieldStatus() {
+      bitField0_ = (bitField0_ & ~0x00000040);
+      shieldStatus_ = 0;
+    }
 
     public static final int GROUP_MEMBER_LIST_FIELD_NUMBER = 8;
-    private java.util.List<java.lang.Integer> groupMemberList_;
+    private com.google.protobuf.Internal.IntList groupMemberList_;
     /**
      * <code>repeated uint32 group_member_list = 8;</code>
      */
@@ -9444,60 +9309,47 @@ public final class IMBaseDefine {
      * <code>repeated uint32 group_member_list = 8;</code>
      */
     public int getGroupMemberList(int index) {
-      return groupMemberList_.get(index);
+      return groupMemberList_.getInt(index);
     }
-
-    private void initFields() {
-      groupId_ = 0;
-      version_ = 0;
-      groupName_ = "";
-      groupAvatar_ = "";
-      groupCreatorId_ = 0;
-      groupType_ = com.mogujie.tt.protobuf.IMBaseDefine.GroupType.GROUP_TYPE_NORMAL;
-      shieldStatus_ = 0;
-      groupMemberList_ = java.util.Collections.emptyList();
+    private void ensureGroupMemberListIsMutable() {
+      if (!groupMemberList_.isModifiable()) {
+        groupMemberList_ =
+            com.google.protobuf.GeneratedMessageLite.mutableCopy(groupMemberList_);
+       }
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasGroupId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasVersion()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasGroupName()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasGroupAvatar()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasGroupCreatorId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasGroupType()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasShieldStatus()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <code>repeated uint32 group_member_list = 8;</code>
+     */
+    private void setGroupMemberList(
+        int index, int value) {
+      ensureGroupMemberListIsMutable();
+      groupMemberList_.setInt(index, value);
+    }
+    /**
+     * <code>repeated uint32 group_member_list = 8;</code>
+     */
+    private void addGroupMemberList(int value) {
+      ensureGroupMemberListIsMutable();
+      groupMemberList_.addInt(value);
+    }
+    /**
+     * <code>repeated uint32 group_member_list = 8;</code>
+     */
+    private void addAllGroupMemberList(
+        java.lang.Iterable<? extends java.lang.Integer> values) {
+      ensureGroupMemberListIsMutable();
+      com.google.protobuf.AbstractMessageLite.addAll(
+          values, groupMemberList_);
+    }
+    /**
+     * <code>repeated uint32 group_member_list = 8;</code>
+     */
+    private void clearGroupMemberList() {
+      groupMemberList_ = emptyIntList();
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, groupId_);
       }
@@ -9505,27 +9357,26 @@ public final class IMBaseDefine {
         output.writeUInt32(2, version_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getGroupNameBytes());
+        output.writeString(3, getGroupName());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getGroupAvatarBytes());
+        output.writeString(4, getGroupAvatar());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeUInt32(5, groupCreatorId_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeEnum(6, groupType_.getNumber());
+        output.writeEnum(6, groupType_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeUInt32(7, shieldStatus_);
       }
       for (int i = 0; i < groupMemberList_.size(); i++) {
-        output.writeUInt32(8, groupMemberList_.get(i));
+        output.writeUInt32(8, groupMemberList_.getInt(i));
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -9541,11 +9392,11 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getGroupNameBytes());
+          .computeStringSize(3, getGroupName());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getGroupAvatarBytes());
+          .computeStringSize(4, getGroupAvatar());
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
@@ -9553,7 +9404,7 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(6, groupType_.getNumber());
+          .computeEnumSize(6, groupType_);
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
@@ -9563,398 +9414,203 @@ public final class IMBaseDefine {
         int dataSize = 0;
         for (int i = 0; i < groupMemberList_.size(); i++) {
           dataSize += com.google.protobuf.CodedOutputStream
-            .computeUInt32SizeNoTag(groupMemberList_.get(i));
+            .computeUInt32SizeNoTag(groupMemberList_.getInt(i));
         }
         size += dataSize;
         size += 1 * getGroupMemberListList().size();
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.GroupInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.GroupInfo)
         com.mogujie.tt.protobuf.IMBaseDefine.GroupInfoOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        groupId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        version_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        groupName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        groupAvatar_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
-        groupCreatorId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        groupType_ = com.mogujie.tt.protobuf.IMBaseDefine.GroupType.GROUP_TYPE_NORMAL;
-        bitField0_ = (bitField0_ & ~0x00000020);
-        shieldStatus_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000040);
-        groupMemberList_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000080);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo result = new com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.groupId_ = groupId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.version_ = version_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.groupName_ = groupName_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.groupAvatar_ = groupAvatar_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.groupCreatorId_ = groupCreatorId_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.groupType_ = groupType_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
-        }
-        result.shieldStatus_ = shieldStatus_;
-        if (((bitField0_ & 0x00000080) == 0x00000080)) {
-          groupMemberList_ = java.util.Collections.unmodifiableList(groupMemberList_);
-          bitField0_ = (bitField0_ & ~0x00000080);
-        }
-        result.groupMemberList_ = groupMemberList_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo.getDefaultInstance()) return this;
-        if (other.hasGroupId()) {
-          setGroupId(other.getGroupId());
-        }
-        if (other.hasVersion()) {
-          setVersion(other.getVersion());
-        }
-        if (other.hasGroupName()) {
-          bitField0_ |= 0x00000004;
-          groupName_ = other.groupName_;
-          
-        }
-        if (other.hasGroupAvatar()) {
-          bitField0_ |= 0x00000008;
-          groupAvatar_ = other.groupAvatar_;
-          
-        }
-        if (other.hasGroupCreatorId()) {
-          setGroupCreatorId(other.getGroupCreatorId());
-        }
-        if (other.hasGroupType()) {
-          setGroupType(other.getGroupType());
-        }
-        if (other.hasShieldStatus()) {
-          setShieldStatus(other.getShieldStatus());
-        }
-        if (!other.groupMemberList_.isEmpty()) {
-          if (groupMemberList_.isEmpty()) {
-            groupMemberList_ = other.groupMemberList_;
-            bitField0_ = (bitField0_ & ~0x00000080);
-          } else {
-            ensureGroupMemberListIsMutable();
-            groupMemberList_.addAll(other.groupMemberList_);
-          }
-          
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasGroupId()) {
-          
-          return false;
-        }
-        if (!hasVersion()) {
-          
-          return false;
-        }
-        if (!hasGroupName()) {
-          
-          return false;
-        }
-        if (!hasGroupAvatar()) {
-          
-          return false;
-        }
-        if (!hasGroupCreatorId()) {
-          
-          return false;
-        }
-        if (!hasGroupType()) {
-          
-          return false;
-        }
-        if (!hasShieldStatus()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int groupId_ ;
       /**
        * <code>required uint32 group_id = 1;</code>
        */
       public boolean hasGroupId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasGroupId();
       }
       /**
        * <code>required uint32 group_id = 1;</code>
        */
       public int getGroupId() {
-        return groupId_;
+        return instance.getGroupId();
       }
       /**
        * <code>required uint32 group_id = 1;</code>
        */
       public Builder setGroupId(int value) {
-        bitField0_ |= 0x00000001;
-        groupId_ = value;
-        
+        copyOnWrite();
+        instance.setGroupId(value);
         return this;
       }
       /**
        * <code>required uint32 group_id = 1;</code>
        */
       public Builder clearGroupId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        groupId_ = 0;
-        
+        copyOnWrite();
+        instance.clearGroupId();
         return this;
       }
 
-      private int version_ ;
       /**
        * <code>required uint32 version = 2;</code>
        */
       public boolean hasVersion() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasVersion();
       }
       /**
        * <code>required uint32 version = 2;</code>
        */
       public int getVersion() {
-        return version_;
+        return instance.getVersion();
       }
       /**
        * <code>required uint32 version = 2;</code>
        */
       public Builder setVersion(int value) {
-        bitField0_ |= 0x00000002;
-        version_ = value;
-        
+        copyOnWrite();
+        instance.setVersion(value);
         return this;
       }
       /**
        * <code>required uint32 version = 2;</code>
        */
       public Builder clearVersion() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        version_ = 0;
-        
+        copyOnWrite();
+        instance.clearVersion();
         return this;
       }
 
-      private java.lang.Object groupName_ = "";
       /**
        * <code>required string group_name = 3;</code>
        */
       public boolean hasGroupName() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return instance.hasGroupName();
       }
       /**
        * <code>required string group_name = 3;</code>
        */
       public java.lang.String getGroupName() {
-        java.lang.Object ref = groupName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            groupName_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getGroupName();
       }
       /**
        * <code>required string group_name = 3;</code>
        */
       public com.google.protobuf.ByteString
           getGroupNameBytes() {
-        java.lang.Object ref = groupName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          groupName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getGroupNameBytes();
       }
       /**
        * <code>required string group_name = 3;</code>
        */
       public Builder setGroupName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        groupName_ = value;
-        
+        copyOnWrite();
+        instance.setGroupName(value);
         return this;
       }
       /**
        * <code>required string group_name = 3;</code>
        */
       public Builder clearGroupName() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        groupName_ = getDefaultInstance().getGroupName();
-        
+        copyOnWrite();
+        instance.clearGroupName();
         return this;
       }
       /**
@@ -9962,75 +9618,45 @@ public final class IMBaseDefine {
        */
       public Builder setGroupNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        groupName_ = value;
-        
+        copyOnWrite();
+        instance.setGroupNameBytes(value);
         return this;
       }
 
-      private java.lang.Object groupAvatar_ = "";
       /**
        * <code>required string group_avatar = 4;</code>
        */
       public boolean hasGroupAvatar() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return instance.hasGroupAvatar();
       }
       /**
        * <code>required string group_avatar = 4;</code>
        */
       public java.lang.String getGroupAvatar() {
-        java.lang.Object ref = groupAvatar_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            groupAvatar_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getGroupAvatar();
       }
       /**
        * <code>required string group_avatar = 4;</code>
        */
       public com.google.protobuf.ByteString
           getGroupAvatarBytes() {
-        java.lang.Object ref = groupAvatar_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          groupAvatar_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getGroupAvatarBytes();
       }
       /**
        * <code>required string group_avatar = 4;</code>
        */
       public Builder setGroupAvatar(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        groupAvatar_ = value;
-        
+        copyOnWrite();
+        instance.setGroupAvatar(value);
         return this;
       }
       /**
        * <code>required string group_avatar = 4;</code>
        */
       public Builder clearGroupAvatar() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        groupAvatar_ = getDefaultInstance().getGroupAvatar();
-        
+        copyOnWrite();
+        instance.clearGroupAvatar();
         return this;
       }
       /**
@@ -10038,173 +9664,149 @@ public final class IMBaseDefine {
        */
       public Builder setGroupAvatarBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        groupAvatar_ = value;
-        
+        copyOnWrite();
+        instance.setGroupAvatarBytes(value);
         return this;
       }
 
-      private int groupCreatorId_ ;
       /**
        * <code>required uint32 group_creator_id = 5;</code>
        */
       public boolean hasGroupCreatorId() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return instance.hasGroupCreatorId();
       }
       /**
        * <code>required uint32 group_creator_id = 5;</code>
        */
       public int getGroupCreatorId() {
-        return groupCreatorId_;
+        return instance.getGroupCreatorId();
       }
       /**
        * <code>required uint32 group_creator_id = 5;</code>
        */
       public Builder setGroupCreatorId(int value) {
-        bitField0_ |= 0x00000010;
-        groupCreatorId_ = value;
-        
+        copyOnWrite();
+        instance.setGroupCreatorId(value);
         return this;
       }
       /**
        * <code>required uint32 group_creator_id = 5;</code>
        */
       public Builder clearGroupCreatorId() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        groupCreatorId_ = 0;
-        
+        copyOnWrite();
+        instance.clearGroupCreatorId();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.GroupType groupType_ = com.mogujie.tt.protobuf.IMBaseDefine.GroupType.GROUP_TYPE_NORMAL;
       /**
        * <code>required .IM.BaseDefine.GroupType group_type = 6;</code>
        */
       public boolean hasGroupType() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return instance.hasGroupType();
       }
       /**
        * <code>required .IM.BaseDefine.GroupType group_type = 6;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.GroupType getGroupType() {
-        return groupType_;
+        return instance.getGroupType();
       }
       /**
        * <code>required .IM.BaseDefine.GroupType group_type = 6;</code>
        */
       public Builder setGroupType(com.mogujie.tt.protobuf.IMBaseDefine.GroupType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000020;
-        groupType_ = value;
-        
+        copyOnWrite();
+        instance.setGroupType(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.GroupType group_type = 6;</code>
        */
       public Builder clearGroupType() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        groupType_ = com.mogujie.tt.protobuf.IMBaseDefine.GroupType.GROUP_TYPE_NORMAL;
-        
+        copyOnWrite();
+        instance.clearGroupType();
         return this;
       }
 
-      private int shieldStatus_ ;
       /**
-       * <code>required uint32 shield_status = 7;</code>
-       *
        * <pre>
        *1: shield  0: not shield 
        * </pre>
+       *
+       * <code>required uint32 shield_status = 7;</code>
        */
       public boolean hasShieldStatus() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return instance.hasShieldStatus();
       }
       /**
-       * <code>required uint32 shield_status = 7;</code>
-       *
        * <pre>
        *1: shield  0: not shield 
        * </pre>
+       *
+       * <code>required uint32 shield_status = 7;</code>
        */
       public int getShieldStatus() {
-        return shieldStatus_;
+        return instance.getShieldStatus();
       }
       /**
-       * <code>required uint32 shield_status = 7;</code>
-       *
        * <pre>
        *1: shield  0: not shield 
        * </pre>
+       *
+       * <code>required uint32 shield_status = 7;</code>
        */
       public Builder setShieldStatus(int value) {
-        bitField0_ |= 0x00000040;
-        shieldStatus_ = value;
-        
+        copyOnWrite();
+        instance.setShieldStatus(value);
         return this;
       }
       /**
-       * <code>required uint32 shield_status = 7;</code>
-       *
        * <pre>
        *1: shield  0: not shield 
        * </pre>
+       *
+       * <code>required uint32 shield_status = 7;</code>
        */
       public Builder clearShieldStatus() {
-        bitField0_ = (bitField0_ & ~0x00000040);
-        shieldStatus_ = 0;
-        
+        copyOnWrite();
+        instance.clearShieldStatus();
         return this;
       }
 
-      private java.util.List<java.lang.Integer> groupMemberList_ = java.util.Collections.emptyList();
-      private void ensureGroupMemberListIsMutable() {
-        if (!((bitField0_ & 0x00000080) == 0x00000080)) {
-          groupMemberList_ = new java.util.ArrayList<java.lang.Integer>(groupMemberList_);
-          bitField0_ |= 0x00000080;
-         }
-      }
       /**
        * <code>repeated uint32 group_member_list = 8;</code>
        */
       public java.util.List<java.lang.Integer>
           getGroupMemberListList() {
-        return java.util.Collections.unmodifiableList(groupMemberList_);
+        return java.util.Collections.unmodifiableList(
+            instance.getGroupMemberListList());
       }
       /**
        * <code>repeated uint32 group_member_list = 8;</code>
        */
       public int getGroupMemberListCount() {
-        return groupMemberList_.size();
+        return instance.getGroupMemberListCount();
       }
       /**
        * <code>repeated uint32 group_member_list = 8;</code>
        */
       public int getGroupMemberList(int index) {
-        return groupMemberList_.get(index);
+        return instance.getGroupMemberList(index);
       }
       /**
        * <code>repeated uint32 group_member_list = 8;</code>
        */
       public Builder setGroupMemberList(
           int index, int value) {
-        ensureGroupMemberListIsMutable();
-        groupMemberList_.set(index, value);
-        
+        copyOnWrite();
+        instance.setGroupMemberList(index, value);
         return this;
       }
       /**
        * <code>repeated uint32 group_member_list = 8;</code>
        */
       public Builder addGroupMemberList(int value) {
-        ensureGroupMemberListIsMutable();
-        groupMemberList_.add(value);
-        
+        copyOnWrite();
+        instance.addGroupMemberList(value);
         return this;
       }
       /**
@@ -10212,31 +9814,235 @@ public final class IMBaseDefine {
        */
       public Builder addAllGroupMemberList(
           java.lang.Iterable<? extends java.lang.Integer> values) {
-        ensureGroupMemberListIsMutable();
-        com.google.protobuf.AbstractMessageLite.Builder.addAll(
-            values, groupMemberList_);
-        
+        copyOnWrite();
+        instance.addAllGroupMemberList(values);
         return this;
       }
       /**
        * <code>repeated uint32 group_member_list = 8;</code>
        */
       public Builder clearGroupMemberList() {
-        groupMemberList_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000080);
-        
+        copyOnWrite();
+        instance.clearGroupMemberList();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.GroupInfo)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new GroupInfo(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasGroupId()) {
+            return null;
+          }
+          if (!hasVersion()) {
+            return null;
+          }
+          if (!hasGroupName()) {
+            return null;
+          }
+          if (!hasGroupAvatar()) {
+            return null;
+          }
+          if (!hasGroupCreatorId()) {
+            return null;
+          }
+          if (!hasGroupType()) {
+            return null;
+          }
+          if (!hasShieldStatus()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          groupMemberList_.makeImmutable();
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo other = (com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo) arg1;
+          groupId_ = visitor.visitInt(
+              hasGroupId(), groupId_,
+              other.hasGroupId(), other.groupId_);
+          version_ = visitor.visitInt(
+              hasVersion(), version_,
+              other.hasVersion(), other.version_);
+          groupName_ = visitor.visitString(
+              hasGroupName(), groupName_,
+              other.hasGroupName(), other.groupName_);
+          groupAvatar_ = visitor.visitString(
+              hasGroupAvatar(), groupAvatar_,
+              other.hasGroupAvatar(), other.groupAvatar_);
+          groupCreatorId_ = visitor.visitInt(
+              hasGroupCreatorId(), groupCreatorId_,
+              other.hasGroupCreatorId(), other.groupCreatorId_);
+          groupType_ = visitor.visitInt(hasGroupType(), groupType_,
+              other.hasGroupType(), other.groupType_);
+          shieldStatus_ = visitor.visitInt(
+              hasShieldStatus(), shieldStatus_,
+              other.hasShieldStatus(), other.shieldStatus_);
+          groupMemberList_= visitor.visitIntList(groupMemberList_, other.groupMemberList_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  groupId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  bitField0_ |= 0x00000002;
+                  version_ = input.readUInt32();
+                  break;
+                }
+                case 26: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000004;
+                  groupName_ = s;
+                  break;
+                }
+                case 34: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000008;
+                  groupAvatar_ = s;
+                  break;
+                }
+                case 40: {
+                  bitField0_ |= 0x00000010;
+                  groupCreatorId_ = input.readUInt32();
+                  break;
+                }
+                case 48: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.GroupType value = com.mogujie.tt.protobuf.IMBaseDefine.GroupType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(6, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000020;
+                    groupType_ = rawValue;
+                  }
+                  break;
+                }
+                case 56: {
+                  bitField0_ |= 0x00000040;
+                  shieldStatus_ = input.readUInt32();
+                  break;
+                }
+                case 64: {
+                  if (!groupMemberList_.isModifiable()) {
+                    groupMemberList_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(groupMemberList_);
+                  }
+                  groupMemberList_.addInt(input.readUInt32());
+                  break;
+                }
+                case 66: {
+                  int length = input.readRawVarint32();
+                  int limit = input.pushLimit(length);
+                  if (!groupMemberList_.isModifiable() && input.getBytesUntilLimit() > 0) {
+                    groupMemberList_ =
+                        com.google.protobuf.GeneratedMessageLite.mutableCopy(groupMemberList_);
+                  }
+                  while (input.getBytesUntilLimit() > 0) {
+                    groupMemberList_.addInt(input.readUInt32());
+                  }
+                  input.popLimit(limit);
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.GroupInfo)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new GroupInfo();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.GroupInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<GroupInfo> PARSER;
+
+    public static com.google.protobuf.Parser<GroupInfo> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface UserTokenInfoOrBuilder extends
@@ -10285,138 +10091,34 @@ public final class IMBaseDefine {
     int getPushCount();
 
     /**
-     * <code>required uint32 push_type = 5;</code>
-     *
      * <pre>
      *1: 正常推送  	2:无打扰式推送
      * </pre>
+     *
+     * <code>required uint32 push_type = 5;</code>
      */
     boolean hasPushType();
     /**
-     * <code>required uint32 push_type = 5;</code>
-     *
      * <pre>
      *1: 正常推送  	2:无打扰式推送
      * </pre>
+     *
+     * <code>required uint32 push_type = 5;</code>
      */
     int getPushType();
   }
   /**
    * Protobuf type {@code IM.BaseDefine.UserTokenInfo}
    */
-  public static final class UserTokenInfo extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class UserTokenInfo extends
+      com.google.protobuf.GeneratedMessageLite<
+          UserTokenInfo, UserTokenInfo.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.UserTokenInfo)
       UserTokenInfoOrBuilder {
-    // Use UserTokenInfo.newBuilder() to construct.
-    private UserTokenInfo(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private UserTokenInfo() {
+      userType_ = 1;
+      token_ = "";
     }
-    private UserTokenInfo(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final UserTokenInfo defaultInstance;
-    public static UserTokenInfo getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public UserTokenInfo getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private UserTokenInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              userId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.ClientType value = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000002;
-                userType_ = value;
-              }
-              break;
-            }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              token_ = bs;
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              pushCount_ = input.readUInt32();
-              break;
-            }
-            case 40: {
-              bitField0_ |= 0x00000010;
-              pushType_ = input.readUInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<UserTokenInfo> PARSER =
-        new com.google.protobuf.AbstractParser<UserTokenInfo>() {
-      public UserTokenInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new UserTokenInfo(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<UserTokenInfo> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int USER_ID_FIELD_NUMBER = 1;
     private int userId_;
@@ -10432,9 +10134,23 @@ public final class IMBaseDefine {
     public int getUserId() {
       return userId_;
     }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void setUserId(int value) {
+      bitField0_ |= 0x00000001;
+      userId_ = value;
+    }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void clearUserId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      userId_ = 0;
+    }
 
     public static final int USER_TYPE_FIELD_NUMBER = 2;
-    private com.mogujie.tt.protobuf.IMBaseDefine.ClientType userType_;
+    private int userType_;
     /**
      * <code>required .IM.BaseDefine.ClientType user_type = 2;</code>
      */
@@ -10445,11 +10161,29 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.ClientType user_type = 2;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.ClientType getUserType() {
-      return userType_;
+      com.mogujie.tt.protobuf.IMBaseDefine.ClientType result = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.forNumber(userType_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.ClientType.CLIENT_TYPE_WINDOWS : result;
+    }
+    /**
+     * <code>required .IM.BaseDefine.ClientType user_type = 2;</code>
+     */
+    private void setUserType(com.mogujie.tt.protobuf.IMBaseDefine.ClientType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000002;
+      userType_ = value.getNumber();
+    }
+    /**
+     * <code>required .IM.BaseDefine.ClientType user_type = 2;</code>
+     */
+    private void clearUserType() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      userType_ = 1;
     }
 
     public static final int TOKEN_FIELD_NUMBER = 3;
-    private java.lang.Object token_;
+    private java.lang.String token_;
     /**
      * <code>required string token = 3;</code>
      */
@@ -10460,34 +10194,43 @@ public final class IMBaseDefine {
      * <code>required string token = 3;</code>
      */
     public java.lang.String getToken() {
-      java.lang.Object ref = token_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          token_ = s;
-        }
-        return s;
-      }
+      return token_;
     }
     /**
      * <code>required string token = 3;</code>
      */
     public com.google.protobuf.ByteString
         getTokenBytes() {
-      java.lang.Object ref = token_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        token_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(token_);
+    }
+    /**
+     * <code>required string token = 3;</code>
+     */
+    private void setToken(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+      token_ = value;
+    }
+    /**
+     * <code>required string token = 3;</code>
+     */
+    private void clearToken() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      token_ = getDefaultInstance().getToken();
+    }
+    /**
+     * <code>required string token = 3;</code>
+     */
+    private void setTokenBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+      token_ = value.toStringUtf8();
     }
 
     public static final int PUSH_COUNT_FIELD_NUMBER = 4;
@@ -10504,78 +10247,76 @@ public final class IMBaseDefine {
     public int getPushCount() {
       return pushCount_;
     }
+    /**
+     * <code>required uint32 push_count = 4;</code>
+     */
+    private void setPushCount(int value) {
+      bitField0_ |= 0x00000008;
+      pushCount_ = value;
+    }
+    /**
+     * <code>required uint32 push_count = 4;</code>
+     */
+    private void clearPushCount() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      pushCount_ = 0;
+    }
 
     public static final int PUSH_TYPE_FIELD_NUMBER = 5;
     private int pushType_;
     /**
-     * <code>required uint32 push_type = 5;</code>
-     *
      * <pre>
      *1: 正常推送  	2:无打扰式推送
      * </pre>
+     *
+     * <code>required uint32 push_type = 5;</code>
      */
     public boolean hasPushType() {
       return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     /**
-     * <code>required uint32 push_type = 5;</code>
-     *
      * <pre>
      *1: 正常推送  	2:无打扰式推送
      * </pre>
+     *
+     * <code>required uint32 push_type = 5;</code>
      */
     public int getPushType() {
       return pushType_;
     }
-
-    private void initFields() {
-      userId_ = 0;
-      userType_ = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.CLIENT_TYPE_WINDOWS;
-      token_ = "";
-      pushCount_ = 0;
-      pushType_ = 0;
+    /**
+     * <pre>
+     *1: 正常推送  	2:无打扰式推送
+     * </pre>
+     *
+     * <code>required uint32 push_type = 5;</code>
+     */
+    private void setPushType(int value) {
+      bitField0_ |= 0x00000010;
+      pushType_ = value;
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasUserId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasUserType()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasToken()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPushCount()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPushType()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <pre>
+     *1: 正常推送  	2:无打扰式推送
+     * </pre>
+     *
+     * <code>required uint32 push_type = 5;</code>
+     */
+    private void clearPushType() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      pushType_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, userId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeEnum(2, userType_.getNumber());
+        output.writeEnum(2, userType_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getTokenBytes());
+        output.writeString(3, getToken());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeUInt32(4, pushCount_);
@@ -10583,10 +10324,9 @@ public final class IMBaseDefine {
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         output.writeUInt32(5, pushType_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -10598,11 +10338,11 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(2, userType_.getNumber());
+          .computeEnumSize(2, userType_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getTokenBytes());
+          .computeStringSize(3, getToken());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -10612,351 +10352,198 @@ public final class IMBaseDefine {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(5, pushType_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.UserTokenInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.UserTokenInfo)
         com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfoOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        userId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        userType_ = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.CLIENT_TYPE_WINDOWS;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        token_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        pushCount_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        pushType_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo result = new com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.userId_ = userId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.userType_ = userType_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.token_ = token_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.pushCount_ = pushCount_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.pushType_ = pushType_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo.getDefaultInstance()) return this;
-        if (other.hasUserId()) {
-          setUserId(other.getUserId());
-        }
-        if (other.hasUserType()) {
-          setUserType(other.getUserType());
-        }
-        if (other.hasToken()) {
-          bitField0_ |= 0x00000004;
-          token_ = other.token_;
-          
-        }
-        if (other.hasPushCount()) {
-          setPushCount(other.getPushCount());
-        }
-        if (other.hasPushType()) {
-          setPushType(other.getPushType());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasUserId()) {
-          
-          return false;
-        }
-        if (!hasUserType()) {
-          
-          return false;
-        }
-        if (!hasToken()) {
-          
-          return false;
-        }
-        if (!hasPushCount()) {
-          
-          return false;
-        }
-        if (!hasPushType()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int userId_ ;
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public boolean hasUserId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasUserId();
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public int getUserId() {
-        return userId_;
+        return instance.getUserId();
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public Builder setUserId(int value) {
-        bitField0_ |= 0x00000001;
-        userId_ = value;
-        
+        copyOnWrite();
+        instance.setUserId(value);
         return this;
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public Builder clearUserId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        userId_ = 0;
-        
+        copyOnWrite();
+        instance.clearUserId();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.ClientType userType_ = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.CLIENT_TYPE_WINDOWS;
       /**
        * <code>required .IM.BaseDefine.ClientType user_type = 2;</code>
        */
       public boolean hasUserType() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasUserType();
       }
       /**
        * <code>required .IM.BaseDefine.ClientType user_type = 2;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.ClientType getUserType() {
-        return userType_;
+        return instance.getUserType();
       }
       /**
        * <code>required .IM.BaseDefine.ClientType user_type = 2;</code>
        */
       public Builder setUserType(com.mogujie.tt.protobuf.IMBaseDefine.ClientType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000002;
-        userType_ = value;
-        
+        copyOnWrite();
+        instance.setUserType(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.ClientType user_type = 2;</code>
        */
       public Builder clearUserType() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        userType_ = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.CLIENT_TYPE_WINDOWS;
-        
+        copyOnWrite();
+        instance.clearUserType();
         return this;
       }
 
-      private java.lang.Object token_ = "";
       /**
        * <code>required string token = 3;</code>
        */
       public boolean hasToken() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return instance.hasToken();
       }
       /**
        * <code>required string token = 3;</code>
        */
       public java.lang.String getToken() {
-        java.lang.Object ref = token_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            token_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getToken();
       }
       /**
        * <code>required string token = 3;</code>
        */
       public com.google.protobuf.ByteString
           getTokenBytes() {
-        java.lang.Object ref = token_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          token_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getTokenBytes();
       }
       /**
        * <code>required string token = 3;</code>
        */
       public Builder setToken(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        token_ = value;
-        
+        copyOnWrite();
+        instance.setToken(value);
         return this;
       }
       /**
        * <code>required string token = 3;</code>
        */
       public Builder clearToken() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        token_ = getDefaultInstance().getToken();
-        
+        copyOnWrite();
+        instance.clearToken();
         return this;
       }
       /**
@@ -10964,104 +10551,255 @@ public final class IMBaseDefine {
        */
       public Builder setTokenBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        token_ = value;
-        
+        copyOnWrite();
+        instance.setTokenBytes(value);
         return this;
       }
 
-      private int pushCount_ ;
       /**
        * <code>required uint32 push_count = 4;</code>
        */
       public boolean hasPushCount() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return instance.hasPushCount();
       }
       /**
        * <code>required uint32 push_count = 4;</code>
        */
       public int getPushCount() {
-        return pushCount_;
+        return instance.getPushCount();
       }
       /**
        * <code>required uint32 push_count = 4;</code>
        */
       public Builder setPushCount(int value) {
-        bitField0_ |= 0x00000008;
-        pushCount_ = value;
-        
+        copyOnWrite();
+        instance.setPushCount(value);
         return this;
       }
       /**
        * <code>required uint32 push_count = 4;</code>
        */
       public Builder clearPushCount() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        pushCount_ = 0;
-        
+        copyOnWrite();
+        instance.clearPushCount();
         return this;
       }
 
-      private int pushType_ ;
       /**
-       * <code>required uint32 push_type = 5;</code>
-       *
        * <pre>
        *1: 正常推送  	2:无打扰式推送
        * </pre>
+       *
+       * <code>required uint32 push_type = 5;</code>
        */
       public boolean hasPushType() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return instance.hasPushType();
       }
       /**
-       * <code>required uint32 push_type = 5;</code>
-       *
        * <pre>
        *1: 正常推送  	2:无打扰式推送
        * </pre>
+       *
+       * <code>required uint32 push_type = 5;</code>
        */
       public int getPushType() {
-        return pushType_;
+        return instance.getPushType();
       }
       /**
-       * <code>required uint32 push_type = 5;</code>
-       *
        * <pre>
        *1: 正常推送  	2:无打扰式推送
        * </pre>
+       *
+       * <code>required uint32 push_type = 5;</code>
        */
       public Builder setPushType(int value) {
-        bitField0_ |= 0x00000010;
-        pushType_ = value;
-        
+        copyOnWrite();
+        instance.setPushType(value);
         return this;
       }
       /**
-       * <code>required uint32 push_type = 5;</code>
-       *
        * <pre>
        *1: 正常推送  	2:无打扰式推送
        * </pre>
+       *
+       * <code>required uint32 push_type = 5;</code>
        */
       public Builder clearPushType() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        pushType_ = 0;
-        
+        copyOnWrite();
+        instance.clearPushType();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.UserTokenInfo)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new UserTokenInfo(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasUserId()) {
+            return null;
+          }
+          if (!hasUserType()) {
+            return null;
+          }
+          if (!hasToken()) {
+            return null;
+          }
+          if (!hasPushCount()) {
+            return null;
+          }
+          if (!hasPushType()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo other = (com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo) arg1;
+          userId_ = visitor.visitInt(
+              hasUserId(), userId_,
+              other.hasUserId(), other.userId_);
+          userType_ = visitor.visitInt(hasUserType(), userType_,
+              other.hasUserType(), other.userType_);
+          token_ = visitor.visitString(
+              hasToken(), token_,
+              other.hasToken(), other.token_);
+          pushCount_ = visitor.visitInt(
+              hasPushCount(), pushCount_,
+              other.hasPushCount(), other.pushCount_);
+          pushType_ = visitor.visitInt(
+              hasPushType(), pushType_,
+              other.hasPushType(), other.pushType_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  userId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.ClientType value = com.mogujie.tt.protobuf.IMBaseDefine.ClientType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(2, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000002;
+                    userType_ = rawValue;
+                  }
+                  break;
+                }
+                case 26: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000004;
+                  token_ = s;
+                  break;
+                }
+                case 32: {
+                  bitField0_ |= 0x00000008;
+                  pushCount_ = input.readUInt32();
+                  break;
+                }
+                case 40: {
+                  bitField0_ |= 0x00000010;
+                  pushType_ = input.readUInt32();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.UserTokenInfo)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new UserTokenInfo();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.UserTokenInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<UserTokenInfo> PARSER;
+
+    public static com.google.protobuf.Parser<UserTokenInfo> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface PushResultOrBuilder extends
@@ -11094,100 +10832,17 @@ public final class IMBaseDefine {
   /**
    * Protobuf type {@code IM.BaseDefine.PushResult}
    */
-  public static final class PushResult extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class PushResult extends
+      com.google.protobuf.GeneratedMessageLite<
+          PushResult, PushResult.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.PushResult)
       PushResultOrBuilder {
-    // Use PushResult.newBuilder() to construct.
-    private PushResult(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private PushResult() {
+      userToken_ = "";
     }
-    private PushResult(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final PushResult defaultInstance;
-    public static PushResult getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public PushResult getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private PushResult(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              userToken_ = bs;
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              resultCode_ = input.readUInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<PushResult> PARSER =
-        new com.google.protobuf.AbstractParser<PushResult>() {
-      public PushResult parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new PushResult(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<PushResult> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int USER_TOKEN_FIELD_NUMBER = 1;
-    private java.lang.Object userToken_;
+    private java.lang.String userToken_;
     /**
      * <code>required string user_token = 1;</code>
      */
@@ -11198,34 +10853,43 @@ public final class IMBaseDefine {
      * <code>required string user_token = 1;</code>
      */
     public java.lang.String getUserToken() {
-      java.lang.Object ref = userToken_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          userToken_ = s;
-        }
-        return s;
-      }
+      return userToken_;
     }
     /**
      * <code>required string user_token = 1;</code>
      */
     public com.google.protobuf.ByteString
         getUserTokenBytes() {
-      java.lang.Object ref = userToken_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        userToken_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(userToken_);
+    }
+    /**
+     * <code>required string user_token = 1;</code>
+     */
+    private void setUserToken(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+      userToken_ = value;
+    }
+    /**
+     * <code>required string user_token = 1;</code>
+     */
+    private void clearUserToken() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      userToken_ = getDefaultInstance().getUserToken();
+    }
+    /**
+     * <code>required string user_token = 1;</code>
+     */
+    private void setUserTokenBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+      userToken_ = value.toStringUtf8();
     }
 
     public static final int RESULT_CODE_FIELD_NUMBER = 2;
@@ -11242,42 +10906,32 @@ public final class IMBaseDefine {
     public int getResultCode() {
       return resultCode_;
     }
-
-    private void initFields() {
-      userToken_ = "";
-      resultCode_ = 0;
+    /**
+     * <code>required uint32 result_code = 2;</code>
+     */
+    private void setResultCode(int value) {
+      bitField0_ |= 0x00000002;
+      resultCode_ = value;
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasUserToken()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasResultCode()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <code>required uint32 result_code = 2;</code>
+     */
+    private void clearResultCode() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      resultCode_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getUserTokenBytes());
+        output.writeString(1, getUserToken());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeUInt32(2, resultCode_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -11285,251 +10939,146 @@ public final class IMBaseDefine {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getUserTokenBytes());
+          .computeStringSize(1, getUserToken());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(2, resultCode_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.PushResult prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.PushResult prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.PushResult}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.PushResult, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.PushResult, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.PushResult)
         com.mogujie.tt.protobuf.IMBaseDefine.PushResultOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.PushResult.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        userToken_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        resultCode_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.PushResult getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.PushResult.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.PushResult build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.PushResult result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.PushResult buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.PushResult result = new com.mogujie.tt.protobuf.IMBaseDefine.PushResult(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.userToken_ = userToken_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.resultCode_ = resultCode_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.PushResult other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.PushResult.getDefaultInstance()) return this;
-        if (other.hasUserToken()) {
-          bitField0_ |= 0x00000001;
-          userToken_ = other.userToken_;
-          
-        }
-        if (other.hasResultCode()) {
-          setResultCode(other.getResultCode());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasUserToken()) {
-          
-          return false;
-        }
-        if (!hasResultCode()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.PushResult parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.PushResult) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.lang.Object userToken_ = "";
       /**
        * <code>required string user_token = 1;</code>
        */
       public boolean hasUserToken() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasUserToken();
       }
       /**
        * <code>required string user_token = 1;</code>
        */
       public java.lang.String getUserToken() {
-        java.lang.Object ref = userToken_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            userToken_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getUserToken();
       }
       /**
        * <code>required string user_token = 1;</code>
        */
       public com.google.protobuf.ByteString
           getUserTokenBytes() {
-        java.lang.Object ref = userToken_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          userToken_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getUserTokenBytes();
       }
       /**
        * <code>required string user_token = 1;</code>
        */
       public Builder setUserToken(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        userToken_ = value;
-        
+        copyOnWrite();
+        instance.setUserToken(value);
         return this;
       }
       /**
        * <code>required string user_token = 1;</code>
        */
       public Builder clearUserToken() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        userToken_ = getDefaultInstance().getUserToken();
-        
+        copyOnWrite();
+        instance.clearUserToken();
         return this;
       }
       /**
@@ -11537,56 +11086,172 @@ public final class IMBaseDefine {
        */
       public Builder setUserTokenBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        userToken_ = value;
-        
+        copyOnWrite();
+        instance.setUserTokenBytes(value);
         return this;
       }
 
-      private int resultCode_ ;
       /**
        * <code>required uint32 result_code = 2;</code>
        */
       public boolean hasResultCode() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasResultCode();
       }
       /**
        * <code>required uint32 result_code = 2;</code>
        */
       public int getResultCode() {
-        return resultCode_;
+        return instance.getResultCode();
       }
       /**
        * <code>required uint32 result_code = 2;</code>
        */
       public Builder setResultCode(int value) {
-        bitField0_ |= 0x00000002;
-        resultCode_ = value;
-        
+        copyOnWrite();
+        instance.setResultCode(value);
         return this;
       }
       /**
        * <code>required uint32 result_code = 2;</code>
        */
       public Builder clearResultCode() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        resultCode_ = 0;
-        
+        copyOnWrite();
+        instance.clearResultCode();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.PushResult)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.PushResult();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new PushResult(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasUserToken()) {
+            return null;
+          }
+          if (!hasResultCode()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.PushResult other = (com.mogujie.tt.protobuf.IMBaseDefine.PushResult) arg1;
+          userToken_ = visitor.visitString(
+              hasUserToken(), userToken_,
+              other.hasUserToken(), other.userToken_);
+          resultCode_ = visitor.visitInt(
+              hasResultCode(), resultCode_,
+              other.hasResultCode(), other.resultCode_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 10: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000001;
+                  userToken_ = s;
+                  break;
+                }
+                case 16: {
+                  bitField0_ |= 0x00000002;
+                  resultCode_ = input.readUInt32();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.PushResult.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.PushResult)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.PushResult DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new PushResult();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushResult getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<PushResult> PARSER;
+
+    public static com.google.protobuf.Parser<PushResult> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface ShieldStatusOrBuilder extends
@@ -11612,120 +11277,32 @@ public final class IMBaseDefine {
     int getGroupId();
 
     /**
-     * <code>required uint32 shield_status = 3;</code>
-     *
      * <pre>
      *1: shield  0: not shield 
      * </pre>
+     *
+     * <code>required uint32 shield_status = 3;</code>
      */
     boolean hasShieldStatus();
     /**
-     * <code>required uint32 shield_status = 3;</code>
-     *
      * <pre>
      *1: shield  0: not shield 
      * </pre>
+     *
+     * <code>required uint32 shield_status = 3;</code>
      */
     int getShieldStatus();
   }
   /**
    * Protobuf type {@code IM.BaseDefine.ShieldStatus}
    */
-  public static final class ShieldStatus extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class ShieldStatus extends
+      com.google.protobuf.GeneratedMessageLite<
+          ShieldStatus, ShieldStatus.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.ShieldStatus)
       ShieldStatusOrBuilder {
-    // Use ShieldStatus.newBuilder() to construct.
-    private ShieldStatus(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private ShieldStatus() {
     }
-    private ShieldStatus(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final ShieldStatus defaultInstance;
-    public static ShieldStatus getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public ShieldStatus getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private ShieldStatus(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              userId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              groupId_ = input.readUInt32();
-              break;
-            }
-            case 24: {
-              bitField0_ |= 0x00000004;
-              shieldStatus_ = input.readUInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<ShieldStatus> PARSER =
-        new com.google.protobuf.AbstractParser<ShieldStatus>() {
-      public ShieldStatus parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new ShieldStatus(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<ShieldStatus> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int USER_ID_FIELD_NUMBER = 1;
     private int userId_;
@@ -11740,6 +11317,20 @@ public final class IMBaseDefine {
      */
     public int getUserId() {
       return userId_;
+    }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void setUserId(int value) {
+      bitField0_ |= 0x00000001;
+      userId_ = value;
+    }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void clearUserId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      userId_ = 0;
     }
 
     public static final int GROUP_ID_FIELD_NUMBER = 2;
@@ -11756,60 +11347,68 @@ public final class IMBaseDefine {
     public int getGroupId() {
       return groupId_;
     }
+    /**
+     * <code>required uint32 group_id = 2;</code>
+     */
+    private void setGroupId(int value) {
+      bitField0_ |= 0x00000002;
+      groupId_ = value;
+    }
+    /**
+     * <code>required uint32 group_id = 2;</code>
+     */
+    private void clearGroupId() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      groupId_ = 0;
+    }
 
     public static final int SHIELD_STATUS_FIELD_NUMBER = 3;
     private int shieldStatus_;
     /**
-     * <code>required uint32 shield_status = 3;</code>
-     *
      * <pre>
      *1: shield  0: not shield 
      * </pre>
+     *
+     * <code>required uint32 shield_status = 3;</code>
      */
     public boolean hasShieldStatus() {
       return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
-     * <code>required uint32 shield_status = 3;</code>
-     *
      * <pre>
      *1: shield  0: not shield 
      * </pre>
+     *
+     * <code>required uint32 shield_status = 3;</code>
      */
     public int getShieldStatus() {
       return shieldStatus_;
     }
-
-    private void initFields() {
-      userId_ = 0;
-      groupId_ = 0;
-      shieldStatus_ = 0;
+    /**
+     * <pre>
+     *1: shield  0: not shield 
+     * </pre>
+     *
+     * <code>required uint32 shield_status = 3;</code>
+     */
+    private void setShieldStatus(int value) {
+      bitField0_ |= 0x00000004;
+      shieldStatus_ = value;
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasUserId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasGroupId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasShieldStatus()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <pre>
+     *1: shield  0: not shield 
+     * </pre>
+     *
+     * <code>required uint32 shield_status = 3;</code>
+     */
+    private void clearShieldStatus() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      shieldStatus_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, userId_);
       }
@@ -11819,10 +11418,9 @@ public final class IMBaseDefine {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeUInt32(3, shieldStatus_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -11840,317 +11438,351 @@ public final class IMBaseDefine {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(3, shieldStatus_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.ShieldStatus}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.ShieldStatus)
         com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatusOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        userId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        groupId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        shieldStatus_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000004);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus result = new com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.userId_ = userId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.groupId_ = groupId_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.shieldStatus_ = shieldStatus_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus.getDefaultInstance()) return this;
-        if (other.hasUserId()) {
-          setUserId(other.getUserId());
-        }
-        if (other.hasGroupId()) {
-          setGroupId(other.getGroupId());
-        }
-        if (other.hasShieldStatus()) {
-          setShieldStatus(other.getShieldStatus());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasUserId()) {
-          
-          return false;
-        }
-        if (!hasGroupId()) {
-          
-          return false;
-        }
-        if (!hasShieldStatus()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int userId_ ;
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public boolean hasUserId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasUserId();
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public int getUserId() {
-        return userId_;
+        return instance.getUserId();
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public Builder setUserId(int value) {
-        bitField0_ |= 0x00000001;
-        userId_ = value;
-        
+        copyOnWrite();
+        instance.setUserId(value);
         return this;
       }
       /**
        * <code>required uint32 user_id = 1;</code>
        */
       public Builder clearUserId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        userId_ = 0;
-        
+        copyOnWrite();
+        instance.clearUserId();
         return this;
       }
 
-      private int groupId_ ;
       /**
        * <code>required uint32 group_id = 2;</code>
        */
       public boolean hasGroupId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasGroupId();
       }
       /**
        * <code>required uint32 group_id = 2;</code>
        */
       public int getGroupId() {
-        return groupId_;
+        return instance.getGroupId();
       }
       /**
        * <code>required uint32 group_id = 2;</code>
        */
       public Builder setGroupId(int value) {
-        bitField0_ |= 0x00000002;
-        groupId_ = value;
-        
+        copyOnWrite();
+        instance.setGroupId(value);
         return this;
       }
       /**
        * <code>required uint32 group_id = 2;</code>
        */
       public Builder clearGroupId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        groupId_ = 0;
-        
+        copyOnWrite();
+        instance.clearGroupId();
         return this;
       }
 
-      private int shieldStatus_ ;
       /**
-       * <code>required uint32 shield_status = 3;</code>
-       *
        * <pre>
        *1: shield  0: not shield 
        * </pre>
+       *
+       * <code>required uint32 shield_status = 3;</code>
        */
       public boolean hasShieldStatus() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return instance.hasShieldStatus();
       }
       /**
-       * <code>required uint32 shield_status = 3;</code>
-       *
        * <pre>
        *1: shield  0: not shield 
        * </pre>
+       *
+       * <code>required uint32 shield_status = 3;</code>
        */
       public int getShieldStatus() {
-        return shieldStatus_;
+        return instance.getShieldStatus();
       }
       /**
-       * <code>required uint32 shield_status = 3;</code>
-       *
        * <pre>
        *1: shield  0: not shield 
        * </pre>
+       *
+       * <code>required uint32 shield_status = 3;</code>
        */
       public Builder setShieldStatus(int value) {
-        bitField0_ |= 0x00000004;
-        shieldStatus_ = value;
-        
+        copyOnWrite();
+        instance.setShieldStatus(value);
         return this;
       }
       /**
-       * <code>required uint32 shield_status = 3;</code>
-       *
        * <pre>
        *1: shield  0: not shield 
        * </pre>
+       *
+       * <code>required uint32 shield_status = 3;</code>
        */
       public Builder clearShieldStatus() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        shieldStatus_ = 0;
-        
+        copyOnWrite();
+        instance.clearShieldStatus();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.ShieldStatus)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new ShieldStatus(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasUserId()) {
+            return null;
+          }
+          if (!hasGroupId()) {
+            return null;
+          }
+          if (!hasShieldStatus()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus other = (com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus) arg1;
+          userId_ = visitor.visitInt(
+              hasUserId(), userId_,
+              other.hasUserId(), other.userId_);
+          groupId_ = visitor.visitInt(
+              hasGroupId(), groupId_,
+              other.hasGroupId(), other.groupId_);
+          shieldStatus_ = visitor.visitInt(
+              hasShieldStatus(), shieldStatus_,
+              other.hasShieldStatus(), other.shieldStatus_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  userId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  bitField0_ |= 0x00000002;
+                  groupId_ = input.readUInt32();
+                  break;
+                }
+                case 24: {
+                  bitField0_ |= 0x00000004;
+                  shieldStatus_ = input.readUInt32();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.ShieldStatus)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new ShieldStatus();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.ShieldStatus getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<ShieldStatus> PARSER;
+
+    public static com.google.protobuf.Parser<ShieldStatus> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface OfflineFileInfoOrBuilder extends
@@ -12206,108 +11838,15 @@ public final class IMBaseDefine {
   /**
    * Protobuf type {@code IM.BaseDefine.OfflineFileInfo}
    */
-  public static final class OfflineFileInfo extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class OfflineFileInfo extends
+      com.google.protobuf.GeneratedMessageLite<
+          OfflineFileInfo, OfflineFileInfo.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.OfflineFileInfo)
       OfflineFileInfoOrBuilder {
-    // Use OfflineFileInfo.newBuilder() to construct.
-    private OfflineFileInfo(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private OfflineFileInfo() {
+      taskId_ = "";
+      fileName_ = "";
     }
-    private OfflineFileInfo(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final OfflineFileInfo defaultInstance;
-    public static OfflineFileInfo getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public OfflineFileInfo getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private OfflineFileInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              fromUserId_ = input.readUInt32();
-              break;
-            }
-            case 18: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000002;
-              taskId_ = bs;
-              break;
-            }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              fileName_ = bs;
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              fileSize_ = input.readUInt32();
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<OfflineFileInfo> PARSER =
-        new com.google.protobuf.AbstractParser<OfflineFileInfo>() {
-      public OfflineFileInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new OfflineFileInfo(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<OfflineFileInfo> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int FROM_USER_ID_FIELD_NUMBER = 1;
     private int fromUserId_;
@@ -12323,9 +11862,23 @@ public final class IMBaseDefine {
     public int getFromUserId() {
       return fromUserId_;
     }
+    /**
+     * <code>required uint32 from_user_id = 1;</code>
+     */
+    private void setFromUserId(int value) {
+      bitField0_ |= 0x00000001;
+      fromUserId_ = value;
+    }
+    /**
+     * <code>required uint32 from_user_id = 1;</code>
+     */
+    private void clearFromUserId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      fromUserId_ = 0;
+    }
 
     public static final int TASK_ID_FIELD_NUMBER = 2;
-    private java.lang.Object taskId_;
+    private java.lang.String taskId_;
     /**
      * <code>required string task_id = 2;</code>
      */
@@ -12336,38 +11889,47 @@ public final class IMBaseDefine {
      * <code>required string task_id = 2;</code>
      */
     public java.lang.String getTaskId() {
-      java.lang.Object ref = taskId_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          taskId_ = s;
-        }
-        return s;
-      }
+      return taskId_;
     }
     /**
      * <code>required string task_id = 2;</code>
      */
     public com.google.protobuf.ByteString
         getTaskIdBytes() {
-      java.lang.Object ref = taskId_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        taskId_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(taskId_);
+    }
+    /**
+     * <code>required string task_id = 2;</code>
+     */
+    private void setTaskId(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+      taskId_ = value;
+    }
+    /**
+     * <code>required string task_id = 2;</code>
+     */
+    private void clearTaskId() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      taskId_ = getDefaultInstance().getTaskId();
+    }
+    /**
+     * <code>required string task_id = 2;</code>
+     */
+    private void setTaskIdBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+      taskId_ = value.toStringUtf8();
     }
 
     public static final int FILE_NAME_FIELD_NUMBER = 3;
-    private java.lang.Object fileName_;
+    private java.lang.String fileName_;
     /**
      * <code>required string file_name = 3;</code>
      */
@@ -12378,34 +11940,43 @@ public final class IMBaseDefine {
      * <code>required string file_name = 3;</code>
      */
     public java.lang.String getFileName() {
-      java.lang.Object ref = fileName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          fileName_ = s;
-        }
-        return s;
-      }
+      return fileName_;
     }
     /**
      * <code>required string file_name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getFileNameBytes() {
-      java.lang.Object ref = fileName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        fileName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(fileName_);
+    }
+    /**
+     * <code>required string file_name = 3;</code>
+     */
+    private void setFileName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+      fileName_ = value;
+    }
+    /**
+     * <code>required string file_name = 3;</code>
+     */
+    private void clearFileName() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      fileName_ = getDefaultInstance().getFileName();
+    }
+    /**
+     * <code>required string file_name = 3;</code>
+     */
+    private void setFileNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+      fileName_ = value.toStringUtf8();
     }
 
     public static final int FILE_SIZE_FIELD_NUMBER = 4;
@@ -12422,58 +11993,38 @@ public final class IMBaseDefine {
     public int getFileSize() {
       return fileSize_;
     }
-
-    private void initFields() {
-      fromUserId_ = 0;
-      taskId_ = "";
-      fileName_ = "";
-      fileSize_ = 0;
+    /**
+     * <code>required uint32 file_size = 4;</code>
+     */
+    private void setFileSize(int value) {
+      bitField0_ |= 0x00000008;
+      fileSize_ = value;
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasFromUserId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasTaskId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasFileName()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasFileSize()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <code>required uint32 file_size = 4;</code>
+     */
+    private void clearFileSize() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      fileSize_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, fromUserId_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getTaskIdBytes());
+        output.writeString(2, getTaskId());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getFileNameBytes());
+        output.writeString(3, getFileName());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeUInt32(4, fileSize_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -12485,315 +12036,179 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getTaskIdBytes());
+          .computeStringSize(2, getTaskId());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getFileNameBytes());
+          .computeStringSize(3, getFileName());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
           .computeUInt32Size(4, fileSize_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.OfflineFileInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.OfflineFileInfo)
         com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfoOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        fromUserId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        taskId_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
-        fileName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        fileSize_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo result = new com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.fromUserId_ = fromUserId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.taskId_ = taskId_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.fileName_ = fileName_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.fileSize_ = fileSize_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo.getDefaultInstance()) return this;
-        if (other.hasFromUserId()) {
-          setFromUserId(other.getFromUserId());
-        }
-        if (other.hasTaskId()) {
-          bitField0_ |= 0x00000002;
-          taskId_ = other.taskId_;
-          
-        }
-        if (other.hasFileName()) {
-          bitField0_ |= 0x00000004;
-          fileName_ = other.fileName_;
-          
-        }
-        if (other.hasFileSize()) {
-          setFileSize(other.getFileSize());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasFromUserId()) {
-          
-          return false;
-        }
-        if (!hasTaskId()) {
-          
-          return false;
-        }
-        if (!hasFileName()) {
-          
-          return false;
-        }
-        if (!hasFileSize()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int fromUserId_ ;
       /**
        * <code>required uint32 from_user_id = 1;</code>
        */
       public boolean hasFromUserId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasFromUserId();
       }
       /**
        * <code>required uint32 from_user_id = 1;</code>
        */
       public int getFromUserId() {
-        return fromUserId_;
+        return instance.getFromUserId();
       }
       /**
        * <code>required uint32 from_user_id = 1;</code>
        */
       public Builder setFromUserId(int value) {
-        bitField0_ |= 0x00000001;
-        fromUserId_ = value;
-        
+        copyOnWrite();
+        instance.setFromUserId(value);
         return this;
       }
       /**
        * <code>required uint32 from_user_id = 1;</code>
        */
       public Builder clearFromUserId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        fromUserId_ = 0;
-        
+        copyOnWrite();
+        instance.clearFromUserId();
         return this;
       }
 
-      private java.lang.Object taskId_ = "";
       /**
        * <code>required string task_id = 2;</code>
        */
       public boolean hasTaskId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasTaskId();
       }
       /**
        * <code>required string task_id = 2;</code>
        */
       public java.lang.String getTaskId() {
-        java.lang.Object ref = taskId_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            taskId_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getTaskId();
       }
       /**
        * <code>required string task_id = 2;</code>
        */
       public com.google.protobuf.ByteString
           getTaskIdBytes() {
-        java.lang.Object ref = taskId_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          taskId_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getTaskIdBytes();
       }
       /**
        * <code>required string task_id = 2;</code>
        */
       public Builder setTaskId(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        taskId_ = value;
-        
+        copyOnWrite();
+        instance.setTaskId(value);
         return this;
       }
       /**
        * <code>required string task_id = 2;</code>
        */
       public Builder clearTaskId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        taskId_ = getDefaultInstance().getTaskId();
-        
+        copyOnWrite();
+        instance.clearTaskId();
         return this;
       }
       /**
@@ -12801,75 +12216,45 @@ public final class IMBaseDefine {
        */
       public Builder setTaskIdBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000002;
-        taskId_ = value;
-        
+        copyOnWrite();
+        instance.setTaskIdBytes(value);
         return this;
       }
 
-      private java.lang.Object fileName_ = "";
       /**
        * <code>required string file_name = 3;</code>
        */
       public boolean hasFileName() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return instance.hasFileName();
       }
       /**
        * <code>required string file_name = 3;</code>
        */
       public java.lang.String getFileName() {
-        java.lang.Object ref = fileName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            fileName_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getFileName();
       }
       /**
        * <code>required string file_name = 3;</code>
        */
       public com.google.protobuf.ByteString
           getFileNameBytes() {
-        java.lang.Object ref = fileName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          fileName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getFileNameBytes();
       }
       /**
        * <code>required string file_name = 3;</code>
        */
       public Builder setFileName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        fileName_ = value;
-        
+        copyOnWrite();
+        instance.setFileName(value);
         return this;
       }
       /**
        * <code>required string file_name = 3;</code>
        */
       public Builder clearFileName() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        fileName_ = getDefaultInstance().getFileName();
-        
+        copyOnWrite();
+        instance.clearFileName();
         return this;
       }
       /**
@@ -12877,1241 +12262,195 @@ public final class IMBaseDefine {
        */
       public Builder setFileNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        fileName_ = value;
-        
+        copyOnWrite();
+        instance.setFileNameBytes(value);
         return this;
       }
 
-      private int fileSize_ ;
       /**
        * <code>required uint32 file_size = 4;</code>
        */
       public boolean hasFileSize() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return instance.hasFileSize();
       }
       /**
        * <code>required uint32 file_size = 4;</code>
        */
       public int getFileSize() {
-        return fileSize_;
+        return instance.getFileSize();
       }
       /**
        * <code>required uint32 file_size = 4;</code>
        */
       public Builder setFileSize(int value) {
-        bitField0_ |= 0x00000008;
-        fileSize_ = value;
-        
+        copyOnWrite();
+        instance.setFileSize(value);
         return this;
       }
       /**
        * <code>required uint32 file_size = 4;</code>
        */
       public Builder clearFileSize() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        fileSize_ = 0;
-        
+        copyOnWrite();
+        instance.clearFileSize();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.OfflineFileInfo)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new OfflineFileInfo(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasFromUserId()) {
+            return null;
+          }
+          if (!hasTaskId()) {
+            return null;
+          }
+          if (!hasFileName()) {
+            return null;
+          }
+          if (!hasFileSize()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo other = (com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo) arg1;
+          fromUserId_ = visitor.visitInt(
+              hasFromUserId(), fromUserId_,
+              other.hasFromUserId(), other.fromUserId_);
+          taskId_ = visitor.visitString(
+              hasTaskId(), taskId_,
+              other.hasTaskId(), other.taskId_);
+          fileName_ = visitor.visitString(
+              hasFileName(), fileName_,
+              other.hasFileName(), other.fileName_);
+          fileSize_ = visitor.visitInt(
+              hasFileSize(), fileSize_,
+              other.hasFileSize(), other.fileSize_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  fromUserId_ = input.readUInt32();
+                  break;
+                }
+                case 18: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000002;
+                  taskId_ = s;
+                  break;
+                }
+                case 26: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000004;
+                  fileName_ = s;
+                  break;
+                }
+                case 32: {
+                  bitField0_ |= 0x00000008;
+                  fileSize_ = input.readUInt32();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
+
 
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.OfflineFileInfo)
-  }
-
-  public interface AuthInfoOrBuilder extends
-      // @@protoc_insertion_point(interface_extends:IM.BaseDefine.AuthInfo)
-      com.google.protobuf.MessageLiteOrBuilder {
-
-    /**
-     * <code>required string app_key = 1;</code>
-     */
-    boolean hasAppKey();
-    /**
-     * <code>required string app_key = 1;</code>
-     */
-    java.lang.String getAppKey();
-    /**
-     * <code>required string app_key = 1;</code>
-     */
-    com.google.protobuf.ByteString
-        getAppKeyBytes();
-
-    /**
-     * <code>required uint32 user_id = 2;</code>
-     */
-    boolean hasUserId();
-    /**
-     * <code>required uint32 user_id = 2;</code>
-     */
-    int getUserId();
-
-    /**
-     * <code>required string allowd_user_ids = 3;</code>
-     */
-    boolean hasAllowdUserIds();
-    /**
-     * <code>required string allowd_user_ids = 3;</code>
-     */
-    java.lang.String getAllowdUserIds();
-    /**
-     * <code>required string allowd_user_ids = 3;</code>
-     */
-    com.google.protobuf.ByteString
-        getAllowdUserIdsBytes();
-
-    /**
-     * <code>required string allowd_group_ids = 4;</code>
-     */
-    boolean hasAllowdGroupIds();
-    /**
-     * <code>required string allowd_group_ids = 4;</code>
-     */
-    java.lang.String getAllowdGroupIds();
-    /**
-     * <code>required string allowd_group_ids = 4;</code>
-     */
-    com.google.protobuf.ByteString
-        getAllowdGroupIdsBytes();
-
-    /**
-     * <code>required string auth_interfaces = 5;</code>
-     */
-    boolean hasAuthInterfaces();
-    /**
-     * <code>required string auth_interfaces = 5;</code>
-     */
-    java.lang.String getAuthInterfaces();
-    /**
-     * <code>required string auth_interfaces = 5;</code>
-     */
-    com.google.protobuf.ByteString
-        getAuthInterfacesBytes();
-
-    /**
-     * <code>required string auth_ips = 6;</code>
-     */
-    boolean hasAuthIps();
-    /**
-     * <code>required string auth_ips = 6;</code>
-     */
-    java.lang.String getAuthIps();
-    /**
-     * <code>required string auth_ips = 6;</code>
-     */
-    com.google.protobuf.ByteString
-        getAuthIpsBytes();
-  }
-  /**
-   * Protobuf type {@code IM.BaseDefine.AuthInfo}
-   */
-  public static final class AuthInfo extends
-      com.google.protobuf.GeneratedMessageLite implements
-      // @@protoc_insertion_point(message_implements:IM.BaseDefine.AuthInfo)
-      AuthInfoOrBuilder {
-    // Use AuthInfo.newBuilder() to construct.
-    private AuthInfo(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
-    }
-    private AuthInfo(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final AuthInfo defaultInstance;
-    public static AuthInfo getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public AuthInfo getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private AuthInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 10: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000001;
-              appKey_ = bs;
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              userId_ = input.readUInt32();
-              break;
-            }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              allowdUserIds_ = bs;
-              break;
-            }
-            case 34: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000008;
-              allowdGroupIds_ = bs;
-              break;
-            }
-            case 42: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000010;
-              authInterfaces_ = bs;
-              break;
-            }
-            case 50: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000020;
-              authIps_ = bs;
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<AuthInfo> PARSER =
-        new com.google.protobuf.AbstractParser<AuthInfo>() {
-      public AuthInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new AuthInfo(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<AuthInfo> getParserForType() {
-      return PARSER;
-    }
-
-    private int bitField0_;
-    public static final int APP_KEY_FIELD_NUMBER = 1;
-    private java.lang.Object appKey_;
-    /**
-     * <code>required string app_key = 1;</code>
-     */
-    public boolean hasAppKey() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    /**
-     * <code>required string app_key = 1;</code>
-     */
-    public java.lang.String getAppKey() {
-      java.lang.Object ref = appKey_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          appKey_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string app_key = 1;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAppKeyBytes() {
-      java.lang.Object ref = appKey_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        appKey_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int USER_ID_FIELD_NUMBER = 2;
-    private int userId_;
-    /**
-     * <code>required uint32 user_id = 2;</code>
-     */
-    public boolean hasUserId() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    /**
-     * <code>required uint32 user_id = 2;</code>
-     */
-    public int getUserId() {
-      return userId_;
-    }
-
-    public static final int ALLOWD_USER_IDS_FIELD_NUMBER = 3;
-    private java.lang.Object allowdUserIds_;
-    /**
-     * <code>required string allowd_user_ids = 3;</code>
-     */
-    public boolean hasAllowdUserIds() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    /**
-     * <code>required string allowd_user_ids = 3;</code>
-     */
-    public java.lang.String getAllowdUserIds() {
-      java.lang.Object ref = allowdUserIds_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          allowdUserIds_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string allowd_user_ids = 3;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAllowdUserIdsBytes() {
-      java.lang.Object ref = allowdUserIds_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        allowdUserIds_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int ALLOWD_GROUP_IDS_FIELD_NUMBER = 4;
-    private java.lang.Object allowdGroupIds_;
-    /**
-     * <code>required string allowd_group_ids = 4;</code>
-     */
-    public boolean hasAllowdGroupIds() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
-    }
-    /**
-     * <code>required string allowd_group_ids = 4;</code>
-     */
-    public java.lang.String getAllowdGroupIds() {
-      java.lang.Object ref = allowdGroupIds_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          allowdGroupIds_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string allowd_group_ids = 4;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAllowdGroupIdsBytes() {
-      java.lang.Object ref = allowdGroupIds_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        allowdGroupIds_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int AUTH_INTERFACES_FIELD_NUMBER = 5;
-    private java.lang.Object authInterfaces_;
-    /**
-     * <code>required string auth_interfaces = 5;</code>
-     */
-    public boolean hasAuthInterfaces() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
-    }
-    /**
-     * <code>required string auth_interfaces = 5;</code>
-     */
-    public java.lang.String getAuthInterfaces() {
-      java.lang.Object ref = authInterfaces_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          authInterfaces_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string auth_interfaces = 5;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAuthInterfacesBytes() {
-      java.lang.Object ref = authInterfaces_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        authInterfaces_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    public static final int AUTH_IPS_FIELD_NUMBER = 6;
-    private java.lang.Object authIps_;
-    /**
-     * <code>required string auth_ips = 6;</code>
-     */
-    public boolean hasAuthIps() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
-    }
-    /**
-     * <code>required string auth_ips = 6;</code>
-     */
-    public java.lang.String getAuthIps() {
-      java.lang.Object ref = authIps_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          authIps_ = s;
-        }
-        return s;
-      }
-    }
-    /**
-     * <code>required string auth_ips = 6;</code>
-     */
-    public com.google.protobuf.ByteString
-        getAuthIpsBytes() {
-      java.lang.Object ref = authIps_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        authIps_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-
-    private void initFields() {
-      appKey_ = "";
-      userId_ = 0;
-      allowdUserIds_ = "";
-      allowdGroupIds_ = "";
-      authInterfaces_ = "";
-      authIps_ = "";
-    }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasAppKey()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasUserId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasAllowdUserIds()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasAllowdGroupIds()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasAuthInterfaces()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasAuthIps()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
-    }
-
-    public void writeTo(com.google.protobuf.CodedOutputStream output)
-                        throws java.io.IOException {
-      getSerializedSize();
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getAppKeyBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeUInt32(2, userId_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getAllowdUserIdsBytes());
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getAllowdGroupIdsBytes());
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeBytes(5, getAuthInterfacesBytes());
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeBytes(6, getAuthIpsBytes());
-      }
-      output.writeRawBytes(unknownFields);
-    }
-
-    private int memoizedSerializedSize = -1;
-    public int getSerializedSize() {
-      int size = memoizedSerializedSize;
-      if (size != -1) return size;
-
-      size = 0;
-      if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getAppKeyBytes());
-      }
-      if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeUInt32Size(2, userId_);
-      }
-      if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getAllowdUserIdsBytes());
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getAllowdGroupIdsBytes());
-      }
-      if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(5, getAuthInterfacesBytes());
-      }
-      if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(6, getAuthIpsBytes());
-      }
-      size += unknownFields.size();
-      memoizedSerializedSize = size;
-      return size;
-    }
-
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
-    }
-
-    public static com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo parseFrom(
-        com.google.protobuf.ByteString data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo parseFrom(
-        com.google.protobuf.ByteString data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo parseFrom(byte[] data)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
-    }
-    public static com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo parseFrom(
-        byte[] data,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
-    }
-    public static com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo parseFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo parseFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-    public static com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo parseDelimitedFrom(java.io.InputStream input)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
-    }
-    public static com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo parseDelimitedFrom(
-        java.io.InputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
-    }
-    public static com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo parseFrom(
-        com.google.protobuf.CodedInputStream input)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input);
-    }
-    public static com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo parseFrom(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
-    }
-
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo prototype) {
-      return newBuilder().mergeFrom(prototype);
-    }
-    public Builder toBuilder() { return newBuilder(this); }
-
-    /**
-     * Protobuf type {@code IM.BaseDefine.AuthInfo}
-     */
-    public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo, Builder>
-        implements
-        // @@protoc_insertion_point(builder_implements:IM.BaseDefine.AuthInfo)
-        com.mogujie.tt.protobuf.IMBaseDefine.AuthInfoOrBuilder {
-      // Construct using com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo.newBuilder()
-      private Builder() {
-        maybeForceBuilderInitialization();
-      }
-
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
-
-      public Builder clear() {
-        super.clear();
-        appKey_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
-        userId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        allowdUserIds_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        allowdGroupIds_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
-        authInterfaces_ = "";
-        bitField0_ = (bitField0_ & ~0x00000010);
-        authIps_ = "";
-        bitField0_ = (bitField0_ & ~0x00000020);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo result = new com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.appKey_ = appKey_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.userId_ = userId_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.allowdUserIds_ = allowdUserIds_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.allowdGroupIds_ = allowdGroupIds_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.authInterfaces_ = authInterfaces_;
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
-        }
-        result.authIps_ = authIps_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo.getDefaultInstance()) return this;
-        if (other.hasAppKey()) {
-          bitField0_ |= 0x00000001;
-          appKey_ = other.appKey_;
-          
-        }
-        if (other.hasUserId()) {
-          setUserId(other.getUserId());
-        }
-        if (other.hasAllowdUserIds()) {
-          bitField0_ |= 0x00000004;
-          allowdUserIds_ = other.allowdUserIds_;
-          
-        }
-        if (other.hasAllowdGroupIds()) {
-          bitField0_ |= 0x00000008;
-          allowdGroupIds_ = other.allowdGroupIds_;
-          
-        }
-        if (other.hasAuthInterfaces()) {
-          bitField0_ |= 0x00000010;
-          authInterfaces_ = other.authInterfaces_;
-          
-        }
-        if (other.hasAuthIps()) {
-          bitField0_ |= 0x00000020;
-          authIps_ = other.authIps_;
-          
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasAppKey()) {
-          
-          return false;
-        }
-        if (!hasUserId()) {
-          
-          return false;
-        }
-        if (!hasAllowdUserIds()) {
-          
-          return false;
-        }
-        if (!hasAllowdGroupIds()) {
-          
-          return false;
-        }
-        if (!hasAuthInterfaces()) {
-          
-          return false;
-        }
-        if (!hasAuthIps()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.AuthInfo) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private java.lang.Object appKey_ = "";
-      /**
-       * <code>required string app_key = 1;</code>
-       */
-      public boolean hasAppKey() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      /**
-       * <code>required string app_key = 1;</code>
-       */
-      public java.lang.String getAppKey() {
-        java.lang.Object ref = appKey_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            appKey_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string app_key = 1;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAppKeyBytes() {
-        java.lang.Object ref = appKey_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          appKey_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string app_key = 1;</code>
-       */
-      public Builder setAppKey(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        appKey_ = value;
-        
-        return this;
-      }
-      /**
-       * <code>required string app_key = 1;</code>
-       */
-      public Builder clearAppKey() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        appKey_ = getDefaultInstance().getAppKey();
-        
-        return this;
-      }
-      /**
-       * <code>required string app_key = 1;</code>
-       */
-      public Builder setAppKeyBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        appKey_ = value;
-        
-        return this;
-      }
-
-      private int userId_ ;
-      /**
-       * <code>required uint32 user_id = 2;</code>
-       */
-      public boolean hasUserId() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      /**
-       * <code>required uint32 user_id = 2;</code>
-       */
-      public int getUserId() {
-        return userId_;
-      }
-      /**
-       * <code>required uint32 user_id = 2;</code>
-       */
-      public Builder setUserId(int value) {
-        bitField0_ |= 0x00000002;
-        userId_ = value;
-        
-        return this;
-      }
-      /**
-       * <code>required uint32 user_id = 2;</code>
-       */
-      public Builder clearUserId() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        userId_ = 0;
-        
-        return this;
-      }
-
-      private java.lang.Object allowdUserIds_ = "";
-      /**
-       * <code>required string allowd_user_ids = 3;</code>
-       */
-      public boolean hasAllowdUserIds() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
-      }
-      /**
-       * <code>required string allowd_user_ids = 3;</code>
-       */
-      public java.lang.String getAllowdUserIds() {
-        java.lang.Object ref = allowdUserIds_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            allowdUserIds_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string allowd_user_ids = 3;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAllowdUserIdsBytes() {
-        java.lang.Object ref = allowdUserIds_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          allowdUserIds_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string allowd_user_ids = 3;</code>
-       */
-      public Builder setAllowdUserIds(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        allowdUserIds_ = value;
-        
-        return this;
-      }
-      /**
-       * <code>required string allowd_user_ids = 3;</code>
-       */
-      public Builder clearAllowdUserIds() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        allowdUserIds_ = getDefaultInstance().getAllowdUserIds();
-        
-        return this;
-      }
-      /**
-       * <code>required string allowd_user_ids = 3;</code>
-       */
-      public Builder setAllowdUserIdsBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        allowdUserIds_ = value;
-        
-        return this;
-      }
-
-      private java.lang.Object allowdGroupIds_ = "";
-      /**
-       * <code>required string allowd_group_ids = 4;</code>
-       */
-      public boolean hasAllowdGroupIds() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
-      }
-      /**
-       * <code>required string allowd_group_ids = 4;</code>
-       */
-      public java.lang.String getAllowdGroupIds() {
-        java.lang.Object ref = allowdGroupIds_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            allowdGroupIds_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string allowd_group_ids = 4;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAllowdGroupIdsBytes() {
-        java.lang.Object ref = allowdGroupIds_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          allowdGroupIds_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string allowd_group_ids = 4;</code>
-       */
-      public Builder setAllowdGroupIds(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        allowdGroupIds_ = value;
-        
-        return this;
-      }
-      /**
-       * <code>required string allowd_group_ids = 4;</code>
-       */
-      public Builder clearAllowdGroupIds() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        allowdGroupIds_ = getDefaultInstance().getAllowdGroupIds();
-        
-        return this;
-      }
-      /**
-       * <code>required string allowd_group_ids = 4;</code>
-       */
-      public Builder setAllowdGroupIdsBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000008;
-        allowdGroupIds_ = value;
-        
-        return this;
-      }
-
-      private java.lang.Object authInterfaces_ = "";
-      /**
-       * <code>required string auth_interfaces = 5;</code>
-       */
-      public boolean hasAuthInterfaces() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
-      }
-      /**
-       * <code>required string auth_interfaces = 5;</code>
-       */
-      public java.lang.String getAuthInterfaces() {
-        java.lang.Object ref = authInterfaces_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            authInterfaces_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string auth_interfaces = 5;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAuthInterfacesBytes() {
-        java.lang.Object ref = authInterfaces_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          authInterfaces_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string auth_interfaces = 5;</code>
-       */
-      public Builder setAuthInterfaces(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
-        authInterfaces_ = value;
-        
-        return this;
-      }
-      /**
-       * <code>required string auth_interfaces = 5;</code>
-       */
-      public Builder clearAuthInterfaces() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        authInterfaces_ = getDefaultInstance().getAuthInterfaces();
-        
-        return this;
-      }
-      /**
-       * <code>required string auth_interfaces = 5;</code>
-       */
-      public Builder setAuthInterfacesBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000010;
-        authInterfaces_ = value;
-        
-        return this;
-      }
-
-      private java.lang.Object authIps_ = "";
-      /**
-       * <code>required string auth_ips = 6;</code>
-       */
-      public boolean hasAuthIps() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
-      }
-      /**
-       * <code>required string auth_ips = 6;</code>
-       */
-      public java.lang.String getAuthIps() {
-        java.lang.Object ref = authIps_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            authIps_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
-      }
-      /**
-       * <code>required string auth_ips = 6;</code>
-       */
-      public com.google.protobuf.ByteString
-          getAuthIpsBytes() {
-        java.lang.Object ref = authIps_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          authIps_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
-      }
-      /**
-       * <code>required string auth_ips = 6;</code>
-       */
-      public Builder setAuthIps(
-          java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
-        authIps_ = value;
-        
-        return this;
-      }
-      /**
-       * <code>required string auth_ips = 6;</code>
-       */
-      public Builder clearAuthIps() {
-        bitField0_ = (bitField0_ & ~0x00000020);
-        authIps_ = getDefaultInstance().getAuthIps();
-        
-        return this;
-      }
-      /**
-       * <code>required string auth_ips = 6;</code>
-       */
-      public Builder setAuthIpsBytes(
-          com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000020;
-        authIps_ = value;
-        
-        return this;
-      }
-
-      // @@protoc_insertion_point(builder_scope:IM.BaseDefine.AuthInfo)
-    }
-
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo DEFAULT_INSTANCE;
     static {
-      defaultInstance = new AuthInfo(true);
-      defaultInstance.initFields();
+      DEFAULT_INSTANCE = new OfflineFileInfo();
+      DEFAULT_INSTANCE.makeImmutable();
     }
 
-    // @@protoc_insertion_point(class_scope:IM.BaseDefine.AuthInfo)
+    public static com.mogujie.tt.protobuf.IMBaseDefine.OfflineFileInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<OfflineFileInfo> PARSER;
+
+    public static com.google.protobuf.Parser<OfflineFileInfo> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
   public interface DepartInfoOrBuilder extends
@@ -14171,119 +12510,14 @@ public final class IMBaseDefine {
   /**
    * Protobuf type {@code IM.BaseDefine.DepartInfo}
    */
-  public static final class DepartInfo extends
-      com.google.protobuf.GeneratedMessageLite implements
+  public  static final class DepartInfo extends
+      com.google.protobuf.GeneratedMessageLite<
+          DepartInfo, DepartInfo.Builder> implements
       // @@protoc_insertion_point(message_implements:IM.BaseDefine.DepartInfo)
       DepartInfoOrBuilder {
-    // Use DepartInfo.newBuilder() to construct.
-    private DepartInfo(com.google.protobuf.GeneratedMessageLite.Builder builder) {
-      super(builder);
-      this.unknownFields = builder.getUnknownFields();
+    private DepartInfo() {
+      deptName_ = "";
     }
-    private DepartInfo(boolean noInit) { this.unknownFields = com.google.protobuf.ByteString.EMPTY;}
-
-    private static final DepartInfo defaultInstance;
-    public static DepartInfo getDefaultInstance() {
-      return defaultInstance;
-    }
-
-    public DepartInfo getDefaultInstanceForType() {
-      return defaultInstance;
-    }
-
-    private final com.google.protobuf.ByteString unknownFields;
-    private DepartInfo(
-        com.google.protobuf.CodedInputStream input,
-        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-        throws com.google.protobuf.InvalidProtocolBufferException {
-      initFields();
-      int mutable_bitField0_ = 0;
-      com.google.protobuf.ByteString.Output unknownFieldsOutput =
-          com.google.protobuf.ByteString.newOutput();
-      com.google.protobuf.CodedOutputStream unknownFieldsCodedOutput =
-          com.google.protobuf.CodedOutputStream.newInstance(
-              unknownFieldsOutput);
-      try {
-        boolean done = false;
-        while (!done) {
-          int tag = input.readTag();
-          switch (tag) {
-            case 0:
-              done = true;
-              break;
-            default: {
-              if (!parseUnknownField(input, unknownFieldsCodedOutput,
-                                     extensionRegistry, tag)) {
-                done = true;
-              }
-              break;
-            }
-            case 8: {
-              bitField0_ |= 0x00000001;
-              deptId_ = input.readUInt32();
-              break;
-            }
-            case 16: {
-              bitField0_ |= 0x00000002;
-              priority_ = input.readUInt32();
-              break;
-            }
-            case 26: {
-              com.google.protobuf.ByteString bs = input.readBytes();
-              bitField0_ |= 0x00000004;
-              deptName_ = bs;
-              break;
-            }
-            case 32: {
-              bitField0_ |= 0x00000008;
-              parentDeptId_ = input.readUInt32();
-              break;
-            }
-            case 40: {
-              int rawValue = input.readEnum();
-              com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType value = com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType.valueOf(rawValue);
-              if (value == null) {
-                unknownFieldsCodedOutput.writeRawVarint32(tag);
-                unknownFieldsCodedOutput.writeRawVarint32(rawValue);
-              } else {
-                bitField0_ |= 0x00000010;
-                deptStatus_ = value;
-              }
-              break;
-            }
-          }
-        }
-      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-        throw e.setUnfinishedMessage(this);
-      } catch (java.io.IOException e) {
-        throw new com.google.protobuf.InvalidProtocolBufferException(
-            e.getMessage()).setUnfinishedMessage(this);
-      } finally {
-        try {
-          unknownFieldsCodedOutput.flush();
-        } catch (java.io.IOException e) {
-        // Should not happen
-        } finally {
-          unknownFields = unknownFieldsOutput.toByteString();
-        }
-        makeExtensionsImmutable();
-      }
-    }
-    public static com.google.protobuf.Parser<DepartInfo> PARSER =
-        new com.google.protobuf.AbstractParser<DepartInfo>() {
-      public DepartInfo parsePartialFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws com.google.protobuf.InvalidProtocolBufferException {
-        return new DepartInfo(input, extensionRegistry);
-      }
-    };
-
-    @java.lang.Override
-    public com.google.protobuf.Parser<DepartInfo> getParserForType() {
-      return PARSER;
-    }
-
     private int bitField0_;
     public static final int DEPT_ID_FIELD_NUMBER = 1;
     private int deptId_;
@@ -14298,6 +12532,20 @@ public final class IMBaseDefine {
      */
     public int getDeptId() {
       return deptId_;
+    }
+    /**
+     * <code>required uint32 dept_id = 1;</code>
+     */
+    private void setDeptId(int value) {
+      bitField0_ |= 0x00000001;
+      deptId_ = value;
+    }
+    /**
+     * <code>required uint32 dept_id = 1;</code>
+     */
+    private void clearDeptId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      deptId_ = 0;
     }
 
     public static final int PRIORITY_FIELD_NUMBER = 2;
@@ -14314,9 +12562,23 @@ public final class IMBaseDefine {
     public int getPriority() {
       return priority_;
     }
+    /**
+     * <code>required uint32 priority = 2;</code>
+     */
+    private void setPriority(int value) {
+      bitField0_ |= 0x00000002;
+      priority_ = value;
+    }
+    /**
+     * <code>required uint32 priority = 2;</code>
+     */
+    private void clearPriority() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      priority_ = 0;
+    }
 
     public static final int DEPT_NAME_FIELD_NUMBER = 3;
-    private java.lang.Object deptName_;
+    private java.lang.String deptName_;
     /**
      * <code>required string dept_name = 3;</code>
      */
@@ -14327,34 +12589,43 @@ public final class IMBaseDefine {
      * <code>required string dept_name = 3;</code>
      */
     public java.lang.String getDeptName() {
-      java.lang.Object ref = deptName_;
-      if (ref instanceof java.lang.String) {
-        return (java.lang.String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        if (bs.isValidUtf8()) {
-          deptName_ = s;
-        }
-        return s;
-      }
+      return deptName_;
     }
     /**
      * <code>required string dept_name = 3;</code>
      */
     public com.google.protobuf.ByteString
         getDeptNameBytes() {
-      java.lang.Object ref = deptName_;
-      if (ref instanceof java.lang.String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        deptName_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
+      return com.google.protobuf.ByteString.copyFromUtf8(deptName_);
+    }
+    /**
+     * <code>required string dept_name = 3;</code>
+     */
+    private void setDeptName(
+        java.lang.String value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+      deptName_ = value;
+    }
+    /**
+     * <code>required string dept_name = 3;</code>
+     */
+    private void clearDeptName() {
+      bitField0_ = (bitField0_ & ~0x00000004);
+      deptName_ = getDefaultInstance().getDeptName();
+    }
+    /**
+     * <code>required string dept_name = 3;</code>
+     */
+    private void setDeptNameBytes(
+        com.google.protobuf.ByteString value) {
+      if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+      deptName_ = value.toStringUtf8();
     }
 
     public static final int PARENT_DEPT_ID_FIELD_NUMBER = 4;
@@ -14371,9 +12642,23 @@ public final class IMBaseDefine {
     public int getParentDeptId() {
       return parentDeptId_;
     }
+    /**
+     * <code>required uint32 parent_dept_id = 4;</code>
+     */
+    private void setParentDeptId(int value) {
+      bitField0_ |= 0x00000008;
+      parentDeptId_ = value;
+    }
+    /**
+     * <code>required uint32 parent_dept_id = 4;</code>
+     */
+    private void clearParentDeptId() {
+      bitField0_ = (bitField0_ & ~0x00000008);
+      parentDeptId_ = 0;
+    }
 
     public static final int DEPT_STATUS_FIELD_NUMBER = 5;
-    private com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType deptStatus_;
+    private int deptStatus_;
     /**
      * <code>required .IM.BaseDefine.DepartmentStatusType dept_status = 5;</code>
      */
@@ -14384,49 +12669,29 @@ public final class IMBaseDefine {
      * <code>required .IM.BaseDefine.DepartmentStatusType dept_status = 5;</code>
      */
     public com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType getDeptStatus() {
-      return deptStatus_;
+      com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType result = com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType.forNumber(deptStatus_);
+      return result == null ? com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType.DEPT_STATUS_OK : result;
     }
-
-    private void initFields() {
-      deptId_ = 0;
-      priority_ = 0;
-      deptName_ = "";
-      parentDeptId_ = 0;
-      deptStatus_ = com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType.DEPT_STATUS_OK;
+    /**
+     * <code>required .IM.BaseDefine.DepartmentStatusType dept_status = 5;</code>
+     */
+    private void setDeptStatus(com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType value) {
+      if (value == null) {
+        throw new NullPointerException();
+      }
+      bitField0_ |= 0x00000010;
+      deptStatus_ = value.getNumber();
     }
-    private byte memoizedIsInitialized = -1;
-    public final boolean isInitialized() {
-      byte isInitialized = memoizedIsInitialized;
-      if (isInitialized == 1) return true;
-      if (isInitialized == 0) return false;
-
-      if (!hasDeptId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasPriority()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasDeptName()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasParentDeptId()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      if (!hasDeptStatus()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
-      memoizedIsInitialized = 1;
-      return true;
+    /**
+     * <code>required .IM.BaseDefine.DepartmentStatusType dept_status = 5;</code>
+     */
+    private void clearDeptStatus() {
+      bitField0_ = (bitField0_ & ~0x00000010);
+      deptStatus_ = 0;
     }
 
     public void writeTo(com.google.protobuf.CodedOutputStream output)
                         throws java.io.IOException {
-      getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeUInt32(1, deptId_);
       }
@@ -14434,18 +12699,17 @@ public final class IMBaseDefine {
         output.writeUInt32(2, priority_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getDeptNameBytes());
+        output.writeString(3, getDeptName());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeUInt32(4, parentDeptId_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeEnum(5, deptStatus_.getNumber());
+        output.writeEnum(5, deptStatus_);
       }
-      output.writeRawBytes(unknownFields);
+      unknownFields.writeTo(output);
     }
 
-    private int memoizedSerializedSize = -1;
     public int getSerializedSize() {
       int size = memoizedSerializedSize;
       if (size != -1) return size;
@@ -14461,7 +12725,7 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getDeptNameBytes());
+          .computeStringSize(3, getDeptName());
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
@@ -14469,350 +12733,200 @@ public final class IMBaseDefine {
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeEnumSize(5, deptStatus_.getNumber());
+          .computeEnumSize(5, deptStatus_);
       }
-      size += unknownFields.size();
+      size += unknownFields.getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
 
-    private static final long serialVersionUID = 0L;
-    @java.lang.Override
-    protected java.lang.Object writeReplace()
-        throws java.io.ObjectStreamException {
-      return super.writeReplace();
+    public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
-
+    public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
     public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseFrom(
         com.google.protobuf.ByteString data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseFrom(
         com.google.protobuf.ByteString data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseFrom(byte[] data)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseFrom(
         byte[] data,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
-      return PARSER.parseFrom(data, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseDelimitedFrom(java.io.InputStream input)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseDelimitedFrom(
         java.io.InputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseFrom(
         com.google.protobuf.CodedInputStream input)
         throws java.io.IOException {
-      return PARSER.parseFrom(input);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
     }
     public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parseFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws java.io.IOException {
-      return PARSER.parseFrom(input, extensionRegistry);
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
     }
 
-    public static Builder newBuilder() { return Builder.create(); }
-    public Builder newBuilderForType() { return newBuilder(); }
-    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo prototype) {
-      return newBuilder().mergeFrom(prototype);
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
     }
-    public Builder toBuilder() { return newBuilder(this); }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
 
     /**
      * Protobuf type {@code IM.BaseDefine.DepartInfo}
      */
     public static final class Builder extends
         com.google.protobuf.GeneratedMessageLite.Builder<
-          com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo, Builder>
-        implements
+          com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo, Builder> implements
         // @@protoc_insertion_point(builder_implements:IM.BaseDefine.DepartInfo)
         com.mogujie.tt.protobuf.IMBaseDefine.DepartInfoOrBuilder {
       // Construct using com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo.newBuilder()
       private Builder() {
-        maybeForceBuilderInitialization();
+        super(DEFAULT_INSTANCE);
       }
 
-      private void maybeForceBuilderInitialization() {
-      }
-      private static Builder create() {
-        return new Builder();
-      }
 
-      public Builder clear() {
-        super.clear();
-        deptId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000001);
-        priority_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000002);
-        deptName_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
-        parentDeptId_ = 0;
-        bitField0_ = (bitField0_ & ~0x00000008);
-        deptStatus_ = com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType.DEPT_STATUS_OK;
-        bitField0_ = (bitField0_ & ~0x00000010);
-        return this;
-      }
-
-      public Builder clone() {
-        return create().mergeFrom(buildPartial());
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo getDefaultInstanceForType() {
-        return com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo.getDefaultInstance();
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo build() {
-        com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo result = buildPartial();
-        if (!result.isInitialized()) {
-          throw newUninitializedMessageException(result);
-        }
-        return result;
-      }
-
-      public com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo buildPartial() {
-        com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo result = new com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo(this);
-        int from_bitField0_ = bitField0_;
-        int to_bitField0_ = 0;
-        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
-          to_bitField0_ |= 0x00000001;
-        }
-        result.deptId_ = deptId_;
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
-        }
-        result.priority_ = priority_;
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
-        }
-        result.deptName_ = deptName_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
-        }
-        result.parentDeptId_ = parentDeptId_;
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
-        }
-        result.deptStatus_ = deptStatus_;
-        result.bitField0_ = to_bitField0_;
-        return result;
-      }
-
-      public Builder mergeFrom(com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo other) {
-        if (other == com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo.getDefaultInstance()) return this;
-        if (other.hasDeptId()) {
-          setDeptId(other.getDeptId());
-        }
-        if (other.hasPriority()) {
-          setPriority(other.getPriority());
-        }
-        if (other.hasDeptName()) {
-          bitField0_ |= 0x00000004;
-          deptName_ = other.deptName_;
-          
-        }
-        if (other.hasParentDeptId()) {
-          setParentDeptId(other.getParentDeptId());
-        }
-        if (other.hasDeptStatus()) {
-          setDeptStatus(other.getDeptStatus());
-        }
-        setUnknownFields(
-            getUnknownFields().concat(other.unknownFields));
-        return this;
-      }
-
-      public final boolean isInitialized() {
-        if (!hasDeptId()) {
-          
-          return false;
-        }
-        if (!hasPriority()) {
-          
-          return false;
-        }
-        if (!hasDeptName()) {
-          
-          return false;
-        }
-        if (!hasParentDeptId()) {
-          
-          return false;
-        }
-        if (!hasDeptStatus()) {
-          
-          return false;
-        }
-        return true;
-      }
-
-      public Builder mergeFrom(
-          com.google.protobuf.CodedInputStream input,
-          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
-          throws java.io.IOException {
-        com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo parsedMessage = null;
-        try {
-          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
-        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
-          parsedMessage = (com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo) e.getUnfinishedMessage();
-          throw e;
-        } finally {
-          if (parsedMessage != null) {
-            mergeFrom(parsedMessage);
-          }
-        }
-        return this;
-      }
-      private int bitField0_;
-
-      private int deptId_ ;
       /**
        * <code>required uint32 dept_id = 1;</code>
        */
       public boolean hasDeptId() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return instance.hasDeptId();
       }
       /**
        * <code>required uint32 dept_id = 1;</code>
        */
       public int getDeptId() {
-        return deptId_;
+        return instance.getDeptId();
       }
       /**
        * <code>required uint32 dept_id = 1;</code>
        */
       public Builder setDeptId(int value) {
-        bitField0_ |= 0x00000001;
-        deptId_ = value;
-        
+        copyOnWrite();
+        instance.setDeptId(value);
         return this;
       }
       /**
        * <code>required uint32 dept_id = 1;</code>
        */
       public Builder clearDeptId() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        deptId_ = 0;
-        
+        copyOnWrite();
+        instance.clearDeptId();
         return this;
       }
 
-      private int priority_ ;
       /**
        * <code>required uint32 priority = 2;</code>
        */
       public boolean hasPriority() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return instance.hasPriority();
       }
       /**
        * <code>required uint32 priority = 2;</code>
        */
       public int getPriority() {
-        return priority_;
+        return instance.getPriority();
       }
       /**
        * <code>required uint32 priority = 2;</code>
        */
       public Builder setPriority(int value) {
-        bitField0_ |= 0x00000002;
-        priority_ = value;
-        
+        copyOnWrite();
+        instance.setPriority(value);
         return this;
       }
       /**
        * <code>required uint32 priority = 2;</code>
        */
       public Builder clearPriority() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        priority_ = 0;
-        
+        copyOnWrite();
+        instance.clearPriority();
         return this;
       }
 
-      private java.lang.Object deptName_ = "";
       /**
        * <code>required string dept_name = 3;</code>
        */
       public boolean hasDeptName() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return instance.hasDeptName();
       }
       /**
        * <code>required string dept_name = 3;</code>
        */
       public java.lang.String getDeptName() {
-        java.lang.Object ref = deptName_;
-        if (!(ref instanceof java.lang.String)) {
-          com.google.protobuf.ByteString bs =
-              (com.google.protobuf.ByteString) ref;
-          java.lang.String s = bs.toStringUtf8();
-          if (bs.isValidUtf8()) {
-            deptName_ = s;
-          }
-          return s;
-        } else {
-          return (java.lang.String) ref;
-        }
+        return instance.getDeptName();
       }
       /**
        * <code>required string dept_name = 3;</code>
        */
       public com.google.protobuf.ByteString
           getDeptNameBytes() {
-        java.lang.Object ref = deptName_;
-        if (ref instanceof String) {
-          com.google.protobuf.ByteString b = 
-              com.google.protobuf.ByteString.copyFromUtf8(
-                  (java.lang.String) ref);
-          deptName_ = b;
-          return b;
-        } else {
-          return (com.google.protobuf.ByteString) ref;
-        }
+        return instance.getDeptNameBytes();
       }
       /**
        * <code>required string dept_name = 3;</code>
        */
       public Builder setDeptName(
           java.lang.String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        deptName_ = value;
-        
+        copyOnWrite();
+        instance.setDeptName(value);
         return this;
       }
       /**
        * <code>required string dept_name = 3;</code>
        */
       public Builder clearDeptName() {
-        bitField0_ = (bitField0_ & ~0x00000004);
-        deptName_ = getDefaultInstance().getDeptName();
-        
+        copyOnWrite();
+        instance.clearDeptName();
         return this;
       }
       /**
@@ -14820,91 +12934,685 @@ public final class IMBaseDefine {
        */
       public Builder setDeptNameBytes(
           com.google.protobuf.ByteString value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000004;
-        deptName_ = value;
-        
+        copyOnWrite();
+        instance.setDeptNameBytes(value);
         return this;
       }
 
-      private int parentDeptId_ ;
       /**
        * <code>required uint32 parent_dept_id = 4;</code>
        */
       public boolean hasParentDeptId() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return instance.hasParentDeptId();
       }
       /**
        * <code>required uint32 parent_dept_id = 4;</code>
        */
       public int getParentDeptId() {
-        return parentDeptId_;
+        return instance.getParentDeptId();
       }
       /**
        * <code>required uint32 parent_dept_id = 4;</code>
        */
       public Builder setParentDeptId(int value) {
-        bitField0_ |= 0x00000008;
-        parentDeptId_ = value;
-        
+        copyOnWrite();
+        instance.setParentDeptId(value);
         return this;
       }
       /**
        * <code>required uint32 parent_dept_id = 4;</code>
        */
       public Builder clearParentDeptId() {
-        bitField0_ = (bitField0_ & ~0x00000008);
-        parentDeptId_ = 0;
-        
+        copyOnWrite();
+        instance.clearParentDeptId();
         return this;
       }
 
-      private com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType deptStatus_ = com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType.DEPT_STATUS_OK;
       /**
        * <code>required .IM.BaseDefine.DepartmentStatusType dept_status = 5;</code>
        */
       public boolean hasDeptStatus() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return instance.hasDeptStatus();
       }
       /**
        * <code>required .IM.BaseDefine.DepartmentStatusType dept_status = 5;</code>
        */
       public com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType getDeptStatus() {
-        return deptStatus_;
+        return instance.getDeptStatus();
       }
       /**
        * <code>required .IM.BaseDefine.DepartmentStatusType dept_status = 5;</code>
        */
       public Builder setDeptStatus(com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType value) {
-        if (value == null) {
-          throw new NullPointerException();
-        }
-        bitField0_ |= 0x00000010;
-        deptStatus_ = value;
-        
+        copyOnWrite();
+        instance.setDeptStatus(value);
         return this;
       }
       /**
        * <code>required .IM.BaseDefine.DepartmentStatusType dept_status = 5;</code>
        */
       public Builder clearDeptStatus() {
-        bitField0_ = (bitField0_ & ~0x00000010);
-        deptStatus_ = com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType.DEPT_STATUS_OK;
-        
+        copyOnWrite();
+        instance.clearDeptStatus();
         return this;
       }
 
       // @@protoc_insertion_point(builder_scope:IM.BaseDefine.DepartInfo)
     }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
 
-    static {
-      defaultInstance = new DepartInfo(true);
-      defaultInstance.initFields();
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasDeptId()) {
+            return null;
+          }
+          if (!hasPriority()) {
+            return null;
+          }
+          if (!hasDeptName()) {
+            return null;
+          }
+          if (!hasParentDeptId()) {
+            return null;
+          }
+          if (!hasDeptStatus()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo other = (com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo) arg1;
+          deptId_ = visitor.visitInt(
+              hasDeptId(), deptId_,
+              other.hasDeptId(), other.deptId_);
+          priority_ = visitor.visitInt(
+              hasPriority(), priority_,
+              other.hasPriority(), other.priority_);
+          deptName_ = visitor.visitString(
+              hasDeptName(), deptName_,
+              other.hasDeptName(), other.deptName_);
+          parentDeptId_ = visitor.visitInt(
+              hasParentDeptId(), parentDeptId_,
+              other.hasParentDeptId(), other.parentDeptId_);
+          deptStatus_ = visitor.visitInt(hasDeptStatus(), deptStatus_,
+              other.hasDeptStatus(), other.deptStatus_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  deptId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  bitField0_ |= 0x00000002;
+                  priority_ = input.readUInt32();
+                  break;
+                }
+                case 26: {
+                  java.lang.String s = input.readString();
+                  bitField0_ |= 0x00000004;
+                  deptName_ = s;
+                  break;
+                }
+                case 32: {
+                  bitField0_ |= 0x00000008;
+                  parentDeptId_ = input.readUInt32();
+                  break;
+                }
+                case 40: {
+                  int rawValue = input.readEnum();
+                  com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType value = com.mogujie.tt.protobuf.IMBaseDefine.DepartmentStatusType.forNumber(rawValue);
+                  if (value == null) {
+                    super.mergeVarintField(5, rawValue);
+                  } else {
+                    bitField0_ |= 0x00000010;
+                    deptStatus_ = rawValue;
+                  }
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
     }
 
+
     // @@protoc_insertion_point(class_scope:IM.BaseDefine.DepartInfo)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new DepartInfo();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.DepartInfo getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<DepartInfo> PARSER;
+
+    public static com.google.protobuf.Parser<DepartInfo> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
+  }
+
+  public interface PushShieldStatusOrBuilder extends
+      // @@protoc_insertion_point(interface_extends:IM.BaseDefine.PushShieldStatus)
+      com.google.protobuf.MessageLiteOrBuilder {
+
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    boolean hasUserId();
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    int getUserId();
+
+    /**
+     * <pre>
+     *1: shield  0: not shield
+     * </pre>
+     *
+     * <code>required uint32 shield_status = 2;</code>
+     */
+    boolean hasShieldStatus();
+    /**
+     * <pre>
+     *1: shield  0: not shield
+     * </pre>
+     *
+     * <code>required uint32 shield_status = 2;</code>
+     */
+    int getShieldStatus();
+  }
+  /**
+   * Protobuf type {@code IM.BaseDefine.PushShieldStatus}
+   */
+  public  static final class PushShieldStatus extends
+      com.google.protobuf.GeneratedMessageLite<
+          PushShieldStatus, PushShieldStatus.Builder> implements
+      // @@protoc_insertion_point(message_implements:IM.BaseDefine.PushShieldStatus)
+      PushShieldStatusOrBuilder {
+    private PushShieldStatus() {
+    }
+    private int bitField0_;
+    public static final int USER_ID_FIELD_NUMBER = 1;
+    private int userId_;
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    public boolean hasUserId() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    public int getUserId() {
+      return userId_;
+    }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void setUserId(int value) {
+      bitField0_ |= 0x00000001;
+      userId_ = value;
+    }
+    /**
+     * <code>required uint32 user_id = 1;</code>
+     */
+    private void clearUserId() {
+      bitField0_ = (bitField0_ & ~0x00000001);
+      userId_ = 0;
+    }
+
+    public static final int SHIELD_STATUS_FIELD_NUMBER = 2;
+    private int shieldStatus_;
+    /**
+     * <pre>
+     *1: shield  0: not shield
+     * </pre>
+     *
+     * <code>required uint32 shield_status = 2;</code>
+     */
+    public boolean hasShieldStatus() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <pre>
+     *1: shield  0: not shield
+     * </pre>
+     *
+     * <code>required uint32 shield_status = 2;</code>
+     */
+    public int getShieldStatus() {
+      return shieldStatus_;
+    }
+    /**
+     * <pre>
+     *1: shield  0: not shield
+     * </pre>
+     *
+     * <code>required uint32 shield_status = 2;</code>
+     */
+    private void setShieldStatus(int value) {
+      bitField0_ |= 0x00000002;
+      shieldStatus_ = value;
+    }
+    /**
+     * <pre>
+     *1: shield  0: not shield
+     * </pre>
+     *
+     * <code>required uint32 shield_status = 2;</code>
+     */
+    private void clearShieldStatus() {
+      bitField0_ = (bitField0_ & ~0x00000002);
+      shieldStatus_ = 0;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeUInt32(1, userId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeUInt32(2, shieldStatus_);
+      }
+      unknownFields.writeTo(output);
+    }
+
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(1, userId_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeUInt32Size(2, shieldStatus_);
+      }
+      size += unknownFields.getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseFrom(
+        java.nio.ByteBuffer data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseFrom(
+        java.nio.ByteBuffer data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data);
+    }
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, data, extensionRegistry);
+    }
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input);
+    }
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return parseDelimitedFrom(DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input);
+    }
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return com.google.protobuf.GeneratedMessageLite.parseFrom(
+          DEFAULT_INSTANCE, input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() {
+      return (Builder) DEFAULT_INSTANCE.createBuilder();
+    }
+    public static Builder newBuilder(com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus prototype) {
+      return (Builder) DEFAULT_INSTANCE.createBuilder(prototype);
+    }
+
+    /**
+     * Protobuf type {@code IM.BaseDefine.PushShieldStatus}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessageLite.Builder<
+          com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus, Builder> implements
+        // @@protoc_insertion_point(builder_implements:IM.BaseDefine.PushShieldStatus)
+        com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatusOrBuilder {
+      // Construct using com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus.newBuilder()
+      private Builder() {
+        super(DEFAULT_INSTANCE);
+      }
+
+
+      /**
+       * <code>required uint32 user_id = 1;</code>
+       */
+      public boolean hasUserId() {
+        return instance.hasUserId();
+      }
+      /**
+       * <code>required uint32 user_id = 1;</code>
+       */
+      public int getUserId() {
+        return instance.getUserId();
+      }
+      /**
+       * <code>required uint32 user_id = 1;</code>
+       */
+      public Builder setUserId(int value) {
+        copyOnWrite();
+        instance.setUserId(value);
+        return this;
+      }
+      /**
+       * <code>required uint32 user_id = 1;</code>
+       */
+      public Builder clearUserId() {
+        copyOnWrite();
+        instance.clearUserId();
+        return this;
+      }
+
+      /**
+       * <pre>
+       *1: shield  0: not shield
+       * </pre>
+       *
+       * <code>required uint32 shield_status = 2;</code>
+       */
+      public boolean hasShieldStatus() {
+        return instance.hasShieldStatus();
+      }
+      /**
+       * <pre>
+       *1: shield  0: not shield
+       * </pre>
+       *
+       * <code>required uint32 shield_status = 2;</code>
+       */
+      public int getShieldStatus() {
+        return instance.getShieldStatus();
+      }
+      /**
+       * <pre>
+       *1: shield  0: not shield
+       * </pre>
+       *
+       * <code>required uint32 shield_status = 2;</code>
+       */
+      public Builder setShieldStatus(int value) {
+        copyOnWrite();
+        instance.setShieldStatus(value);
+        return this;
+      }
+      /**
+       * <pre>
+       *1: shield  0: not shield
+       * </pre>
+       *
+       * <code>required uint32 shield_status = 2;</code>
+       */
+      public Builder clearShieldStatus() {
+        copyOnWrite();
+        instance.clearShieldStatus();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:IM.BaseDefine.PushShieldStatus)
+    }
+    private byte memoizedIsInitialized = 2;
+    @java.lang.SuppressWarnings({"unchecked", "fallthrough"})
+    protected final java.lang.Object dynamicMethod(
+        com.google.protobuf.GeneratedMessageLite.MethodToInvoke method,
+        java.lang.Object arg0, java.lang.Object arg1) {
+      switch (method) {
+        case NEW_MUTABLE_INSTANCE: {
+          return new com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus();
+        }
+        case IS_INITIALIZED: {
+          byte isInitialized = memoizedIsInitialized;
+          if (isInitialized == 1) return DEFAULT_INSTANCE;
+          if (isInitialized == 0) return null;
+
+          boolean shouldMemoize = ((Boolean) arg0).booleanValue();
+          if (!hasUserId()) {
+            return null;
+          }
+          if (!hasShieldStatus()) {
+            return null;
+          }
+          return DEFAULT_INSTANCE;
+
+        }
+        case MAKE_IMMUTABLE: {
+          return null;
+        }
+        case NEW_BUILDER: {
+          return new Builder();
+        }
+        case VISIT: {
+          Visitor visitor = (Visitor) arg0;
+          com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus other = (com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus) arg1;
+          userId_ = visitor.visitInt(
+              hasUserId(), userId_,
+              other.hasUserId(), other.userId_);
+          shieldStatus_ = visitor.visitInt(
+              hasShieldStatus(), shieldStatus_,
+              other.hasShieldStatus(), other.shieldStatus_);
+          if (visitor == com.google.protobuf.GeneratedMessageLite.MergeFromVisitor
+              .INSTANCE) {
+            bitField0_ |= other.bitField0_;
+          }
+          return this;
+        }
+        case MERGE_FROM_STREAM: {
+          com.google.protobuf.CodedInputStream input =
+              (com.google.protobuf.CodedInputStream) arg0;
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry =
+              (com.google.protobuf.ExtensionRegistryLite) arg1;
+          if (extensionRegistry == null) {
+            throw new java.lang.NullPointerException();
+          }
+          try {
+            boolean done = false;
+            while (!done) {
+              int tag = input.readTag();
+              switch (tag) {
+                case 0:
+                  done = true;
+                  break;
+                default: {
+                  if (!parseUnknownField(tag, input)) {
+                    done = true;
+                  }
+                  break;
+                }
+                case 8: {
+                  bitField0_ |= 0x00000001;
+                  userId_ = input.readUInt32();
+                  break;
+                }
+                case 16: {
+                  bitField0_ |= 0x00000002;
+                  shieldStatus_ = input.readUInt32();
+                  break;
+                }
+              }
+            }
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            throw new RuntimeException(e.setUnfinishedMessage(this));
+          } catch (java.io.IOException e) {
+            throw new RuntimeException(
+                new com.google.protobuf.InvalidProtocolBufferException(
+                    e.getMessage()).setUnfinishedMessage(this));
+          } finally {
+          }
+        }
+        // fall through
+        case GET_DEFAULT_INSTANCE: {
+          return DEFAULT_INSTANCE;
+        }
+        case GET_PARSER: {
+          if (PARSER == null) {    synchronized (com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus.class) {
+              if (PARSER == null) {
+                PARSER = new DefaultInstanceBasedParser(DEFAULT_INSTANCE);
+              }
+            }
+          }
+          return PARSER;
+      }
+      case GET_MEMOIZED_IS_INITIALIZED: {
+        return memoizedIsInitialized;
+      }
+      case SET_MEMOIZED_IS_INITIALIZED: {
+        memoizedIsInitialized = (byte) (arg0 == null ? 0 : 1);
+        return null;
+      }
+      }
+      throw new UnsupportedOperationException();
+    }
+
+
+    // @@protoc_insertion_point(class_scope:IM.BaseDefine.PushShieldStatus)
+    private static final com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus DEFAULT_INSTANCE;
+    static {
+      DEFAULT_INSTANCE = new PushShieldStatus();
+      DEFAULT_INSTANCE.makeImmutable();
+    }
+
+    public static com.mogujie.tt.protobuf.IMBaseDefine.PushShieldStatus getDefaultInstance() {
+      return DEFAULT_INSTANCE;
+    }
+
+    private static volatile com.google.protobuf.Parser<PushShieldStatus> PARSER;
+
+    public static com.google.protobuf.Parser<PushShieldStatus> parser() {
+      return DEFAULT_INSTANCE.getParserForType();
+    }
   }
 
 
