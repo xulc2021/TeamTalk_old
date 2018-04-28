@@ -13,4 +13,5 @@
 5.添加ssl的服务端支持
 6.升级protobuf到3.5.1
 7.ios使用google 官方的objc pb方便统一pb文件的生成
+8.也换了android的pb类 以及protobuf的版本 删了一些不用的依赖库
 ~~~~
