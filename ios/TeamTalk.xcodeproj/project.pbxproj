@@ -109,6 +109,7 @@
 		A8565857209326BF00E92931 /* ImLogin.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = A8565810209326BE00E92931 /* ImLogin.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A8565858209326BF00E92931 /* ImServer.pbobjc.m in Sources */ = {isa = PBXBuildFile; fileRef = A8565811209326BE00E92931 /* ImServer.pbobjc.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A8565867209326BF00E92931 /* GPBProtocolBuffers.m in Sources */ = {isa = PBXBuildFile; fileRef = A8565839209326BE00E92931 /* GPBProtocolBuffers.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A8F68A6A20945E2D00181D05 /* HasOfflineFileAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A8F68A6920945E2D00181D05 /* HasOfflineFileAPI.m */; };
 		C00078421B3A466700E7E5B8 /* UIView+PointBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = C00078411B3A466700E7E5B8 /* UIView+PointBadge.m */; };
 		C00078451B3A552200E7E5B8 /* UITabBar+SubView.m in Sources */ = {isa = PBXBuildFile; fileRef = C00078441B3A552200E7E5B8 /* UITabBar+SubView.m */; };
 		C000784E1B3A77E000E7E5B8 /* NSObject+Block.m in Sources */ = {isa = PBXBuildFile; fileRef = C000784C1B3A77E000E7E5B8 /* NSObject+Block.m */; };
@@ -601,6 +602,8 @@
 		A8565845209326BE00E92931 /* GPBWellKnownTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBWellKnownTypes.h; sourceTree = "<group>"; };
 		A8565846209326BE00E92931 /* GPBUnknownField_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBUnknownField_PackagePrivate.h; sourceTree = "<group>"; };
 		A8565847209326BE00E92931 /* GPBDictionary_PackagePrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPBDictionary_PackagePrivate.h; sourceTree = "<group>"; };
+		A8F68A6820945E2D00181D05 /* HasOfflineFileAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HasOfflineFileAPI.h; sourceTree = "<group>"; };
+		A8F68A6920945E2D00181D05 /* HasOfflineFileAPI.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HasOfflineFileAPI.m; sourceTree = "<group>"; };
 		C00078401B3A466700E7E5B8 /* UIView+PointBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+PointBadge.h"; sourceTree = "<group>"; };
 		C00078411B3A466700E7E5B8 /* UIView+PointBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+PointBadge.m"; sourceTree = "<group>"; };
 		C00078431B3A552200E7E5B8 /* UITabBar+SubView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITabBar+SubView.h"; sourceTree = "<group>"; };
@@ -2074,6 +2077,8 @@
 				81B6391A1B5CB7380026EF55 /* MTTUsersStatAPI.m */,
 				81A9032D1B5E340700EBAE93 /* MTTKickPCClientAPI.h */,
 				81A9032E1B5E340700EBAE93 /* MTTKickPCClientAPI.m */,
+				A8F68A6820945E2D00181D05 /* HasOfflineFileAPI.h */,
+				A8F68A6920945E2D00181D05 /* HasOfflineFileAPI.m */,
 			);
 			path = TCPAPI;
 			sourceTree = "<group>";
@@ -3086,6 +3091,7 @@
 				A83733491F56A466009A85D8 /* stream.c in Sources */,
 				C07E64691B32791D00A5102C /* AQGridViewData.m in Sources */,
 				A83733781F56BEF9009A85D8 /* opusaudio.c in Sources */,
+				A8F68A6A20945E2D00181D05 /* HasOfflineFileAPI.m in Sources */,
 				C07E66551B328F1A00A5102C /* SendMessageAPI.m in Sources */,
 				A8565867209326BF00E92931 /* GPBProtocolBuffers.m in Sources */,
 				C07E64681B32791D00A5102C /* AQGridViewController.m in Sources */,

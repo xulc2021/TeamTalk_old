@@ -76,10 +76,8 @@
         
         NSMutableArray *userStats = [allUsersStatRsp userStatListArray];
         for (UserStat *stat in userStats) {
-            
             [userList addObject:@([stat userId])];
             [userList addObject:@([stat status])];
-            
         }
         [array addObject:userList];
         return array;
