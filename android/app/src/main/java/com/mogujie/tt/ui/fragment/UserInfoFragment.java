@@ -17,6 +17,7 @@ import com.mogujie.tt.R;
 import com.mogujie.tt.config.DBConstant;
 import com.mogujie.tt.config.IntentConstant;
 import com.mogujie.tt.config.SysConstant;
+import com.mogujie.tt.ui.activity.ShowTransferFileActivity;
 import com.mogujie.tt.utils.IMUIHelper;
 import com.mogujie.tt.imservice.event.UserInfoEvent;
 import com.mogujie.tt.imservice.manager.IMLoginManager;
@@ -184,6 +185,17 @@ public class UserInfoFragment extends MainFragment {
         View emailView = curView.findViewById(R.id.emailArea);
 		IMUIHelper.setViewTouchHightlighted(phoneView);
         IMUIHelper.setViewTouchHightlighted(emailView);
+
+
+
+        curView.findViewById(R.id.transfer_file_row).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+                Intent intent = new Intent(getActivity(), ShowTransferFileActivity.class);
+                intent.putExtra("uid",currentUserId);
+                startActivity(intent);
+			}
+		});
 
         emailView.setOnClickListener(new View.OnClickListener(){
             @Override

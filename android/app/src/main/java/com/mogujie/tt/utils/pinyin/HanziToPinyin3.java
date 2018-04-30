@@ -341,7 +341,7 @@ public class HanziToPinyin3 {
     private static final String FIRST_PINYIN_UNIHAN = "\u963F";
     private static final String LAST_PINYIN_UNIHAN = "\u9FFF";
 
-//    private static final Collator COLLATOR = Collator.getInstance(Locale.CHINA);
+//    private static final Collator COLLATOR = Collator.instance(Locale.CHINA);
     private static final Collator COLLATOR = Collator.getInstance(Locale.CHINESE);
 
     private static HanziToPinyin3 sInstance;

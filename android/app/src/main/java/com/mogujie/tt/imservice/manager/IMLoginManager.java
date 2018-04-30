@@ -297,7 +297,7 @@ public class IMLoginManager extends IMManager {
 
 
     private void reqDeviceToken(){
-//        String token = PushManager.getInstance().getToken();
+//        String token = PushManager.instance().getToken();
 //        IMLogin.IMDeviceTokenReq req = IMLogin.IMDeviceTokenReq.newBuilder()
 //                .setUserId(loginId)
 //                .setClientType(IMBaseDefine.ClientType.CLIENT_TYPE_ANDROID)

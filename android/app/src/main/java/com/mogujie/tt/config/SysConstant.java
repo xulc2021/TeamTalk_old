@@ -39,6 +39,8 @@ public interface SysConstant {
 	public static final int ALBUM_BACK_DATA = 5;
     public static final int CAMERA_WITH_DATA = 3023;
 
+    public static final int FILE_SELECT_CODE = 3024;
+
 
     /**
      *1. 配置的全局key
