@@ -225,6 +225,19 @@ uint32_t ClientConn::sendMsgAck(uint32_t nUserId, uint32_t nPeerId, IM::BaseDefi
     return nSeqNo;
 }
 
+uint32_t ClientConn::checkHasOfflineFile(uint32_t nUserId){
+    CImPdu cPdu;
+    IM::File::IMFileHasOfflineReq msg;
+    msg.set_user_id(nUserId);
+    cPdu.SetPBMsg(&msg);
+    cPdu.SetServiceId(IM::BaseDefine::SID_FILE);
+    cPdu.SetCommandId(IM::BaseDefine::CID_FILE_HAS_OFFLINE_REQ);
+     uint32_t nSeqNo = m_pSeqAlloctor->getSeq(ALLOCTOR_PACKET);
+    cPdu.SetSeqNum(nSeqNo);
+    SendPdu(&cPdu);
+    return nSeqNo;
+}
+
 
 void ClientConn::Close()
 {
@@ -264,6 +277,9 @@ void ClientConn::HandlePdu(CImPdu* pPdu)
             break;
         case IM::BaseDefine::CID_MSG_DATA:
             _HandleMsgData(pPdu);
+            break;
+        case IM::BaseDefine::CID_FILE_HAS_OFFLINE_RES:
+            _HandleHasOfflineFile(pPdu);
             break;
         default:
 		log("wrong msg_type=%d\n", pPdu->GetCommandId());
@@ -461,5 +477,15 @@ void ClientConn::_HandleMsgData(CImPdu* pPdu)
     else
     {
         m_pCallback->onError(nSeqNo, pPdu->GetCommandId(), "parse pb falied");
+    }
+}
+
+
+void ClientConn::_HandleHasOfflineFile(CImPdu* pPdu) {
+
+    IM::File::IMFileHasOfflineRsp msg;
+    if(msg.ParseFromArray(pPdu->GetBodyData(), pPdu->GetBodyLength())) 
+    {
+        printf("offline file count:%d\n",msg.offline_file_list_size());
     }
 }

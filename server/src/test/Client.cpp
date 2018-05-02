@@ -263,7 +263,13 @@ void CClient::onRecvMsg(uint32_t nSeqNo, uint32_t nFromId, uint32_t nToId, uint3
         sendMsg(toId,nMsgType,msg_data);
     }
     pAes->Free(msg_out);
+}
 
 
+uint32_t CClient::getOfflineFile() {
+    uint32_t nUserId = m_cSelfInfo.user_id();
+    return g_pConn->checkHasOfflineFile(nUserId);
+}
 
+void CClient::onHasOfflineFile() {
 }

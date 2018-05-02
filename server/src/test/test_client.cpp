@@ -90,11 +90,23 @@ void doLogin(const string& strName, const string& strPass)
     }
     g_pClient->connect();
 }
+
+void getOfflineFile() {
+
+    printf("get offlinefile\n");
+    if(g_pClient) {
+        g_pClient->getOfflineFile();
+    }
+}
+
+
 void exec_cmd()
 {
 	if (g_cmd_num == 0) {
 		return;
 	}
+
+    printf("cmd:%s\n",g_cmd_string[0].c_str());
     
     if(g_cmd_string[0] == "login")
     {
@@ -112,6 +124,8 @@ void exec_cmd()
         }else {
             print_help();
         }
+    }else if(strcmp(g_cmd_string[0].c_str(), "offlinefile") == 0) {
+        getOfflineFile();
     }
     else if (strcmp(g_cmd_string[0].c_str(), "close") == 0) {
         g_pClient->close();

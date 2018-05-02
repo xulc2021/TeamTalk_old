@@ -41,6 +41,7 @@ public:
     uint32_t getRecentSession();
     uint32_t getMsgList(IM::BaseDefine::SessionType nType, uint32_t nPeerId, uint32_t nMsgId, uint32_t nMsgCnt);
     uint32_t sendReadAck();
+    uint32_t getOfflineFile();
 public:
     virtual void onError(uint32_t nSeqNo, uint32_t nCmd, const string& strMsg);
     virtual void onConnect();
@@ -53,6 +54,8 @@ public:
     virtual void onGetRecentSession(uint32_t nSeqNo, uint32_t nUserId, const list<IM::BaseDefine::ContactSessionInfo>& lsSession);
     virtual void onGetMsgList(uint32_t nSeqNo, uint32_t nUserId, uint32_t nPeerId, IM::BaseDefine::SessionType nType, uint32_t nMsgId, uint32_t nMsgCnt, const list<IM::BaseDefine::MsgInfo>& lsMsg);
     virtual void onRecvMsg(uint32_t nSeqNo, uint32_t nFromId, uint32_t nToId, uint32_t nMsgId, uint32_t nCreateTime, IM::BaseDefine::MsgType nMsgType, const string& strMsgData);
+    virtual void onHasOfflineFile();
+
 private:
     string          m_strName;
     string          m_strPass;

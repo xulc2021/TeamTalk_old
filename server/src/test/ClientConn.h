@@ -19,6 +19,7 @@
 #include "IM.Server.pb.h"
 #include "IM.Buddy.pb.h"
 #include "IM.Message.pb.h"
+#include "IM.File.pb.h"
 #include "IM.Group.pb.h"
 #include "IPacketCallback.h"
 #include "SeqAlloctor.h"
@@ -44,6 +45,7 @@ public:
     uint32_t getRecentSession(uint32_t nUserId, uint32_t nLastTime);
     uint32_t getMsgList(uint32_t nUserId, IM::BaseDefine::SessionType nType, uint32_t nPeerId, uint32_t nMsgId, uint32_t nMsgCnt);
     uint32_t sendMsgAck(uint32_t nUserId, uint32_t nPeerId, IM::BaseDefine::SessionType nType, uint32_t nMsgId);
+    uint32_t checkHasOfflineFile(uint32_t nUserId);
 public:
 	virtual void OnConfirm();
 	virtual void OnClose();
@@ -59,7 +61,7 @@ private:
     void _HandleRecentSession(CImPdu* pPdu);
     void _HandleMsgList(CImPdu* pPdu);
     void _HandleMsgData(CImPdu* pPdu);
-    
+    void _HandleHasOfflineFile(CImPdu* pPdu);   
 private:
 	bool 		m_bOpen;
     IPacketCallback* m_pCallback;
