@@ -78,8 +78,38 @@ CURLcode CHttpClient::Post(const string & strUrl, const string & strPost, string
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, OnWriteData);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&strResponse);
     curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
-    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3);
-    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 3);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 6);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 6);
+    res = curl_easy_perform(curl);
+    curl_easy_cleanup(curl);
+    return res;
+}
+
+
+CURLcode CHttpClient::PostJson(const string & strUrl, const string & strPost, string & strResponse)
+{
+    CURLcode res;
+    CURL* curl = curl_easy_init();
+    if(NULL == curl)
+    {
+        return CURLE_FAILED_INIT;
+    }
+
+    struct curl_slist *headerlist = NULL;
+    headerlist = curl_slist_append(headerlist, "Content-Type: application/json");
+    // what URL that receives this POST
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headerlist);
+    
+    curl_easy_setopt(curl, CURLOPT_URL, strUrl.c_str());
+    curl_easy_setopt(curl, CURLOPT_FORBID_REUSE, 1);
+    curl_easy_setopt(curl, CURLOPT_POST, 1);
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, strPost.c_str());
+    curl_easy_setopt(curl, CURLOPT_READFUNCTION, NULL);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, OnWriteData);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&strResponse);
+    curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 10);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10);
     res = curl_easy_perform(curl);
     curl_easy_cleanup(curl);
     return res;
@@ -104,8 +134,8 @@ CURLcode CHttpClient::Get(const string & strUrl, string & strResponse)
      * 如果不设置这个选项，libcurl将会发信号打断这个wait从而导致程序退出。
      */
     curl_easy_setopt(curl, CURLOPT_NOSIGNAL, 1);
-    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 3);
-    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 3);
+    curl_easy_setopt(curl, CURLOPT_CONNECTTIMEOUT, 6);
+    curl_easy_setopt(curl, CURLOPT_TIMEOUT, 6);
     res = curl_easy_perform(curl);
     curl_easy_cleanup(curl);
     return res;
