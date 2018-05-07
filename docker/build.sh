@@ -18,9 +18,12 @@ cp /opt/src/slog/libslog.* /opt/im_server/lib/
 
 delete=(slog base)
 
-servers=${array[@]/$delete}
+for del in ${delete[@]}
+do
+   srcpaths=("${srcpaths[@]/$del}")
+done
 
-for server in ${servers[@]}
+for server in ${srcpaths[@]}
 do
     mkdir -p /opt/im_server/$server
     cp -f /opt/src/$server/$server /opt/im_server/$server/$server
