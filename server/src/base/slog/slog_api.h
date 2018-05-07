@@ -19,7 +19,7 @@ class CSLog
 {
 public:
     
-#ifndef DISABLESLOG
+#ifdef DISABLESLOG
     CSLog(const char* module_name, int delay = WATCH_DELAY_TIME){}
     virtual ~CSLog(){}
     void Trace(const char* format, ...){}
