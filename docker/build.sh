@@ -27,5 +27,6 @@ for server in ${srcpaths[@]}
 do
     mkdir -p /opt/im_server/$server
     cp -f /opt/src/$server/$server /opt/im_server/$server/$server
+    cp -f /opt/src/$server/*.conf /opt/im_server/$server/
 done
 
