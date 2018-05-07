@@ -1,2 +1,3 @@
 src
 Dockerfile_test
+*.swp

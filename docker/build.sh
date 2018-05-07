@@ -28,5 +28,6 @@ do
     mkdir -p /opt/im_server/$server
     cp -f /opt/src/$server/$server /opt/im_server/$server/$server
     cp -f /opt/src/$server/*.conf /opt/im_server/$server/
+    cp -f /opt/src/$server/log4cxx.properties /opt/im_server/$server/
 done
 
