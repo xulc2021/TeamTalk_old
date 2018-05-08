@@ -38,10 +38,10 @@ build() {
         echo "make slog failed";
         exit;
     fi
-    mkdir ../base/slog/lib
-    cp slog_api.h ../base/slog/
-    cp libslog.so ../base/slog/lib/
-    cp -a lib/liblog4cxx* ../base/slog/lib/
+    #mkdir ../base/slog/lib
+    #cp slog_api.h ../base/slog/
+    #cp libslog.so ../base/slog/lib/
+    #cp -a lib/liblog4cxx* ../base/slog/lib/
 
     cd ../login_server
     cmake .
