@@ -18,24 +18,25 @@ RUN yum -y install redis;
 RUN systemctl enable redis;
 #RUN systemctl start redis;
 
-#compile env
+# compile env
 RUN yum -y install gcc gcc-c++ make cmake libuuid-devel openssl-devel curl-devel;
-RUN yum -y install log4cxx-devel protobuf-lite-devel hiredis-devel mariadb-devel;
-RUN yum -y install protobuf;
+
+# mybe opened if you want use system shared lib 
+#RUN yum -y install protobuf-lite-devel hiredis-devel mariadb-devel protobuf;
 
 RUN yum clean all;
 
 
-# cp source code
-RUN mkdir -p /opt/src 
+# make a path for mount source code
+RUN mkdir -p /opt/tt_source_code 
 
-COPY ./src /opt/src/
-COPY ./build.sh /opt/
+#COPY ./src /opt/tt_source_code/
+#COPY ./build.sh /opt/
 
 
 
-RUN protoc -I=/opt/src/pb --cpp_out=/opt/src/base/pb/protocol/ /opt/src/pb/*.proto
-RUN chmod +x /opt/build.sh
+#RUN protoc -I=/opt/src/pb --cpp_out=/opt/src/base/pb/protocol/ /opt/src/pb/*.proto
+#RUN chmod +x /opt/build.sh
 
 CMD ["/usr/sbin/init"]
-RUN bash /opt/build.sh
+#RUN bash /opt/build.sh
