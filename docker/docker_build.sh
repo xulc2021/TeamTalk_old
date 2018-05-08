@@ -5,6 +5,11 @@ project_path=$(pwd)/../
 echo $project_path
 
 docker_image_name=xiaominfc/centos_tt_test
+
+if [ -n "$1" ]; then
+    docker_image_name=$1
+fi
+
 docker_file=./Dockerfile
 
 docker kill $(docker ps -q)
