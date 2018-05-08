@@ -70,9 +70,9 @@ build_protobuf(){
     make -j4
     make install
     cd ..
-    mkdir -p ../base/pb/lib/linux/
-    cp lib/libprotobuf-lite.a ../base/pb/lib/linux/
-    cp  -r include/* ../base/pb/
+    #mkdir -p ../base/pb/lib/linux/
+    #cp lib/libprotobuf-lite.a ../base/pb/lib/linux/
+    #cp  -r include/* ../base/pb/
 }
 
 #check_user
