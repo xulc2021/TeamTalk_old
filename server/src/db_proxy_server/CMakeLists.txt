@@ -17,6 +17,9 @@ SET(PB_LIB_DIR ../protobuf/lib)
 
 SET(SLOG_LIB_DIR ../slog)
 
+SET(HIREDIS_INCLUDE_DIR ../hiredis/hiredis-master)
+#SET(HIREDIS_LIB_DIR ../hiredis/hiredis-master)
+
 
 #设置自己mac os的openssl的路径
 if(APPLE)
@@ -37,7 +40,7 @@ ADD_DEFINITIONS( -g -W -Wall -D_REENTRANT -D_FILE_OFFSET_BITS=64 -DAC_HAS_INFO
 -DAC_HAS_WARNING -DAC_HAS_ERROR -DAC_HAS_CRITICAL -DTIXML_USE_STL
 -DAC_HAS_DEBUG -DLINUX_DAEMON -std=c++11 -DENCRYPT)
 
-INCLUDE_DIRECTORIES(./ ./businiess ../base ../base/jsoncpp ../base/pb/protocol ${PB_INCLUDE_DIR} ${MYSQL_INCLUDE_DIR}  ${OPENSSL_INCLUDE_DIR} )
+INCLUDE_DIRECTORIES(./ ./businiess ../base ../base/jsoncpp ../base/pb/protocol ${PB_INCLUDE_DIR} ${MYSQL_INCLUDE_DIR}  ${OPENSSL_INCLUDE_DIR} ${HIREDIS_INCLUDE_DIR})
 LINK_DIRECTORIES(./ ../base ${PB_LIB_DIR} ${MYSQL_LIB} ${UBUNTU_MYSQL_LIB} ../base/slog/lib ${OPENSSL_LIB_DIR} ${SLOG_LIB_DIR})
 
 #ADD_XXXX必须在TARGET_LINK_LIBRARIES前面，否则会报错
