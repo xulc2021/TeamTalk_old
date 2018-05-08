@@ -21,6 +21,9 @@ RUN systemctl enable redis;
 # compile env
 RUN yum -y install gcc gcc-c++ make cmake libuuid-devel openssl-devel curl-devel unzip;
 
+
+RUN yum -y install mariadb-devel;
+
 # mybe opened if you want use system shared lib 
 #RUN yum -y install protobuf-lite-devel hiredis-devel mariadb-devel protobuf;
 

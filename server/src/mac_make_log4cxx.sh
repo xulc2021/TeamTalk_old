@@ -91,8 +91,7 @@ build_log4cxx(){
     make install
     cd ../../
     cp -rf log4cxx/include slog/
-    mkdir -p slog/lib/
-    cp -f log4cxx/lib/liblog4cxx.dylib* slog/lib/
+    cp -f log4cxx/lib/liblog4cxx.dylib* slog/
 }
 
 #check_user

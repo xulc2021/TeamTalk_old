@@ -65,6 +65,7 @@ build_hiredis(){
     cd hiredis
     unzip $HIREDIS.zip
     cd $HIREDIS
+    make clean
     make
     cp -a libhiredis.a ../../db_proxy_server/
     cp -a hiredis.h async.h read.h sds.h adapters ../../db_proxy_server
