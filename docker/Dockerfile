@@ -20,7 +20,7 @@ RUN systemctl enable redis;
 
 # compile env
 RUN yum -y install gcc gcc-c++ make cmake libuuid-devel openssl-devel curl-devel unzip;
-
+RUN yum -y install wget;
 
 RUN yum -y install mariadb-devel apr-util-devel;
 
