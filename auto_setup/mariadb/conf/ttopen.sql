@@ -504,7 +504,6 @@ CREATE TABLE `IMTransmitFile` (
   `toId` int(11) unsigned NOT NULL COMMENT '接收用户的id',
   `fileName` varchar(4096) COLLATE utf8mb4_bin DEFAULT '' COMMENT '文件名称',
   `taskId` varchar(128) COLLATE utf8mb4_bin DEFAULT '' COMMENT 'taskId',
-  `taskId` int(11) unsigned NOT NULL COMMENT 'taskId',
   `status` tinyint(1) unsigned NOT NULL DEFAULT '0' COMMENT '0正常 1被删除',
   `updated` int(11) unsigned NOT NULL COMMENT '更新时间',
   `created` int(11) unsigned NOT NULL COMMENT '创建时间',
