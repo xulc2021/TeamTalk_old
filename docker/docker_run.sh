@@ -4,13 +4,12 @@ project_path=$(pwd)/../
 
 echo $project_path
 
-docker_image_name=xiaominfc/centos_tt_test
+docker_image_name=xiaominfc/centos_tt_run
 
 if [ -n "$1" ]; then
     docker_image_name=$1
 fi
-
-docker_file=./Dockerfile
+docker_file=./Dockerfile_test
 
 docker kill $(docker ps -q)
 
@@ -21,7 +20,6 @@ if [ "$image" == ""  ];then
 fi
 
 
-
-docker run -d  --privileged=true -v "$project_path:/opt/tt_source_code"   $docker_image_name
+docker run -d  --privileged=true -v "$project_path:/opt/tt_source_code" -v "/Users/xiaominfc/Develop_mac/data/mysql:/var/lib/mysql"  -p 8080:8080/tcp  $docker_image_name
 docker exec -it $(docker ps -q) /bin/bash
 
