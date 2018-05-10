@@ -228,7 +228,7 @@ void CHttpQuery::_QueryChangeMember(const string& strAppKey, Json::Value &post_j
 {
     HTTP::CDBServConn *pConn = HTTP::get_db_serv_conn();
     if (!pConn) {
-        log("no connection to RouteServConn ");
+        log("no connection to dbServConn ");
         char* response_buf = PackSendResult(HTTP_ERROR_SERVER_EXCEPTION, HTTP_ERROR_MSG[9].c_str());
         pHttpConn->Send(response_buf, (uint32_t)strlen(response_buf));
         pHttpConn->Close();
@@ -272,8 +272,10 @@ void CHttpQuery::_QueryChangeMember(const string& strAppKey, Json::Value &post_j
         uint32_t group_id = post_json_obj["group_id"].asUInt();
         uint32_t modify_type = post_json_obj["modify_type"].asUInt();
         uint32_t user_cnt =  post_json_obj["user_id_list"].size();
-        log("QueryChangeMember, user_id: %u, group_id: %u, modify type: %u, user_cnt: %u. ",
-            user_id, group_id, modify_type, user_cnt);
+        uint32_t handle = pHttpConn->GetConnHandle();
+
+        log("QueryChangeMember, user_id: %u, group_id: %u, modify type: %u, user_cnt: %u , handle: %u",
+            user_id, group_id, modify_type, user_cnt, handle);
         if (!IM::BaseDefine::GroupModifyType_IsValid(modify_type)) {
             log("QueryChangeMember, unvalid modify_type");
             char* response_buf = PackSendResult(HTTP_ERROR_PARMENT, HTTP_ERROR_MSG[1].c_str());
@@ -281,7 +283,7 @@ void CHttpQuery::_QueryChangeMember(const string& strAppKey, Json::Value &post_j
             pHttpConn->Close();
             return;
         }
-        CDbAttachData attach_data(ATTACH_TYPE_HANDLE, pHttpConn->GetConnHandle());
+        CDbAttachData attach_data(ATTACH_TYPE_HANDLE, handle);
         IM::Group::IMGroupChangeMemberReq msg;
         msg.set_user_id(0);
         msg.set_change_type((::IM::BaseDefine::GroupModifyType)modify_type);

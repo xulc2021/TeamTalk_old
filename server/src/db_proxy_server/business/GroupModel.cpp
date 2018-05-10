@@ -681,7 +681,6 @@ void CGroupModel::removeRepeatUser(uint32_t nGroupId, set<uint32_t> &setUser)
         for (auto it=setUser.begin(); it!=setUser.end();) {
             string strField = int2string(*it);
             string strValue = pCacheConn->hget(strKey, strField);
-            pCacheManager->RelCacheConn(pCacheConn);
             if(!strValue.empty())
             {
                 setUser.erase(it++);
@@ -691,6 +690,7 @@ void CGroupModel::removeRepeatUser(uint32_t nGroupId, set<uint32_t> &setUser)
                 ++it;
             }
         }
+        pCacheManager->RelCacheConn(pCacheConn);
     }
     else
     {
