@@ -9,7 +9,7 @@ docker_image_name=xiaominfc/centos_tt_run
 if [ -n "$1" ]; then
     docker_image_name=$1
 fi
-docker_file=./Dockerfile_test
+docker_file=./Dockerfile_run
 
 docker kill $(docker ps -q)
 
