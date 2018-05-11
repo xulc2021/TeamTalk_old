@@ -114,7 +114,7 @@
 
     [super viewDidAppear:animated];
     
-    self.tableView.contentInset =UIEdgeInsetsMake(64, 0, 49, 0);
+    //self.tableView.contentInset =UIEdgeInsetsMake(64, 0, 49, 0);
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section

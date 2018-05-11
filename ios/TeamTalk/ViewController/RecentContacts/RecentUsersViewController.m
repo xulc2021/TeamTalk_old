@@ -335,7 +335,7 @@
     
     [super viewDidAppear:animated];
     [ChattingMainViewController shareInstance].module.MTTSessionEntity=nil;
-    self.tableView.contentInset =UIEdgeInsetsMake(64, 0, 49, 0);
+    //self.tableView.contentInset =UIEdgeInsetsMake(64, 0, 49, 0);
 }
 
 - (void)didReceiveMemoryWarning

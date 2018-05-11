@@ -73,9 +73,6 @@
     Analysis analysis = (id)^(NSData* data)
     {
         IMFileHasOfflineRsp *rsp = [IMFileHasOfflineRsp parseFromData:data error:nil];
-        
-        
-        
         return rsp;
     };
     return analysis;

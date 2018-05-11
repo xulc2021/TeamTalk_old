@@ -92,8 +92,8 @@
         make.right.equalTo(ws.view);
         make.bottom.equalTo(ws.view);
     }];
-    self.tableView.contentInset =UIEdgeInsetsMake(64, 0, 49, 0);
-    [self.tableView setContentOffset:CGPointMake(0, -64)];
+    //self.tableView.contentInset =UIEdgeInsetsMake(0, 0, 49, 0);
+    //[self.tableView setContentOffset:CGPointMake(0, -64)];
     
     self.tableView.tableHeaderView=self.searchBar;
     self.tableView.separatorStyle = NO;
@@ -261,7 +261,7 @@
 
 -(void)appBecomeActive{
     
-    self.tableView.contentInset =UIEdgeInsetsMake(64, 0, 49, 0);
+//    self.tableView.contentInset =UIEdgeInsetsMake(64, 0, 49, 0);
 }
 
 -(void)scrollToTitle:(NSNotification *)notification
@@ -293,8 +293,7 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    self.tableView.contentInset =UIEdgeInsetsMake(64, 0, 49, 0);
+    //self.tableView.contentInset =UIEdgeInsetsMake(0, 0, 49, 0);
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
