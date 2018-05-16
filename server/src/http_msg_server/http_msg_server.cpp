@@ -15,6 +15,9 @@
 #include "HttpConn.h"
 #include "HttpQuery.h"
 #include "util.h"
+#include "EncDec.h"
+
+CAes* pAes;
 
 #define DEFAULT_CONCURRENT_DB_CONN_CNT  2
 
@@ -74,6 +77,14 @@ int main(int argc, char* argv[])
 			db_server_list2[i].server_port = db_server_list[i / concurrent_db_conn_cnt].server_port;
 		}
 	}
+
+
+	char* str_aes_key = config_file.GetConfigName("aesKey");
+	if (!str_aes_key || strlen(str_aes_key)!=32) {
+       	   	 log("aes key is invalied");
+       		 return -1;
+    }
+    pAes = new CAes(str_aes_key);
 
 	if (!listen_ip || !str_listen_port) {
 		log("config file miss, exit... ");

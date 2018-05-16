@@ -218,9 +218,51 @@ void CDBServConn::HandlePdu(CImPdu* pPdu)
         case CID_GROUP_CHANGE_MEMBER_RESPONSE:
             _HandleChangeMemberRsp(pPdu);
             break;
+        case CID_MSG_DATA:
+            _HandleMsgClient(pPdu);
+            break;
         default:
             log("db server, wrong cmd id=%d", pPdu->GetCommandId());
 	}
+}
+
+
+void CDBServConn::_HandleMsgClient(CImPdu *pPdu)
+{   
+    
+    IM::Message::IMMsgData msg;
+    CHECK_PB_PARSE_MSG(msg.ParseFromArray(pPdu->GetBodyData(), pPdu->GetBodyLength()));
+    CRouteServConn* pRouteConn = get_route_serv_conn();
+    if (pRouteConn) {
+        pRouteConn->SendPdu(pPdu);
+    }
+
+    uint32_t msg_id = 0;
+    if(msg.has_msg_id())
+    {
+       msg_id = msg.msg_id();
+    }
+
+//--------------------
+    CDbAttachData attach_data((uchar_t*)msg.attach_data().c_str(), msg.attach_data().length());
+    uint32_t http_handle = attach_data.GetHandle();
+    CHttpConn* pHttpConn = FindHttpConnByHandle(http_handle);
+    if(!pHttpConn)
+    {
+        log("no http connection");
+        return;
+    }
+
+    const int bufferSize = 4096;
+    //char* response_buf = (char*)malloc(bufferSize);
+    char response_buf[bufferSize] = {0};
+//    char *response_buf = PackSendResult(HTTP_ERROR_SUCCESS, HTTP_ERROR_MSG[0].c_str());
+   //char *response_buf = PackSendResult(HTTP_ERROR_SUCCESS, HTTP_ERROR_MSG[0].c_str(),msg_id);
+    uint32_t outSize = PackSendResult(HTTP_ERROR_SUCCESS, HTTP_ERROR_MSG[0].c_str(),msg_id, response_buf , bufferSize);
+  //--------------------
+
+    pHttpConn->Send(response_buf, outSize);
+    pHttpConn->Close();
 }
 
 void CDBServConn::_HandleStopReceivePacket(CImPdu* pPdu)

@@ -110,6 +110,17 @@ char* PackSendResult(uint32_t error_code, const char* error_msg)
     return g_response_buf;
 }
 
+uint32_t PackSendResult(uint32_t error_code, const char* error_msg, uint32_t msg_id , char * out_data, uint32_t size)
+{
+    Json::Value json_obj;
+    json_obj["error_code"] = error_code;
+    json_obj["error_msg"] = error_msg;
+    json_obj["msg_id"] = msg_id;
+    std::string json_str = json_obj.toStyledString();
+    uint32_t content_len = json_str.size();
+    return snprintf(out_data, size, HTTP_QUEYR_HEADER, content_len, json_str.c_str());
+}
+
 char* PackSendCreateGroupResult(uint32_t error_code, const char* error_msg, uint32_t group_id)
 {
     Json::Value json_obj;

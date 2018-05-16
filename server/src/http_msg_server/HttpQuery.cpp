@@ -16,6 +16,7 @@
 #include "IM.Buddy.pb.h"
 #include "IM.SwitchService.pb.h"
 #include "IM.Group.pb.h"
+#include "EncDec.h"
 static uint32_t g_total_query = 0;
 static uint32_t g_last_year = 0;
 static uint32_t g_last_month = 0;
@@ -24,6 +25,16 @@ static uint32_t g_last_mday = 0;
 CHttpQuery* CHttpQuery::m_query_instance = NULL;
 
 hash_map<string, auth_struct*> g_hm_http_auth;
+extern CAes *pAes;
+
+static bool checkValueIsNullForJson(Json::Value &json_obj, string key)
+{
+    bool result = json_obj[key].isNull();
+    if(result) {
+        log("not value for key:%s", key.c_str());
+    }
+    return result;
+}
 
 void http_query_timer_callback(void* callback_data, uint8_t msg, uint32_t handle, void* pParam)
 {
@@ -118,6 +129,9 @@ void CHttpQuery::DispatchQuery(std::string& url, std::string& post_data, CHttpCo
     else if (strcmp(url.c_str(), "/query/ChangeMembers") == 0)
     {
         _QueryChangeMember(strAppKey, value, pHttpConn);
+    }else if(strcmp(url.c_str(), "/query/SendP2PSingleMessage") == 0)
+    {
+        _SendP2PSingleMessage(strAppKey, value, pHttpConn);    
     }
     else {
         log("url not support ");
@@ -222,6 +236,84 @@ void CHttpQuery::_QueryCreateGroup(const string& strAppKey, Json::Value &post_js
         pHttpConn->Close();
     }
     
+}
+
+
+void CHttpQuery::_SendP2PSingleMessage(const string& strAppKey,Json::Value& post_json_obj, CHttpConn* pHttpConn)
+{
+    HTTP::CDBServConn *pConn = HTTP::get_db_serv_conn();
+    if (!pConn) {
+        log("no connection to MsgServConn ");
+        char* response_buf = PackSendResult(HTTP_ERROR_SERVER_EXCEPTION, HTTP_ERROR_MSG[9].c_str());
+        pHttpConn->Send(response_buf, (uint32_t)strlen(response_buf));
+        pHttpConn->Close();
+        return;
+    }
+
+    if(checkValueIsNullForJson(post_json_obj, "from_user_id") ||
+       checkValueIsNullForJson(post_json_obj, "to_user_id")   ||
+       checkValueIsNullForJson(post_json_obj, "create_time")  ||
+       checkValueIsNullForJson(post_json_obj, "msg") ) {
+        char* response_buf = PackSendResult(HTTP_ERROR_PARMENT, HTTP_ERROR_MSG[1].c_str());
+        pHttpConn->Send(response_buf, (uint32_t)strlen(response_buf));
+        pHttpConn->Close();
+        return;
+    }
+
+    try
+    {
+        uint32_t user_id = post_json_obj["from_user_id"].asUInt();
+        uint32_t to_id = post_json_obj["to_user_id"].asUInt();
+        uint32_t create_time = post_json_obj["create_time"].asUInt();
+
+    uint32_t msg_type = IM::BaseDefine::MSG_TYPE_SINGLE_TEXT;
+
+    if(!post_json_obj["msg_type"].isNull()) {
+        msg_type = post_json_obj["msg_type"].asUInt();
+    }
+
+        string msgContent;
+        if(post_json_obj["msg"].isString())
+        {
+            msgContent = post_json_obj["msg"].asString();
+        }else if(post_json_obj["msg"].isObject())
+        {
+            msgContent = post_json_obj["msg"].toStyledString();
+        }   
+        char* msg_out = NULL;
+        uint32_t msg_out_len = 0;
+        if(pAes->Encrypt(msgContent.c_str(),msgContent.length(),&msg_out,msg_out_len) == 0)
+        {
+             msgContent = string(msg_out, msg_out_len);
+        }
+        pAes->Free(msg_out);
+
+        create_time = time(NULL);
+        CDbAttachData attach_data(ATTACH_TYPE_HANDLE, pHttpConn->GetConnHandle());
+        IM::Message::IMMsgData msg;
+        msg.set_from_user_id(user_id);
+        msg.set_to_session_id(to_id);
+        msg.set_msg_data(msgContent);
+        msg.set_msg_id(1);
+        //msg.set_msg_type(IM::BaseDefine::MSG_TYPE_SINGLE_TEXT);
+ //      msg.set_msg_type(IM::BaseDefine::MSG_TYPE_SINGLE_OTHER);
+        msg.set_msg_type((IM::BaseDefine::MsgType)msg_type);
+        msg.set_create_time(create_time);
+        msg.set_attach_data(attach_data.GetBuffer(), attach_data.GetLength());
+        CImPdu pdu;
+        pdu.SetPBMsg(&msg);
+        pdu.SetSeqNum(pHttpConn->GetConnHandle());
+        pdu.SetServiceId(IM::BaseDefine::SID_MSG);
+        pdu.SetCommandId(IM::BaseDefine::CID_MSG_DATA);
+        pConn->SendPdu(&pdu);
+    }
+    catch (std::runtime_error msg)
+    {
+        log("parse json data failed.");
+        char* response_buf = PackSendResult(HTTP_ERROR_PARMENT, HTTP_ERROR_MSG[1].c_str());
+        pHttpConn->Send(response_buf, (uint32_t)strlen(response_buf));
+        pHttpConn->Close();
+    }   
 }
 
 void CHttpQuery::_QueryChangeMember(const string& strAppKey, Json::Value &post_json_obj, CHttpConn *pHttpConn)
