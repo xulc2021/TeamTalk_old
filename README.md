@@ -16,3 +16,8 @@
 8.也换了android的pb类 以及protobuf的版本 删了一些不用的依赖库
 9.android添加离线文件的上传跟下载功能
 ~~~~
+
+
+# 测试的msg_server
+
+(http://im.xiaominfc.com:8080/msg_server)[http://im.xiaominfc.com:8080/msg_server]
