@@ -20,4 +20,9 @@
 
 # 测试的msg_server
 
-(http://im.xiaominfc.com:8080/msg_server)[http://im.xiaominfc.com:8080/msg_server]
+[http://im.xiaominfc.com:8080/msg_server](http://im.xiaominfc.com:8080/msg_server)
+
+
+# 在线demo
+
+[http://chat.xiaominfc.com/im/](http://chat.xiaominfc.com/im/)
