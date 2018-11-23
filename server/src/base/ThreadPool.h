@@ -42,6 +42,7 @@ public:
 
 	int Init(uint32_t worker_size);
 	void AddTask(CTask* pTask);
+	void AddTask(CTask* pTask,uint32_t index);
 	void Destory();
 private:
 	uint32_t 		m_worker_size;

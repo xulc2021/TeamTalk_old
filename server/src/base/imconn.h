@@ -11,6 +11,7 @@
 #include "netlib.h"
 #include "util.h"
 #include "ImPduBase.h"
+#include "Task.h"
 
 #define SERVER_HEARTBEAT_INTERVAL	5000
 #define SERVER_TIMEOUT				30000
@@ -53,6 +54,19 @@ protected:
 	uint64_t		m_last_send_tick;
 	uint64_t		m_last_recv_tick;
     uint64_t        m_last_all_user_tick;
+};
+
+
+class PduTask:public CTask {
+public:
+    PduTask(CImConn * conn, CImPdu* pPdu);
+	virtual ~PduTask();
+    
+	virtual void run();
+private:
+    CImConn *m_conn;
+    CImPdu *m_pPdu;
+
 };
 
 typedef hash_map<net_handle_t, CImConn*> ConnMap_t;

@@ -110,3 +110,15 @@ void CThreadPool::AddTask(CTask* pTask)
 	m_worker_list[thread_idx].PushTask(pTask);
 }
 
+
+void CThreadPool::AddTask(CTask* pTask,uint32_t index)
+{
+	/*
+	 * select a random thread to push task
+	 * we can also select a thread that has less task to do
+	 * but that will scan the whole thread list and use thread lock to get each task size
+	 */
+	uint32_t thread_idx = index % m_worker_size;
+	m_worker_list[thread_idx].PushTask(pTask);
+}
+

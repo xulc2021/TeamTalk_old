@@ -11,6 +11,7 @@
 #include "imconn.h"
 
 
+
 #define KICK_FROM_ROUTE_SERVER 		1
 #define MAX_ONLINE_FRIEND_CNT		100	//通知好友状态通知的最多个数
 
@@ -48,6 +49,7 @@ public:
 
 	virtual void OnConnect(net_handle_t handle);
 	virtual void OnClose();
+    virtual void OnRead();
 	virtual inline void OnTimer(uint64_t curr_tick);
 
 	virtual void HandlePdu(CImPdu* pPdu);
@@ -102,6 +104,10 @@ private:
     
     uint32_t        m_online_status;      //在线状态 1-online, 2-off-line, 3-leave
 };
+
+
+
+
 
 void init_msg_conn();
 

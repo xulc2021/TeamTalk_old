@@ -22,6 +22,8 @@
 #include "IM.SwitchService.pb.h"
 #include "public_define.h"
 #include "ImPduBase.h"
+#include "ThreadPool.h"
+
 using namespace IM::BaseDefine;
 
 #define TIMEOUT_WATI_LOGIN_RESPONSE		15000	// 15 seconds
@@ -41,6 +43,7 @@ static bool g_log_msg_toggle = true;	// 是否把收到的MsgData写入Log的开
 
 static CFileHandler* s_file_handler = NULL;
 static CGroupChat* s_group_chat = NULL;
+static CThreadPool g_thread_pool;
 
 void msg_conn_timer_callback(void* callback_data, uint8_t msg, uint32_t handle, void* pParam)
 {
@@ -99,6 +102,7 @@ void init_msg_conn()
 	netlib_register_timer(msg_conn_timer_callback, NULL, 1000);
 	s_file_handler = CFileHandler::getInstance();
 	s_group_chat = CGroupChat::GetInstance();
+    g_thread_pool.Init(8);
 }
 
 ////////////////////////////
@@ -264,6 +268,50 @@ void CMsgConn::OnTimer(uint64_t curr_tick)
 		} else {
 			break;
 		}
+	}
+}
+
+
+void CMsgConn::OnRead()
+{
+	for (;;)
+	{
+		uint32_t free_buf_len = m_in_buf.GetAllocSize() - m_in_buf.GetWriteOffset();
+		if (free_buf_len < READ_BUF_SIZE)
+			m_in_buf.Extend(READ_BUF_SIZE);
+
+		int ret = netlib_recv(m_handle, m_in_buf.GetBuffer() + m_in_buf.GetWriteOffset(), READ_BUF_SIZE);
+		if (ret <= 0)
+			break;
+
+		m_recv_bytes += ret;
+		m_in_buf.IncWriteOffset(ret);
+
+		m_last_recv_tick = get_tick_count();
+	}
+
+    CImPdu* pPdu = NULL;
+	try
+    {
+		while ( ( pPdu = CImPdu::ReadPdu(m_in_buf.GetBuffer(), m_in_buf.GetWriteOffset()) ) )
+		{
+            uint32_t pdu_len = pPdu->GetLength();
+            m_in_buf.Read(NULL, pdu_len);
+            PduTask *task = new PduTask(this,pPdu);
+            g_thread_pool.AddTask(task,this->m_user_id);
+			//HandlePdu(pPdu);
+			//delete pPdu;
+            pPdu = NULL;
+//			++g_recv_pkt_cnt;
+		}
+	} catch (CPduException& ex) {
+		log("!!!catch exception, sid=%u, cid=%u, err_code=%u, err_msg=%s, close the connection ",
+				ex.GetServiceId(), ex.GetCommandId(), ex.GetErrorCode(), ex.GetErrorMsg());
+        if (pPdu) {
+            delete pPdu;
+            pPdu = NULL;
+        }
+        OnClose();
 	}
 }
 
