@@ -274,45 +274,46 @@ void CMsgConn::OnTimer(uint64_t curr_tick)
 
 void CMsgConn::OnRead()
 {
-	for (;;)
-	{
-		uint32_t free_buf_len = m_in_buf.GetAllocSize() - m_in_buf.GetWriteOffset();
-		if (free_buf_len < READ_BUF_SIZE)
-			m_in_buf.Extend(READ_BUF_SIZE);
+    for (;;)
+    {
+        uint32_t free_buf_len = m_in_buf.GetAllocSize() - m_in_buf.GetWriteOffset();
+        if (free_buf_len < READ_BUF_SIZE)
+            m_in_buf.Extend(READ_BUF_SIZE);
 
-		int ret = netlib_recv(m_handle, m_in_buf.GetBuffer() + m_in_buf.GetWriteOffset(), READ_BUF_SIZE);
-		if (ret <= 0)
-			break;
+        int ret = netlib_recv(m_handle, m_in_buf.GetBuffer() + m_in_buf.GetWriteOffset(), READ_BUF_SIZE);
+        if (ret <= 0)
+            break;
 
-		m_recv_bytes += ret;
-		m_in_buf.IncWriteOffset(ret);
+        m_recv_bytes += ret;
+        m_in_buf.IncWriteOffset(ret);
 
-		m_last_recv_tick = get_tick_count();
-	}
+        m_last_recv_tick = get_tick_count();
+    }
 
     CImPdu* pPdu = NULL;
-	try
+    try
     {
-		while ( ( pPdu = CImPdu::ReadPdu(m_in_buf.GetBuffer(), m_in_buf.GetWriteOffset()) ) )
-		{
+        while ( ( pPdu = CImPdu::ReadPdu(m_in_buf.GetBuffer(), m_in_buf.GetWriteOffset()) ) )
+        {
             uint32_t pdu_len = pPdu->GetLength();
             m_in_buf.Read(NULL, pdu_len);
             PduTask *task = new PduTask(this,pPdu);
             g_thread_pool.AddTask(task,this->m_user_id);
-			//HandlePdu(pPdu);
-			//delete pPdu;
+            log("add task");
+            //HandlePdu(pPdu);
+            //delete pPdu;
             pPdu = NULL;
-//			++g_recv_pkt_cnt;
-		}
-	} catch (CPduException& ex) {
-		log("!!!catch exception, sid=%u, cid=%u, err_code=%u, err_msg=%s, close the connection ",
-				ex.GetServiceId(), ex.GetCommandId(), ex.GetErrorCode(), ex.GetErrorMsg());
+            //			++g_recv_pkt_cnt;
+        }
+    } catch (CPduException& ex) {
+        log("!!!catch exception, sid=%u, cid=%u, err_code=%u, err_msg=%s, close the connection ",
+                ex.GetServiceId(), ex.GetCommandId(), ex.GetErrorCode(), ex.GetErrorMsg());
         if (pPdu) {
             delete pPdu;
             pPdu = NULL;
         }
         OnClose();
-	}
+    }
 }
 
 void CMsgConn::HandlePdu(CImPdu* pPdu)
