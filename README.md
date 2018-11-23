@@ -15,7 +15,16 @@
 7.ios使用google 官方的objc pb方便统一pb文件的生成
 8.也换了android的pb类 以及protobuf的版本 删了一些不用的依赖库
 9.android添加离线文件的上传跟下载功能
+10.docker 部署编译的支持
 ~~~~
+
+~~~~
+2018-11-23:
+  msg_server 添加线程池处理任务
+
+~~~~
+
+
 
 
 # 测试的msg_server

@@ -299,7 +299,7 @@ void CMsgConn::OnRead()
             m_in_buf.Read(NULL, pdu_len);
             PduTask *task = new PduTask(this,pPdu);
             g_thread_pool.AddTask(task,this->m_user_id);
-            log("add task");
+            //log("add task");
             //HandlePdu(pPdu);
             //delete pPdu;
             pPdu = NULL;
