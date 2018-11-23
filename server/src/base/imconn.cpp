@@ -194,11 +194,13 @@ void CImConn::OnWrite()
 
 PduTask::PduTask(CImConn * conn, CImPdu* pPdu){
     m_conn = conn;
+    m_conn->AddRef();
     m_pPdu = pPdu;
 }
 
 PduTask::~PduTask(){
     delete m_pPdu;
+    m_conn->ReleaseRef();
 }
 
 void PduTask::run(){
