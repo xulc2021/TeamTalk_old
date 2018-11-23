@@ -202,7 +202,9 @@ PduTask::~PduTask(){
 }
 
 void PduTask::run(){
-    m_conn->HandlePdu(m_pPdu);
+    if(m_conn) {
+        m_conn->HandlePdu(m_pPdu);    
+    }
 }
 
 
