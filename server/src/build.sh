@@ -114,6 +114,10 @@ build() {
 
     cd ../db_proxy_server
     cmake .
+    cp ../slog/liblog4cxx.so ./
+    cp ../slog/liblog4cxx.so.10 ./
+    cp ../slog/liblog4cxx.so.10.0.0 ./
+    cp ../slog/libslog.so ./
     make
     if [ $? -eq 0 ]; then
         echo "make db_proxy_server successed";
@@ -132,6 +136,28 @@ build() {
         exit;
     fi
 
+    ## add 编译新添加的websocket项目 
+    cd ../websocket_server
+    cd websocket
+    cmake .
+    make
+    if [ $? -eq 0 ]; then
+        echo "make websocket_server.websocket successed";
+    else
+        echo "make websocket_server.websocket failed";
+        exit;
+    fi
+    cd ../
+    cmake .
+    make 
+    if [ $? -eq 0 ]; then
+        echo "make websocket_server successed";
+    else
+        echo "make websocket_server failed";
+        exit;
+    fi
+    ## add end
+
 	cd ../
 
     mkdir -p ../run/login_server
@@ -142,6 +168,7 @@ build() {
     mkdir -p ../run/push_server
     mkdir -p ../run/http_msg_server
     mkdir -p ../run/db_proxy_server
+    mkdir -p ../run/websocket_server
 
 	#copy executables to run/ dir
 	cp login_server/login_server ../run/login_server/
@@ -160,6 +187,8 @@ build() {
 
     cp msfs/msfs ../run/msfs/
 
+    cp websocket_server/websocket_server ../run/websocket_server/
+
     cp tools/daeml ../run/
 
     build_version=im-server-$1
@@ -177,6 +206,7 @@ build() {
     mkdir -p ../$build_version/push_server
     mkdir -p ../$build_version/db_proxy_server
     mkdir -p ../$build_version/lib
+    mkdir -p ../$build_version/websocket_server
 
     cp login_server/loginserver.conf ../$build_version/login_server/
     cp login_server/login_server ../$build_version/login_server/
@@ -201,6 +231,9 @@ build() {
 
     cp msfs/msfs ../$build_version/msfs/
     cp msfs/msfs.conf ../$build_version/msfs/
+
+    cp websocket_server/websocket_server ../$build_version/websocket_server/
+    cp websocket_server/websocket_server.conf ../$build_version/websocket_server/
 
     cp slog/log4cxx.properties ../$build_version/lib/
     cp slog/libslog.so  ../$build_version/lib/
@@ -234,6 +267,10 @@ clean() {
 	cd ../db_proxy_server
 	make clean
     cd ../push_server
+    make clean
+    cd ../websocket_server/websocket
+    make clean
+    cd ../../websocket_server
     make clean
 }
 
