@@ -77,6 +77,6 @@ case $1 in
         ;;
     *)
         echo "Usage: "
-        echo "  ./restart.sh (login_server|msg_server|route_server|http_msg_server|file_server|push_server|websocket_server)"
+        echo "  ./restart.sh (all|login_server|msg_server|route_server|http_msg_server|file_server|push_server|websocket_server)"
         ;;
 esac
