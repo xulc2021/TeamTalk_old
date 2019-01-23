@@ -1,9 +1,10 @@
 # TeamTalk
 
-xiaominfc TeamTalk（主要）：[https://github.com/xiaominfc/TeamTalk](TeamTalk)  
-websocket_client：[https://github.com/xiaominfc/teamtalk_websocket_client](websocket_client)  
-websocket_server：[https://github.com/xiaominfc/teamtalk_websocket_server](websocket_server：)  
-Liuthx/TeamTalk（提取了编译、运行脚本，增加websocket_server）：[https://github.com/Liuthx/TeamTalk](TeamTalk)  
+参考了这些开源项目：
+> xiaominfc TeamTalk(主要参考)：[https://github.com/xiaominfc/TeamTalk](TeamTalk)  
+> websocket_client：[https://github.com/xiaominfc/teamtalk_websocket_client](websocket_client)  
+> websocket_server：[https://github.com/xiaominfc/teamtalk_websocket_server](websocket_server：)  
+> Liuthx/TeamTalk（提取了编译、运行脚本，增加websocket_server）：[https://github.com/Liuthx/TeamTalk](TeamTalk)  
 
 ## 环境准备
 
@@ -190,7 +191,7 @@ root     11204     1  0 12:11 ?        00:00:00 ./push_server
 
 ``` bash
 > cd /home/svn/TeamTalk/auto_setup
-> chmod 777 nginx_php/nginx/setup.sh & chmod 777 nginx_php/php/setup.sh # 脚本执行权限
+> chmod 777 nginx_php/nginx/setup.sh && chmod 777 nginx_php/php/setup.sh # 脚本执行权限
 > ./nginx_php/nginx/setup.sh install    # 安装nginx
 > ./nginx_php/php/setup.sh install      # 安装php5.6.6
 ```
@@ -199,7 +200,7 @@ root     11204     1  0 12:11 ?        00:00:00 ./push_server
 
 ```bash
 > yum install -y zip                                        # 安装压缩软件
-> cd /home/svn/TeamTalk & cp -rf php/ tt & zip -r tt.zip tt # 打tt.zip的web源码包
+> cd /home/svn/TeamTalk && cp -rf php/ tt && zip -r tt.zip tt # 打tt.zip的web源码包
 > mv tt.zip auto_setup/im_web/                              # 放入im_web下，以便脚本能解压安装
 > cd auto_setup/im_web/
 > ./setup.sh install                                        # 发布web包到 nginx /var/www/html/目录下
