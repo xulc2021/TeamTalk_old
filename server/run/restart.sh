@@ -33,9 +33,21 @@ function restart() {
     else 
         ../daeml ./$1
     fi
+    cd ..
 }
 
 case $1 in
+    all)
+        restart db_proxy_server
+        restart login_server
+        restart route_server
+        restart file_server
+        restart msfs
+        restart msg_server
+        restart http_msg_server
+        restart push_server
+ 	restart websocket_server
+        ;;
     login_server)
         restart $1
         ;;
@@ -60,8 +72,11 @@ case $1 in
     msfs)
         restart $1
         ;;
+    websocket_server)
+        restart $1
+        ;;
     *)
         echo "Usage: "
-        echo "  ./restart.sh (login_server|msg_server|route_server|http_msg_server|file_server|push_server)"
+        echo "  ./restart.sh (all|login_server|msg_server|route_server|http_msg_server|file_server|push_server|websocket_server)"
         ;;
 esac
