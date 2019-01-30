@@ -71,7 +71,7 @@ void doLogin(CImPdu* pPdu, uint32_t conn_uuid)
 			
 		uint32_t last_error_time = temp_list.front(); // 倒序
 		if (tmNow - last_error_time <= kTimeLimit) {
-		    sgResp.set_result_code(6);
+		    msgResp.set_result_code(6);
 		    msgResp.set_result_string("用户名/密码错误次数太多");
 		    pPduResp->SetPBMsg(&msgResp);
 		    pPduResp->SetSeqNum(pPdu->GetSeqNum());
