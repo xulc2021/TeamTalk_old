@@ -39,14 +39,16 @@ function restart() {
 case $1 in
     all)
         restart db_proxy_server
-        restart login_server
         restart route_server
         restart file_server
         restart msfs
-        restart msg_server
         restart http_msg_server
         restart push_server
- 	restart websocket_server
+		restart login_server
+		restart msg_server
+		#restart websocket_server
+		ps -ef|grep _server
+		ps -ef|grep msfs
         ;;
     login_server)
         restart $1

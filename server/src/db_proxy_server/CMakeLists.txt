@@ -6,23 +6,22 @@ AUX_SOURCE_DIRECTORY(./business SRC_LIST)
 
 #SET(LIBRARY_OUTPUT_PATH ./)
 SET(EXECUTABLE_OUTPUT_PATH  ./)
-
+SET(SRC_DIR ../../)
 SET(MYSQL_LIB /usr/lib64/mysql)
 SET(UBUNTU_MYSQL_LIB /usr/lib/x86_64-linux-gnu)
 SET(MYSQL_LIB_NAME mysqlclient_r)
 
 
 SET(PB_INCLUDE_DIR ../protobuf/include)
-SET(PB_LIB_DIR ../protobuf/lib)
+SET(PB_LIB_DIR ${SRC_DIR}/protobuf/lib)
 
-SET(SLOG_LIB_DIR ../slog)
+SET(SLOG_LIB_DIR ${SRC_DIR}/lib)
 
 SET(HIREDIS_INCLUDE_DIR ../hiredis/hiredis-master)
-#SET(HIREDIS_LIB_DIR ../hiredis/hiredis-master)
+SET(HIREDIS_LIB_DIR ${SRC_DIR}/db_proxy_server)
 
-
-#设置自己mac os的openssl的路径
-if(APPLE)
+#设置自己mac os的openssl的路径 
+if(APPLE) 
     SET(OPENSSL_INCLUDE_DIR /usr/local/Cellar/openssl/1.0.2n/include)
     SET(OPENSSL_LIB_DIR /usr/local/Cellar/openssl/1.0.2n/lib)
 endif()
@@ -41,7 +40,7 @@ ADD_DEFINITIONS( -g -W -Wall -D_REENTRANT -D_FILE_OFFSET_BITS=64 -DAC_HAS_INFO
 -DAC_HAS_DEBUG -DLINUX_DAEMON -std=c++11 -DENCRYPT)
 
 INCLUDE_DIRECTORIES(./ ./businiess ../base ../base/jsoncpp ../base/pb/protocol ${PB_INCLUDE_DIR} ${MYSQL_INCLUDE_DIR}  ${OPENSSL_INCLUDE_DIR} ${HIREDIS_INCLUDE_DIR})
-LINK_DIRECTORIES(./ ../base ${PB_LIB_DIR} ${MYSQL_LIB} ${UBUNTU_MYSQL_LIB} ../base/slog/lib ${OPENSSL_LIB_DIR} ${SLOG_LIB_DIR})
+LINK_DIRECTORIES( ./ ${SRC_DIR}/lib ${PB_LIB_DIR} ${MYSQL_LIB} ${UBUNTU_MYSQL_LIB}  ${OPENSSL_LIB_DIR} ${SLOG_LIB_DIR} ${HIREDIS_LIB_DIR})
 
 #ADD_XXXX必须在TARGET_LINK_LIBRARIES前面，否则会报错
 #ADD_LIBRARY(${PROJECTNAME} SHARED/STATIC ${SRC_LIST})

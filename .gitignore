@@ -11,3 +11,4 @@ server/src/libsecurity/android/obj
 *push_server
 *file_server
 *msfs
+server/src/base/.vs/

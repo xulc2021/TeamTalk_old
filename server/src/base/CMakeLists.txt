@@ -5,12 +5,14 @@ AUX_SOURCE_DIRECTORY(./ SRC_LIST1)
 AUX_SOURCE_DIRECTORY(./pb/protocol SRC_LIST2)
 AUX_SOURCE_DIRECTORY(./jsoncpp SRC_LIST3)
 
-
+# CMAKE的输出路径为TeamTalk\server\src\bin\${name}，${name}代表项目名称，如login_server
+## ../../定位到src下，并且只需要连接静态库时，增加该前缀
+SET(SRC_DIR  ../../)
 SET(PB_INCLUDE_DIR ../protobuf/include)
-SET(PB_LIB_DIR ../protobuf/lib)
+SET(PB_LIB_DIR ${SRC_DIR}/protobuf/lib)
 
 SET(SLOG_INCLUDE_DIR ../slog)
-SET(SLOG_LIB_DIR ../slog)
+SET(SLOG_LIB_DIR ${SRC_DIR}/lib)
 
 
 SET(LIBRARY_OUTPUT_PATH ./)
