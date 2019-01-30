@@ -1,4 +1,4 @@
-﻿cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.6)
 PROJECT(http_msg_server)
 
 AUX_SOURCE_DIRECTORY(./ SRC_LIST)
@@ -11,7 +11,7 @@ SET(SRC_DIR ../../)
 SET(PB_INCLUDE_DIR ../protobuf/include)
 SET(PB_LIB_DIR ${SRC_DIR}/protobuf/lib)
 
-SET(SLOG_LIB_DIR ${SRC_DIR}/slog)
+SET(SLOG_LIB_DIR ${SRC_DIR}/lib)
 
 if(APPLE)
     SET(OPENSSL_INCLUDE_DIR /usr/local/Cellar/openssl/1.0.2n/include)
