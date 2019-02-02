@@ -17,20 +17,19 @@ namespace him {
 	/** @enum ClientState
 	  * @brief
 	  */
-	typedef enum ClientState
+	typedef enum
 	{
 		kClientConnectedOk = 0, // 已连接
 		kClientDisconnect = 1,  // 连接断开
 		kClientReConnect = 2,   // 重连中
-	};
+	}ClientState;
 
 #define BIND_CALLBACK_2(func)	std::bind(&func, this, placeholders::_1, placeholders::_2)
 	typedef std::function<void(const char* data, int len)> ReceiveDateDelegate; // 接收到数据的回调函数定义
 
-	HIM_SDK_API class IClient
+	class HIM_SDK_API IClient
 	{
 	public:// a
-
 		/** @fn void Init();
 		  * @brief 初始化sdk
 		  */
@@ -39,7 +38,7 @@ namespace him {
 		/** @fn void Uninit()
 		  * @brief 退出前调用
 		  */
-		virtual void Uninit() =0;
+		virtual void Uninit() = 0;
 
 	public:// login
 
@@ -50,7 +49,7 @@ namespace him {
 		  * @param server_ip: 服务器ip地址
 		  * @param port: 端口
 		  */
-		virtual void Login(std::string user_name, std::string pwd, std::string server_ip, unsigned short port) =0;
+		virtual void Login(std::string user_name, std::string pwd, std::string server_ip, unsigned short port) = 0;
 
 		/** @fn ClientState GetClientState()
 		  * @brief 获取当前客户端连接状态
@@ -61,7 +60,7 @@ namespace him {
 		/** @fn void LoginOut()
 		  * @brief 注销
 		  */
-		virtual void LoginOut() =0;
+		virtual void LoginOut() = 0;
 
 	public:// send
 		/** @fn int Send(int server_id, int msg_id, const char* data, int len)
@@ -72,8 +71,8 @@ namespace him {
 		  * @param len: 要发送的长度
 		  * @return 已发送的数据长度
 		  */
-		virtual int Send(int server_id, int msg_id, const char* data, int len) =0;
-		virtual void SetReceiveDataCallback(ReceiveDateDelegate callback) =0;
+		virtual int Send(int server_id, int msg_id, const char* data, int len) = 0;
+		virtual void SetReceiveDataCallback(ReceiveDateDelegate callback) = 0;
 	};
 
 	/** @fn std::shared_ptr<IClient> FactoryNew();

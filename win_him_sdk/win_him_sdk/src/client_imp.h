@@ -8,13 +8,14 @@
 #define _CLIENT_IMP_FC05AC64_1E43_46D5_9781_F90C2803E96E_H_
 
 #include "api/client.h"
+#include <boost/asio.hpp>
 
 namespace him {
 
 	/** @class Client_Imp
 	  * @brief IClient µœ÷
 	  */
-	class ClientImp : IClient
+	class ClientImp : public IClient
 	{
 	public:
 		ClientImp();
@@ -38,8 +39,11 @@ namespace him {
 		std::string					user_name_;
 		unsigned short				server_port_;
 		bool						is_init_;
-	};
 
+		// boost
+		boost::asio::io_service		io_server_;
+		std::shared_ptr<boost::asio::ip::tcp::socket> tcp_cient_;
+	};
 }
 
 #endif//_CLIENT_IMP_FC05AC64_1E43_46D5_9781_F90C2803E96E_H_
