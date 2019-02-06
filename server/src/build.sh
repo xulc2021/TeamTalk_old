@@ -21,6 +21,7 @@ build_base() {
 	fi
 
 	cp libbase.a ../
+	cp -a liblog4cxx.so* ../
 }
 
 # 编译log库（依赖的log4cxx通过make_log4cxxx.sh到../lib得到）
@@ -63,7 +64,7 @@ build_login_server(){
 }
 
 # 编译 route_server（依赖base,slog库）
-buid_route_server(){
+build_route_server(){
 	cd $CUR_DIR
 	if [ ! -d "bin/route_server/" ]; then
     	mkdir "bin/route_server" -p
@@ -269,6 +270,8 @@ build_all(){
 	build_http_msg_server
 	build_push_server
 	build_db_proxy_server
+	build_route_server
+	build_file_server
 	build_msfs
 	build_tools
 	build_websocket_server
