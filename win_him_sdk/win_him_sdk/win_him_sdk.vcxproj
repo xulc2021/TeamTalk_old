@@ -73,7 +73,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)bin\Temps_$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir)bin\Temps_$(ProjectName)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -90,15 +90,18 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;HIM_SDK_EXPORTS;_WINDOWS;_USRDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;HIM_SDK_EXPORTS;_WINDOWS;_USRDLL;BUILDING_LIBCURL;HTTP_ONLY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.;C:\boost_1_69_0</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;C:\boost_1_69_0;$(ProjectDir)..\third_party\curl-7.19\include_curl;$(ProjectDir)..\third_party\jsoncpp-src-0.5.0\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)libs\$(Configuration)\$(TargetName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>C:\boost_1_69_0\bin\vc15\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\boost_1_69_0\bin\vc15\lib;$(ProjectDir)..\third_party\curl-7.19\lib_curl;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreSpecificDefaultLibraries>
+      </IgnoreSpecificDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -152,15 +155,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="api\client.h" />
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\autolink.h" />
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\config.h" />
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\features.h" />
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\forwards.h" />
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\json.h" />
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\reader.h" />
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\value.h" />
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\writer.h" />
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\src\lib_json\json_batchallocator.h" />
+    <ClInclude Include="api\iclient.h" />
     <ClInclude Include="api\him_sdk_dll.h" />
+    <ClInclude Include="api\ihttp_client.h" />
     <ClInclude Include="src\client_imp.h" />
+    <ClInclude Include="src\http\http_client_imp.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\third_party\jsoncpp-src-0.5.0\src\lib_json\json_reader.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\third_party\jsoncpp-src-0.5.0\src\lib_json\json_value.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="..\third_party\jsoncpp-src-0.5.0\src\lib_json\json_writer.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="src\client_imp.cpp" />
+    <ClCompile Include="src\client_imp_init.cpp" />
+    <ClCompile Include="src\http\http_client_imp.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

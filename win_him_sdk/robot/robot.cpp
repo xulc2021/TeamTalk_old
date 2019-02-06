@@ -4,14 +4,19 @@
 #include "pch.h"
 #include <iostream>
 
-#include "api/client.h"
+#include "api/iclient.h"
 
 int main()
 {
-	std::shared_ptr<him::IClient> instance = him::FactoryNew();
-	instance->Init();
+	him::GlobalInit();
+
+	std::shared_ptr<him::IClient> instance = him::GetClientModule();
 
 	instance->Login("gaozz", "123456", "106.14.172.35", 31001);
 
     std::cout << "Hello World!\n"; 
+
+	him::GlobalUninit();
+
+	system("pause");
 }

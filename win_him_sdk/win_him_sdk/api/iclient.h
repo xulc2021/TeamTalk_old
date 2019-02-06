@@ -29,17 +29,6 @@ namespace him {
 
 	class HIM_SDK_API IClient
 	{
-	public:// a
-		/** @fn void Init();
-		  * @brief 初始化sdk
-		  */
-		virtual void Init() = 0;
-
-		/** @fn void Uninit()
-		  * @brief 退出前调用
-		  */
-		virtual void Uninit() = 0;
-
 	public:// login
 
 		/** @fn void Login(std::string user_name, std::string pwd, std::string serverIp, unsigned short port)
@@ -75,11 +64,19 @@ namespace him {
 		virtual void SetReceiveDataCallback(ReceiveDateDelegate callback) = 0;
 	};
 
+	/** @fn void Init();
+	  * @brief 初始化sdk
+	  */
+	HIM_SDK_API void GlobalInit();
+	/** @fn void Uninit()
+	  * @brief 退出前调用
+	  */
+	HIM_SDK_API void GlobalUninit();
 	/** @fn std::shared_ptr<IClient> FactoryNew();
 	  * @brief 获取Client的新实例
 	  * @retrun 新的实例
 	  */
-	HIM_SDK_API std::shared_ptr<IClient> FactoryNew();
+	HIM_SDK_API std::shared_ptr<IClient> GetClientModule();
 }
 
 #endif//_CLIENT_FD1A9425_314E_4337_89BE_B3F537C78A8F_H_

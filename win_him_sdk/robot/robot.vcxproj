@@ -75,7 +75,7 @@
     <IncludePath>Y:\repo\github\TeamTalk\win_him_sdk\win_him_sdk;$(IncludePath)</IncludePath>
     <LibraryPath>Y:\repo\github\TeamTalk\win_him_sdk\libs\Debug;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)bin\Temps_$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir)bin\Temps_$(ProjectName)_$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

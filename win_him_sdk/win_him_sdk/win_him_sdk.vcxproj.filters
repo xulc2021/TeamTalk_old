@@ -19,6 +19,12 @@
     <Filter Include="src">
       <UniqueIdentifier>{8a292a39-6d72-4b87-b328-0b9796d99d4e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\http">
+      <UniqueIdentifier>{61d8ee57-7ce8-45f5-9010-b60e3f756c4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\json">
+      <UniqueIdentifier>{9714f2c4-bfee-4c6d-b96d-1aa39c8e7693}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -27,14 +33,47 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
-    <ClInclude Include="api\client.h">
-      <Filter>api</Filter>
-    </ClInclude>
     <ClInclude Include="api\him_sdk_dll.h">
       <Filter>api</Filter>
     </ClInclude>
     <ClInclude Include="src\client_imp.h">
       <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\http\http_client_imp.h">
+      <Filter>src\http</Filter>
+    </ClInclude>
+    <ClInclude Include="api\iclient.h">
+      <Filter>api</Filter>
+    </ClInclude>
+    <ClInclude Include="api\ihttp_client.h">
+      <Filter>api</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\src\lib_json\json_batchallocator.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\autolink.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\config.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\features.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\forwards.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\json.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\reader.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\value.h">
+      <Filter>src\json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\writer.h">
+      <Filter>src\json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +85,21 @@
     </ClCompile>
     <ClCompile Include="src\client_imp.cpp">
       <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\http\http_client_imp.cpp">
+      <Filter>src\http</Filter>
+    </ClCompile>
+    <ClCompile Include="src\client_imp_init.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third_party\jsoncpp-src-0.5.0\src\lib_json\json_reader.cpp">
+      <Filter>src\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third_party\jsoncpp-src-0.5.0\src\lib_json\json_value.cpp">
+      <Filter>src\json</Filter>
+    </ClCompile>
+    <ClCompile Include="..\third_party\jsoncpp-src-0.5.0\src\lib_json\json_writer.cpp">
+      <Filter>src\json</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

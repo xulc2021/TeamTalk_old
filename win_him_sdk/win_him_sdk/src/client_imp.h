@@ -7,7 +7,7 @@
 #ifndef _CLIENT_IMP_FC05AC64_1E43_46D5_9781_F90C2803E96E_H_
 #define _CLIENT_IMP_FC05AC64_1E43_46D5_9781_F90C2803E96E_H_
 
-#include "api/client.h"
+#include "api/iclient.h"
 #include <boost/asio.hpp>
 
 namespace him {
@@ -22,9 +22,6 @@ namespace him {
 		~ClientImp();
 
 	public:
-		virtual void Init();
-		virtual void Uninit();
-
 		virtual void Login(std::string user_name, std::string pwd, std::string server_ip, unsigned short port);
 		virtual ClientState GetClientState();
 		virtual void LoginOut();
