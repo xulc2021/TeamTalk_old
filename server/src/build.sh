@@ -262,16 +262,16 @@ build_all(){
 	echo "#define VERSION \"$1\"" >> base/version.h
 	echo "#endif" >> base/version.h
 
-	#build_base
-	#build_slog
-	#build_login_server
-	#build_msg_server
-	#build_http_msg_server
-	#build_push_server
-	#build_db_proxy_server
-	#build_msfs
-	#build_tools
-	#build_websocket_server
+	build_base
+	build_slog
+	build_login_server
+	build_msg_server
+	build_http_msg_server
+	build_push_server
+	build_db_proxy_server
+	build_msfs
+	build_tools
+	build_websocket_server
 
 	cd $CUR_DIR/bin/
 		
