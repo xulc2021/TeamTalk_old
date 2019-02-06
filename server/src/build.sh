@@ -40,7 +40,6 @@ build_slog(){
 	fi
 
 	cp libslog.so ../
-	cp -a liblog4cxx.so* ../
 }
 
 # 编译login_server（依赖base,slog库）
@@ -64,7 +63,7 @@ build_login_server(){
 }
 
 # 编译 route_server（依赖base,slog库）
-build_route_server(){
+buid_route_server(){
 	cd $CUR_DIR
 	if [ ! -d "bin/route_server/" ]; then
     	mkdir "bin/route_server" -p
@@ -270,8 +269,6 @@ build_all(){
 	build_http_msg_server
 	build_push_server
 	build_db_proxy_server
-	build_route_server
-	build_file_server
 	build_msfs
 	build_tools
 	build_websocket_server
@@ -361,7 +358,6 @@ build_all(){
 
     cp tools/daeml ../../$build_version/
     cp ../../run/restart.sh ../../$build_version/
-    cp ../../run/stop.sh ../../$build_version/
 
     cd ../../
     tar zcvf    $build_name $build_version
