@@ -1,6 +1,9 @@
 #include "stdafx.h"
 #include "client_imp.h"
+
 #include "api/ihttp_client.h"
+#include "api/log.h"
+
 #include "json/json.h"
 
 namespace him {
@@ -30,20 +33,20 @@ namespace him {
 
 		std::shared_ptr<IHttpClient> client = him::GetHttpClientModule();
 		std::string response;
-		printf("查询可用服务器列表中...\n");
+		logd("查询可用服务器列表中...\n");
 		// 阻塞，默认3秒超时
 		UrlCode code = client->HttpGetReq(std::string(urlBuf), response);
 		if (code == UrlCode::URLE_OK) {
 			Json::Value json_value;
 			Json::Reader json_reader;
 			if (!json_reader.parse(response, json_value)) {
-				printf("查询服务器成功，但是解析返回json结果失败！无法继续登录 \n");
+				loge("查询服务器成功，但是解析返回json结果失败！无法继续登录 \n");
 				return;
 			}
 
 			std::string msg_server_ip = json_value["priorIP"].asString();
 			std::string msg_server_port = json_value["port"].asString();
-			printf("查询成功，开始连接消息服务器：%s:%s \n", msg_server_ip.c_str(), msg_server_port.c_str());
+			logd("查询成功，开始连接消息服务器：%s:%s \n", msg_server_ip.c_str(), msg_server_port.c_str());
 
 			boost::system::error_code code;
 			boost::asio::ip::tcp::endpoint e(boost::asio::ip::address_v4::from_string(msg_server_ip), std::stoi(msg_server_port));
@@ -51,14 +54,14 @@ namespace him {
 
 			if (code) {
 				boost::system::system_error err(code);
-				printf("connect error:%s \n", err.what());
+				loge("connect error:%s \n", err.what());
 				return;
 			}
 
-			printf("connect success \n");
+			logd("connect success \n");
 		}
 		else {
-			printf("http connect error: %d \n", code);
+			loge("http connect error: %d \n", code);
 		}
 	}
 	ClientState ClientImp::GetClientState()

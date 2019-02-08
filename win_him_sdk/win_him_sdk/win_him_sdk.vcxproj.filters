@@ -25,6 +25,12 @@
     <Filter Include="src\json">
       <UniqueIdentifier>{9714f2c4-bfee-4c6d-b96d-1aa39c8e7693}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\log">
+      <UniqueIdentifier>{58378470-190f-429e-89fe-218a1a69e05b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\network">
+      <UniqueIdentifier>{e2707fb3-32e6-47f0-b972-eedd1913bdd4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -75,6 +81,15 @@
     <ClInclude Include="..\third_party\jsoncpp-src-0.5.0\include\json\writer.h">
       <Filter>src\json</Filter>
     </ClInclude>
+    <ClInclude Include="api\log.h">
+      <Filter>api</Filter>
+    </ClInclude>
+    <ClInclude Include="src\network\UtilPdu.h">
+      <Filter>src\network</Filter>
+    </ClInclude>
+    <ClInclude Include="src\network\PBHeader.h">
+      <Filter>src\network</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -101,5 +116,17 @@
     <ClCompile Include="..\third_party\jsoncpp-src-0.5.0\src\lib_json\json_writer.cpp">
       <Filter>src\json</Filter>
     </ClCompile>
+    <ClCompile Include="src\log\log.cpp">
+      <Filter>src\log</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\UtilPdu.cpp">
+      <Filter>src\network</Filter>
+    </ClCompile>
+    <ClCompile Include="src\network\PBHeader.cpp">
+      <Filter>src\network</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="log4cxx.properties" />
   </ItemGroup>
 </Project>

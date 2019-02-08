@@ -90,7 +90,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;HIM_SDK_EXPORTS;_WINDOWS;_USRDLL;BUILDING_LIBCURL;HTTP_ONLY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;HIM_SDK_EXPORTS;BUILD_PDU;_WINDOWS;_USRDLL;BUILDING_LIBCURL;HTTP_ONLY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.;C:\boost_1_69_0;$(ProjectDir)..\third_party\curl-7.19\include_curl;$(ProjectDir)..\third_party\jsoncpp-src-0.5.0\include</AdditionalIncludeDirectories>
     </ClCompile>
@@ -103,6 +103,9 @@
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /f /y log4cxx.properties $(SolutionDir)bin\$(Configuration)\</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -167,8 +170,11 @@
     <ClInclude Include="api\iclient.h" />
     <ClInclude Include="api\him_sdk_dll.h" />
     <ClInclude Include="api\ihttp_client.h" />
+    <ClInclude Include="api\log.h" />
     <ClInclude Include="src\client_imp.h" />
     <ClInclude Include="src\http\http_client_imp.h" />
+    <ClInclude Include="src\network\PBHeader.h" />
+    <ClInclude Include="src\network\UtilPdu.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -186,12 +192,18 @@
     <ClCompile Include="src\client_imp.cpp" />
     <ClCompile Include="src\client_imp_init.cpp" />
     <ClCompile Include="src\http\http_client_imp.cpp" />
+    <ClCompile Include="src\log\log.cpp" />
+    <ClCompile Include="src\network\PBHeader.cpp" />
+    <ClCompile Include="src\network\UtilPdu.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="log4cxx.properties" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
