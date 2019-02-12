@@ -31,6 +31,9 @@
     <Filter Include="src\network">
       <UniqueIdentifier>{e2707fb3-32e6-47f0-b972-eedd1913bdd4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\protocol">
+      <UniqueIdentifier>{2a30e6b2-d67e-4324-8bc1-d1e1a0078ca2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h">
@@ -90,6 +93,33 @@
     <ClInclude Include="src\network\PBHeader.h">
       <Filter>src\network</Filter>
     </ClInclude>
+    <ClInclude Include="src\protocol\IM.BaseDefine.pb.h">
+      <Filter>src\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protocol\IM.Buddy.pb.h">
+      <Filter>src\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protocol\IM.File.pb.h">
+      <Filter>src\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protocol\IM.Group.pb.h">
+      <Filter>src\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protocol\IM.Login.pb.h">
+      <Filter>src\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protocol\IM.Message.pb.h">
+      <Filter>src\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protocol\IM.Other.pb.h">
+      <Filter>src\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protocol\IM.Server.pb.h">
+      <Filter>src\protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="src\protocol\IM.SwitchService.pb.h">
+      <Filter>src\protocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -124,6 +154,33 @@
     </ClCompile>
     <ClCompile Include="src\network\PBHeader.cpp">
       <Filter>src\network</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.BaseDefine.pb.cc">
+      <Filter>src\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Buddy.pb.cc">
+      <Filter>src\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.File.pb.cc">
+      <Filter>src\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Group.pb.cc">
+      <Filter>src\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Login.pb.cc">
+      <Filter>src\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Message.pb.cc">
+      <Filter>src\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Other.pb.cc">
+      <Filter>src\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Server.pb.cc">
+      <Filter>src\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.SwitchService.pb.cc">
+      <Filter>src\protocol</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

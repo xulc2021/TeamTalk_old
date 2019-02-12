@@ -89,17 +89,17 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <SDLCheck>true</SDLCheck>
+      <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;HIM_SDK_EXPORTS;BUILD_PDU;_WINDOWS;_USRDLL;BUILDING_LIBCURL;HTTP_ONLY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.;C:\boost_1_69_0;$(ProjectDir)..\third_party\curl-7.19\include_curl;$(ProjectDir)..\third_party\jsoncpp-src-0.5.0\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;C:\boost_1_69_0;$(ProjectDir)..\third_party\curl-7.19\include_curl;$(ProjectDir)..\third_party\jsoncpp-src-0.5.0\include;$(ProjectDir)..\third_party\protobuf-3.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)libs\$(Configuration)\$(TargetName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>C:\boost_1_69_0\bin\vc15\lib;$(ProjectDir)..\third_party\curl-7.19\lib_curl;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\boost_1_69_0\bin\vc15\lib;$(ProjectDir)..\third_party\curl-7.19\lib_curl;$(ProjectDir)..\third_party\protobuf-3.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libprotobuf-lited.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
     </Link>
@@ -175,6 +175,15 @@
     <ClInclude Include="src\http\http_client_imp.h" />
     <ClInclude Include="src\network\PBHeader.h" />
     <ClInclude Include="src\network\UtilPdu.h" />
+    <ClInclude Include="src\protocol\IM.BaseDefine.pb.h" />
+    <ClInclude Include="src\protocol\IM.Buddy.pb.h" />
+    <ClInclude Include="src\protocol\IM.File.pb.h" />
+    <ClInclude Include="src\protocol\IM.Group.pb.h" />
+    <ClInclude Include="src\protocol\IM.Login.pb.h" />
+    <ClInclude Include="src\protocol\IM.Message.pb.h" />
+    <ClInclude Include="src\protocol\IM.Other.pb.h" />
+    <ClInclude Include="src\protocol\IM.Server.pb.h" />
+    <ClInclude Include="src\protocol\IM.SwitchService.pb.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
@@ -195,6 +204,33 @@
     <ClCompile Include="src\log\log.cpp" />
     <ClCompile Include="src\network\PBHeader.cpp" />
     <ClCompile Include="src\network\UtilPdu.cpp" />
+    <ClCompile Include="src\protocol\IM.BaseDefine.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Buddy.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.File.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Group.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Login.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Message.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Other.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.Server.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="src\protocol\IM.SwitchService.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
