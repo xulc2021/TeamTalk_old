@@ -23,10 +23,10 @@ namespace him {
 
 	void heartbeat_thread_proc()
 	{
+		Sleep(40 * 1000);
+
 		while (g_heartbeat_run_)
 		{
-			Sleep(40 * 1000);
-
 			{
 				boost::mutex::scoped_lock lock(g_client_list_mutex_);
 				std::list<std::weak_ptr<ClientImp>>::iterator it;
