@@ -35,6 +35,10 @@ namespace him {
 	public:
 		void ReceiveThreadProc();
 		virtual void OnReceive(unsigned char* buf, int len);
+
+	public:// ÐÄÌøÏà¹Ø
+		void SendHeartBeat();
+		size_t GetLastHeartBeatTime();
 	private:
 		int ThreadSafeGetSeq();
 		void _OnLoginRes(IM::Login::IMLoginRes res);
@@ -50,6 +54,7 @@ namespace him {
 		unsigned int				seq_;
 		unsigned char*				write_buffer_;
 		bool						receive_thread_run_;
+		time_t						heartbeat_time_;
 
 		// boost
 		boost::asio::io_service		io_server_;
@@ -57,6 +62,10 @@ namespace him {
 		std::shared_ptr<boost::asio::ip::tcp::socket>	tcp_client_;
 		std::shared_ptr<std::thread>					receive_thread_;
 	};
+
+	// heartbeat
+	extern std::list<std::weak_ptr<ClientImp>>	g_client_list_;
+	extern boost::mutex							g_client_list_mutex_;
 }
 
 #endif//_CLIENT_IMP_FC05AC64_1E43_46D5_9781_F90C2803E96E_H_

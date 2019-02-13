@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "client_imp.h"
+#include <list>
 
 #include "api/ihttp_client.h"
 #include "api/log.h"
@@ -8,6 +9,7 @@
 
 // 协议
 #include "protocol/IM.BaseDefine.pb.h"
+#include "protocol/IM.Other.pb.h"
 #include "network/PBHeader.h"
 #include "network/UtilPdu.h"
 
@@ -18,6 +20,10 @@ namespace him {
 	std::shared_ptr<IClient> NewClientModule()
 	{
 		std::shared_ptr<ClientImp> instance = std::make_shared<ClientImp>();
+		{
+			boost::mutex::scoped_lock lock(g_client_list_mutex_);
+			g_client_list_.push_back(instance);
+		}
 		return std::dynamic_pointer_cast<IClient>(instance);
 	}
 
@@ -28,6 +34,7 @@ namespace him {
 		, receive_thread_run_(true)
 		, write_buffer_(nullptr)
 		, seq_(0)
+		, heartbeat_time_(0)
 	{
 		tcp_client_ = std::make_shared<boost::asio::ip::tcp::socket>(io_server_);
 		write_buffer_ = new unsigned char[MAX_SEND_BUFFER_LEN];
@@ -212,9 +219,8 @@ namespace him {
 
 		// 心跳包
 		if (head.GetCommandId() == IM::BaseDefine::CID_OTHER_HEARTBEAT) {
-			time_t t;
-			time(&t);
-			logd("receive heartbeat:%lld", t);
+			time(&heartbeat_time_);
+			logd("receive heartbeat:%lld \n", heartbeat_time_);
 			return;
 		}
 		// 登录响应
@@ -236,6 +242,18 @@ namespace him {
 		if (callback_ != nullptr) {
 			callback_(temp_buf, len - HEADER_LENGTH);
 		}
+	}
+
+	void ClientImp::SendHeartBeat() {
+		IM::Other::IMHeartBeat req;
+		int temp_buf_len = req.ByteSize();
+		unsigned char* temp_buf = new unsigned char[temp_buf_len];
+		req.SerializeToArray(temp_buf, temp_buf_len);
+		Send(IM::BaseDefine::SID_OTHER, IM::BaseDefine::CID_OTHER_HEARTBEAT, temp_buf, temp_buf_len);
+		delete[] temp_buf;
+	}
+	size_t ClientImp::GetLastHeartBeatTime() {
+		return (size_t)heartbeat_time_;
 	}
 
 	int ClientImp::ThreadSafeGetSeq()
