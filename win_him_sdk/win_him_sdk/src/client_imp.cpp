@@ -19,12 +19,14 @@
 namespace him {
 	std::shared_ptr<IClient> NewClientModule()
 	{
-		std::shared_ptr<ClientImp> instance = std::make_shared<ClientImp>();
+		std::shared_ptr<IClient> shared_instance = nullptr;
 		{
 			boost::mutex::scoped_lock lock(g_client_list_mutex_);
+			std::shared_ptr<ClientImp> instance = std::make_shared<ClientImp>();
 			g_client_list_.push_back(instance);
+			shared_instance = std::dynamic_pointer_cast<IClient>(instance);
 		}
-		return std::dynamic_pointer_cast<IClient>(instance);
+		return shared_instance;
 	}
 
 	ClientImp::ClientImp()
@@ -215,8 +217,6 @@ namespace him {
 		PBHeader head;
 		head.UnSerialize(buf, HEADER_LENGTH);
 
-		logd("receive new msg:moduleId=%d,msgId=%d,seq=%d \n", head.GetModuleId(), head.GetCommandId(), head.GetSeqNumber());
-
 		// 心跳包
 		if (head.GetCommandId() == IM::BaseDefine::CID_OTHER_HEARTBEAT) {
 			time(&heartbeat_time_);
@@ -236,6 +236,7 @@ namespace him {
 			return;
 		}
 
+		logd("receive new msg:moduleId=%d,msgId=%d,seq=%d \n", head.GetModuleId(), head.GetCommandId(), head.GetSeqNumber());
 		// 去掉了协议头的数据部
 		unsigned char *temp_buf = new unsigned char[len - HEADER_LENGTH];
 		::memcpy(temp_buf, buf + HEADER_LENGTH, len - HEADER_LENGTH);
