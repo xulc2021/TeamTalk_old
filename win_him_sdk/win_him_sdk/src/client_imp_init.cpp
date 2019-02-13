@@ -17,40 +17,41 @@ namespace him {
 	bool g_global_init = false;
 	// heartbeat
 	std::list<std::weak_ptr<ClientImp>>	g_client_list_;
-	boost::mutex						g_client_list_mutex_;
+	std::mutex							g_client_list_mutex_;
 	std::shared_ptr<std::thread>		g_heartbeat_thread_ = nullptr;
 	bool								g_heartbeat_run_ = true;
 
 	void heartbeat_thread_proc()
 	{
-		Sleep(40 * 1000);
-
 		while (g_heartbeat_run_)
 		{
 			{
-				boost::mutex::scoped_lock lock(g_client_list_mutex_);
-				std::list<std::weak_ptr<ClientImp>>::iterator it;
-				for (it = g_client_list_.begin(); it != g_client_list_.end(); )
+				std::lock_guard<std::mutex> lock(g_client_list_mutex_);
+				if (g_client_list_.size() > 0)
 				{
-					std::weak_ptr<ClientImp> item = *it;
-					std::shared_ptr<ClientImp> client = item.lock();
-					if (client != nullptr) {
-						it++;
+					std::list<std::weak_ptr<ClientImp>>::iterator it;
+					for (it = g_client_list_.begin(); it != g_client_list_.end(); )
+					{
+						std::weak_ptr<ClientImp> item = *it;
+						std::shared_ptr<ClientImp> client = item.lock();
+						if (client != nullptr) {
+							it++;
 
-						// 10秒1个心跳
-						time_t cur_time;
-						time(&cur_time);
-						if ((cur_time - client->GetLastHeartBeatTime()) > 10) {
-							client->SendHeartBeat();
+							// 10秒1个心跳
+							time_t cur_time;
+							time(&cur_time);
+							if ((cur_time - client->GetLastHeartBeatTime()) > 10) {
+								client->SendHeartBeat();
+							}
 						}
-					}
-					else { // 对象已销毁，删除引用
-						it = g_client_list_.erase(it);
+						else { // 对象已销毁，删除引用
+							it = g_client_list_.erase(it);
+						}
 					}
 				}
 			}
 
-			Sleep(1 * 1000);
+			Sleep(10 * 1000);
 		}
 	}
 

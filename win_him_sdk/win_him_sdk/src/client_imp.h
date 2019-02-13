@@ -10,8 +10,8 @@
 #include "api/iclient.h"
 #include "protocol/IM.Login.pb.h"
 #include <boost/asio.hpp>
-#include <boost/thread/mutex.hpp>
 #include <thread>
+#include <mutex>
 
 namespace him {
 	/** @class Client_Imp
@@ -58,14 +58,14 @@ namespace him {
 
 		// boost
 		boost::asio::io_service		io_server_;
-		boost::mutex				seq_mutex_;
+		std::mutex					seq_mutex_;
 		std::shared_ptr<boost::asio::ip::tcp::socket>	tcp_client_;
 		std::shared_ptr<std::thread>					receive_thread_;
 	};
 
 	// heartbeat
 	extern std::list<std::weak_ptr<ClientImp>>	g_client_list_;
-	extern boost::mutex							g_client_list_mutex_;
+	extern std::mutex							g_client_list_mutex_;
 }
 
 #endif//_CLIENT_IMP_FC05AC64_1E43_46D5_9781_F90C2803E96E_H_

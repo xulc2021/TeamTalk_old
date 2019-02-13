@@ -71,13 +71,13 @@ int main()
 	him::GlobalInit();
 
 	const int test_type = 1;
-	const int robot_count = 200;
+	const int robot_count = 2000;
 
 	switch (test_type)
 	{
 	case 1:
 		// 批量用户登录（频率太高会崩溃，不知道为啥）
-		test_login_robot(robot_count, 10);
+		test_login_robot(robot_count, 100);
 		break;
 	case 2:
 		// 批量用户给某个会话发消息

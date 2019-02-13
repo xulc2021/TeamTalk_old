@@ -19,14 +19,13 @@
 namespace him {
 	std::shared_ptr<IClient> NewClientModule()
 	{
-		std::shared_ptr<IClient> shared_instance = nullptr;
-		{
-			boost::mutex::scoped_lock lock(g_client_list_mutex_);
-			std::shared_ptr<ClientImp> instance = std::make_shared<ClientImp>();
-			g_client_list_.push_back(instance);
-			shared_instance = std::dynamic_pointer_cast<IClient>(instance);
-		}
-		return shared_instance;
+		std::shared_ptr<ClientImp> instance = std::make_shared<ClientImp>();
+
+		g_client_list_mutex_.lock();
+		g_client_list_.push_back(instance);
+		g_client_list_mutex_.unlock();
+
+		return std::dynamic_pointer_cast<IClient>(instance);
 	}
 
 	ClientImp::ClientImp()
@@ -246,12 +245,14 @@ namespace him {
 	}
 
 	void ClientImp::SendHeartBeat() {
-		IM::Other::IMHeartBeat req;
-		int temp_buf_len = req.ByteSize();
-		unsigned char* temp_buf = new unsigned char[temp_buf_len];
-		req.SerializeToArray(temp_buf, temp_buf_len);
-		Send(IM::BaseDefine::SID_OTHER, IM::BaseDefine::CID_OTHER_HEARTBEAT, temp_buf, temp_buf_len);
-		delete[] temp_buf;
+		if (tcp_client_->is_open() && client_state_ == him::ClientState::kClientConnectedOk) {
+			IM::Other::IMHeartBeat req;
+			int temp_buf_len = req.ByteSize();
+			unsigned char* temp_buf = new unsigned char[temp_buf_len];
+			req.SerializeToArray(temp_buf, temp_buf_len);
+			Send(IM::BaseDefine::SID_OTHER, IM::BaseDefine::CID_OTHER_HEARTBEAT, temp_buf, temp_buf_len);
+			delete[] temp_buf;
+		}
 	}
 	size_t ClientImp::GetLastHeartBeatTime() {
 		return (size_t)heartbeat_time_;
@@ -261,7 +262,7 @@ namespace him {
 	{
 		int temp_seq = 0;
 		{
-			boost::mutex::scoped_lock lock(seq_mutex_);
+			std::lock_guard<std::mutex> lock(seq_mutex_);
 			seq_++;
 			temp_seq = seq_;
 		}
