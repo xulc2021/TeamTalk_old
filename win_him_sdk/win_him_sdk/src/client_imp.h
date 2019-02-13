@@ -28,6 +28,7 @@ namespace him {
 		virtual ClientState GetClientState();
 		virtual void LoginOut();
 
+		// 非线程安全
 		virtual int Send(int server_id, int msg_id, const unsigned char* data, int len);
 		virtual void SetReceiveDataCallback(ReceiveDateDelegate &callback);
 

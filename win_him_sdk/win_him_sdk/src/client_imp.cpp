@@ -30,17 +30,16 @@ namespace him {
 		, seq_(0)
 	{
 		tcp_client_ = std::make_shared<boost::asio::ip::tcp::socket>(io_server_);
-		receive_thread_ = std::make_shared<std::thread>(&ClientImp::ReceiveThreadProc, this);
-
 		write_buffer_ = new unsigned char[MAX_SEND_BUFFER_LEN];
 		::memset(write_buffer_, 0, MAX_SEND_BUFFER_LEN);
 	}
 	ClientImp::~ClientImp()
 	{
 		receive_thread_run_ = false;
-		if (receive_thread_->joinable())
-			receive_thread_->join();
-
+		if (receive_thread_ != nullptr) {
+			if (receive_thread_->joinable())
+				receive_thread_->join();
+		}
 		if (write_buffer_ != nullptr) {
 			delete[] write_buffer_;
 			write_buffer_ = nullptr;
@@ -69,8 +68,22 @@ namespace him {
 				return;
 			}
 
+			int json_code = json_value["code"].asInt();
+			std::string json_msg = json_value["msg"].asString();
+			if (json_code != 0) {
+				loge("查询服务器成功，但服务器内部发生错误：%s \n", json_msg.c_str());
+				_OnLogin(-1, json_msg);
+				return;
+			}
+
 			std::string msg_server_ip = json_value["priorIP"].asString();
 			std::string msg_server_port = json_value["port"].asString();
+			if (msg_server_ip.empty() || msg_server_port.empty()) {
+				loge("查询服务器成功，但是解析返回json结果失败！无法继续登录 \n");
+				_OnLogin(-1, "server internal error");
+				return;
+			}
+
 			logd("查询成功，开始连接消息服务器：%s:%s \n", msg_server_ip.c_str(), msg_server_port.c_str());
 
 			boost::system::error_code code;
@@ -85,6 +98,9 @@ namespace him {
 			}
 			client_state_ = ClientState::kClientConnectedOk;
 
+			// 启动接收线程
+			receive_thread_ = std::make_shared<std::thread>(&ClientImp::ReceiveThreadProc, this);
+
 			logd("connect success \n");
 			// 发起认证
 			IM::Login::IMLoginReq req;
@@ -95,9 +111,10 @@ namespace him {
 			req.set_client_version("v1");
 
 			int temp_buf_len = req.ByteSize();
-			unsigned char* temp_buf = new unsigned char(temp_buf_len);
+			unsigned char* temp_buf = new unsigned char[temp_buf_len];
 			req.SerializeToArray(temp_buf, temp_buf_len);
 			Send(IM::BaseDefine::SID_LOGIN, IM::BaseDefine::CID_LOGIN_REQ_USERLOGIN, temp_buf, temp_buf_len);
+			delete[] temp_buf;
 		}
 		else {
 			loge("http connect error: %d \n", code);
@@ -109,7 +126,20 @@ namespace him {
 	}
 	void ClientImp::LoginOut()
 	{
+		// 发送注销请求
+		IM::Login::IMLogoutReq req;
+		int temp_buf_len = req.ByteSize();
+		unsigned char* temp_buf = new unsigned char[temp_buf_len];
+		req.SerializeToArray(temp_buf, temp_buf_len);
+		Send(IM::BaseDefine::SID_LOGIN, IM::BaseDefine::CID_LOGIN_REQ_LOGINOUT, temp_buf, temp_buf_len);
+		delete[] temp_buf;
 
+		tcp_client_->close();
+		receive_thread_run_ = false;
+		if (receive_thread_ != nullptr && receive_thread_->joinable()) {
+			receive_thread_->join();
+			receive_thread_ = nullptr;
+		}
 	}
 
 	int ClientImp::Send(int server_id, int msg_id, const unsigned char* data, int len)
@@ -128,7 +158,7 @@ namespace him {
 		if (tcp_client_->is_open()) {
 			size_t send_len = tcp_client_->write_some(boost::asio::buffer(write_buffer_, len + HEADER_LENGTH));
 			if (send_len < (unsigned int)len) {
-				loge("tcp send error,source len=%d B,send len=%d", len, send_len);
+				loge("tcp send error,source len=%d B,send len=%d \n", len, send_len);
 			}
 			return send_len;
 		}
@@ -155,7 +185,7 @@ namespace him {
 				}
 				else if (err_code) {
 					boost::system::system_error err_desc(err_code);
-					loge("receive thread read data error:%s", err_desc.what());
+					loge("receive thread read data error:%s \n", err_desc.what());
 				}
 				// 是否存在粘包问题？即有特大的包时，只读取了一半
 				if (len > 0) {
@@ -166,12 +196,16 @@ namespace him {
 				Sleep(100);
 			}
 		}
+
+		logd("socket receive thread has destory \n");
 	}
 
 	void ClientImp::OnReceive(unsigned char* buf, int len)
 	{
 		PBHeader head;
-		head.UnSerialize(buf, len);
+		head.UnSerialize(buf, HEADER_LENGTH);
+
+		logd("receive new msg:moduleId=%d,msgId=%d,seq=%d \n", head.GetModuleId(), head.GetCommandId(), head.GetSeqNumber());
 
 		// 心跳包
 		if (head.GetCommandId() == IM::BaseDefine::CID_OTHER_HEARTBEAT) {
@@ -187,8 +221,6 @@ namespace him {
 			_OnLoginRes(res);
 			return;
 		}
-
-		logd("receive new msg:moduleId=%d,msgId=%d,seq=%d", head.GetModuleId(), head.GetCommandId(), head.GetSeqNumber());
 
 		// 去掉了协议头的数据部
 		unsigned char *temp_buf = new unsigned char[len - HEADER_LENGTH];
@@ -210,7 +242,8 @@ namespace him {
 	}
 	void ClientImp::_OnLoginRes(IM::Login::IMLoginRes res)
 	{
-		logd("收到登录响应，登录结果：%d,描述：%s", res.result_code(), res.result_string().c_str());
+		logd("收到登录响应，登录结果：%d,描述：%s \n", res.result_code(), res.result_string().c_str());
+		_OnLogin((int)res.result_code(), res.result_string());
 	}
 	void ClientImp::_OnLogin(int code, std::string msg)
 	{

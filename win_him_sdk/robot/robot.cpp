@@ -8,7 +8,7 @@
 
 void login_result(int code, std::string msg)
 {
-	printf("login result:%d", code);
+	printf("login result:%d \n", code);
 }
 
 int main()
@@ -22,9 +22,9 @@ int main()
 	//instance->Login("gaozz", "123456", "106.14.172.35", 31001, callback);
 	instance->Login("gaozz", "e10adc3949ba59abbe56e057f20f883e", "106.14.172.35", 31001, callback);
 
-	std::cout << "Hello World!\n";
-
-	him::GlobalUninit();
-
+	//std::cout << "Hello World!\n";
 	system("pause");
+
+	instance->LoginOut();
+	him::GlobalUninit();
 }
