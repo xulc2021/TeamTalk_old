@@ -15,7 +15,7 @@
 #define MAX_SEND_BUFFER_LEN 1024
 
 namespace him {
-	std::shared_ptr<IClient> GetClientModule()
+	std::shared_ptr<IClient> NewClientModule()
 	{
 		std::shared_ptr<ClientImp> instance = std::make_shared<ClientImp>();
 		return std::dynamic_pointer_cast<IClient>(instance);
@@ -39,6 +39,7 @@ namespace him {
 		if (receive_thread_ != nullptr) {
 			if (receive_thread_->joinable())
 				receive_thread_->join();
+			receive_thread_ = nullptr;
 		}
 		if (write_buffer_ != nullptr) {
 			delete[] write_buffer_;
@@ -134,12 +135,13 @@ namespace him {
 		Send(IM::BaseDefine::SID_LOGIN, IM::BaseDefine::CID_LOGIN_REQ_LOGINOUT, temp_buf, temp_buf_len);
 		delete[] temp_buf;
 
-		tcp_client_->close();
+		// 收到响应后注销
+		/*tcp_client_->close();
 		receive_thread_run_ = false;
 		if (receive_thread_ != nullptr && receive_thread_->joinable()) {
 			receive_thread_->join();
 			receive_thread_ = nullptr;
-		}
+		}*/
 	}
 
 	int ClientImp::Send(int server_id, int msg_id, const unsigned char* data, int len)
@@ -198,6 +200,7 @@ namespace him {
 		}
 
 		logd("socket receive thread has destory \n");
+		tcp_client_->close();
 	}
 
 	void ClientImp::OnReceive(unsigned char* buf, int len)
@@ -219,6 +222,11 @@ namespace him {
 			IM::Login::IMLoginRes res;
 			res.ParseFromArray(buf + HEADER_LENGTH, len - HEADER_LENGTH);
 			_OnLoginRes(res);
+			return;
+		}
+		// 注销
+		else if (head.GetCommandId() == IM::BaseDefine::CID_LOGIN_RES_LOGINOUT) {
+			receive_thread_run_ = false;
 			return;
 		}
 
