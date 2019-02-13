@@ -188,6 +188,8 @@ namespace him {
 			return;
 		}
 
+		logd("receive new msg:moduleId=%d,msgId=%d,seq=%d", head.GetModuleId(), head.GetCommandId(), head.GetSeqNumber());
+
 		// 去掉了协议头的数据部
 		unsigned char *temp_buf = new unsigned char[len - HEADER_LENGTH];
 		::memcpy(temp_buf, buf + HEADER_LENGTH, len - HEADER_LENGTH);
