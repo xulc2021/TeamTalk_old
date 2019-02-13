@@ -90,7 +90,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>false</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;HIM_SDK_EXPORTS;BUILD_PDU;_WINDOWS;_USRDLL;BUILDING_LIBCURL;HTTP_ONLY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;HIM_SDK_EXPORTS;BUILD_PDU;_WINDOWS;_USRDLL;BUILDING_LIBCURL;HTTP_ONLY;_CRT_SECURE_NO_WARNINGS;DISABLESLOG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>.;C:\boost_1_69_0;$(ProjectDir)..\third_party\curl-7.19\include_curl;$(ProjectDir)..\third_party\jsoncpp-src-0.5.0\include;$(ProjectDir)..\third_party\protobuf-3.5.1\include</AdditionalIncludeDirectories>
     </ClCompile>

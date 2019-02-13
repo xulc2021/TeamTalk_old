@@ -101,7 +101,7 @@ namespace him {
 	}
 #endif
 
-
+#ifndef DISABLESLOG
 	Log::Log(const char* module_name, int delay)
 	{
 		//m_log = new CLog4CXX(module_name, delay);
@@ -171,9 +171,7 @@ namespace him {
 		va_end(args);
 		//m_log->Fatal(szBuffer);
 	}
-
-
-
+#endif // !DISABLESLOG
 
 	/*
 	int main(int argc, char* argv[])

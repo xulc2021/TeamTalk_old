@@ -61,10 +61,18 @@ extern him::Log g_himlog;
 #endif
 */
 
+#ifdef DISABLESLOG
+#define logd(fmt, ...)
+#define logi(fmt, ...)
+#define logw(fmt, ...)
+#define loge(fmt, ...)
+#define logfa(fmt, ...)
+#else
 #define logd(fmt, ...)  printf("[DEBUG]\t<%s>\t<%d>" fmt, __FUNCTION__, __LINE__, ##__VA_ARGS__)
 #define logi(fmt, ...)  printf("[INFO]\t<%s>\t<%d>" fmt, __FUNCTION__,__LINE__, ##__VA_ARGS__)
 #define logw(fmt, ...) printf("[WARN]\t<%s>\t<%d>" fmt, __FUNCTION__,__LINE__, ##__VA_ARGS__)
 #define loge(fmt, ...)  printf("[ERROR]\t<%s>\t<%d>" fmt, __FUNCTION__,__LINE__, ##__VA_ARGS__)
 #define logfa(fmt, ...)  printf("[FATAL]\t<%s>\t<%d>" fmt, __FUNCTION__,__LINE__, ##__VA_ARGS__)
+#endif
 
 #endif//_SLOG_API_D435045C_1E0B_416D_8C6B_EABFEAADA744_H_
