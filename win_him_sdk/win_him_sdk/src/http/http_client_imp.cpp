@@ -41,7 +41,8 @@ namespace him {
 			curl_easy_setopt(curl, CURLOPT_URL, url.c_str()); // url
 			curl_easy_setopt(curl, CURLOPT_SSL_VERIFYPEER, false); // if want to use https
 			curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, false); // set peer and host verify false
-			curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
+			// 不查看内部日志
+			//curl_easy_setopt(curl, CURLOPT_VERBOSE, 1);
 			curl_easy_setopt(curl, CURLOPT_READFUNCTION, NULL);
 			curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, req_reply);
 			curl_easy_setopt(curl, CURLOPT_WRITEDATA, (void *)&response);
