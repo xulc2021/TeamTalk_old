@@ -320,6 +320,7 @@
         .choosed_member,.unchoosed_member{
             width: 620px;
             height: 100px;
+	    overflow-y: auto;
         }
         .unchoosed_member{
             height: 200px;
