@@ -9,11 +9,30 @@
 
 #include "api/iclient.h"
 #include "protocol/IM.Login.pb.h"
+#include "protocol/IM.Message.pb.h"
+#include <google/protobuf/message_lite.h>
 #include <boost/asio.hpp>
 #include <thread>
 #include <mutex>
 
 namespace him {
+
+	/** @struct MessageModel
+	  * @brief 消息结构体定义
+	  */
+	struct MessageModel
+	{
+		unsigned int from_user_id;
+		unsigned int to_session_id;
+		unsigned int msg_id;
+		unsigned int create_time;
+		IM::BaseDefine::MsgType msg_type;
+		std::string msg_data;
+
+		SendMsgCallback callback;
+		unsigned int	seq;
+	};
+
 	/** @class Client_Imp
 	  * @brief IClient实现
 	  */
@@ -28,10 +47,17 @@ namespace him {
 		virtual ClientState GetClientState();
 		virtual void LoginOut();
 
+		// 线程安全
+		virtual int Send(int server_id, int msg_id, google::protobuf::MessageLite* pbBody);
+		virtual int Send(int server_id, int msg_id, unsigned int seq, google::protobuf::MessageLite* pbBody);
+
 		// 非线程安全
 		virtual int Send(int server_id, int msg_id, const unsigned char* data, int len);
+		/*virtual int Send(int server_id, int msg_id,unsigned int seq, const unsigned char* data, int len);*/
 		virtual void SetReceiveDataCallback(ReceiveDateDelegate &callback);
 
+		// msg
+		virtual void SendTextMsg(unsigned int to_session_id, bool is_group, std::string text, const SendMsgCallback &callback);
 	public:
 		void ReceiveThreadProc();
 		virtual void OnReceive(unsigned char* buf, int len);
@@ -40,9 +66,10 @@ namespace him {
 		void SendHeartBeat();
 		size_t GetLastHeartBeatTime();
 	private:
-		int ThreadSafeGetSeq();
+		unsigned int ThreadSafeGetSeq();
 		void _OnLoginRes(IM::Login::IMLoginRes res);
 		void _OnLogin(int code, std::string msg);
+		void _OnMsgAck(unsigned int seq, IM::Message::IMMsgDataAck res);
 	private:
 		ClientState					client_state_;
 		ReceiveDateDelegate			callback_;
@@ -52,7 +79,6 @@ namespace him {
 		std::string					user_name_;
 		unsigned short				server_port_;
 		unsigned int				seq_;
-		unsigned char*				write_buffer_;
 		bool						receive_thread_run_;
 		time_t						heartbeat_time_;
 
@@ -61,6 +87,15 @@ namespace him {
 		std::mutex					seq_mutex_;
 		std::shared_ptr<boost::asio::ip::tcp::socket>	tcp_client_;
 		std::shared_ptr<std::thread>					receive_thread_;
+
+		// msg
+		std::map<unsigned int, MessageModel>	send_msg_map_;
+		std::mutex								msg_mutex_;
+		unsigned int							server_time_;		// 服务器上的时间，消息时间要以该时间为基准
+		int										server_time_offset_;// 本地时间和服务器时间的偏移
+		IM::BaseDefine::UserInfo				user_info_;			// 用户信息
+		unsigned int							send_msg_count_;	// 已发送消息
+		unsigned int							send_msg_success_count_;// 成功发送的消息
 	};
 
 	// heartbeat

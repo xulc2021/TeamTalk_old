@@ -28,6 +28,7 @@ namespace him {
 
 	typedef std::function<void(int code, std::string msg)> LoginResultCallback;		// 登录结果回调 
 	typedef std::function<void(unsigned char* data, int len)> ReceiveDateDelegate;	// 接收到数据的回调函数定义
+	typedef std::function<void(int seq, bool result)> SendMsgCallback;				// 发送消息结果回调
 
 	class HIM_SDK_API IClient
 	{
@@ -64,7 +65,10 @@ namespace him {
 		  * @return 已发送的数据长度
 		  */
 		virtual int Send(int server_id, int msg_id, const unsigned char* data, int len) = 0;
+
 		virtual void SetReceiveDataCallback(ReceiveDateDelegate &callback) = 0;
+	public:// msg
+		virtual void SendTextMsg(unsigned int to_session_id, bool is_group, std::string text, const SendMsgCallback &callback) = 0;
 	};
 
 	/** @fn void Init();

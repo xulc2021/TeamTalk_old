@@ -92,14 +92,14 @@
       <SDLCheck>false</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;HIM_SDK_EXPORTS;BUILD_PDU;_WINDOWS;_USRDLL;BUILDING_LIBCURL;HTTP_ONLY;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>.;C:\boost_1_69_0;$(ProjectDir)..\third_party\curl-7.19\include_curl;$(ProjectDir)..\third_party\jsoncpp-src-0.5.0\include;$(ProjectDir)..\third_party\protobuf-3.5.1\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;C:\boost_1_69_0;$(ProjectDir)..\third_party\curl-7.19\include_curl;$(ProjectDir)..\third_party\jsoncpp-src-0.5.0\include;$(ProjectDir)..\third_party\protobuf-3.5.1\include;$(ProjectDir)..\third_party\libsecurity\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>$(SolutionDir)libs\$(Configuration)\$(TargetName).lib</ImportLibrary>
-      <AdditionalLibraryDirectories>C:\boost_1_69_0\bin\vc15\lib;$(ProjectDir)..\third_party\curl-7.19\lib_curl;$(ProjectDir)..\third_party\protobuf-3.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>libprotobuf-lited.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\boost_1_69_0\bin\vc15\lib;$(ProjectDir)..\third_party\curl-7.19\lib_curl;$(ProjectDir)..\third_party\protobuf-3.5.1\lib;$(ProjectDir)..\third_party\libsecurity\lib\win\debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>libprotobuf-lited.lib;security.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
     </Link>
