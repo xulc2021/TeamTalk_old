@@ -6,11 +6,13 @@
 #include <list>
 #include <thread>
 #include <windows.h>
+#include <cstdlib>
 #include "api/iclient.h"
 
 struct TestMsgParam
 {
 	int to_session_id;
+	std::weak_ptr<him::IClient> client;
 	bool is_group;
 };
 std::list<std::shared_ptr<him::IClient>>	g_client_list_;
@@ -105,27 +107,25 @@ DWORD WINAPI msg_thread_proc(LPVOID lpParameter) {
 	TestMsgParam *param = (TestMsgParam*)lpParameter;
 	unsigned int to_session_id = param->to_session_id;
 	bool is_group = param->is_group;
+	std::weak_ptr<him::IClient> client = param->client;
 
 	while (g_client_connect_count_ > 0)
 	{
-		std::this_thread::sleep_for(std::chrono::milliseconds(5000));
+		int rand_sleep = (rand() % 4000) + 1000; //1-5秒
+		std::this_thread::sleep_for(std::chrono::milliseconds(rand_sleep));
 
-
-		std::list<std::shared_ptr<him::IClient>>::iterator it;
-		for (it = g_client_list_.begin(); it != g_client_list_.end(); it++)
-		{
-			std::shared_ptr<him::IClient> client = *it;
-			if (client->GetClientState() == him::ClientState::kClientConnectedOk) {
-				std::string text = ws2s(g_msg_list_[cur_text_index_]);
-				
-				// 匿名函数
-				auto callback = [](int seq, bool result) {
-
-				};
-				auto callback_f = std::bind(callback, std::placeholders::_1, std::placeholders::_2);
-
-				client->SendTextMsg(to_session_id, is_group, text, callback_f);
-			}
+		std::shared_ptr<him::IClient> instance = client.lock();
+		if (instance == nullptr) {
+			break;
+		}
+		if (instance->GetClientState() == him::ClientState::kClientConnectedOk) {
+			int rand_index = rand() % max_text_len;
+			std::string text = ws2s(g_msg_list_[rand_index]);
+			// 匿名函数
+			/*auto callback = [](int seq, bool result) {
+			};
+			auto callback_f = std::bind(callback, std::placeholders::_1, std::placeholders::_2);*/
+			instance->SendTextMsg(to_session_id, is_group, text, nullptr);
 		}
 
 		cur_text_index_++;
@@ -141,10 +141,18 @@ void test_msg_robot(int robot_count, int session_id, bool is_group) {
 	// 这些机器人首先得登录
 	test_login_robot(robot_count);
 
+	std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+
 	// 定时发送消息（这里用std::thread不知道为什么会崩溃）
-	TestMsgParam param{ session_id,is_group };
-	CreateThread(NULL, 0, msg_thread_proc, &param, 0, NULL);
-	std::this_thread::sleep_for(std::chrono::milliseconds(1000)); // 参数传递需要时间
+	std::list<std::shared_ptr<him::IClient>>::iterator it;
+	for (it = g_client_list_.begin(); it != g_client_list_.end(); it++)
+	{
+		std::shared_ptr<him::IClient> client = *it;
+
+		TestMsgParam param{ session_id,client,is_group };
+		CreateThread(NULL, 0, msg_thread_proc, &param, 0, NULL);
+		std::this_thread::sleep_for(std::chrono::milliseconds(200)); // 参数传递需要时间
+	}
 }
 
 
@@ -153,7 +161,7 @@ int main()
 	him::GlobalInit();
 
 	const int test_type = 2;
-	const int robot_count = 100;
+	const int robot_count = 10;
 
 	switch (test_type)
 	{
