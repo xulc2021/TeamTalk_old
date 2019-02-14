@@ -10,8 +10,8 @@
 #include "api/iclient.h"
 #include "protocol/IM.Login.pb.h"
 #include <boost/asio.hpp>
-#include <boost/thread/mutex.hpp>
 #include <thread>
+#include <mutex>
 
 namespace him {
 	/** @class Client_Imp
@@ -28,12 +28,17 @@ namespace him {
 		virtual ClientState GetClientState();
 		virtual void LoginOut();
 
+		// 非线程安全
 		virtual int Send(int server_id, int msg_id, const unsigned char* data, int len);
 		virtual void SetReceiveDataCallback(ReceiveDateDelegate &callback);
 
 	public:
 		void ReceiveThreadProc();
 		virtual void OnReceive(unsigned char* buf, int len);
+
+	public:// 心跳相关
+		void SendHeartBeat();
+		size_t GetLastHeartBeatTime();
 	private:
 		int ThreadSafeGetSeq();
 		void _OnLoginRes(IM::Login::IMLoginRes res);
@@ -49,13 +54,18 @@ namespace him {
 		unsigned int				seq_;
 		unsigned char*				write_buffer_;
 		bool						receive_thread_run_;
+		time_t						heartbeat_time_;
 
 		// boost
 		boost::asio::io_service		io_server_;
-		boost::mutex				seq_mutex_;
+		std::mutex					seq_mutex_;
 		std::shared_ptr<boost::asio::ip::tcp::socket>	tcp_client_;
 		std::shared_ptr<std::thread>					receive_thread_;
 	};
+
+	// heartbeat
+	extern std::list<std::weak_ptr<ClientImp>>	g_client_list_;
+	extern std::mutex							g_client_list_mutex_;
 }
 
 #endif//_CLIENT_IMP_FC05AC64_1E43_46D5_9781_F90C2803E96E_H_

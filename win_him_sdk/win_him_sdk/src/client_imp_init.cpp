@@ -15,6 +15,45 @@
 
 namespace him {
 	bool g_global_init = false;
+	// heartbeat
+	std::list<std::weak_ptr<ClientImp>>	g_client_list_;
+	std::mutex							g_client_list_mutex_;
+	std::shared_ptr<std::thread>		g_heartbeat_thread_ = nullptr;
+	bool								g_heartbeat_run_ = true;
+
+	void heartbeat_thread_proc()
+	{
+		while (g_heartbeat_run_)
+		{
+			{
+				std::lock_guard<std::mutex> lock(g_client_list_mutex_);
+				if (g_client_list_.size() > 0)
+				{
+					std::list<std::weak_ptr<ClientImp>>::iterator it;
+					for (it = g_client_list_.begin(); it != g_client_list_.end(); )
+					{
+						std::weak_ptr<ClientImp> item = *it;
+						std::shared_ptr<ClientImp> client = item.lock();
+						if (client != nullptr) {
+							it++;
+
+							// 10秒1个心跳
+							time_t cur_time;
+							time(&cur_time);
+							if ((cur_time - client->GetLastHeartBeatTime()) > 10) {
+								client->SendHeartBeat();
+							}
+						}
+						else { // 对象已销毁，删除引用
+							it = g_client_list_.erase(it);
+						}
+					}
+				}
+			}
+
+			Sleep(10 * 1000);
+		}
+	}
 
 	void GlobalInit()
 	{
@@ -24,6 +63,9 @@ namespace him {
 			// http (libcurl)
 			// global init
 			curl_global_init(CURL_GLOBAL_ALL);
+
+			// 心跳线程
+			g_heartbeat_thread_ = std::make_shared<std::thread>(heartbeat_thread_proc);
 		}
 	}
 
@@ -35,6 +77,14 @@ namespace him {
 			// http (libcurl)
 			// global release
 			curl_global_cleanup();
+
+			// 销毁心跳线程
+			g_heartbeat_run_ = false;
+			if (g_heartbeat_thread_ != nullptr && g_heartbeat_thread_->joinable())
+			{
+				g_heartbeat_thread_->join();
+				g_heartbeat_thread_ = nullptr;
+			}
 		}
 	}
 }

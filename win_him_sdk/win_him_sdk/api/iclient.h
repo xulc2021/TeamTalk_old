@@ -79,7 +79,7 @@ namespace him {
 	  * @brief 获取Client的新实例
 	  * @retrun 新的实例
 	  */
-	HIM_SDK_API std::shared_ptr<IClient> GetClientModule();
+	HIM_SDK_API std::shared_ptr<IClient> NewClientModule();
 }
 
 #endif//_CLIENT_FD1A9425_314E_4337_89BE_B3F537C78A8F_H_
