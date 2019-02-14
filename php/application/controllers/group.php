@@ -2,7 +2,7 @@
 
 include_once(APPPATH."core/TT_Controller.php");
 
-class Group extends TT_Controller {
+class Group extends CI_Controller {
 
 	public function __construct()
 	{
@@ -60,7 +60,7 @@ class Group extends TT_Controller {
 			'group_avatar'	=> '',
 			'user_id_list'	=> array(1)
 		);
-		$res = $this->httpRequest($this->config->config['http_url'].'/query/CreateGroup','post',json_encode($array));
+		$res = $this->httpRequest($this->config->config['http_url'].'query/CreateGroup','post',json_encode($array));
 		$res = json_decode($res,1);
 		if($res['error_code'] == 0){
 			echo 'success';
@@ -104,7 +104,9 @@ class Group extends TT_Controller {
 		$users = $this->grouprelation_model->getList(array('status'=>0,'groupId'=>$id), '*', 0, $perpage);
 		foreach ($users as $key => $value) {
 			$_data = $this->user_model->getOne(array('id'=>$value['userId']));
-			$users[$key]['name'] = $_data['name'];
+			if($_data){
+				$users[$key]['name'] = $_data['name'];
+			}
 		}
 		$data = array();
 		$result = array(
@@ -122,7 +124,30 @@ class Group extends TT_Controller {
 			'modify_type'   => intval($this->input->post('change')),
 			'user_id_list'  => array(intval($this->input->post('userId')))
 		);                  
-	    $res = $this->httpRequest($this->config->config['http_url'].'/query/ChangeMembers','post',json_encode($add));
+	    $res = $this->httpRequest($this->config->config['http_url'].'query/ChangeMembers','post',json_encode($add));
+		echo 'success';
+	}
+
+	public function changeMember2()
+	{
+		$add = array(
+                        'req_user_id'   => 0,
+                        'app_key'       => 'asdfasdf',
+                        'group_id'      => intval($this->input->post('id')),
+                        'modify_type'   => intval($this->input->post('change'))
+                        // 'user_id_list'  => array(intval($this->input->post('userId')))
+                );
+
+		$start = intval($this->input->post('start'));
+		$end = intval($this->input->post('end'));
+		$user_id_list = array();
+		for($i = 0 ; $i <= ($end - $start) ; $i ++ )
+		{
+			$user_id_list[$i] = $start + $i;
+		}
+		$add['user_id_list'] = $user_id_list;
+	        $res = $this->httpRequest($this->config->config['http_url'].'query/ChangeMembers','post',json_encode($add));
+		echo 'success';
 	}
 
 	public function httpRequest($url,$method,$params=array()){

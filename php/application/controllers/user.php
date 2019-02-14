@@ -2,7 +2,7 @@
 
 include_once(APPPATH."core/TT_Controller.php");
 
-class User extends TT_Controller {
+class User extends CI_Controller {
 
 	public function __construct()
 	{
@@ -90,6 +90,31 @@ class User extends TT_Controller {
 		if($result){
 			echo 'success';
 		}
+	}
+
+	public function add_many()
+	{
+		$start = $this->input->post('start');
+		$end = $this->input->post('end');
+
+		for ($i = $start; $i < $end; $i++) {
+			$salt = rand() % 10000;
+			$params = array(
+				'sex' => $salt % 2,
+				'name' => 'robot' . $i,
+				'domain' => 'robot' . $i,
+				'nick' => 'robot' . $i,
+				'password' => md5(md5("123456") . $salt),
+				'salt' => $salt,
+				'departId' => $this->input->post('departId'),
+				'status' => 0,
+				'created' => time(),
+				'updated' => time()
+			);
+			$this->user_model->insert($params);
+		}
+
+		echo 'start:' . $start . ',end' . $end . ',all added success!';
 	}
 
 	public function edit()
