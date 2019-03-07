@@ -19,3 +19,7 @@ cp $cfg_path/msgserver.conf $1/msg_server/
 cp $cfg_path/pushserver.conf $1/push_server/
 cp $cfg_path/routeserver.conf $1/route_server/
 cp $cfg_path/websocket_server.conf $1/websocket_server/
+
+# 同步进程所需动态库
+cd $1
+./sync_lib_for_zip.sh
