@@ -46,7 +46,7 @@ case $1 in
         restart push_server
 		restart login_server
 		restart msg_server
-		#restart websocket_server
+		restart websocket_server
 		ps -ef|grep _server
 		ps -ef|grep msfs
         ;;

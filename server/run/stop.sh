@@ -35,7 +35,7 @@ function stop() {
 
 case $1 in
     all)
-		#stop websocket_server
+		stop websocket_server
 		stop msg_server
 		stop login_server
 		stop push_server

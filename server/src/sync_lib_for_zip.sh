@@ -33,3 +33,7 @@ cp -a ./lib/liblog4cxx.so* ./db_proxy_server/
 cp -a ./lib/log4cxx.properties ./msfs/
 cp -a ./lib/libslog.so  ./msfs/
 cp -a ./lib/liblog4cxx.so* ./msfs/
+
+cp -a ./lib/log4cxx.properties ./websocket_server/
+cp -a ./lib/libslog.so  ./websocket_server/
+cp -a ./lib/liblog4cxx.so* ./websocket_server/
