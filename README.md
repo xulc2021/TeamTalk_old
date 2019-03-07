@@ -88,7 +88,14 @@ cd /home/TeamTalk/server/src/ && chmod 777 *.sh  # 赋予脚本执行权限
 ```
 
 2.开放防火墙端口
-> 待完善
+
+| 名称 | 类型 | 端口 |
+| ---- | ---- | ---- |
+| login_server | http | 8080 |
+| msg_server | tcp | 8000  |
+| msfs_server | http | 8700 |
+| file_server | tcp | 8600 |
+| push_server | tcp | 8500 |
 
 #### 开机启动mariadb和redis
 
