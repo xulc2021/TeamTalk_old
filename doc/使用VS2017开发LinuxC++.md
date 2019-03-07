@@ -13,7 +13,7 @@
 
 ### 安装GDB
 
-install openssh-server g++ gdb gdbserver
+yum install openssh-server g++ gdb gdbserver
 
 ### 安装CMake 3.10
 
