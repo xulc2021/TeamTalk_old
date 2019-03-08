@@ -18,7 +18,7 @@ SET(PB_LIB_DIR ${SRC_DIR}/protobuf/lib)
 SET(SLOG_LIB_DIR ${SRC_DIR}/lib)
 
 SET(HIREDIS_INCLUDE_DIR ../hiredis/hiredis-master)
-SET(HIREDIS_LIB_DIR ${SRC_DIR}/db_proxy_server)
+SET(HIREDIS_LIB_DIR ${SRC_DIR}/hiredis/hiredis-master)
 
 #设置自己mac os的openssl的路径 
 if(APPLE) 

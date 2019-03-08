@@ -1,0 +1,33 @@
+﻿{
+  "configurations": [
+	{
+		"name": "db_proxy_server",
+		"generator": "Unix Makefiles",
+		"remoteMachineName": "${defaultRemoteMachineName}",
+		"configurationType": "Debug",
+		"remoteCMakeListsRoot": "/home/github/TeamTalk/server/src/${name}",
+		"cmakeExecutable": "/usr/local/bin/cmake",
+		"buildRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\build\\${name}",
+		"installRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\install\\${name}",
+		"remoteBuildRoot": "/home/github/TeamTalk/server/src/bin/${name}",
+		"remoteInstallRoot": "/var/tmp/build/${workspaceHash}/install/${name}",
+		"remoteCopySources": true,
+		"remoteCopySourcesOutputVerbosity": "Normal",
+		"remoteCopySourcesConcurrentCopies": "10",
+		"remotePostbuildCommand": "cp ../../db_proxy_server/log4cxx.properties ./ & cp ../../db_proxy_server/dbproxyserver.conf ./",
+		"remoteCopySourcesMethod": "rsync",
+		"remoteCopySourcesExclusionList": [
+			".vs",
+			".git"
+		],
+		"rsyncCommandArgs": "-t --delete --delete-excluded",
+		"remoteCopyBuildOutput": false,
+		"cmakeCommandArgs": "",
+		"buildCommandArgs": "",
+		"ctestCommandArgs": "",
+		"inheritEnvironments": [
+			"linux_x64"
+		]
+	}
+  ]
+}
