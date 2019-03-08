@@ -13,14 +13,16 @@
 
 ### 安装GDB
 
-yum install openssh-server g++ gdb gdbserver
-
+```bash
+> yum install openssh-server g++ gdb gdbserver
+```
 ### 安装CMake 3.10
 
-[https://blogs.msdn.microsoft.com/vcblog/2017/08/25/visual-c-for-linux-development-with-cmake/](参考)
+[https://blogs.msdn.microsoft.com/vcblog/2017/08/25/visual-c-for-linux-development-with-cmake/](参考)  
 [https://blog.csdn.net/jiang_xinxing/article/details/77945478](Centos7安装高版本Cmake)
 
-> install -y git cmake                                  # 安装2.8cmake
+```bash
+> yum install -y git cmake                              # 安装2.8cmake
 > git clone https://github.com/Kitware/CMake.git        # 下载CMake源码
 > cd CMake
 > git checkout tags/v3.10.0                             # 切换到3.10.0
@@ -29,14 +31,20 @@ yum install openssh-server g++ gdb gdbserver
 > cmake ../                                             # 生成makefile
 > make                                                  # 编译cmkae
 > sudo make install                                     # 安装cmake3.10.0
+```
 
 请确认版本号>3.8以上
+```bash
 > /usr/local/bin/cmake –version
+```
 
 请确认：servermode=true
+```bash
 > cmake -E capabilities
+```
 
 PS：如果提示需要cmake到3.1以上，按以下步骤：
+```bash
 > git checkout tags/v3.9.0                              # 设定到3.9tag
 > mkdir out
 > cd out
@@ -47,11 +55,14 @@ PS：如果提示需要cmake到3.1以上，按以下步骤：
 > ln -s /usr/local/bin/cmake /usr/bin/                  # 添加软链接
 > cmake --version
 > 请按照上面的步骤，checkout 3.10重新编译安装
+```
 
 [可选，非必需]新建软链接：
+```bash
 > yum remove cmake -y
 > ln -s /usr/local/bin/cmake /usr/bin/
 > cmake --version
+```
 
 ## 安装vs2017
 
@@ -68,24 +79,26 @@ PS：如果提示需要cmake到3.1以上，按以下步骤：
 
 ## 配置CMake
 
-1.在CMakeLists.txt上右键"更改 CMake 设置"
-2.在打开的文件中更改：name为项目文件夹，比如login_server
-3.更改：remoteCMakeListsRoot为Linux的在CMakeLists.txt所在目录，比如：/home/svn/TeamTalk/server/src/login_server
-4.更改：remoteBuildRoot，设置MakeFile生成目录，如：/home/svn/TeamTalk/server/src/bin/${name}
-5.保存
+- 1.在CMakeLists.txt上右键"更改 CMake 设置"
+- 2.在打开的文件中更改：name为项目文件夹，比如login_server
+- 3.更改：remoteCMakeListsRoot为Linux的在CMakeLists.txt所在目录，比如：/home/svn/TeamTalk/server/src/login_server
+- 4.更改：remoteBuildRoot，设置MakeFile生成目录，如：/home/svn/TeamTalk/server/src/bin/${name}
+- 5.保存
 
 保存时vs2017会自动拷贝代码到/home/svn/TeamTalk/server/src/login_server，然后执行CMake命令生成MakeFile文件到/home/svn/TeamTalk/server/src/bin/login_server。
 此时，可使用make手动编译：
+```bash
 > cd /home/svn/TeamTalk/server/src/bin/login_server
 > make
+```
 
 ## 编译
 
 ### 编译前准备
 
 make指令链接静态库时，查找文件路径是相对于：/home/svn/TeamTalk/server/src/bin/login_server。所以需要修正在CMakeLists.txt
-1.编辑CMakeLists.txt
-2.增加：
+- 1.编辑CMakeLists.txt
+- 2.增加：
 SET(SRC_DIR  ../../) # CMAKE的输出路径为TeamTalk\server\src\bin\${name}，${name}代表项目名称，如login_server。../../定位到src下，并且只需要连接静态库时，增加该前缀
 SET(PB_LIB_DIR ${SRC_DIR}/protobuf/lib)
 SET(SLOG_LIB_DIR ${SRC_DIR}/slog)
@@ -105,5 +118,5 @@ SET(SLOG_LIB_DIR ${SRC_DIR}/slog)
 ### 推荐插件
 
 推荐安装：VAssistX插件
-1.关键字高亮
-2.文件头注释目录、函数、类注释模板等
+- 1.关键字高亮
+- 2.文件头注释目录、函数、类注释模板等
