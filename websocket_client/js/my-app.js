@@ -133,7 +133,7 @@ function bindDataToGrouplist(){
 		currentSession.sessionId = groupInfo.groupId;
 		currentSession.sessionType = SessionType.SESSION_TYPE_GROUP;
 		currentSession.currentMsgId = 0;
-		mainView.router.loadPage('chatmain');  
+		mainView.router.loadPage('chatmain.html');  
 	});
 }
 
