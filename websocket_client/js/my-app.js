@@ -13,7 +13,7 @@ var mainView = myApp.addView('.view-main', {
 });
 
 //var client = new TeamTalkWebClient({wsurl:'wss://ws.xiaominfc.com:9091'}); //ssl 支持
-var client = new TeamTalkWebClient({wsurl:'ws://116.196.108.78:9090'});
+var client = new TeamTalkWebClient({wsurl:'ws://106.14.172.35:9090'});
 //client.connection();
 
 myApp.onPageAfterAnimation('chatmain', function (page) {
@@ -550,7 +550,7 @@ function loadMsgForChatMain(msgs,messagesContainer) {
 
 
 function showHome(){
-	mainView.router.loadPage('home');   
+	mainView.router.loadPage('home.html');   
 }
 
 
