@@ -108,7 +108,7 @@ function bindDataToContactlist(){
 		currentSession.sessionId = parseInt(user.userId);
 		currentSession.sessionType = SessionType.SESSION_TYPE_SINGLE;
 		currentSession.currentMsgId = 0;
-		mainView.router.loadPage('chatmain');  
+		mainView.router.loadPage('chatmain.html');  
 	});
 }
 
