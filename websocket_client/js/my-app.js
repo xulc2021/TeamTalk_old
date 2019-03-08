@@ -238,7 +238,7 @@ function bindSessions(autoRemove){
 		currentSession.sessionId = session.sessionId;
 		currentSession.sessionType = session.sessionType;
 		currentSession.currentMsgId = session.latestMsgId;
-		mainView.router.loadPage('chatmain');  
+		mainView.router.loadPage('chatmain.html');  
 	});
 
 	if(groupList.length > 0 && !autoRemove) {
