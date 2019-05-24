@@ -14,8 +14,8 @@ SET(PB_LIB_DIR ${SRC_DIR}/protobuf/lib)
 SET(SLOG_LIB_DIR ${SRC_DIR}/lib)
 
 if(APPLE)
-    SET(OPENSSL_INCLUDE_DIR /usr/local/Cellar/openssl/1.0.2n/include)
-    SET(OPENSSL_LIB_DIR /usr/local/Cellar/openssl/1.0.2n/lib)
+    SET(OPENSSL_INCLUDE_DIR /usr/local/Cellar/openssl/1.0.2r/include)
+    SET(OPENSSL_LIB_DIR /usr/local/Cellar/openssl/1.0.2r/lib)
 endif()
 
 

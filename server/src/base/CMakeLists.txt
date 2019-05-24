@@ -25,8 +25,8 @@ ADD_DEFINITIONS( -g -W -Wall -D_REENTRANT -D_FILE_OFFSET_BITS=64 -DAC_HAS_INFO
 
 #设置自己mac os的openssl的路径
 if(APPLE)
-    SET(OPENSSL_INCLUDE_DIR /usr/local/Cellar/openssl/1.0.2n/include)
-    SET(OPENSSL_LIB_DIR /usr/local/Cellar/openssl/1.0.2n/lib)
+    SET(OPENSSL_INCLUDE_DIR /usr/local/Cellar/openssl/1.0.2r/include)
+    SET(OPENSSL_LIB_DIR /usr/local/Cellar/openssl/1.0.2r/lib)
 endif()
 
 INCLUDE_DIRECTORIES(./ ../ ./jsoncpp ${PB_INCLUDE_DIR} ./pb/protocol ${OPENSSL_INCLUDE_DIR} ${SLOG_INCLUDE_DIR})

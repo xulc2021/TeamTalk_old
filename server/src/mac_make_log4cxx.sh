@@ -82,7 +82,7 @@ build_log4cxx(){
     download $LOG4CXX.tar.gz $LOG4CXX_PATH
     tar -xf $LOG4CXX.tar.gz
     cd $LOG4CXX
-    ./configure --prefix=$CUR_DIR/log4cxx --with-apr=/usr/local/opt/apr --with-apr-util=/usr/local/opt/apr-util
+    ./configure --prefix=$CUR_DIR/log4cxx --with-apr=/usr/local/Cellar/apr --with-apr-util=/usr/local/Cellar/apr-util --with-charset=utf-8 --with-logchar=utf-8
     cp ../simpledateformat.h ./src/main/include/log4cxx/helpers/
     cp ../inputstreamreader.cpp ./src/main/cpp/
     cp ../socketoutputstream.cpp ./src/main/cpp/
@@ -91,7 +91,7 @@ build_log4cxx(){
     make install
     cd ../../
     cp -rf log4cxx/include slog/
-    cp -f log4cxx/lib/liblog4cxx.dylib* slog/
+    cp -f /usr/local/lib/liblog4cxx* lib/
 }
 
 #check_user
