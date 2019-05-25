@@ -270,8 +270,7 @@ build_all(){
 	build_msg_server
 	build_http_msg_server
 	build_push_server
-	# 暂时注释 by xuyc 2019-05-24
-	# build_db_proxy_server
+	build_db_proxy_server
 	build_route_server
 	#build_file_server
 	build_msfs
@@ -290,8 +289,7 @@ build_all(){
     mkdir -p ../../run/http_msg_server
 
 	
-    # 暂时注释 by xuyc 2019-05-24
-    #mkdir -p ../../run/db_proxy_server
+    mkdir -p ../../run/db_proxy_server
     mkdir -p ../../run/websocket_server
 
 	#copy executables to run/ dir
@@ -307,8 +305,7 @@ build_all(){
 
     cp push_server/push_server ../../run/push_server/
 
-    # 暂时注释 by xuyc 2019-05-24
-    #cp db_proxy_server/db_proxy_server ../../run/db_proxy_server/
+    cp db_proxy_server/db_proxy_server ../../run/db_proxy_server/
 
     cp msfs/msfs ../../run/msfs/
 
@@ -330,8 +327,7 @@ build_all(){
     mkdir -p ../../$build_version/http_msg_server
     mkdir -p ../../$build_version/push_server
 
-    # 暂时注释 by xuyc 2019-05-24
-    #mkdir -p ../../$build_version/db_proxy_server
+    mkdir -p ../../$build_version/db_proxy_server
     mkdir -p ../../$build_version/lib
     mkdir -p ../../$build_version/websocket_server
 
@@ -354,9 +350,8 @@ build_all(){
     cp push_server/pushserver.conf ../../$build_version/push_server/
 
    
-    # 暂时注释 by xuyc 2019-05-24
-    #cp db_proxy_server/db_proxy_server ../../$build_version/db_proxy_server/
-    #cp db_proxy_server/dbproxyserver.conf ../../$build_version/db_proxy_server/
+    cp db_proxy_server/db_proxy_server ../../$build_version/db_proxy_server/
+    cp db_proxy_server/dbproxyserver.conf ../../$build_version/db_proxy_server/
 
     cp msfs/msfs ../../$build_version/msfs/
     cp msfs/msfs.conf ../../$build_version/msfs/

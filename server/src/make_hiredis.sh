@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # author: luoning
 # date: 03/24/2015
 
@@ -71,6 +71,13 @@ build_hiredis(){
     # cp -a hiredis.h async.h read.h sds.h adapters ../../db_proxy_server
 }
 
+if_mac_then_install_hiredis(){
+    if [ "$(uname)" == "Darwin" ]; then
+        make install
+    fi
+}
+
 #check_user
 get_cur_dir
 build_hiredis
+if_mac_then_install_hiredis
