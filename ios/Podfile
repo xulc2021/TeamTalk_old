@@ -21,6 +21,9 @@ target 'TeamTalk' do
   pod 'SVWebViewController'
   pod 'XHImageViewer'
   pod 'ZXingObjC'
+  #added_by meki
+  pod 'Fabric'
+  pod 'Crashlytics'
 
   target 'TeamTalkTests' do
     inherit! :search_paths
