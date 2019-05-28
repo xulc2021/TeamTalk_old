@@ -6,7 +6,7 @@
 # setup php
 
 PHP=php-5.6.6
-PHP_DOWNLOAD_PATH=http://cn2.php.net/distributions/$PHP.tar.gz
+PHP_DOWNLOAD_PATH=http://ftp.ntu.edu.tw/php/distributions/$PHP.tar.gz
 INSTALL_DIR=/usr/local/php5
 
 PHP_FPM_CONF=php-fpm.conf
