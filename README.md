@@ -64,7 +64,9 @@ cd /home/TeamTalk/server/src/ && chmod 777 *.sh  # 赋予脚本执行权限
 #### 编译IM
 
 ```bash
-> ./build.sh version 0.6.0      # 编译im，version 后面是版本号
+# 编译im，version 后面是版本号
+# 安装包在../im-server-2020.10.27.tar.gz
+> ./build.sh version 0.6.0      
 ```
 
 ### 运行
@@ -74,7 +76,9 @@ cd /home/TeamTalk/server/src/ && chmod 777 *.sh  # 赋予脚本执行权限
 ```bash
 > cd /home/TeamTalk/auto_setup/mariadb/ && chmod +x *.sh && ./setup.sh install 
 
-#在这里会提示修改 MariaDB 的 root 密码。这里设置为 12345，确保和 dbproxyserver.conf 和 /home/TeamTalk/auto_setup/mariadb/setup.sh 文件里的保持一致。剩下的 MariaDB 的设置可以都按照默认的来（一路回车）。
+#在这里会提示修改 MariaDB 的 root 密码
+#请确保设置为 12345（如果不是，进入mysql执行：set password for root@localhost = password('12345');）
+#即确保和 dbproxyserver.conf 和 /home/TeamTalk/auto_setup/mariadb/setup.sh 文件里的保持一致。剩下的 MariaDB 的设置可以都按照默认的来（一路回车）。
 ```
 
 #### 防火墙设置
@@ -108,7 +112,7 @@ cd /home/TeamTalk/server/src/ && chmod 777 *.sh  # 赋予脚本执行权限
 
 #### 手动添加2个测试账号
 
-ps：密码是123456
+ps：密码是123456，用户名是gaozz和hanmm。
 
 ``` sql
 mysql -u root -p12345  
@@ -117,6 +121,13 @@ use teamtalk;
 INSERT INTO IMDepart (`id`, `departName`, `priority`, `parentId`, `status`, `created`, `updated`) VALUES ('1', '测试', '0', '0', '0', '1546410063', '1546410063');  
 INSERT INTO `teamtalk`.`IMUser` (`id`, `sex`, `name`, `domain`, `nick`, `password`, `salt`, `phone`, `email`, `avatar`, `departId`, `status`, `created`, `updated`, `push_shield_status`, `sign_info`) VALUES ('7', '0', 'gaozz', '0', '高真真', 'abe84781319bd8222792f124245429f8', '1952', '', '', 'http://127.0.0.1:8700/', '1', '0', '1548215851', '1548215942', '0', '');  
 INSERT INTO `teamtalk`.`IMUser` (`id`, `sex`, `name`, `domain`, `nick`, `password`, `salt`, `phone`, `email`, `avatar`, `departId`, `status`, `created`, `updated`, `push_shield_status`, `sign_info`) VALUES ('8', '0', 'hanmm', '0', '韩梅梅', 'd4e546771dd30d75076b928326947df1', '4650', '', '', 'http://127.0.0.1:8700/', '1', '0', '1548215935', '1548215948', '0', '');
+```
+
+如果需要测试群组：
+```sql
+INSERT INTO `teamtalk`.`IMGroup` (`id`, `name`, `avatar`, `creator`, `type`, `userCnt`, `status`, `version`, `lastChated`, `updated`, `created`) VALUES ('1', '测试群', '', '7', '1', '2', '0', '1', '0', '0', '0');
+INSERT INTO `teamtalk`.`IMGroupMember` (`id`, `groupId`, `userId`, `status`, `created`, `updated`) VALUES ('1', '1', '7', '0', '0', '0');
+INSERT INTO `teamtalk`.`IMGroupMember` (`id`, `groupId`, `userId`, `status`, `created`, `updated`) VALUES ('2', '1', '8', '0', '0', '0');
 ```
 
 #### 配置并运行IM
@@ -167,6 +178,7 @@ INSERT INTO `teamtalk`.`IMUser` (`id`, `sex`, `name`, `domain`, `nick`, `passwor
 ```bash
 > cd /home/repo/TeamTalk/server  
 > tar -zxvf im-server-0.6.0.tar.gz  
+> chmod 777 *.sh
 > sync_lib_for_zip.sh  
 > restart.sh all
 ```
@@ -191,6 +203,29 @@ root     11204     1  0 12:11 ?        00:00:00 ./push_server
 > 或者  
 > tail msg_server/log/default.log   # 实时查看
 ```
+
+9.客户端（windows演示）
+> 1. 双击exe
+> 2. 点击“设置”按钮，把默认的“http://access.teamtalk.im:8080/msg_server”更改为“http://10.0.107.222:8080/msg_server”
+> 3. 输入账号和密码（上面插入了gaozz和hanmm共2个测试用户，密码为123456）
+> 4. 点击登录，如果失败，去服务端查看log。主要看login_server,msg_server,db_proxy_server。（tail -f login_server/log/default.log）
+
+## 常见错误
+
+### db_proxy_server没启动
+
+1. 查看log，如果没有log。直接./db_proxy_server执行一下，看是否缺少依赖。PS：如果缺少libhiredis.so.0.13，手动拷贝一下（在/data/TeamTalk/server/src/hiredis/hiredis-master）：cp libhiredis.so /data/im-server-2020.10.27/db_proxy_server/libhiredis.so.0.13
+2. 检测redis是否启动，如果没启动。vim /etc/redis.conf，查看监听的端口是否正确。
+3. 检测mysql是否启动，用户名密码是否配置正确。
+
+找到问题后，可以单独启动服务：
+```bash
+./restart.sh db_proxy_server
+```
+
+### 客户端报“服务端异常”
+
+1. 查看login_server的日志和msg_server的日志，以及db_proxy_server的日志。
 
 ## 搭建WEB
 
