@@ -125,7 +125,7 @@ INSERT INTO `teamtalk`.`IMUser` (`id`, `sex`, `name`, `domain`, `nick`, `passwor
 
 如果需要测试群组：
 ```sql
-INSERT INTO `teamtalk`.`IMGroup` (`id`, `name`, `avatar`, `creator`, `type`, `userCnt`, `status`, `version`, `lastChated`, `updated`, `created`) VALUES ('1', '测试群', '', '7', '1', '2', '0', '1', '0', '0', '0');
+INSERT INTO `teamtalk`.`IMGroup` (`id`, `name`, `avatar`, `creator`, `type`, `userCnt`, `status`, `version`, `lastChated`, `updated`, `created`) VALUES ('1', '测试群', '', '7', '2', '2', '0', '1', '0', '0', '0');
 INSERT INTO `teamtalk`.`IMGroupMember` (`id`, `groupId`, `userId`, `status`, `created`, `updated`) VALUES ('1', '1', '7', '0', '0', '0');
 INSERT INTO `teamtalk`.`IMGroupMember` (`id`, `groupId`, `userId`, `status`, `created`, `updated`) VALUES ('2', '1', '8', '0', '0', '0');
 ```
