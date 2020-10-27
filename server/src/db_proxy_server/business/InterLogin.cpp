@@ -61,6 +61,9 @@ bool CInterLoginStrategy::doLogin(const std::string &strName, const std::string 
                 string strInPass = strPass + strSalt;
                 char szMd5[33];
                 CMd5::MD5_Calculate(strInPass.c_str(), strInPass.length(), szMd5);
+		
+		log("doLogin name=%s,inputPassMd5=%s,dbPassMd5=%s",tmpName.c_str(),szMd5,strResult.c_str());
+
                 string strOutPass(szMd5);
                 if(strOutPass == strResult)
                 {
