@@ -1,7 +1,7 @@
 /*******************************************************************************
  *  @file      imconn.h 2013\6\5 18:51:30 $
  *  @author    згЬк<ziteng@mogujie.com>
- *  @brief     
+ *  @brief
  ******************************************************************************/
 
 #ifndef IMCONN_F6246291_E098_40CB_B2B9_612AD9AC1F93_H__
@@ -22,46 +22,44 @@
 #define READ_BUF_SIZE	1024 * 128
 
 class CImConn;
-typedef hash_map<net_handle_t, CImConn*>		ConnMap_t;
+typedef unordered_map<net_handle_t, CImConn*>		ConnMap_t;
 
-struct ITcpSocketCallback
-{
-	virtual void onClose() = 0;
-	virtual void onReceiveData(const char* data, int32_t size) = 0;
-	virtual void onConnectDone() = 0;
-	virtual void onReceiveError() = 0;
+struct ITcpSocketCallback {
+    virtual void onClose() = 0;
+    virtual void onReceiveData(const char* data, int32_t size) = 0;
+    virtual void onConnectDone() = 0;
+    virtual void onReceiveError() = 0;
 };
 
-class CImConn : public CRefObject
-{
-public:
-	CImConn();
-	virtual ~CImConn();
+class CImConn : public CRefObject {
+  public:
+    CImConn();
+    virtual ~CImConn();
 
-	net_handle_t Connect(const char* server_ip, uint16_t server_port);
-	void Close();	
-	bool Shutdown();
-	int Send(void* data, int len);
+    net_handle_t Connect(const char* server_ip, uint16_t server_port);
+    void Close();
+    bool Shutdown();
+    int Send(void* data, int len);
 
-	void onConnect();
-	void OnRead();
-	void OnWrite();
-	void OnClose();
-	void OnTimer(uint64_t curr_tick) {}
+    void onConnect();
+    void OnRead();
+    void OnWrite();
+    void OnClose();
+    void OnTimer(uint64_t curr_tick) {}
 
-	void unRegisterCallback();
-	void registerCallback(ITcpSocketCallback* pCB);
+    void unRegisterCallback();
+    void registerCallback(ITcpSocketCallback* pCB);
 
-protected:
-	net_handle_t	m_handle;
-	bool			m_busy;
+  protected:
+    net_handle_t	m_handle;
+    bool			m_busy;
 
-	string			m_peer_ip;
-	uint16_t		m_peer_port;
-	CSimpleBuffer	m_in_buf;
-	CSimpleBuffer	m_out_buf;
+    string			m_peer_ip;
+    uint16_t		m_peer_port;
+    CSimpleBuffer	m_in_buf;
+    CSimpleBuffer	m_out_buf;
 
-	ITcpSocketCallback*	m_pTcpSocketCB;
+    ITcpSocketCallback*	m_pTcpSocketCB;
 };
 
 void imconn_callback(void* callback_data, uint8_t msg, uint32_t handle, void* pParam);
