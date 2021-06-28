@@ -37,7 +37,9 @@ windows: 参考 [README.md](./win-client/README.md)
 
 ## Run
 
-1. 下载客户端，这里已经编译好了windows版本：[百度网盘](https://pan.baidu.com/s/1tjlN_BF1H9QcEEykGbwDbw) 提取码：kt6e
+1. 下载客户端，这里已经编译好了windows版本
+- [百度网盘，不能多开](https://pan.baidu.com/s/1tjlN_BF1H9QcEEykGbwDbw)，提取码：kt6e
+- [多开版](https://pan.baidu.com/s/1DAgeWBooQkGlxHxN90HyZg)，提取码：6b74
 2. 解压，双击bin/teamtalk.exe
 3. 点击“设置”按钮，设置成自己的服务器IP
 ```bash
