@@ -9,7 +9,7 @@ SET(EXECUTABLE_OUTPUT_PATH  ./)
 SET(SRC_DIR ../../)
 SET(MYSQL_LIB /usr/lib64/mysql)
 SET(UBUNTU_MYSQL_LIB /usr/lib/x86_64-linux-gnu)
-SET(MYSQL_LIB_NAME mysqlclient_r)
+SET(MYSQL_LIB_NAME mysqlclient_r)  # ubuntu use mysqlclient
 
 
 SET(PB_INCLUDE_DIR ../protobuf/include)
